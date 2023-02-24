@@ -6,7 +6,7 @@ Ce document rencense des instructions et des astuces sur l'utilisation de Git et
 
 Le Super PO est [Mathis Viviers](https://github.com/Kelwarin).
 
-Le seul (à ce jour) mainteneur du repo est [Valentin Vanhove](https://github.com/ValentinVnh). Il s'occupe de la gestion des branches.
+Le seul (à ce jour) mainteneur du repo est [Valentin Vanhove](https://github.com/ValentinVnh). Il s'occupe de la gestion des branches. Pour assurer la qualité du projet et de son code, un administrateur sera par la suite élu pour pouvoir approuver et gérer les branches.
 
 ## Organisation du code
 
