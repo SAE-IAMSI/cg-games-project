@@ -44,3 +44,7 @@ Pour chacune des fonctionnalités, il est **essentiel** de documenter son code (
 N'hésitez pas à tenir un document (hors code) qui contient des explications de comment votre code fonctionne — en cas de maintenance de personnes extérieures au projet (également pour la base de données).
 
 Pensez également à détailler le plus possible vos messages de commit, afin qu'ils puissent être compris par tous.
+
+## Règles sur les `merge requests`
+
+Tout merge request ne respectant pas les règles susnommées est susceptible d'être refusé.
