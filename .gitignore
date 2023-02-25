@@ -95,10 +95,10 @@ out/
 
 ### Intellij Patch ###
 
-# *.iml
-# modules.xml
-# .idea/misc.xml
-# *.ipr
+*.iml
+modules.xml
+.idea/misc.xml
+*.ipr
 
 ##
 ## Eclipse
