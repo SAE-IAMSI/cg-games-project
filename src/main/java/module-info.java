@@ -20,4 +20,6 @@ module games.project.launcher {
     opens games.project.casse_briques.controller to javafx.fxml;
     opens games.project.casse_briques.view to javafx.fxml;
 
+    exports games.project.motron;
+
 }
