@@ -1,5 +1,10 @@
 package games.project.koala_rock.View;
 
+import games.project.koala_rock.Metier.manager.ScoreManager;
+import games.project.koala_rock.Model.*;
+import games.project.koala_rock.RessourcesAccess;
+import games.project.koala_rock.Sound.Son;
+import games.project.koala_rock.Stockage.Session;
 import javafx.animation.*;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.LongProperty;
@@ -19,11 +24,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import games.project.koala_rock.Metier.manager.ScoreManager;
-import games.project.koala_rock.Model.*;
-import games.project.koala_rock.RessourcesAccess;
-import games.project.koala_rock.Sound.Son;
-import games.project.koala_rock.Stockage.Session;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

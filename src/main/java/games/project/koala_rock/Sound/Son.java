@@ -4,7 +4,6 @@ import games.project.koala_rock.RessourcesAccess;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-
 import java.util.Objects;
 
 public class Son {

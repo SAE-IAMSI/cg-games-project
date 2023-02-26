@@ -49,7 +49,6 @@
             <artifactId>javafx-media</artifactId>
             <version>19</version>
         </dependency>
-
     </dependencies>
 
     <build>

@@ -11,7 +11,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
-
 import java.util.ArrayList;
 import java.util.Objects;
 

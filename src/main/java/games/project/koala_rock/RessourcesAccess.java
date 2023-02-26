@@ -1,9 +1,9 @@
 package games.project.koala_rock;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
 import games.project.koala_rock.Sound.Son;
 import games.project.koala_rock.View.VueDemarrage;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 

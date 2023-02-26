@@ -10,7 +10,6 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
-
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Objects;

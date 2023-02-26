@@ -1,7 +1,6 @@
 package games.project.koala_rock.Metier.entite; //Votre package ici.
 
 
-
 import games.project.koala_rock.Stockage.Security;
 
 import java.security.InvalidKeyException;

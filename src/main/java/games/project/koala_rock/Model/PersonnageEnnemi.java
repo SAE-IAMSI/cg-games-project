@@ -9,7 +9,6 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-
 import java.util.Objects;
 
 public class PersonnageEnnemi extends Group {

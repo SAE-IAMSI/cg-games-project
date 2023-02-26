@@ -7,7 +7,6 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
-
 import java.util.Objects;
 
 public class Echelle extends Group {

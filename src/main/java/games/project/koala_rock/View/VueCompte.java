@@ -1,5 +1,11 @@
 package games.project.koala_rock.View;
 
+import games.project.koala_rock.Metier.entite.Score;
+import games.project.koala_rock.Metier.manager.PlayerManager;
+import games.project.koala_rock.Metier.manager.ScoreManager;
+import games.project.koala_rock.Model.Fond;
+import games.project.koala_rock.RessourcesAccess;
+import games.project.koala_rock.Stockage.Session;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
@@ -9,12 +15,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import games.project.koala_rock.Metier.entite.Score;
-import games.project.koala_rock.Metier.manager.PlayerManager;
-import games.project.koala_rock.Metier.manager.ScoreManager;
-import games.project.koala_rock.Model.Fond;
-import games.project.koala_rock.RessourcesAccess;
-import games.project.koala_rock.Stockage.Session;
 
 import java.io.IOException;
 import java.util.ArrayList;
