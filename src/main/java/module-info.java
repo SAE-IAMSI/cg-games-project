@@ -22,4 +22,6 @@ module games.project.launcher {
 
     exports games.project.motron;
 
+    exports games.project.factory_fall;
+
 }
