@@ -7,6 +7,6 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // TODO: Need to implement this method
+        new Throwable("Not implemented yet").printStackTrace();
     }
 }
