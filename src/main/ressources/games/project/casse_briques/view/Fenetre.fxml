@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1291.0" layoutX="-2.0" pickOnBounds="true" visible="true">
+         <image>
+            <Image url="@../textures/fondecranjungle.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="limit" layoutX="-67.0" layoutY="781.0" prefHeight="181.0" prefWidth="1444.0" style="-fx-background-color: red;" />
+      <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="63.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/life.png" />
+         </image>
+      </ImageView>
+      <Pane layoutX="762.0" layoutY="24.0" prefHeight="68.0" prefWidth="243.0" />
+      <ImageView fx:id="pauseBt" fitHeight="56.0" fitWidth="106.0" layoutX="1125.0" layoutY="643.0" onMouseClicked="#pauseAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/btPause.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="53.0" fitWidth="185.0" layoutX="1093.0" layoutY="17.0" pickOnBounds="true">
+         <image>
+            <Image url="@../textures/scorebar.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="scoreText" fill="WHITE" layoutX="1072.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score :" textAlignment="CENTER" wrappingWidth="231.0">
+         <font>
+            <Font name="MS Reference Specialty" size="13.0" />
+         </font>
+      </Text>
+      <Text fx:id="title" fill="WHITE" layoutX="-12.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CASSE-BRIQUES" textAlignment="CENTER" wrappingWidth="231.0">
+         <font>
+            <Font name="MS Reference Specialty" size="13.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="wallL" fitHeight="720.0" fitWidth="89.0" layoutX="184.0" pickOnBounds="true">
+         <image>
+            <Image url="@../textures/bords.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="wallR" fitHeight="720.0" fitWidth="89.0" layoutX="1010.0" pickOnBounds="true">
+         <image>
+            <Image url="@../textures/bordsinvert.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="lifeText" fill="WHITE" layoutX="79.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X3" textAlignment="CENTER" wrappingWidth="81.13671875">
+         <font>
+            <Font name="MS Reference Specialty" size="15.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="68.0" fitWidth="73.0" layoutX="1147.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/sablier.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="chronoText" fill="WHITE" layoutX="1142.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chronometre" textAlignment="CENTER" wrappingWidth="81.13671875">
+         <font>
+            <Font name="MS Reference Specialty" size="12.0" />
+         </font>
+      </Text>
+      <Text fx:id="levelText" fill="WHITE" layoutX="-21.0" layoutY="712.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIVEAU: X" textAlignment="CENTER" wrappingWidth="231.0">
+         <font>
+            <Font name="MS Reference Specialty" size="13.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f21a1a" height="34.0" layoutX="14.0" layoutY="343.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="GREEN" height="34.0" layoutX="14.0" layoutY="397.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="PINK" height="34.0" layoutX="14.0" layoutY="451.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fff91f" height="34.0" layoutX="14.0" layoutY="506.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
+      <Text fx:id="l1Text" fill="WHITE" layoutX="98.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="= 4 Vies" />
+      <Text fx:id="l2Text" fill="WHITE" layoutX="98.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="= 3 Vies" />
+      <Text fx:id="l3Text" fill="WHITE" layoutX="98.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text="= 2 Vies" />
+      <Text fx:id="l4Text" fill="WHITE" layoutX="100.0" layoutY="528.0" strokeType="OUTSIDE" strokeWidth="0.0" text="= 1 Vie" />
+      <ImageView fitHeight="34.0" fitWidth="68.0" layoutX="1220.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/Button_Droite-modif.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="68.0" layoutX="1102.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/Button_Gauche-modif.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="96.0" layoutX="1147.0" layoutY="493.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/Mouse.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="25.0" layoutX="1105.0" layoutY="396.0" stroke="WHITE" strokeType="INSIDE" width="151.0" />
+      <Text fx:id="deplacementText" fill="WHITE" layoutX="1105.0" layoutY="413.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deplacement" textAlignment="CENTER" wrappingWidth="151.0" />
+      <ImageView fitHeight="34.0" fitWidth="53.0" layoutX="1214.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/MouseEffects.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="53.0" layoutX="1116.0" layoutY="529.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/MouseEffectsLeft.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="infoTxt" fill="#8a8a8a" layoutX="339.0" layoutY="574.0" strokeType="OUTSIDE" strokeWidth="0.0" text="APPUYER SUR ESPACE" textAlignment="CENTER" wrappingWidth="608.13671875">
+         <font>
+            <Font size="31.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="34.0" fitWidth="73.0" layoutX="1142.0" layoutY="434.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/Button_Espace_1.png" />
+         </image>
+      </ImageView>
+   </children>
+</fx:root>
