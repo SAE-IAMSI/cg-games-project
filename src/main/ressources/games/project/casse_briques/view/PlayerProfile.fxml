@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="720" maxWidth="1280" minHeight="373.0" minWidth="588.0" prefHeight="373.0" prefWidth="588.0" style="-fx-background-color: white;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="373.0" fitWidth="588.0" pickOnBounds="true">
+         <image>
+            <Image url="@../textures/menuScreenEmptyNew.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="title" fill="WHITE" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Votre profil :" textAlignment="CENTER" wrappingWidth="588.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="playerName" fill="WHITE" layoutX="43.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom du joueur :" />
+      <Text fx:id="depText" fill="WHITE" layoutX="43.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Departement :" />
+      <ImageView fx:id="backBt" fitHeight="43.0" fitWidth="185.0" layoutX="54.0" layoutY="275.0" onMouseClicked="#clickBack" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="backText" fill="WHITE" layoutX="54.0" layoutY="301.0" onMouseClicked="#clickBack" strokeType="OUTSIDE" strokeWidth="0.0" text="Retour" textAlignment="CENTER" wrappingWidth="129.0" />
+      <ImageView fitHeight="43.0" fitWidth="129.0" layoutX="416.0" layoutY="217.0" onMouseClicked="#clickDelete" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="43.0" fitWidth="156.0" layoutX="416.0" layoutY="275.0" onMouseClicked="#clickEdit" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="editText" fill="WHITE" layoutX="416.0" layoutY="301.0" onMouseClicked="#clickEdit" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier" textAlignment="CENTER" wrappingWidth="129.0" />
+      <Text fx:id="deleteText" fill="WHITE" layoutX="416.0" layoutY="242.0" onMouseClicked="#clickDelete" strokeType="OUTSIDE" strokeWidth="0.0" text="Supprimer" textAlignment="CENTER" wrappingWidth="129.0" />
+   </children>
+</fx:root>

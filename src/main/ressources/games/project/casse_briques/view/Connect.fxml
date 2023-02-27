@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="720" maxWidth="1280" minHeight="373.0" minWidth="588.0" prefHeight="373.0" prefWidth="588.0" style="-fx-background-color: white;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="373.0" fitWidth="588.0" pickOnBounds="true">
+         <image>
+            <Image url="@../textures/menuScreenEmptyNew.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="login" layoutX="220.0" layoutY="131.0" />
+      <PasswordField fx:id="password" layoutX="220.0" layoutY="187.0" />
+      <Text fx:id="lText" fill="WHITE" layoutX="102.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="84.42578125" />
+      <Text fx:id="pText" fill="WHITE" layoutX="97.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" wrappingWidth="177.42578125" />
+      <Text fx:id="register" fill="WHITE" layoutX="220.0" layoutY="225.0" onMouseClicked="#clickRegister" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-underline: true;" text="S'enregistrer" textAlignment="RIGHT" wrappingWidth="148.5078125" />
+      <Text fx:id="title" fill="WHITE" layoutX="132.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Connexion" textAlignment="CENTER" wrappingWidth="369.13671875" />
+      <ImageView fitHeight="35.0" fitWidth="111.0" layoutX="220.0" layoutY="253.0" onMouseClicked="#clickConnect" pickOnBounds="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="connectBtText" fill="WHITE" layoutX="220.0" layoutY="275.0" onMouseClicked="#clickConnect" strokeType="OUTSIDE" strokeWidth="0.0" text="Se connecter" textAlignment="CENTER" wrappingWidth="111.0" />
+      <ImageView fitHeight="31.0" fitWidth="71.0" layoutX="465.0" layoutY="304.0" onMouseClicked="#clickExit" pickOnBounds="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="quitText" fill="WHITE" layoutX="468.0" layoutY="324.0" onMouseClicked="#clickExit" strokeType="OUTSIDE" strokeWidth="0.0" text="Quitter" textAlignment="CENTER" wrappingWidth="68.42578125" />
+      <Text fx:id="errorText" fill="RED" layoutX="38.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" wrappingWidth="230.13671875" />
+   </children>
+</fx:root>
