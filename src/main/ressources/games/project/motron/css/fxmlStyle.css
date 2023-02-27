@@ -1,0 +1,49 @@
+.button {
+    -fx-background-color: rgba(0, 0, 0, .7);
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+}
+
+.button:hover{
+    -fx-background-color: rgba(50, 50, 50, .8);
+}
+
+.tab {
+    -fx-background-color: rgba(0, 0, 0, .7);
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+}
+
+.tab-label{
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+}
+
+.tab-header-background {
+    -fx-background-color: transparent;
+}
+
+.carteView:hover {
+    -fx-scale-x: 1.01;
+    -fx-scale-y: 1.01;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.paramBoutton{
+    -fx-background-color: rgba(0, 0, 0, .7);
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+}
+
+.bouttonEffet{
+    -fx-background-color: rgba(0, 0, 0, .7);
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+}

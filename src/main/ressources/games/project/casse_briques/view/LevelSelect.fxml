@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/menuScreenEmptyNew.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="instruction" fill="#b29476" layoutX="62.0" layoutY="552.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selectionner un niveau" textAlignment="CENTER" wrappingWidth="1183.13671875" />
+      <Pane fx:id="level1Pane" layoutX="166.0" layoutY="147.0" onMouseClicked="#clickLevel1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #b29476; -fx-background-radius: 15;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../textures/Level1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="level2Pane" layoutX="554.0" layoutY="147.0" onMouseClicked="#clickLevel2" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #b29476; -fx-background-radius: 15;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../textures/Level2.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="level3Pane" layoutX="928.0" layoutY="147.0" onMouseClicked="#clickLevel3" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #b29476; -fx-background-radius: 15;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="25.0" layoutY="25.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../textures/Level3.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+      <Text fx:id="txtLv1" fill="WHITE" layoutX="166.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Niveau 1" textAlignment="CENTER" wrappingWidth="200.0" />
+      <Text fx:id="txtLv2" fill="WHITE" layoutX="554.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Niveau 2" textAlignment="CENTER" wrappingWidth="200.0" />
+      <Text fx:id="txtLv3" fill="WHITE" layoutX="928.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Niveau 3" textAlignment="CENTER" wrappingWidth="200.0" />
+      <ImageView fx:id="btEasy" disable="true" fitHeight="50.0" fitWidth="100.0" layoutX="404.0" layoutY="522.0" onMouseClicked="#clickEasy" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btNormal" disable="true" fitHeight="50.0" fitWidth="100.0" layoutX="604.0" layoutY="522.0" onMouseClicked="#clickNormal" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btHard" disable="true" fitHeight="50.0" fitWidth="100.0" layoutX="806.0" layoutY="522.0" onMouseClicked="#clickHard" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="txtEasy" disable="true" fill="WHITE" layoutX="404.0" layoutY="543.0" onMouseClicked="#clickEasy" strokeType="OUTSIDE" strokeWidth="0.0" text="Facile" textAlignment="CENTER" visible="false" wrappingWidth="100.0" />
+      <Text fx:id="txtNormal" disable="true" fill="WHITE" layoutX="604.0" layoutY="543.0" onMouseClicked="#clickNormal" strokeType="OUTSIDE" strokeWidth="0.0" text="Normal" textAlignment="CENTER" visible="false" wrappingWidth="100.0" />
+      <Text fx:id="txtHard" disable="true" fill="WHITE" layoutX="806.0" layoutY="542.0" onMouseClicked="#clickHard" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficile" textAlignment="CENTER" visible="false" wrappingWidth="100.0" />
+      <ImageView fx:id="nextLevel" fitHeight="58.0" fitWidth="31.0" layoutX="1175.0" layoutY="350.0" onMouseClicked="#nextLvL">
+         <image>
+            <Image url="@../textures/button.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="test" arcHeight="5.0" arcWidth="5.0" fill="#684f37" height="58.0" layoutX="571.0" layoutY="416.0" onMouseClicked="#clickT" stroke="WHITE" strokeType="INSIDE" width="170.0" />
+      <Text fx:id="generateLevelText" fill="WHITE" layoutX="569.0" layoutY="450.0" onMouseClicked="#clickT" strokeType="OUTSIDE" strokeWidth="0.0" text="Generer niveau" textAlignment="CENTER" wrappingWidth="170.0" />
+      <ImageView fx:id="backButton" fitHeight="58.0" fitWidth="87.0" layoutX="62.0" layoutY="77.0" onMouseClicked="#backButtonOnClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="txtRetour" fill="WHITE" layoutX="68.0" layoutY="95.0" onMouseClicked="#backButtonOnClicked" strokeType="OUTSIDE" strokeWidth="0.0" text="Retour" textAlignment="CENTER" wrappingWidth="74.552734375" />
+   </children>
+</fx:root>
