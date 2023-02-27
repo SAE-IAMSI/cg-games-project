@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="300" maxWidth="300" minHeight="300.0" minWidth="300.0" prefHeight="300.0" prefWidth="300.0" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true">
+         <image>
+            <Image url="@../textures/MenuPauseOrange.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="title" fill="WHITE" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parametres" textAlignment="CENTER" wrappingWidth="300.0" />
+      <ImageView fx:id="checkAudio" fitHeight="45.0" fitWidth="34.0" layoutX="181.0" layoutY="165.0" onMouseClicked="#clickAudio" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="audioTxt" fill="WHITE" layoutX="104.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Audio" />
+      <Text fx:id="mouseTxt" fill="WHITE" layoutX="104.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Souris" />
+      <CheckBox fx:id="checkMouse" layoutX="190.0" layoutY="94.0" mnemonicParsing="false" onAction="#clickMouse" />
+      <ImageView fitHeight="50.0" fitWidth="150.0" layoutX="75.0" layoutY="226.0" onMouseClicked="#clickBack" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="backTxt" fill="WHITE" layoutX="78.0" layoutY="256.0" onMouseClicked="#clickBack" strokeType="OUTSIDE" strokeWidth="0.0" text="Retour" textAlignment="CENTER" wrappingWidth="143.13671875" />
+   </children>
+</fx:root>

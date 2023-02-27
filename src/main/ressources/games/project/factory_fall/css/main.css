@@ -1,0 +1,233 @@
+/* BorderPane Left */
+.leftPane {
+    -fx-background-color: transparent;
+}
+
+/* BorderPane Center */
+.centerPane {
+    -fx-background-color: transparent;
+}
+
+/* BorderPane Right */
+.rightPane {
+    -fx-background-color: transparent;
+}
+
+/* CSS de VueMenuPrincipal */
+
+.champs-compte-deconnecte {
+    -fx-background-color: white;
+    -fx-highlight-text-fill: gray;
+    -fx-text-fill: gray;
+    -fx-border-width: 0px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+}
+
+.bouton {
+    -fx-border-style: solid;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-border-color: white;
+    -fx-text-fill: white;
+    -fx-background-color: black;
+    -fx-border-width: 2px;
+}
+
+.bouton:hover {
+    -fx-background-color: rgb(15, 15, 15);
+}
+
+.bouton-rouge {
+    -fx-text-fill: #c2251e;
+    -fx-background-color: black;
+    -fx-border-color: #c2251e;
+    -fx-border-width: 2px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+}
+
+/*Pour modifier individuellement un bouton utilisez #nomBouton*/
+
+.vBoxBouton {
+    -fx-alignment: center;
+    -fx-spacing: 20px;
+}
+
+.vBoxCompte {
+    -fx-pref-height: 200px;
+    -fx-pref-width: 200px;
+}
+
+/* CSS de Helper BarreNavigation */
+
+.barre-navigation {
+    -fx-alignment: center-left;
+    -fx-padding: 50px;
+}
+
+.bouton-clair {
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-padding: 0 20px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-border-color: black;
+    -fx-border-width: 3px;
+}
+
+.bouton-clair-select {
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-padding: 0 20px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-border-color: white;
+    -fx-border-width: 3px;
+}
+
+.bouton-clair-not-selected {
+    -fx-text-fill: white;
+    -fx-background-color: black;
+    -fx-padding: 0 20px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+    -fx-border-color: white;
+    -fx-border-width: 3px;
+}
+
+.bouton-blanc-fond-noir {
+    -fx-text-fill: white;
+    -fx-background-color: black;
+    -fx-padding: 0 0px;
+    -fx-border-radius: 0px;
+}
+
+.titre {
+    -fx-text-fill: white;
+    -fx-background-color: black;
+    -fx-padding: 0 20px;
+    -fx-alignment: center;
+}
+
+/* CSS de Helper BoiteCombinee */
+
+.boite-combinee {
+    -fx-background-color: white;
+    -fx-background-radius: 0px;
+    -fx-border-radius: 0px;
+}
+
+.boite-combinee:disabled {
+    -fx-opacity: .4;
+}
+
+.boite-combinee .list-cell {
+    -fx-background-color: white;
+    -fx-text-fill: gray;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: white;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover {
+    -fx-text-fill: black;
+}
+
+.combo-box .scroll-bar {
+    -fx-background-color: white;
+    -fx-color: gray;
+}
+
+.combo-box .scroll-bar:vertical *.increment-button,
+.combo-box .scroll-bar:vertical *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}
+
+.combo-box .scroll-bar:vertical *.increment-arrow,
+.combo-box .scroll-bar:vertical *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-shape: null;
+}
+
+/* CSS de Helper PanelPersonnaliser */
+.panel-personnalisation, .panel-classement {
+    -fx-background-color: black;
+    -fx-padding: 5px 20px;
+    -fx-alignment: center;
+    -fx-border-color: white;
+    -fx-border-width: 5px;
+    -fx-border-style: solid;
+}
+
+.titre-panel-personnalisation {
+    -fx-text-fill: white;
+}
+
+.gauche, .droite {
+    -fx-padding: 20px;
+    -fx-background-color: black;
+}
+
+/* CSS vuePersonnaliser*/
+.personnalisations, .classement, .option {
+    -fx-alignment: center;
+    -fx-padding: 10px 100px;
+}
+
+.stylePiece {
+    -fx-alignment: center;
+}
+
+
+/* CSS VueCompteDeconnecté */
+.option {
+    -fx-alignment: center;
+    -fx-spacing: 100;
+}
+
+.titre-compte-deconnecte, .titre {
+    -fx-text-fill: white;
+}
+
+.champ {
+    -fx-spacing: 20;
+}
+
+/*Vue Jeu (TetrisIHM)*/
+.panel-partie, .panel-compte-deconnecte, .panel-modification-compte {
+    -fx-border-color: white;
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+    -fx-background-color: black;
+}
+
+.panel-partie {
+    -fx-padding: 10px;
+}
+
+.panel-compte-deconnecte, .panel-modification-compte, .panel-compte {
+    -fx-padding: 5px 20px;
+}
+
+
+.classement{
+    -fx-hgap: 20;
+    -fx-vgap: 20;
+    -fx-alignment: center;
+    -fx-background-color: black;
+    -fx-border-style: solid;
+    -fx-border-color: white;
+    -fx-border-width: 3px;
+    -fx-padding: 10px;
+    -fx-text-fill: white;
+    -fx-max-width: 800;
+}
+
+.label{
+    -fx-text-fill: white;
+}

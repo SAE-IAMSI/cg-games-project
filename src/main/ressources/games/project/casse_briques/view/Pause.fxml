@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="300" maxWidth="300" minHeight="300" minWidth="300" prefHeight="300" prefWidth="300.0" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="300.0" fitWidth="300.0" pickOnBounds="true">
+         <image>
+            <Image url="@../textures/MenuPauseOrange.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btParameters" fitHeight="50.0" fitWidth="150.0" layoutX="75.0" layoutY="125.0" onMouseClicked="#clickParameters" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btQuit" fitHeight="50.0" fitWidth="150.0" layoutX="75.0" layoutY="197.0" onMouseClicked="#clickQuit" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btContinue" fitHeight="50.0" fitWidth="150.0" layoutX="75.0" layoutY="53.0" onMouseClicked="#clickContinue" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="continueTxt" fill="WHITE" layoutX="79.0" layoutY="83.0" onMouseClicked="#clickContinue" strokeType="OUTSIDE" strokeWidth="0.0" text="Continuer" textAlignment="CENTER" wrappingWidth="142.13671875" />
+      <Text fx:id="parametersTxt" fill="WHITE" layoutX="79.0" layoutY="155.0" onMouseClicked="#clickParameters" strokeType="OUTSIDE" strokeWidth="0.0" text="Parametres" textAlignment="CENTER" wrappingWidth="142.13671875" />
+      <Text fx:id="quitTxt" fill="WHITE" layoutX="79.0" layoutY="227.0" onMouseClicked="#clickQuit" strokeType="OUTSIDE" strokeWidth="0.0" text="Quitter" textAlignment="CENTER" wrappingWidth="142.13671875" />
+   </children>
+</fx:root>
