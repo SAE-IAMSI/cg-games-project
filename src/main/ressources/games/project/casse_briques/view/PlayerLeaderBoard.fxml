@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true">
+         <image>
+            <Image url="@../textures/menuScreenEmptyNew.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="title" fill="WHITE" layoutX="118.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes Scores" textAlignment="CENTER" wrappingWidth="1066.0" />
+    <AnchorPane layoutX="118.0" layoutY="118.0" minHeight="0.0" minWidth="0.0" prefHeight="475.0" prefWidth="1066.0" style="-fx-background-color: #4a321f; -fx-background-radius: 15;">
+         <children>
+            <Text fx:id="listScoreText" fill="WHITE" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scores :" textAlignment="CENTER" wrappingWidth="1066.0" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="50.0" fitWidth="146.0" layoutX="567.0" layoutY="605.0" onMouseClicked="#clickBack" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="backText" fill="WHITE" layoutX="576.0" layoutY="634.0" onMouseClicked="#clickBack" strokeType="OUTSIDE" strokeWidth="0.0" text="Quitter" textAlignment="CENTER" wrappingWidth="126.0" />
+      <CheckBox fx:id="showOtherGame" layoutX="769.0" layoutY="621.0" mnemonicParsing="false" text=" Seulement sur d'autres jeux" textFill="WHITE" />
+   </children>
+</fx:root>

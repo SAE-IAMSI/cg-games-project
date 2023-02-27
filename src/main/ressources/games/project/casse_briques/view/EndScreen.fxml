@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="500" maxWidth="500" minHeight="500" minWidth="500" prefHeight="500" prefWidth="500.0" style="-fx-background-color: black;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="500.0" fitWidth="500.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/gameOverScreenNew.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="scoreTxt" fill="WHITE" layoutX="12.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score :" textAlignment="CENTER" wrappingWidth="474.13671875" />
+      <ImageView fx:id="btRestart" fitHeight="100.0" fitWidth="150.0" layoutX="175.0" layoutY="180.0" onMouseClicked="#clickRestart" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="restartTxt" fill="WHITE" layoutX="184.0" layoutY="210.0" onMouseClicked="#clickRestart" strokeType="OUTSIDE" strokeWidth="0.0" text="Rejouer" textAlignment="CENTER" wrappingWidth="132.0" />
+      <ImageView fx:id="btQuit" fitHeight="100.0" fitWidth="150.0" layoutX="175.0" layoutY="306.0" onMouseClicked="#clickQuit" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="quitTxt" fill="WHITE" layoutX="184.0" layoutY="336.0" onMouseClicked="#clickQuit" strokeType="OUTSIDE" strokeWidth="0.0" text="Quitter" textAlignment="CENTER" wrappingWidth="132.0" />
+      <ImageView fx:id="scoreBt" disable="true" fitHeight="50.0" fitWidth="150.0" layoutX="175.0" layoutY="242.0" onMouseClicked="#clickPlayerLeaderBoard" opacity="0.5" pickOnBounds="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="btScoreText" fill="WHITE" layoutX="180.0" layoutY="272.0" onMouseClicked="#clickPlayerLeaderBoard" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes scores" textAlignment="CENTER" wrappingWidth="139.13671875" />
+   </children>
+</fx:root>

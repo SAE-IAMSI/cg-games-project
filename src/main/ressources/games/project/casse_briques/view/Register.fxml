@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="720" maxWidth="1280" minHeight="373.0" minWidth="588.0" prefHeight="373.0" prefWidth="588.0" style="-fx-background-color: white;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fitHeight="373.0" fitWidth="588.0" pickOnBounds="true">
+            <image>
+                <Image url="@../textures/menuScreenEmptyNew.png" />
+            </image>
+        </ImageView>
+        <Label fx:id="loginLabel" layoutX="99.0" layoutY="112.0" text="Login" textFill="WHITE" />
+        <Label fx:id="passwordLabel" layoutX="99.0" layoutY="149.0" text="Mot de passe" textFill="#dadada" />
+        <TextField fx:id="login" layoutX="317.0" layoutY="108.0" />
+      <PasswordField fx:id="password" layoutX="317.0" layoutY="145.0" />
+      <PasswordField fx:id="confirmPassword" layoutX="317.0" layoutY="183.0" />
+        <Label fx:id="confirmPasswordLabel" layoutX="99.0" layoutY="180.0" text="Confirmer mot de passe" textFill="WHITE" />
+      <Text fx:id="connect" fill="WHITE" layoutX="317.0" layoutY="265.0" onMouseClicked="#clickConnect" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-underline: true;" text="Se connecter" textAlignment="RIGHT" wrappingWidth="148.5078125" />
+      <Text fx:id="title" fill="WHITE" layoutX="197.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S'enregistrer" textAlignment="CENTER" wrappingWidth="252.13671875" />
+      <ImageView fitHeight="37.0" fitWidth="83.0" layoutX="281.0" layoutY="291.0" onMouseClicked="#register" pickOnBounds="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="registerBtText" fill="WHITE" layoutX="281.0" layoutY="313.0" onMouseClicked="#register" strokeType="OUTSIDE" strokeWidth="0.0" text="S'inscrire" textAlignment="CENTER" wrappingWidth="83.0" />
+      <ImageView fitHeight="31.0" fitWidth="71.0" layoutX="465.0" layoutY="304.0" onMouseClicked="#clickExit" pickOnBounds="true">
+         <image>
+            <Image url="@../textures/buttonStartMenu.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="quitText" fill="WHITE" layoutX="468.0" layoutY="324.0" onMouseClicked="#clickExit" strokeType="OUTSIDE" strokeWidth="0.0" text="Quitter" textAlignment="CENTER" wrappingWidth="68.42578125" />
+      <Text fx:id="errorText" fill="RED" layoutX="38.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Erreur" textAlignment="CENTER" visible="false" wrappingWidth="230.13671875" />
+      <ComboBox fx:id="comboBox" layoutX="316.0" layoutY="217.0" prefWidth="150.0" promptText="Choisir departement" />
+      <Text fx:id="depText" fill="WHITE" layoutX="100.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Departement" />
+      <CheckBox fx:id="checkBoxPDF" layoutX="197.0" layoutY="260.0" mnemonicParsing="false" style="-fx-underline: true;" textFill="WHITE" />
+      <Text fill="WHITE" layoutX="218.0" layoutY="274.0" onMouseClicked="#clickPDF" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-underline: true;" text="Confidentialité" wrappingWidth="83.0" />
+    </children>
+</fx:root>
