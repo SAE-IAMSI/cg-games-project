@@ -7,6 +7,7 @@ public class Player {
     String name;
     private Score score;
     private IntegerProperty life;
+//    private String departement;
 
     public Player(String name) {
         this.name = name;
@@ -23,6 +24,12 @@ public class Player {
         this.score = score;
     }
 
+//    public Player(String name, int life, Score score, String departement)
+//    {
+//        this(name, life, score);
+//        this.departement = departement;
+//    }
+
     public Score getScore() {
         return score;
     }
@@ -36,18 +43,4 @@ public class Player {
     public void setScore(int score) {
             this.score = new Score(score, this.name);
     }
-
-    public int getLife() {
-        return life.get();
-    }
-
-    public IntegerProperty lifeProperty() {
-        return life;
-    }
-
-    public void setLife(int life) {
-        this.life.set(life);
-    }
-
-    public void loseLife() { this.life.set(this.life.get()-1); }
 }

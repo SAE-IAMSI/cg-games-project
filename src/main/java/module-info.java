@@ -25,5 +25,8 @@ module games.project.launcher {
     exports games.project.factory_fall;
 
     exports games.project;
+    exports games.project.motron.controller;
+    exports games.project.motron.view;
+    opens games.project.motron.controller to javafx.fxml;
 
 }

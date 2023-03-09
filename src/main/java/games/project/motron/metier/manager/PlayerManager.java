@@ -19,8 +19,8 @@ public class PlayerManager {
         return instance;
     }
 
-    public void createPlayer(String login, String password) {
-        AuthPlayer p = new AuthPlayer(login);
+    public void createPlayer(String login, String password, String departement) {
+        AuthPlayer p = new AuthPlayer(login, departement);
         byte[] salt = Security.getSalt();
         p.setSalt(salt);
         p.setPassword(password);
@@ -34,19 +34,10 @@ public class PlayerManager {
         p.setPassword(password);
         stockage.update(p);
     }
-
-    public void deletePlayer(String login) {
-        stockage.deleteByLogin(login);
-    }
-
     public AuthPlayer getPlayer(String login) {
         return stockage.getByLogin(login);
     }
-
-    public List<AuthPlayer> getPlayers() { return stockage.getAll(); }
-
     public List<Player> getMeilleurs(){return stockage.getMeilleurs();}
     public int getNbPartie(String login){return stockage.getNbPartie(login);}
-
-    public int getRangByLogin(String login){return stockage.getRangByLogin(login);}
+    public String getDepartementByLogin(String login){return stockage.getDepByLogin(login);}
 }
