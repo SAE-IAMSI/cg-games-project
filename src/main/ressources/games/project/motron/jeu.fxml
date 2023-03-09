@@ -1,0 +1,2151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" stylesheets="@css/fxmlStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="games.project.motron.controller.ControllerFXML">
+   <children>
+      <ImageView fx:id="jeuBackground" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/wallpaper/jeuBackground.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="carteBackground" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@images/wallpaper/carteBackground.gif" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="background" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/wallpaper/background22.gif" />
+         </image>
+      </ImageView>
+      <Pane fx:id="menuPane" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <GridPane prefHeight="720.0" prefWidth="1280.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="60.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="500.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" spacing="50.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
+                     <children>
+                        <Label style="-fx-font-family: TRON;" text="Motron" textFill="WHITE">
+                           <font>
+                              <Font size="60.0" />
+                           </font>
+                        </Label>
+                        <VBox alignment="BOTTOM_CENTER" spacing="10.0">
+                           <children>
+                              <Button fx:id="bouttonJouer" mnemonicParsing="false" onAction="#lanceJouer" prefHeight="60.0" prefWidth="260.0" text="Jouer" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="bouttonPerso" mnemonicParsing="false" onAction="#lancePerso" prefHeight="60.0" prefWidth="260.0" text="Personnaliser" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="bouttonClassement" mnemonicParsing="false" onAction="#lanceClassement" prefHeight="60.0" prefWidth="260.0" text="Classement" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="bouttonParam" mnemonicParsing="false" onAction="#lanceParam" prefHeight="60.0" prefWidth="260.0" text="Parametres" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="bouttonQuitter" mnemonicParsing="false" onAction="#lanceQuitter" prefHeight="60.0" prefWidth="260.0" text="Quitter" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <Button fx:id="bouttonCompte" mnemonicParsing="false" onAction="#lanceCompte" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" text="Compte" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="20.0" left="30.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bouttonRegles" mnemonicParsing="false" onAction="#lanceRegles" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" text="Règles" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="choixCartePane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane layoutX="9.0" prefHeight="720.0" prefWidth="1280.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1000.0" minWidth="10.0" prefWidth="1000.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TabPane prefHeight="200.0" prefWidth="200.0" side="BOTTOM" stylesheets="@css/fxmlStyle.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="200.0" tabMinHeight="50.0" tabMinWidth="100.0" GridPane.columnIndex="1">
+                    <tabs>
+                      <Tab closable="false" styleClass="tabtab" text="Carte 1">
+                           <content>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Carte 1" textFill="WHITE">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="520.0" fitWidth="900.0" onMouseClicked="#selectCarte1" pickOnBounds="true" preserveRatio="true" styleClass="carteView">
+                                       <image>
+                                          <Image url="@cartes/arene1.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                                 <padding>
+                                    <Insets top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </Tab>
+                      <Tab closable="false" styleClass="tabtab" text="Carte 2">
+                           <content>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Carte 2" textFill="WHITE">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="520.0" fitWidth="900.0" onMouseClicked="#selectCarte2" pickOnBounds="true" preserveRatio="true" styleClass="carteView">
+                                       <image>
+                                          <Image url="@cartes/arene2.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                                 <padding>
+                                    <Insets top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Carte 3">
+                           <content>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Carte 3" textFill="WHITE">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="520.0" fitWidth="900.0" onMouseClicked="#selectCarte3" pickOnBounds="true" preserveRatio="true" styleClass="carteView">
+                                       <image>
+                                          <Image url="@cartes/arene3.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                                 <padding>
+                                    <Insets top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Carte 4">
+                           <content>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Carte 4" textFill="WHITE">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="520.0" fitWidth="900.0" onMouseClicked="#selectCarte4" pickOnBounds="true" preserveRatio="true" styleClass="carteView">
+                                       <image>
+                                          <Image url="@cartes/arene4.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                                 <padding>
+                                    <Insets top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab text="Carte 5">
+                           <content>
+                              <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label text="Carte 5" textFill="WHITE">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="520.0" fitWidth="900.0" onMouseClicked="#selectCarte5" pickOnBounds="true" preserveRatio="true" styleClass="carteView">
+                                       <image>
+                                          <Image url="@cartes/arene5.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                                 <padding>
+                                    <Insets top="20.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </Tab>
+                    </tabs>
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding>
+                  </TabPane>
+                  <Button mnemonicParsing="false" onAction="#retourCarte" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" text="Retour" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="jeuPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000a4" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane prefHeight="720.0" prefWidth="1280.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="140.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1000.0" minWidth="1000.0" prefWidth="1000.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="140.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="50.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="640.0" prefHeight="640.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="labelJ1" text="Joueur 1" textFill="WHITE" GridPane.columnSpan="2">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="labelJ2" text="Joueur 2" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </Label>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.rowIndex="1">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="60.0" styleClass="bouttonEffet">
+                           <children>
+                              <Label text="Score" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="scoreJ1" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" spacing="20.0">
+                           <children>
+                              <Group>
+                                 <children>
+                                    <ImageView fx:id="vie1J1" fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/DiscTronBleu.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="mort1J1" fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@images/DiscTronVide.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Group>
+                              <Group>
+                                 <children>
+                                    <ImageView fx:id="vie2J1" fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/DiscTronBleu.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="mort2J1" fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@images/DiscTronVide.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Group>
+                              <Group>
+                                 <children>
+                                    <ImageView fx:id="vie3J1" fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/DiscTronBleu.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="mort3J1" fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@images/DiscTronVide.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Group>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="300.0" prefWidth="100.0" spacing="5.0">
+                           <children>
+                              <Label text="Haut" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                              <Label fx:id="upJ1Game" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="120.0" styleClass="bouttonEffet" text="Z" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </padding></Label>
+                              <Label text="Gauche" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                              <Label fx:id="leftJ1Game" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="120.0" styleClass="bouttonEffet" text="Q" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <padding>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="Bas" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                              <Label fx:id="downJ1Game" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="120.0" styleClass="bouttonEffet" text="S" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <padding>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="Droite" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                              <Label fx:id="rightJ1Game" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="120.0" styleClass="bouttonEffet" text="D" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <padding>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                     <GridPane.margin>
+                        <Insets top="30.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="60.0" styleClass="bouttonEffet">
+                           <children>
+                              <Label text="Score" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="scoreJ2" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" spacing="20.0">
+                           <children>
+                              <Group>
+                                 <children>
+                                    <ImageView fx:id="vie1J2" fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/DiscTronRouge.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="mort1J2" fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@images/DiscTronVide.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Group>
+                              <Group>
+                                 <children>
+                                    <ImageView fx:id="vie2J2" fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/DiscTronRouge.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="mort2J2" fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@images/DiscTronVide.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Group>
+                              <Group>
+                                 <children>
+                                    <ImageView fx:id="vie3J3" fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/DiscTronRouge.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="mort3J2" fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@images/DiscTronVide.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Group>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="300.0" prefWidth="100.0" spacing="5.0">
+                           <children>
+                              <Label text="Haut" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                              <Label fx:id="upJ2Game" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="120.0" styleClass="bouttonEffet" text="Up" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="Gauche" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                              <Label fx:id="leftJ2Game" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="120.0" styleClass="bouttonEffet" text="Left" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <padding>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="Bas" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                              <Label fx:id="downJ2Game" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="120.0" styleClass="bouttonEffet" text="Down" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <padding>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="Droite" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+                              <Label fx:id="rightJ2Game" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="120.0" styleClass="bouttonEffet" text="Right" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <padding>
+                                    <Insets bottom="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                     <GridPane.margin>
+                        <Insets top="30.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <Label fx:id="round" text="ROUND 1" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="arenePane" maxHeight="-Infinity" prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: rgba(0, 0, 0, .7);" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+               </children>
+            </GridPane>
+            <ImageView fx:id="gifBoomJ1" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@images/GIF/gifboom.gif" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="gifBoomJ2" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@images/GIF/gifboom.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pausePane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000a4" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane prefHeight="720.0" prefWidth="1280.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#retourPause" prefHeight="50.0" prefWidth="200.0" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="20.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Label text="Pause" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="classementPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane prefHeight="720.0" prefWidth="1280.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="128.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="904.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="212.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane alignment="CENTER" gridLinesVisible="true" prefHeight="600.0" prefWidth="863.0" styleClass="gridStyle" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="3.0" prefWidth="65.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="638.0" minWidth="10.0" prefWidth="486.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="10.0" prefWidth="248.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="277.0" minWidth="10.0" prefWidth="248.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label styleClass="tab-label" text="RANG" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label layoutX="34.0" layoutY="31.0" styleClass="tab-label" text="JOUEUR" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label layoutX="34.0" layoutY="31.0" styleClass="tab-label" text="SCORE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label layoutX="24.0" layoutY="31.0" styleClass="tab-label" text="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Label layoutX="42.0" layoutY="86.0" styleClass="tab-label" text="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Label layoutX="42.0" layoutY="141.0" styleClass="tab-label" text="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Label layoutX="42.0" layoutY="196.0" styleClass="tab-label" text="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <Label layoutX="42.0" layoutY="251.0" styleClass="tab-label" text="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                        <Label layoutX="42.0" layoutY="306.0" styleClass="tab-label" text="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                        <Label layoutX="42.0" layoutY="361.0" styleClass="tab-label" text="7" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                        <Label layoutX="42.0" layoutY="415.0" styleClass="tab-label" text="8" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                        <Label layoutX="42.0" layoutY="469.0" styleClass="tab-label" text="9" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
+                        <Label layoutX="42.0" layoutY="523.0" styleClass="tab-label" text="10" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempL1" styleClass="tab-label" text="N/A" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempS1" styleClass="tab-label" text="N/A" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempL2" styleClass="tab-label" text="N/A" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempS2" styleClass="tab-label" text="N/A" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempL3" styleClass="tab-label" text="N/A" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempS3" styleClass="tab-label" text="N/A" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempS4" styleClass="tab-label" text="N/A" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempS5" styleClass="tab-label" text="N/A" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempS6" styleClass="tab-label" text="N/A" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempS7" styleClass="tab-label" text="N/A" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempS8" styleClass="tab-label" text="N/A" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempS9" styleClass="tab-label" text="N/A" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempS10" styleClass="tab-label" text="N/A" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempL4" styleClass="tab-label" text="N/A" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempL5" styleClass="tab-label" text="N/A" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempL6" styleClass="tab-label" text="N/A" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempL7" styleClass="tab-label" text="N/A" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempL8" styleClass="tab-label" text="N/A" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempL9" styleClass="tab-label" text="N/A" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempL10" styleClass="tab-label" text="N/A" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
+                        <Label styleClass="tab-label" text="DEPARTEMENT" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempD1" styleClass="tab-label" text="N/A" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempD2" styleClass="tab-label" text="N/A" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempD3" styleClass="tab-label" text="N/A" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempD4" styleClass="tab-label" text="N/A" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempD5" styleClass="tab-label" text="N/A" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempD6" styleClass="tab-label" text="N/A" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempD7" styleClass="tab-label" text="N/A" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempD8" styleClass="tab-label" text="N/A" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempD9" styleClass="tab-label" text="N/A" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
+                        <Label fx:id="textTempD10" styleClass="tab-label" text="N/A" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="retourClassement" mnemonicParsing="false" onAction="#retourClassement" prefHeight="50.0" prefWidth="200.0" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label style="-fx-font-size: 26;" styleClass="bouttonEffet" text="CLASSEMENT GLOBAL" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <padding>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </padding></Label>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="persoPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane prefHeight="720.0" prefWidth="1280.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="640.0" minWidth="10.0" prefWidth="640.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="100.0" minHeight="30.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="180.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="340.0" minHeight="10.0" prefHeight="0.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fx:id="flecheBleuGauche" fitHeight="150.0" fitWidth="100.0" onMouseClicked="#changeSkinGaucheJ1" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+                           <image>
+                              <Image url="@images/flèche-bleue.png" />
+                           </image>
+                        </ImageView>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Group>
+                                 <children>
+                                    <ImageView fx:id="imageMotoJ1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/moto/TronLegacyBleu.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="conditionSkinJ1" layoutY="40.0" text="Gagner 10 parties" textAlignment="CENTER" textFill="WHITE" visible="false">
+                                       <font>
+                                          <Font name="System Bold Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Group>
+                              <Label fx:id="nomSkinJ1" alignment="CENTER" minWidth="300.0" text="Motron Bleu" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Label>
+                           </children>
+                        </VBox>
+                        <ImageView fx:id="flecheBleuDroite" fitHeight="150.0" fitWidth="100.0" onMouseClicked="#changeSkinDroiteJ1" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                           <image>
+                              <Image url="@images/flèche-bleue.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fx:id="flecheRougeGauche" fitHeight="150.0" fitWidth="100.0" onMouseClicked="#changeSkinGaucheJ2" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+                           <image>
+                              <Image url="@images/flèche-rouge.png" />
+                           </image>
+                        </ImageView>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Group>
+                                 <children>
+                                    <ImageView fx:id="imageMotoJ2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@images/moto/TronLegacyJaune.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="conditionSkinJ2" layoutY="40.0" text="Gagner 10 parties" textAlignment="CENTER" textFill="WHITE" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Group>
+                              <Label fx:id="nomSkinJ2" alignment="CENTER" minWidth="300.0" text="Motron Jaune" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <ImageView fx:id="flecheRougeDroite" fitHeight="150.0" fitWidth="100.0" onMouseClicked="#changeSkinDroiteJ2" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                           <image>
+                              <Image url="@images/flèche-rouge.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <ImageView fx:id="imgMap" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                     <image>
+                        <Image url="@cartesParCoul/aliceblue.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="650.0" styleClass="bouttonEffet" stylesheets="@css/fxmlStyle.css" text="Customisation de la carte" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="60.0" prefWidth="650.0" styleClass="bouttonEffet" stylesheets="@css/fxmlStyle.css" text="Sélection des skins" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </Label>
+                  <GridPane alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="boutonMapBlanc" mnemonicParsing="false" onAction="#changeMapBlanc" prefHeight="50.0" prefWidth="200.0" text="BLANC" textFill="WHITE">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="boutonMapJaune" mnemonicParsing="false" onAction="#changeMapJaune" prefHeight="50.0" prefWidth="200.0" style="-fx-border-color: #ffff00;" text="JAUNE" textFill="YELLOW" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="boutonMapBleu" mnemonicParsing="false" onAction="#changeMapBleu" prefHeight="50.0" prefWidth="200.0" style="-fx-border-color: #00008b;" text="BLEU" textFill="DARKBLUE" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="boutonMapOrange" mnemonicParsing="false" onAction="#changeMapOrange" prefHeight="50.0" prefWidth="200.0" style="-fx-border-color: #FFA500;" text="Orange" textFill="ORANGE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="25.0" />
+                           </font></Button>
+                     </children>
+                  </GridPane>
+                  <Button fx:id="boutonRetourPerso" mnemonicParsing="false" onAction="#retourPerso" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="paramPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane prefHeight="720.0" prefWidth="1280.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="640.0" minWidth="640.0" prefWidth="640.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="640.0" minWidth="640.0" prefWidth="640.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="600.0" minHeight="600.0" prefHeight="600.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label text="Touches J1" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <content>
+                        <VBox alignment="TOP_CENTER" minHeight="600.0" prefHeight="600.0" prefWidth="600.0" spacing="10.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <children>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="54.0" prefWidth="200.0" styleClass="paramBoutton" text="HAUT" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Button fx:id="boutonHautJ1" mnemonicParsing="false" onAction="#changeHautJ1" prefHeight="54.0" prefWidth="200.0" text="Z" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="54.0" prefWidth="200.0" styleClass="paramBoutton" text="GAUCHE" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Button fx:id="boutonGaucheJ1" mnemonicParsing="false" onAction="#changeGaucheJ1" prefHeight="54.0" prefWidth="200.0" text="Q" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="54.0" prefWidth="200.0" styleClass="paramBoutton" text="BAS" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Button fx:id="boutonBasJ1" mnemonicParsing="false" onAction="#changeBasJ1" prefHeight="54.0" prefWidth="200.0" text="S" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="54.0" prefWidth="200.0" styleClass="paramBoutton" text="DROITE" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Button fx:id="boutonDroiteJ1" mnemonicParsing="false" onAction="#changeDroiteJ1" prefHeight="54.0" prefWidth="200.0" text="D" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </ScrollPane>
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <content>
+                        <VBox alignment="TOP_CENTER" minHeight="540.0" prefHeight="540.0" prefWidth="600.0" spacing="10.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <children>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="54.0" prefWidth="200.0" styleClass="paramBoutton" text="HAUT" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Button fx:id="boutonHautJ2" mnemonicParsing="false" onAction="#changeHautJ2" prefHeight="54.0" prefWidth="200.0" text="Up" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="54.0" prefWidth="200.0" styleClass="paramBoutton" text="GAUCHE" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Button fx:id="boutonGaucheJ2" mnemonicParsing="false" onAction="#changeGaucheJ2" prefHeight="54.0" prefWidth="200.0" text="Left" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="54.0" prefWidth="200.0" styleClass="paramBoutton" text="BAS" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Button fx:id="boutonBasJ2" mnemonicParsing="false" onAction="#changeBasJ2" prefHeight="54.0" prefWidth="200.0" text="Down" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" spacing="5.0">
+                                 <children>
+                                    <Label prefHeight="54.0" prefWidth="200.0" styleClass="paramBoutton" text="DROITE" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Button fx:id="boutonDroiteJ2" mnemonicParsing="false" onAction="#changeDroiteJ2" prefHeight="54.0" prefWidth="200.0" text="Right" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+                  <Label text="Touches J2" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="1280.0" spacing="50.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                     <children>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="200.0" styleClass="bouttonEffet" text="Musiques" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Label>
+                              <Slider fx:id="sliderMusique" minWidth="200.0" onMousePressed="#changeVolumeMusique" value="25.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="200.0" styleClass="bouttonEffet" text="Bruitages" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Label>
+                              <Slider fx:id="sliderBruitage" minWidth="200.0" onMousePressed="#changeVolumeBruitage" value="25.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <GridPane.margin>
+                        <Insets top="400.0" />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets top="50.0" />
+                     </padding>
+                  </VBox>
+                  <Button fx:id="bouttonRetourParam" mnemonicParsing="false" onAction="#retourParam" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" text="Retour" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="comptePane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane prefHeight="720.0" prefWidth="1280.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="640.0" minWidth="10.0" prefWidth="640.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="300.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="bouttonRetourCompte" mnemonicParsing="false" onAction="#retourCompte" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" text="Retour" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="273.0" prefWidth="640.0" spacing="10.0">
+                     <children>
+                        <Label fx:id="labelJ1Connecte" text="Connexion J1..." textFill="WHITE">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Group>
+                           <children>
+                              <Button fx:id="bouttonConnecterJ1" alignment="CENTER" mnemonicParsing="false" onAction="#connecterJ1" prefHeight="50.0" prefWidth="300.0" text="Se connecter" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="bouttonDeconnexionJ1" alignment="CENTER" mnemonicParsing="false" onAction="#deconnexionJ1" prefHeight="50.0" prefWidth="300.0" text="Se déconnecter" textFill="WHITE" visible="false">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Group>
+                        <Button fx:id="bouttonStatsJ1" alignment="CENTER" mnemonicParsing="false" onAction="#lanceStatsJ1" prefHeight="50.0" prefWidth="300.0" text="Statistiques" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" GridPane.columnIndex="1">
+                     <children>
+                        <Label fx:id="labelJ2Connecte" text="Connexion J2..." textFill="WHITE">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Group>
+                           <children>
+                              <Button fx:id="bouttonConnecterJ2" alignment="CENTER" mnemonicParsing="false" onAction="#connecterJ2" prefHeight="50.0" prefWidth="300.0" text="Se connecter" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="bouttonDeconnexionJ2" alignment="CENTER" mnemonicParsing="false" onAction="#deconnexionJ2" prefHeight="50.0" prefWidth="300.0" text="Se déconnecter" textFill="WHITE" visible="false">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </Group>
+                        <Button fx:id="bouttonStatsJ2" alignment="CENTER" mnemonicParsing="false" onAction="#lanceStatsJ2" prefHeight="50.0" prefWidth="300.0" text="Statistiques" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" spacing="10.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Label text="Pas encore de compte?" textFill="WHITE">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="bouttonCreerCompte" alignment="CENTER" mnemonicParsing="false" onAction="#creerCompte" prefHeight="50.0" prefWidth="300.0" text="Créer un compte" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="connexionJ1Pane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane alignment="CENTER" prefHeight="720.0" prefWidth="1280.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" onKeyPressed="#EnterPressedJ1" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                     <children>
+                        <Label text="Connexion J1" textFill="WHITE">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="bouttonEffet" text="Login:" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="textFieldConnexionJ1" prefHeight="50.0" prefWidth="300.0" styleClass="bouttonEffet" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="bouttonEffet" text="Mot de passe:" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="passwordFieldConnexionJ1" prefHeight="50.0" prefWidth="300.0" styleClass="bouttonEffet" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="bouttonConnexionJ1" mnemonicParsing="false" onAction="#connexionJ1" prefHeight="50.0" prefWidth="200.0" text="Connexion" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="50.0" />
+                     </padding>
+                  </VBox>
+                  <Button fx:id="bouttonRetourParamJ1" mnemonicParsing="false" onAction="#retourConnexionJ1" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="connexionJ2Pane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane alignment="CENTER" prefHeight="720.0" prefWidth="1280.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" onKeyPressed="#EnterPressedJ2" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                     <children>
+                        <Label text="Connexion J2" textFill="WHITE">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="bouttonEffet" text="Login:" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="textFieldConnexionJ2" prefHeight="50.0" prefWidth="300.0" styleClass="bouttonEffet" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="bouttonEffet" text="Mot de passe:" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="passwordFieldConnexionJ2" prefHeight="50.0" prefWidth="300.0" styleClass="bouttonEffet" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="bouttonConnexionJ2" mnemonicParsing="false" onAction="#connexionJ2" prefHeight="50.0" prefWidth="200.0" text="Connexion" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="50.0" />
+                     </padding>
+                  </VBox>
+                  <Button fx:id="bouttonRetourParamJ2" mnemonicParsing="false" onAction="#retourConnexionJ2" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="gameOverPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane prefHeight="720.0" prefWidth="1280.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="labelFin" text="Le joueur 1 a gagné!" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="48.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="TOP_CENTER" spacing="100.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <children>
+                        <VBox alignment="CENTER" maxHeight="120.0" maxWidth="400.0" prefHeight="120.0" prefWidth="400.0" styleClass="bouttonEffet">
+                           <children>
+                              <Label text="Score J1" textFill="WHITE">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="scoreGOJ1" text="00000" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" maxHeight="120.0" maxWidth="400.0" prefHeight="120.0" prefWidth="400.0" styleClass="bouttonEffet">
+                           <children>
+                              <Label text="Score J2" textFill="WHITE">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="scoreGOJ2" text="00000" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <VBox alignment="BOTTOM_CENTER" spacing="10.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#relanceGO" prefHeight="60.0" prefWidth="300.0" text="Rejouer" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#menuPrincipal" prefHeight="60.0" prefWidth="300.0" text="Menu principal" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="100.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="creationComptePane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane alignment="CENTER" prefHeight="720.0" prefWidth="1280.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                     <children>
+                        <Label text="Création de compte" textFill="WHITE">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="bouttonEffet" text="Login" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="loginCreerCompte" prefHeight="50.0" prefWidth="300.0" styleClass="bouttonEffet" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="bouttonEffet" text="Mot de passe" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="mdpCreerCompte" prefHeight="50.0" prefWidth="300.0" styleClass="bouttonEffet" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="bouttonEffet" text="Confirmation mdp" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="verifMdpCreerCompte" prefHeight="50.0" prefWidth="300.0" styleClass="bouttonEffet" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" styleClass="bouttonEffet" text="Département" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="comboBoxText" prefHeight="50.0" prefWidth="300.0" styleClass="bouttonEffet" />
+                           </children>
+                        </HBox>
+                        <VBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <Label text="J'accepte les" textFill="WHITE" />
+                                    <Button fx:id="bouttonRGPD" mnemonicParsing="false" onAction="#afficheRGPD" style="-fx-font-size: 12;" styleClass="link" text="conditions d'utilisations" textFill="#fa4e4e">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <CheckBox fx:id="checkboxRGPD" mnemonicParsing="false" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Button mnemonicParsing="false" onAction="#creerCompteJoueur" prefHeight="50.0" text="Créer un compte" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <padding>
+                        <Insets bottom="50.0" />
+                     </padding>
+                  </VBox>
+                  <Button fx:id="bouttonRetourNouveauCompte" mnemonicParsing="false" onAction="#retourNouveauCompte" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="decomptePane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <GridPane prefHeight="720.0" prefWidth="1280.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="0.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label fx:id="decompteNumber" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="300.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="RGPDPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane prefHeight="720.0" prefWidth="1280.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0">
+                           <children>
+                              <Label fx:id="idRGPD" lineSpacing="10.0" maxWidth="1060.0" prefWidth="1060.0" textFill="WHITE" wrapText="true" AnchorPane.leftAnchor="0.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+                  <Button fx:id="bouttonRetourRGPD" mnemonicParsing="false" onAction="#retourRGPD" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="statsJ1Pane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane prefHeight="720.0" prefWidth="1280.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="640.0" minWidth="10.0" prefWidth="640.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" spacing="30.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label text="Statistiques de " textFill="WHITE">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nomJoueur1Stat" textFill="WHITE">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label alignment="CENTER" minWidth="550.0" styleClass="paramBoutton" text="Meilleur score" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label alignment="CENTER" minWidth="550.0" styleClass="paramBoutton" text="Total score" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label alignment="CENTER" minWidth="550.0" styleClass="paramBoutton" text="Nombre de cases parcourues" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="highScoreStatJ1" alignment="CENTER" minWidth="550.0" styleClass="paramBoutton" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="idTotalScoreJ1" alignment="CENTER" minWidth="550.0" styleClass="paramBoutton" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="idNbCasesJ1" alignment="CENTER" minWidth="550.0" styleClass="paramBoutton" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                     <children>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label alignment="CENTER" minWidth="198.0" prefHeight="62.0" prefWidth="198.0" styleClass="paramBoutton" text="Kill" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="idKillJ1" alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" text="Mort" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="idMortJ1" alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" text="Ratio" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="idRatioJ1" alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" text="Victoire" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="idVictoireJ1" alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" text="Défaite" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="idDefaiteJ1" alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" text="Egalité" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="idEgaliteJ1" alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </VBox>
+                  <Button fx:id="bouttonRetourStatsJ1" mnemonicParsing="false" onAction="#retourStats" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="statsJ2Pane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane prefHeight="720.0" prefWidth="1280.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="640.0" minWidth="10.0" prefWidth="640.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="400.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" spacing="30.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label text="Statistiques de " textFill="WHITE">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nomJoueur2Stat" textFill="WHITE">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label alignment="CENTER" minWidth="550.0" styleClass="paramBoutton" text="Meilleur score" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label alignment="CENTER" minWidth="550.0" styleClass="paramBoutton" text="Total score" textAlignment="CENTER" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label alignment="CENTER" minWidth="550.0" styleClass="paramBoutton" text="Nombre de cases parcourues" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                 <children>
+                                    <Label fx:id="highScoreStatJ2" alignment="CENTER" minWidth="550.0" styleClass="paramBoutton" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="idTotalScoreJ2" alignment="CENTER" minWidth="550.0" styleClass="paramBoutton" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="idNbCasesJ2" alignment="CENTER" minWidth="550.0" styleClass="paramBoutton" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                       <padding>
+                                          <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                     <children>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label alignment="CENTER" minWidth="198.0" prefHeight="62.0" prefWidth="198.0" styleClass="paramBoutton" text="Kill" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="idKillJ2" alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" text="Mort" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="idMortJ2" alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" text="Ratio" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="idRatioJ2" alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" text="Victoire" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="idVictoireJ2" alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" text="Défaite" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="idDefaiteJ2" alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Label alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" text="Egalité" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="idEgaliteJ2" alignment="CENTER" minWidth="200.0" styleClass="paramBoutton" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </VBox>
+                  <Button fx:id="bouttonRetourStatsJ2" mnemonicParsing="false" onAction="#retourStats" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Pane fx:id="reglesPane" prefHeight="730.0" prefWidth="1290.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000b2" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+            <GridPane prefHeight="720.0" prefWidth="1280.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="640.0" minWidth="10.0" prefWidth="640.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="300.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <ScrollPane prefHeight="512.0" prefWidth="1280.0" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowSpan="2147483647" GridPane.valignment="CENTER">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets bottom="100.0" />
+                     </GridPane.margin>
+                     <content>
+                        <VBox alignment="CENTER" prefHeight="614.0" prefWidth="1275.0" spacing="20.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                           <children>
+                              <Label style="-fx-font-size: 50;" text="Règles du Jeu :" textFill="WHITE">
+                                 <font>
+                                    <Font size="50.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="75.0" prefWidth="1000.0" style="-fx-font-size: 20;" text="Une partie se joue à 2 joueurs, en 1 VS 1 :" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="50.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="75.0" prefWidth="1000.0" style="-fx-font-size: 20;" text="Chaque joueur a 3 vies et controle un véhicule, laissant une trainée derrière lui." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="75.0" prefWidth="1000.0" style="-fx-font-size: 20;" text="Le but du jeu :" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="75.0" prefWidth="1000.0" style="-fx-font-size: 20;" text="Eliminer le joueur adverse en le faisant rentrer dans un mur ou dans une trainée." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                              <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="75.0" prefWidth="1200.0" style="-fx-font-size: 20;" text="Comptage des points :" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label prefHeight="75.0" prefWidth="1200.0" style="-fx-font-size: 20;" text="- Chaque déplacement : +50" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="390.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label contentDisplay="CENTER" prefHeight="75.0" prefWidth="1200.0" style="-fx-font-size: 20;" text="- Manche gagné : Score manche x 2" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="390.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label contentDisplay="CENTER" prefHeight="75.0" prefWidth="1200.0" style="-fx-font-size: 20;" text="- Partie gagnée : +10 000" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="390.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label contentDisplay="CENTER" prefHeight="75.0" prefWidth="1200.0" style="-fx-font-size: 20;" text="- 0 Mort : +20 000" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="390.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+                  <Button fx:id="bouttonRetourRegles" mnemonicParsing="false" onAction="#retourRegles" prefHeight="50.0" prefWidth="200.0" stylesheets="@css/fxmlStyle.css" text="Retour" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+      <Label fx:id="notificationLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" styleClass="bouttonEffet" textAlignment="CENTER" textFill="WHITE" visible="false" wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="300.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

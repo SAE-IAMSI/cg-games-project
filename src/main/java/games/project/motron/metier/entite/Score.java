@@ -68,10 +68,6 @@ public class Score {
         return horodatage;
     }
 
-    public void setHorodatage(Timestamp horodatage) {
-        this.horodatage = horodatage;
-    }
-
     public String getLogin() {
         return login;
     }
