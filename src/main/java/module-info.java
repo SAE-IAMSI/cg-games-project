@@ -26,4 +26,5 @@ module games.project.launcher {
 
     exports games.project;
 
+    exports games.project.equipe6;
 }
