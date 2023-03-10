@@ -7,8 +7,6 @@ public interface Stockage<T> {
 
     void update(T element);
 
-    void deleteByLogin(String login);
-
     T getByLogin(String login);
 
     List<T> getAll();
