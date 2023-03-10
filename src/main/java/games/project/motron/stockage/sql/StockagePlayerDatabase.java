@@ -16,13 +16,14 @@ public class StockagePlayerDatabase implements Stockage<AuthPlayer> {
     public void create(AuthPlayer element) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "INSERT INTO JOUEURS(login, mdpHache, selHachage) VALUES (?, ?, ?)";
+        String req = "INSERT INTO JOUEURS(login, mdpHache, selHachage, numDepartement) VALUES (?, ?, ?, ?)";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
         ) {
             st.setString(1, element.getLogin());
             st.setString(2, element.getHashedPassword());
             st.setBytes(3, element.getSalt());
+            st.setString(4, element.getDepartement());
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -33,20 +34,20 @@ public class StockagePlayerDatabase implements Stockage<AuthPlayer> {
     public void update(AuthPlayer element) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "UPDATE JOUEURS SET mdpHache = ?, selHachage = ? WHERE login = ?";
+        String req = "UPDATE JOUEURS SET mdpHache = ?, selHachage = ?, numDepartement = ? WHERE login = ?";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
         ) {
-            st.setString(3, element.getLogin());
+            st.setString(4, element.getLogin());
             st.setString(1, element.getHashedPassword());
             st.setBytes(2, element.getSalt());
+            st.setString(3, element.getDepartement());
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    @Override
     public void deleteByLogin(String login) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
@@ -111,10 +112,7 @@ public class StockagePlayerDatabase implements Stockage<AuthPlayer> {
         List<Player> playerList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM(SELECT DISTINCT login, score FROM SCORES " +
-                "WHERE codeJeu = ?" +
-                "ORDER BY score DESC)" +
-                "WHERE ROWNUM <= 10";
+        String req = "SELECT DISTINCT login, score FROM (SELECT login, score FROM Scores WHERE codeJeu = ? ORDER BY score DESC) WHERE ROWNUM <= 10 ORDER BY score DESC";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
         ) {
@@ -138,13 +136,12 @@ public class StockagePlayerDatabase implements Stockage<AuthPlayer> {
         int nbPartie = 0;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT COUNT(*) AS \"nbParties\" FROM SCORES " +
-                "WHERE codeJeu = ? AND login = ?";
+        String req = "SELECT COUNT(*) AS \"nbParties\" FROM SCORES_TRON " +
+                "WHERE login = ?";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
         ) {
-            st.setString(1, Score.getGameCode());
-            st.setString(2, login);
+            st.setString(1, login);
             try (ResultSet result = st.executeQuery();) {
                 while (result.next()) {
                     nbPartie = result.getInt("nbParties");
@@ -156,26 +153,24 @@ public class StockagePlayerDatabase implements Stockage<AuthPlayer> {
         return nbPartie;
     }
 
-    public int getRangByLogin(String login){
-        int rang = 0;
+    public String getDepByLogin(String login){
+        String dep = "";
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT MIN(ROWNUM) FROM SCORES " +
-                "WHERE codeJeu = ? AND login = ?" +
-                "ORDER BY score DESC";
+        String req = "SELECT DISTINCT nomdepartement FROM Departements d JOIN Joueurs j ON d.numdepartement = j.numdepartement " +
+                "WHERE login = ?";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
         ) {
-            st.setString(1, Score.getGameCode());
-            st.setString(2, login);
+            st.setString(1, login);
             try (ResultSet result = st.executeQuery();) {
                 while (result.next()) {
-                    rang = result.getInt("MIN(ROWNUM)");
+                    dep = result.getString("nomdepartement");
                 }
             }
         }catch (SQLException e) {
             e.printStackTrace();
         }
-        return rang;
+        return dep;
     }
 }
