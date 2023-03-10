@@ -43,7 +43,6 @@ public class StockageScoreDatabase implements Stockage<Score> {
         }
     }
 
-    @Override
     public void deleteByLogin(String login) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
@@ -125,6 +124,33 @@ public class StockageScoreDatabase implements Stockage<Score> {
         return score;
     }
 
+    public Score getByLoginRecent(String login) {
+        Score score = null;
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT Max(codeScore), score, horodatage FROM SCORES WHERE login = ? AND codeJeu = ? GROUP BY codeScore,score, horodatage ORDER BY CODESCORE DESC";
+        try (
+                PreparedStatement st = connection.prepareStatement(req);
+        ) {
+            st.setString(1, login);
+            st.setString(2, Score.getGameCode());
+            try (ResultSet result = st.executeQuery();) {
+                if (result.next()) {
+                    int id = result.getInt("max(codeScore)");
+                    int scoreValue = result.getInt("score");
+                    Timestamp time = result.getTimestamp("horodatage");
+                    score = new Score(scoreValue, time);
+                    score.setId(id);
+                    score.setLogin(login);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return score;
+    }
+
+
     @Override
     public List<Score> getAll() {
         List<Score> scoreList = new ArrayList<>();
@@ -151,6 +177,50 @@ public class StockageScoreDatabase implements Stockage<Score> {
             e.printStackTrace();
         }
         return scoreList;
+    }
+
+    public int getSommeScore(String login) {
+        int score = 0;
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT Sum(score) FROM SCORES WHERE login = ? AND codeJeu = ?";
+        try (
+                PreparedStatement st = connection.prepareStatement(req);
+        ) {
+            st.setString(1, login);
+            st.setString(2, Score.getGameCode());
+            try (ResultSet result = st.executeQuery();) {
+                if (result.next()) {
+                    score = result.getInt("Sum(score)");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return score;
+    }
+
+    public int highScore(String login) {
+        int score = 0;
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT MAX(score) FROM SCORES\n" +
+                     "WHERE login = ? AND codeJeu = ?" +
+                     "GROUP BY codeJeu";
+        try (
+                PreparedStatement st = connection.prepareStatement(req);
+        ) {
+            st.setString(1, login);
+            st.setString(2, Score.getGameCode());
+            try (ResultSet result = st.executeQuery();) {
+                if (result.next()) {
+                    score = result.getInt("MAX(score)");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return score;
     }
 
 }

@@ -45,8 +45,15 @@ public class ScoreManager {
         return stockage.getByLogin(login);
     }
 
+    public Score getScoreRecentByLogin(String login) {return stockage.getByLoginRecent(login);}
+
     public List<Score> getScores() {
         return stockage.getAll();
     }
+
+    public int sommeScore(String login) {
+        return stockage.getSommeScore(login);
+    }
+    public int highScore(String login){return stockage.highScore(login);}
 
 }
