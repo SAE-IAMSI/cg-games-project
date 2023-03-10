@@ -1,6 +1,6 @@
 # CG Games Project
 
-Ce document rencense des instructions et des astuces sur l'utilisation de Git et plus particlièrement de ce repo.
+Ce document rencense des instructions et des astuces sur l'utilisation de Git et plus particulièrement de ce repo.
 
 ## Rappel
 
@@ -10,33 +10,34 @@ Le seul (à ce jour) mainteneur du repo est [Valentin Vanhove](https://github.co
 
 ## Organisation du code
 
-Il y a une branche principale (protégée) `main` qui constituera la base de toutes les autres sous-branches. Elle contiendra les jeux créés au S3.
+Il y a une branche principale (protégée) `main` qui constituera la base de toutes les autres sous-branches.
 
 Chaque module dispose d'une branche. Ils auront une copie de ce qui est contenu de la branche principale et pourront travailler dessus.
-- Une branche `equipe-X` qui correspond à la branche de celui-ci
-- (Il est possible de créer une sous-branche de votre équipe pour pouvoir que les membres d'une équipe travaille chacun de son côté, celle-ci peut être nommée `equipe-X-nomBranche`)
+- Chaque branche sera nommée `equipeX-equipier1-equipier2-equipier3` et correspond à votre équipe de travaille.
+- (Il est possible de créer une sous-branche de votre équipe ce qui permet de diviser votre travail, celle-ci peut être nommée `equipeX-nomBranche`)
 
 Libre à chacun d'utiliser les branches de fonctionnalités. 
 Toutefois, il est recommandé d'y recourir puisque cela permet d'éviter les conflits lorsque plusieurs personnes travaillent sur la branche au même moment.
 
 ## Branche principale (protégée)
 
-> Une branche est une copie du code source d'un projet à un moment donné. Les développeurs utilisent des branches pour travailler sur des modifications de code sans affecter la version principale du code. Lorsque les modifications sont terminées, les développeurs effectuent un "merge" pour fusionner leur travail dans la version principale.
+> Une branche est une copie du code source d'un projet à un moment donné. Les développeurs utilisent des branches pour travailler sur des modifications de code sans affecter la version principale. Lorsque les modifications sont terminées, les développeurs effectuent un "merge" nommée Pull requests pour fusionner leur travail dans la version principale.
 
-La branche principale est là où les fichiers du projet final se trouvent. Elle est sécurisée et ne peut recevoir de push sans l'autorisation préalable d'une personne ayant-droit.
+La branche principale contient les fichiers du projet final. Elle est sécurisée et ne peut recevoir de push sans l'autorisation préalable d'une personne ayant-droit.
 
-Voici un tutoriel de comment effectuer une demande de "merge" sur Git (source : Internet) :
+Voici un tutoriel de comment effectuer une demande de tirage "Pull request" sur Git (source : Internet) :
 
-Bien sûr, voici un tutoriel étape par étape pour effectuer une demande de merge dans Git :
+1. Assurez-vous d'être sur la branche que vous souhaitez fusionner : avant de commencer la demande de tirage. Vous pouvez vérifier votre position actuelle en utilisant la commande `git branch` dans votre terminal.
 
-1. Assurez-vous d'être sur la branche que vous souhaitez fusionner : avant de commencer la demande de merge, vous devez vous assurer que vous êtes sur la branche à partir de laquelle vous souhaitez fusionner votre travail. Vous pouvez vérifier votre position actuelle en utilisant la commande git branch dans votre terminal.
-2. Mettez à jour la branche cible : assurez-vous que la branche cible à laquelle vous souhaitez fusionner votre travail est à jour en récupérant les dernières modifications de la branche principale avec la commande git pull.
-3. Créez une nouvelle branche : avant de commencer à travailler sur votre nouvelle fonctionnalité ou correction de bug, il est recommandé de créer une nouvelle branche à partir de la branche cible. Cela garantit que votre travail ne perturbera pas le code existant. Utilisez la commande git checkout -b nom-de-la-branche pour créer et passer à votre nouvelle branche.
-4. Effectuez vos modifications de code : effectuez vos modifications de code en fonction de votre tâche ou de votre fonctionnalité. Utilisez les commandes git add et git commit pour ajouter et enregistrer vos modifications localement.
-5. Publiez votre branche : une fois que vous avez terminé vos modifications et que vous avez effectué des commits, vous devez publier votre branche sur le référentiel distant en utilisant la commande git push. Cela permettra aux autres membres de l'équipe de voir votre travail.
-6. Créez une demande de merge : maintenant que votre travail est publié, vous pouvez créer une demande de merge pour fusionner votre branche avec la branche cible. Vous pouvez créer une demande de merge en utilisant l'interface graphique de votre service de gestion de versions, telle que GitHub ou GitLab. Vous devez fournir des informations telles que le nom de la branche source et la branche cible, ainsi qu'une description détaillée de vos modifications.
-7. Attendez la revue et l'approbation : une fois que vous avez créé la demande de merge, d'autres membres de l'équipe peuvent examiner votre travail et laisser des commentaires. Vous devrez peut-être effectuer des modifications supplémentaires avant que votre demande de merge ne soit approuvée.
-8. Fusionnez votre travail : une fois que votre demande de merge a été approuvée, vous pouvez fusionner votre travail avec la branche cible en utilisant l'interface graphique de votre service de gestion de versions ou en utilisant la commande git merge nom-de-la-branche dans votre terminal.
+2. Mettez à jour la branche cible : assurez-vous que la branche à laquelle vous souhaitez fusionner votre travail est à jour en récupérant les dernières modifications de la branche principale avec la commande `git pull`.
+
+3. Effectuez vos modifications de code : effectuez vos modifications de code en fonction de votre tâche ou de votre fonctionnalité. Utilisez les commandes `git add` et `git commit` pour ajouter et enregistrer vos modifications localement.
+
+4. Publiez votre branche : une fois que vous avez terminé vos modifications et que vous avez effectué des commits, vous devez publier votre branche sur le référentiel distant en utilisant la commande `git push. Cela permettra aux autres membres de l'équipe de voir votre travail.
+
+5. Créez une demande de tirage : maintenant que votre travail est publié, vous pouvez créer une demande de tirage pour fusionner votre branche avec la branche cible dans notre cas "main". Vous pouvez créer une demande de tirage en utilisant l'interface graphique de GitHub. Vous devez fournir des informations telles que le nom de la branche source et la branche cible, ainsi qu'une description détaillée de vos modifications.
+
+6. Attendez la revue et l'approbation : une fois que vous avez créé la demande de tirage, d'autres membres de l'équipe peuvent examiner votre travail et laisser des commentaires. Il est possible que des modifications supplémentaires vous soit demande avant que celle-ci ne soit approuvée.
 
 ## Documentation du code et commit messages
 
@@ -45,6 +46,6 @@ N'hésitez pas à tenir un document (hors code) qui contient des explications de
 
 Pensez également à détailler le plus possible vos messages de commit, afin qu'ils puissent être compris par tous.
 
-## Règles sur les `merge requests`
+## Règles sur les `Pull requests`
 
-Tout merge request ne respectant pas les règles susnommées est susceptible d'être refusé.
+Tout Pull request ne respectant pas les règles susnommées est susceptible d'être refusé.

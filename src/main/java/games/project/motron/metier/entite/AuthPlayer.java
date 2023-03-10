@@ -8,6 +8,7 @@ import java.security.NoSuchAlgorithmException;
 public class AuthPlayer extends Player {
     private String hashedPassword;
     private byte[] salt;
+    private String departement;
 
     public AuthPlayer(String login) {
         super(login);
@@ -17,6 +18,12 @@ public class AuthPlayer extends Player {
         this(login);
         this.salt = salt;
         this.hashedPassword =  hashedPassword;
+    }
+
+    public AuthPlayer(String login, String departement)
+    {
+        this(login);
+        this.departement = departement;
     }
 
     public String getLogin() {
@@ -30,10 +37,6 @@ public class AuthPlayer extends Player {
     public String getHashedPassword() {
         return hashedPassword;
     }
-
-    /*public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
-    }*/
 
     /**
      * Hash the password in params with the salt attribute and put the newly hashedPassword in the attribute.
@@ -53,5 +56,13 @@ public class AuthPlayer extends Player {
 
     public void setSalt(byte[] salt) {
         this.salt = salt;
+    }
+
+    public String getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(String departement) {
+        this.departement = departement;
     }
 }
