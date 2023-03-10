@@ -1,21 +1,19 @@
 package games.project.equipe6.space_invader;
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
+import java.awt.*;
+import javax.swing.*;
 
 public class SpaceInvaders extends JFrame  {
 
     public SpaceInvaders() {
-
         initUI();
     }
 
     private void initUI() {
-
         add(new Board());
 
         setTitle("Space Invaders");
-        setSize(Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
+        setSize(1280, 720);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);

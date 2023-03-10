@@ -7,11 +7,7 @@ import games.project.equipe6.space_invader.sprite.Shot;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -33,14 +29,13 @@ public class Board extends JPanel {
     private int deaths = 0;
 
     private boolean inGame = true;
-    private URL explImg = SpaceInvaders.class.getResource("images/explosion.png");
+    private URL explImg = SpaceInvaders.class.getResource("images/explosion2.png");
     private String message = "Game Over";
 
     private Timer timer;
 
 
     public Board() {
-
         initBoard();
         gameInit();
     }
@@ -63,8 +58,8 @@ public class Board extends JPanel {
 
         aliens = new ArrayList<>();
 
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 6; j++) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 10; j++) {
 
                 var alien = new Alien(Commons.ALIEN_INIT_X + 18 * j,
                         Commons.ALIEN_INIT_Y + 18 * i);
@@ -138,7 +133,7 @@ public class Board extends JPanel {
 
         g.setColor(Color.black);
         g.fillRect(0, 0, d.width, d.height);
-        g.setColor(Color.green);
+        g.setColor(Color.cyan);
 
         if (inGame) {
 
