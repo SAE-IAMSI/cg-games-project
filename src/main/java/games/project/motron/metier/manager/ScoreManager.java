@@ -23,6 +23,12 @@ public class ScoreManager {
         stockage.create(s);
     }
 
+    public void createScore(int id, int score, String login) {
+        Score s = new Score(id, score);
+        s.setLogin(login);
+        stockage.create(s);
+    }
+
     public void updateScore(int id, int score) {
         Score s = stockage.getById(id);
         s.setScore(score);
@@ -56,4 +62,5 @@ public class ScoreManager {
     }
     public int highScore(String login){return stockage.highScore(login);}
 
+    public int getNewId(){return stockage.getNewId();}
 }

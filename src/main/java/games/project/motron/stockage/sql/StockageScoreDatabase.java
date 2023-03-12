@@ -12,15 +12,16 @@ public class StockageScoreDatabase implements Stockage<Score> {
     public void create(Score element) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "INSERT INTO SCORES(score, horodatage, codeJeu, login) VALUES (?, ?, ?, ?)";
+        String req = "INSERT INTO SCORES VALUES (?, ?, ?, ?, ?)";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
         ) {
-            st.setInt(1, element.getScore());
-            st.setTimestamp(2, element.getHorodatage());
-            st.setString(3, element.getGameCode());
-            if (!element.getLogin().isEmpty()) st.setString(4, element.getLogin());
-            else st.setNull(4, Types.VARCHAR);
+            st.setInt(1, element.getId());
+            st.setInt(2, element.getScore());
+            st.setString(3, Score.getGameCode());
+            st.setTimestamp(4, element.getHorodatage());
+            if (!element.getLogin().isEmpty()) st.setString(5, element.getLogin());
+            else st.setNull(5, Types.VARCHAR);
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -221,6 +222,25 @@ public class StockageScoreDatabase implements Stockage<Score> {
             e.printStackTrace();
         }
         return score;
+    }
+
+    public int getNewId(){
+        int codeScore = 0;
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT score_sae_autoincrement.nextval FROM DUAL";
+        try (
+                PreparedStatement st = connection.prepareStatement(req);
+        ) {
+            try (ResultSet result = st.executeQuery();) {
+                if (result.next()) {
+                    codeScore = result.getInt("nextval");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return codeScore;
     }
 
 }
