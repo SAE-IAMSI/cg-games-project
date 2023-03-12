@@ -1,6 +1,6 @@
-package games.project.equipe6.space_invader.sprite;
+package games.project.space_invader.sprite;
 
-import games.project.equipe6.space_invader.SpaceInvaders;
+import games.project.space_invader.SpaceInvaders;
 
 import javax.swing.ImageIcon;
 import java.util.Objects;

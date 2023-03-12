@@ -1,4 +1,4 @@
-package games.project.equipe6.space_invader.sprite;
+package games.project.space_invader.sprite;
 
 import java.awt.Image;
 

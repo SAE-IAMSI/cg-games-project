@@ -1,4 +1,4 @@
-package games.project.equipe6.space_invader;
+package games.project.space_invader;
 
 public interface Commons {
 

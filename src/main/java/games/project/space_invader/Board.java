@@ -1,8 +1,8 @@
-package games.project.equipe6.space_invader;
+package games.project.space_invader;
 
-import games.project.equipe6.space_invader.sprite.Alien;
-import games.project.equipe6.space_invader.sprite.Player;
-import games.project.equipe6.space_invader.sprite.Shot;
+import games.project.space_invader.sprite.Alien;
+import games.project.space_invader.sprite.Player;
+import games.project.space_invader.sprite.Shot;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -29,7 +29,7 @@ public class Board extends JPanel {
     private int deaths = 0;
 
     private boolean inGame = true;
-    private URL explImg = SpaceInvaders.class.getResource("images/explosion2.png");
+    private final URL explImg = SpaceInvaders.class.getResource("images/explosion2.png");
     private String message = "Game Over";
 
     private Timer timer;
@@ -234,11 +234,7 @@ public class Board extends JPanel {
 
                 direction = -1;
 
-                Iterator<Alien> i1 = aliens.iterator();
-
-                while (i1.hasNext()) {
-
-                    Alien a2 = i1.next();
+                for (Alien a2 : aliens) {
                     a2.setY(a2.getY() + Commons.GO_DOWN);
                 }
             }
@@ -247,22 +243,13 @@ public class Board extends JPanel {
 
                 direction = 1;
 
-                Iterator<Alien> i2 = aliens.iterator();
-
-                while (i2.hasNext()) {
-
-                    Alien a = i2.next();
+                for (Alien a : aliens) {
                     a.setY(a.getY() + Commons.GO_DOWN);
                 }
             }
         }
 
-        Iterator<Alien> it = aliens.iterator();
-
-        while (it.hasNext()) {
-
-            Alien alien = it.next();
-
+        for (Alien alien : aliens) {
             if (alien.isVisible()) {
 
                 int y = alien.getY();
