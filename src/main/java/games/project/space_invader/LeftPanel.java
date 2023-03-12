@@ -5,7 +5,9 @@ import java.awt.*;
 
 public class LeftPanel extends JPanel {
 
-    private int lives = 3;
+    // TODO : Cette classe contient les éléments de la partie gauche de la fenêtre de jeu
+
+    private int lives = 0;
 
     private final Label livesLabel = new Label();
 

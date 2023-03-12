@@ -5,14 +5,23 @@ import java.awt.*;
 
 public class SpaceInvaders extends JFrame {
 
-    public SpaceInvaders() {
-        initUI();
+    // TODO : Cette classe contient les éléments de la fenêtre de jeu
+
+    public SpaceInvaders(String mode) {
+        initUI(mode);
     }
 
-    private void initUI() {
+    private void initUI(String mode) {
         LeftPanel leftPanel = new LeftPanel();
         leftPanel.setPreferredSize(new Dimension(320, 720));
         leftPanel.setBackground(Color.DARK_GRAY);
+
+        if (mode.equals("classic")) {
+            leftPanel.setLives(1);
+        } else if (mode.equals("infini")) {
+            leftPanel.setLives(3);
+        }
+        leftPanel.updateLives();
 
         RightPanel rightPanel = new RightPanel();
         rightPanel.setPreferredSize(new Dimension(320, 720));

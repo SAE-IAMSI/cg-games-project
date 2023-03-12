@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class StartPanel extends JFrame {
 
-    // TODO : Actuellement, le bouton "Infinit" et "Classic" font la même chose. (Rien)
+    // TODO : Cette classe contient les éléments de la fenêtre de démarrage du jeu
     public StartPanel() {
 
         Button classic = new Button("Classic");
@@ -28,13 +28,13 @@ public class StartPanel extends JFrame {
         getContentPane().setLayout(new BorderLayout());
 
         classic.addActionListener(e -> {
-            SpaceInvaders spaceInvaders = new SpaceInvaders();
+            SpaceInvaders spaceInvaders = new SpaceInvaders("classic");
             spaceInvaders.setVisible(true);
             setVisible(false);
         });
 
         infini.addActionListener(e -> {
-            SpaceInvaders spaceInvaders = new SpaceInvaders();
+            SpaceInvaders spaceInvaders = new SpaceInvaders("infini");
             spaceInvaders.setVisible(true);
             setVisible(false);
         });

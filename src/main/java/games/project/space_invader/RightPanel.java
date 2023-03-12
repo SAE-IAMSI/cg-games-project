@@ -5,6 +5,8 @@ import java.awt.*;
 
 public class RightPanel extends JPanel {
 
+    // TODO : Cette classe contient les éléments de la partie droite de la fenêtre de jeu
+
     private int score = 0;
 
     private final Label scoreLabel = new Label();
