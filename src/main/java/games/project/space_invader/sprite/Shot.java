@@ -6,12 +6,10 @@ import javax.swing.ImageIcon;
 import java.util.Objects;
 
 public class Shot extends Sprite {
-
     public Shot() {
     }
 
     public Shot(int x, int y) {
-
         initShot(x, y);
     }
 

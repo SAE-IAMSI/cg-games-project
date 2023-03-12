@@ -28,21 +28,17 @@ public class Alien extends Sprite {
     }
 
     public void act(int direction) {
-
         this.x += direction;
     }
 
     public Bomb getBomb() {
-
         return bomb;
     }
 
     public static class Bomb extends Sprite {
-
         private boolean destroyed;
 
         public Bomb(int x, int y) {
-
             initBomb(x, y);
         }
 

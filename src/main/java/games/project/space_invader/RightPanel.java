@@ -16,7 +16,6 @@ public class RightPanel extends JPanel {
 
     private void initScore() {
         scoreLabel.setText("Score: " + score);
-        //scoreLabel.setBounds(0, 0, 320, 720);
         scoreLabel.setAlignment(Label.CENTER);
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 30));
         scoreLabel.setForeground(Color.WHITE);
