@@ -4,9 +4,7 @@ import games.project.space_invader.sprite.Alien;
 import games.project.space_invader.sprite.Player;
 import games.project.space_invader.sprite.Shot;
 
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,17 +12,19 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
 public class Board extends JPanel {
 
+    private RightPanel rightPanel;
+    private LeftPanel leftPanel;
+
     private Dimension d;
     private List<Alien> aliens;
     private Player player;
     private Shot shot;
-    
+
     private int direction = -1;
     private int deaths = 0;
 
@@ -32,12 +32,16 @@ public class Board extends JPanel {
     private final URL explImg = SpaceInvaders.class.getResource("images/explosion2.png");
     private String message = "Game Over";
 
-    private Timer timer;
+    private Timer timer, timerLife;
+
+    private Boolean getDommage = true;
 
 
-    public Board() {
+    public Board(RightPanel rightPanel, LeftPanel leftPanel) {
         initBoard();
         gameInit();
+        this.rightPanel = rightPanel;
+        this.leftPanel = leftPanel;
     }
 
     private void initBoard() {
@@ -81,7 +85,6 @@ public class Board extends JPanel {
             }
 
             if (alien.isDying()) {
-
                 alien.die();
             }
         }
@@ -116,7 +119,6 @@ public class Board extends JPanel {
             Alien.Bomb b = a.getBomb();
 
             if (!b.isDestroyed()) {
-
                 g.drawImage(b.getImage(), b.getX(), b.getY(), this);
             }
         }
@@ -176,6 +178,11 @@ public class Board extends JPanel {
                 Commons.BOARD_WIDTH / 2);
     }
 
+    private void updateDommage(){
+        getDommage = true;
+        timerLife.stop();
+    }
+
     private void update() {
 
         if (deaths == Commons.NUMBER_OF_ALIENS_TO_DESTROY) {
@@ -204,12 +211,13 @@ public class Board extends JPanel {
                             && shotX <= (alienX + Commons.ALIEN_WIDTH)
                             && shotY >= (alienY)
                             && shotY <= (alienY + Commons.ALIEN_HEIGHT)) {
-
                         var ii = new ImageIcon(explImg);
                         alien.setImage(ii.getImage());
                         alien.setDying(true);
                         deaths++;
                         shot.die();
+                        rightPanel.setScore(rightPanel.getScore() + 20);
+                        rightPanel.updateScore();
                     }
                 }
             }
@@ -288,12 +296,20 @@ public class Board extends JPanel {
                 if (bombX >= (playerX)
                         && bombX <= (playerX + Commons.PLAYER_WIDTH)
                         && bombY >= (playerY)
-                        && bombY <= (playerY + Commons.PLAYER_HEIGHT)) {
+                        && bombY <= (playerY + Commons.PLAYER_HEIGHT) && getDommage){
 
-                    var ii = new ImageIcon(explImg);
-                    player.setImage(ii.getImage());
-                    player.setDying(true);
-                    bomb.setDestroyed(true);
+                    getDommage = false;
+                    timerLife = new Timer(5000, e -> updateDommage());
+                    timerLife.start();
+                    leftPanel.setLives(leftPanel.getLives() - 1);
+                    leftPanel.updateLives();
+
+                    if (leftPanel.getLives() == 0) {
+                        var ii = new ImageIcon(explImg);
+                        player.setImage(ii.getImage());
+                        player.setDying(true);
+                        bomb.setDestroyed(true);
+                    }
                 }
             }
 

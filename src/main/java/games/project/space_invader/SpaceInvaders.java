@@ -10,17 +10,17 @@ public class SpaceInvaders extends JFrame {
     }
 
     private void initUI() {
-        JPanel leftPanel = new JPanel();
+        LeftPanel leftPanel = new LeftPanel();
         leftPanel.setPreferredSize(new Dimension(320, 720));
         leftPanel.setBackground(Color.DARK_GRAY);
 
-        Board board = new Board();
-        board.setPreferredSize(new Dimension(640, 720));
-        board.setBorder(BorderFactory.createMatteBorder(5, 0, 5, 0, Color.DARK_GRAY));
-
-        JPanel rightPanel = new JPanel();
+        RightPanel rightPanel = new RightPanel();
         rightPanel.setPreferredSize(new Dimension(320, 720));
         rightPanel.setBackground(Color.DARK_GRAY);
+
+        Board board = new Board(rightPanel, leftPanel);
+        board.setPreferredSize(new Dimension(640, 720));
+        board.setBorder(BorderFactory.createMatteBorder(5, 0, 5, 0, Color.DARK_GRAY));
 
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(leftPanel, BorderLayout.WEST);
@@ -41,5 +41,9 @@ public class SpaceInvaders extends JFrame {
             var spaceInvaders = new SpaceInvaders();
             spaceInvaders.setVisible(true);
         });
+    }
+
+    public static Container getPane() {
+        return new SpaceInvaders().getContentPane();
     }
 }

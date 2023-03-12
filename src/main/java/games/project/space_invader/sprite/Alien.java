@@ -37,7 +37,7 @@ public class Alien extends Sprite {
         return bomb;
     }
 
-    public class Bomb extends Sprite {
+    public static class Bomb extends Sprite {
 
         private boolean destroyed;
 
@@ -59,12 +59,10 @@ public class Alien extends Sprite {
         }
 
         public void setDestroyed(boolean destroyed) {
-
             this.destroyed = destroyed;
         }
 
         public boolean isDestroyed() {
-
             return destroyed;
         }
     }
