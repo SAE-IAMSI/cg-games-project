@@ -45,8 +45,8 @@ public class SpaceInvaders extends JFrame {
     }
 
     public static void main(String[] args) {
-        StartPanel startPanel = new StartPanel();
-        startPanel.setPreferredSize(new Dimension(1280, 720));
-        startPanel.setVisible(true);
+        StartFrame startFrame = new StartFrame();
+        startFrame.setPreferredSize(new Dimension(1280, 720));
+        startFrame.setVisible(true);
     }
 }

@@ -3,10 +3,10 @@ package games.project.space_invader;
 import javax.swing.*;
 import java.awt.*;
 
-public class StartPanel extends JFrame {
+public class StartFrame extends JFrame {
 
     // TODO : Cette classe contient les éléments de la fenêtre de démarrage du jeu
-    public StartPanel() {
+    public StartFrame() {
 
         Label title = new Label("Space Invaders");
         title.setSize(500, 100);

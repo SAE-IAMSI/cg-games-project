@@ -37,7 +37,6 @@ public class Board extends JPanel {
 
     public Board(RightPanel rightPanel, LeftPanel leftPanel) {
         initBoard();
-        gameInit();
         this.rightPanel = rightPanel;
         this.leftPanel = leftPanel;
     }
@@ -51,7 +50,6 @@ public class Board extends JPanel {
 
         timer = new Timer(Commons.DELAY, new GameCycle());
         timer.start();
-
         gameInit();
     }
 
@@ -161,9 +159,17 @@ public class Board extends JPanel {
     private void update() {
 
         if (deaths == Commons.NUMBER_OF_ALIENS_TO_DESTROY) {
-            inGame = false;
+            aliens.clear();
             timer.stop();
-            message = "Game won!";
+            player = null;
+            shot = null;
+            deaths = 0;
+            removeKeyListener(this.getKeyListeners()[0]);
+            initBoard();
+
+            /*inGame = false;
+            timer.stop();
+            message = "Game won!";*/
         }
 
         // player
