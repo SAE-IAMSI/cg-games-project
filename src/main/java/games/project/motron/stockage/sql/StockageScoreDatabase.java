@@ -183,9 +183,7 @@ public class StockageScoreDatabase implements Stockage<Score> {
         int score = 0;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT MAX(score) FROM SCORES\n" +
-                "WHERE login = ? AND codeJeu = ?" +
-                "GROUP BY codeJeu";
+        String req = "SELECT Sum(score) FROM SCORES WHERE login = ? AND codeJeu = ?";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
         ) {
