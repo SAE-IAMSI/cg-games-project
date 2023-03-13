@@ -1,7 +1,7 @@
 package games.project.space_invader.sprite;
 
 import games.project.space_invader.Commons;
-import games.project.space_invader.SpaceInvaders;
+import games.project.space_invader.SpaceInvadersClassic;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -15,7 +15,7 @@ public class Player extends Sprite {
     }
 
     private void initPlayer() {
-        var playerImg = SpaceInvaders.class.getResource("images/player2.png");
+        var playerImg = SpaceInvadersClassic.class.getResource("images/player2.png");
         var ii = new ImageIcon(Objects.requireNonNull(playerImg));
 
         width = ii.getImage().getWidth(null);

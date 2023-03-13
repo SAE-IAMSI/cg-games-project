@@ -3,33 +3,37 @@ package games.project.space_invader;
 import javax.swing.*;
 import java.awt.*;
 
-public class SpaceInvaders extends JFrame {
+public abstract class SpaceInvaders extends JFrame {
 
-    // TODO : Cette classe contient les éléments de la fenêtre de jeu
+    LeftPanel leftPanel;
+    RightPanel rightPanel;
+    Board board;
 
-    public SpaceInvaders(String mode) {
-        initUI(mode);
+    public static void main(String[] args) {
+        var startFrame = new StartFrame();
+        startFrame.setPreferredSize(new Dimension(1280, 720));
+        startFrame.setVisible(true);
     }
 
-    private void initUI(String mode) {
-        LeftPanel leftPanel = new LeftPanel();
+    public SpaceInvaders() {
+        leftPanel = new LeftPanel();
+        rightPanel = new RightPanel();
+        board = new Board(rightPanel, leftPanel);
+        setLives();
+        initialiser();
+    }
+
+    private void initialiser() {
         leftPanel.setPreferredSize(new Dimension(320, 720));
         leftPanel.setBackground(Color.DARK_GRAY);
 
-        if (mode.equals("classic")) {
-            leftPanel.setLives(1);
-        } else if (mode.equals("infini")) {
-            leftPanel.setLives(3);
-        }
-        leftPanel.updateLives();
-
-        RightPanel rightPanel = new RightPanel();
         rightPanel.setPreferredSize(new Dimension(320, 720));
         rightPanel.setBackground(Color.DARK_GRAY);
 
-        Board board = new Board(rightPanel, leftPanel);
         board.setPreferredSize(new Dimension(640, 720));
         board.setBorder(BorderFactory.createMatteBorder(5, 0, 5, 0, Color.DARK_GRAY));
+
+        leftPanel.updateLives();
 
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(leftPanel, BorderLayout.WEST);
@@ -44,9 +48,6 @@ public class SpaceInvaders extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    public static void main(String[] args) {
-        StartFrame startFrame = new StartFrame();
-        startFrame.setPreferredSize(new Dimension(1280, 720));
-        startFrame.setVisible(true);
-    }
+    public abstract void setLives();
+
 }

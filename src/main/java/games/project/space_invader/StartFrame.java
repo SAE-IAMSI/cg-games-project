@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class StartFrame extends JFrame {
 
-    // TODO : Cette classe contient les éléments de la fenêtre de démarrage du jeu
+    SpaceInvaders spaceInvaders;
     public StartFrame() {
 
         Label title = new Label("Space Invaders");
@@ -35,17 +35,18 @@ public class StartFrame extends JFrame {
         getContentPane().setBackground(Color.lightGray);
 
         classic.addActionListener(e -> {
-            SpaceInvaders spaceInvaders = new SpaceInvaders("classic");
-            spaceInvaders.setVisible(true);
-            setVisible(false);
+            spaceInvaders = new SpaceInvadersClassic();
+            visibilityFrame();
         });
 
         infini.addActionListener(e -> {
-            SpaceInvaders spaceInvaders = new SpaceInvaders("infini");
-            spaceInvaders.setVisible(true);
-            setVisible(false);
+            spaceInvaders = new SpaceInvadersInfinite();
+            visibilityFrame();
         });
     }
 
-
+    private void visibilityFrame(){
+        spaceInvaders.setVisible(true);
+        setVisible(false);
+    }
 }

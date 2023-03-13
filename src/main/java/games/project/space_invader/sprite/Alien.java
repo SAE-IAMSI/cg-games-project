@@ -1,6 +1,6 @@
 package games.project.space_invader.sprite;
 
-import games.project.space_invader.SpaceInvaders;
+import games.project.space_invader.SpaceInvadersClassic;
 
 import javax.swing.ImageIcon;
 import java.util.Objects;
@@ -21,7 +21,7 @@ public class Alien extends Sprite {
 
         bomb = new Bomb(x, y);
 
-        var alienImg = SpaceInvaders.class.getResource("images/alien2.png");
+        var alienImg = SpaceInvadersClassic.class.getResource("images/alien2.png");
         var ii = new ImageIcon(Objects.requireNonNull(alienImg));
 
         setImage(ii.getImage());
@@ -49,7 +49,7 @@ public class Alien extends Sprite {
             this.x = x;
             this.y = y;
 
-            var bombImg = SpaceInvaders.class.getResource("images/bomb2.png");
+            var bombImg = SpaceInvadersClassic.class.getResource("images/bomb2.png");
             var ii = new ImageIcon(Objects.requireNonNull(bombImg));
             setImage(ii.getImage());
         }

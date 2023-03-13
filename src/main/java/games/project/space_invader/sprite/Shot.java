@@ -1,6 +1,6 @@
 package games.project.space_invader.sprite;
 
-import games.project.space_invader.SpaceInvaders;
+import games.project.space_invader.SpaceInvadersClassic;
 
 import javax.swing.ImageIcon;
 import java.util.Objects;
@@ -14,7 +14,7 @@ public class Shot extends Sprite {
     }
 
     private void initShot(int x, int y) {
-        var shotImg = SpaceInvaders.class.getResource("images/shot2.png");
+        var shotImg = SpaceInvadersClassic.class.getResource("images/shot2.png");
         var ii = new ImageIcon(Objects.requireNonNull(shotImg));
         setImage(ii.getImage());
 

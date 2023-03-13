@@ -16,8 +16,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Board extends JPanel {
-    private RightPanel rightPanel;
-    private LeftPanel leftPanel;
+    private final RightPanel rightPanel;
+    private final LeftPanel leftPanel;
 
     private Dimension d;
     private List<Alien> aliens;
@@ -28,7 +28,7 @@ public class Board extends JPanel {
     private int deaths = 0;
 
     private boolean inGame = true;
-    private final URL explImg = SpaceInvaders.class.getResource("images/explosion2.png");
+    private final URL explImg = SpaceInvadersClassic.class.getResource("images/explosion2.png");
     private String message = "Game Over";
 
     private Timer timer, timerLife;
