@@ -162,17 +162,18 @@ public class Board extends JPanel {
     private void update() {
 
         if (deaths == Commons.NUMBER_OF_ALIENS_TO_DESTROY) {
-            aliens.clear();
+            if (game instanceof SpaceInvadersInfinite) {
+                aliens.clear();
+                player = null;
+                shot = null;
+                deaths = 0;
+                removeKeyListener(this.getKeyListeners()[0]);
+                initBoard();
+            } else if (game instanceof SpaceInvadersClassic) {
+                inGame = false;
+                message = "Game won!";
+            }
             timer.stop();
-            player = null;
-            shot = null;
-            deaths = 0;
-            removeKeyListener(this.getKeyListeners()[0]);
-            initBoard();
-
-            /*inGame = false;
-            timer.stop();
-            message = "Game won!";*/
         }
 
         // player
