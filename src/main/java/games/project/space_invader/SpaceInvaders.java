@@ -18,7 +18,7 @@ public abstract class SpaceInvaders extends JFrame {
     public SpaceInvaders() {
         leftPanel = new LeftPanel();
         rightPanel = new RightPanel();
-        board = new Board(rightPanel, leftPanel);
+        board = new Board(rightPanel, leftPanel, this);
         setLives();
         initialiser();
     }
@@ -49,5 +49,6 @@ public abstract class SpaceInvaders extends JFrame {
     }
 
     public abstract void setLives();
+
 
 }

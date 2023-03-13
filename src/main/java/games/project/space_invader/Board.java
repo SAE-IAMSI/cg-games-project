@@ -34,11 +34,14 @@ public class Board extends JPanel {
     private Timer timer, timerLife;
     private Boolean getDommage = true;
 
+    private final SpaceInvaders game;
 
-    public Board(RightPanel rightPanel, LeftPanel leftPanel) {
+
+    public Board(RightPanel rightPanel, LeftPanel leftPanel, SpaceInvaders game) {
         initBoard();
         this.rightPanel = rightPanel;
         this.leftPanel = leftPanel;
+        this.game = game;
     }
 
     private void initBoard() {
