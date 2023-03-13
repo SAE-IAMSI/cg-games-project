@@ -169,17 +169,16 @@ public class Motron extends Application {
                                 controllerFXML.getLabelFin().setText((j1.getNomJoueur() + " a gagné !"));
                             }
                             numManche = 1;
-                            int i = ScorePartieManager.getInstance().getLastId();
-                            i++;
-                            int codeScore = ScoreManager.getInstance().getNewId();
                             if (j1.isConnecter()) {
-                                ScoreManager.getInstance().createScore(codeScore-1, j1.getScore().getScore(), j1.getNomJoueur());
-                                ScorePartieManager.getInstance().createScorePartie(i, j1.getNomJoueur(), codeScore, j2.getNbMorts(), j1.getNbMorts(), j1.getNbBlocParcouru(), rj1);
+                                ScoreManager.getInstance().createScore(j1.getScore().getScore(), j1.getNomJoueur());
+                                int codeScore = ScoreManager.getInstance().getMaxId();
+                                ScorePartieManager.getInstance().createScorePartie(codeScore, j2.getNbMorts(), j1.getNbMorts(), j1.getNbBlocParcouru(), rj1);
                                 j1.setNbBlocParcouru(0);
                             }
                             if (j2.isConnecter()) {
-                                ScoreManager.getInstance().createScore(codeScore+1, j2.getScore().getScore(), j2.getNomJoueur());
-                                ScorePartieManager.getInstance().createScorePartie(i, j2.getNomJoueur(), codeScore+1, j1.getNbMorts(), j2.getNbMorts(), j2.getNbBlocParcouru(), rj2);
+                                ScoreManager.getInstance().createScore(j2.getScore().getScore(), j2.getNomJoueur());
+                                int codeScore = ScoreManager.getInstance().getMaxId();
+                                ScorePartieManager.getInstance().createScorePartie(codeScore, j1.getNbMorts(), j2.getNbMorts(), j2.getNbBlocParcouru(), rj2);
                                 j2.setNbBlocParcouru(0);
                             }
                             controllerFXML.getScoreGOJ1().setText(String.valueOf(j1.getScore().getScore()));

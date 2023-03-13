@@ -62,5 +62,5 @@ public class ScoreManager {
     }
     public int highScore(String login){return stockage.highScore(login);}
 
-    public int getNewId(){return stockage.getNewId();}
+    public int getMaxId(){return stockage.getMaxId();}
 }

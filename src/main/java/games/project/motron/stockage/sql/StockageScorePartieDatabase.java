@@ -16,15 +16,13 @@ public class StockageScorePartieDatabase implements Stockage<ScorePartie>{
     public void create(ScorePartie element) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "INSERT INTO SCORES_TRON (idPartie, login, score, kill, death, nbBlocs, resultat) VALUES (?,?,?,?,?,?,?)";
+        String req = "INSERT INTO MOTRON VALUES (?,?,?,?,?)";
         try (PreparedStatement st = connection.prepareStatement(req)) {
-            st.setInt(1, element.getId());
-            st.setString(2, element.getLogin());
-            st.setInt(3, element.getScore());
-            st.setInt(4, element.getKill());
-            st.setInt(5, element.getDeath());
-            st.setInt(6, element.getNbBlocs());
-            st.setString(7, element.getResultat());
+            st.setInt(1, element.getCodeScore());
+            st.setInt(2, element.getKill());
+            st.setInt(3, element.getDeath());
+            st.setInt(4, element.getNbBlocs());
+            st.setString(5, element.getResultat());
             st.executeUpdate();
         }
         catch (SQLException e) {
@@ -36,15 +34,13 @@ public class StockageScorePartieDatabase implements Stockage<ScorePartie>{
     public void update(ScorePartie element) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "UPDATE SCORES_TRON SET score = ?, kill = ?, death = ?, nbBlocs = ?, resultat = ? WHERE idPartie = ? AND login = ?";
+        String req = "UPDATE MOTRON SET kill = ?, death = ?, nbBlocs = ?, resultat = ? WHERE codeScore = ?";
         try (PreparedStatement st = connection.prepareStatement(req)) {
-            st.setInt(1, element.getScore());
-            st.setInt(2, element.getKill());
-            st.setInt(3, element.getDeath());
-            st.setInt(4, element.getNbBlocs());
-            st.setString(5, element.getResultat());
-            st.setInt(6, element.getId());
-            st.setString(7, element.getLogin());
+            st.setInt(4, element.getKill());
+            st.setInt(2, element.getDeath());
+            st.setInt(3, element.getNbBlocs());
+            st.setString(4, element.getResultat());
+            st.setInt(5, element.getCodeScore());
             st.executeUpdate();
         }
         catch (SQLException e) {
@@ -52,37 +48,17 @@ public class StockageScorePartieDatabase implements Stockage<ScorePartie>{
         }
     }
 
-    public int LastId(){
-        int i = 0;
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "SELECT MAX(idPartie) FROM SCORES_TRON";
-        try(PreparedStatement st = connection.prepareStatement(req)) {
-            try (ResultSet result = st.executeQuery();) {
-                if (result.next()) {
-                    i = result.getInt("MAX(idPartie)");
-                }
-            }
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
-        return i;
-    }
-
     @Override
     public ScorePartie getByLogin(String login) {
         ScorePartie scorePartie = null;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES_TRON WHERE login = ?";
+        String req = "SELECT * FROM MOTRON m JOIN SCORES s ON m.codeScore=s.codeScore WHERE login = ?";
         try (PreparedStatement st = connection.prepareStatement(req)) {
             st.setString(1, login);
             try (ResultSet result = st.executeQuery()) {
                 if (result.next()) {
-                    scorePartie = new ScorePartie(  result.getInt("idPartie"),
-                                                    login,
-                                                    result.getInt("score"),
+                    scorePartie = new ScorePartie(  result.getInt("codeScore"),
                                                     result.getInt("kill"),
                                                     result.getInt("death"),
                                                     result.getInt("nbBlocs"),
@@ -100,13 +76,11 @@ public class StockageScorePartieDatabase implements Stockage<ScorePartie>{
         List<ScorePartie> scorePartieList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES_TRON";
+        String req = "SELECT * FROM MOTRON";
         try (PreparedStatement st = connection.prepareStatement(req)) {
             try (ResultSet result = st.executeQuery()) {
                 if (result.next()) {
-                    scorePartieList.add(new ScorePartie(result.getInt("idPartie"),
-                                                        result.getString("login"),
-                                                        result.getInt("score"),
+                    scorePartieList.add(new ScorePartie(result.getInt("codeScore"),
                                                         result.getInt("kill"),
                                                         result.getInt("death"),
                                                         result.getInt("nbBlocs"),
@@ -123,7 +97,7 @@ public class StockageScorePartieDatabase implements Stockage<ScorePartie>{
         Stat stat = null;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT Sum(nbBlocs), Sum(death), Sum(kill) FROM SCORES_TRON WHERE login = ?";
+        String req = "SELECT Sum(nbBlocs), Sum(death), Sum(kill) FROM MOTRON m JOIN SCORES s ON m.codeScore=s.codeScore WHERE login = ?";
         try (PreparedStatement st = connection.prepareStatement(req)) {
             st.setString(1, login);
             try (ResultSet result = st.executeQuery()) {
@@ -141,7 +115,7 @@ public class StockageScorePartieDatabase implements Stockage<ScorePartie>{
         int stat = 0;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT Count(resultat) as victoire FROM SCORES_TRON WHERE login = ? AND resultat = 'V'";
+        String req = "SELECT Count(resultat) as victoire FROM MOTRON m JOIN SCORES s ON m.codeScore=s.codeScore WHERE login = ? AND resultat = 'V'";
         try (PreparedStatement st = connection.prepareStatement(req)) {
             st.setString(1, login);
             try (ResultSet result = st.executeQuery()) {
@@ -159,7 +133,7 @@ public class StockageScorePartieDatabase implements Stockage<ScorePartie>{
         int stat = 0;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT Count(resultat) as defaite FROM SCORES_TRON WHERE login = ? AND resultat = 'D'";
+        String req = "SELECT Count(resultat) as defaite FROM MOTRON m JOIN SCORES s ON m.codeScore=s.codeScore WHERE login = ? AND resultat = 'D'";
         try (PreparedStatement st = connection.prepareStatement(req)) {
             st.setString(1, login);
             try (ResultSet result = st.executeQuery()) {
@@ -177,7 +151,7 @@ public class StockageScorePartieDatabase implements Stockage<ScorePartie>{
         int stat = 0;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT Count(resultat) as egalite FROM SCORES_TRON WHERE login = ? AND resultat = 'E'";
+        String req = "SELECT Count(resultat) as egalite FROM MOTRON m JOIN SCORES s ON m.codeScore=s.codeScore WHERE login = ? AND resultat = 'E'";
         try (PreparedStatement st = connection.prepareStatement(req)) {
             st.setString(1, login);
             try (ResultSet result = st.executeQuery()) {

@@ -14,12 +14,8 @@ public class ScorePartieManager {
         return instance;
     }
 
-    public int getLastId(){
-        return stockage.LastId();
-    }
-
-    public void createScorePartie(int idPartie, String login, int score, int kill, int death, int nbBlocs,  String resultat){
-        ScorePartie s = new ScorePartie(idPartie, login, score, kill, death, nbBlocs, resultat);
+    public void createScorePartie(int codeScore, int kill, int death, int nbBlocs,  String resultat){
+        ScorePartie s = new ScorePartie(codeScore, kill, death, nbBlocs, resultat);
         stockage.create(s);
     }
 
