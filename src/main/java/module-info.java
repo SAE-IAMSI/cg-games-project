@@ -28,4 +28,8 @@ module games.project.launcher {
     opens games.project.motron.controller to javafx.fxml;
     
     exports games.project.equipe6;
+
+    exports games.project.stats;
+    opens games.project.stats.controller to javafx.fxml;
+    exports games.project.stats.views;
 }
