@@ -12,6 +12,7 @@ public class StartFrame extends JFrame {
         title.setSize(500, 100);
         title.setLocation(470, 10);
         title.setFont(new Font("Arial", Font.BOLD, 50));
+        title.setForeground(Color.WHITE);
         add(title);
 
         Button classic = new Button("Classic");
@@ -32,7 +33,7 @@ public class StartFrame extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         getContentPane().setLayout(new BorderLayout());
-        getContentPane().setBackground(Color.lightGray);
+        getContentPane().setBackground(Color.BLACK);
 
         classic.addActionListener(e -> {
             spaceInvaders = new SpaceInvadersClassic();

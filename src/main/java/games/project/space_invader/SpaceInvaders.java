@@ -25,13 +25,13 @@ public abstract class SpaceInvaders extends JFrame {
 
     private void initialiser() {
         leftPanel.setPreferredSize(new Dimension(320, 720));
-        leftPanel.setBackground(Color.DARK_GRAY);
+        leftPanel.setBackground(Color.BLACK);
 
         rightPanel.setPreferredSize(new Dimension(320, 720));
-        rightPanel.setBackground(Color.DARK_GRAY);
+        rightPanel.setBackground(Color.BLACK);
 
         board.setPreferredSize(new Dimension(640, 720));
-        board.setBorder(BorderFactory.createMatteBorder(5, 0, 5, 0, Color.DARK_GRAY));
+        board.setBorder(BorderFactory.createMatteBorder(0, 3, 0, 3, Color.DARK_GRAY));
 
         leftPanel.updateLives();
 
