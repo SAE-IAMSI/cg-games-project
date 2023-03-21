@@ -9,5 +9,4 @@ public class Launcher extends Application {
     public void start(Stage stage) throws Exception {
         new Throwable("Not implemented yet").printStackTrace();
     }
-
 }
