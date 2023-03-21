@@ -1,4 +1,4 @@
-package games.project.casse_briques.metier.entite;
+package games.project.metier.entite;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

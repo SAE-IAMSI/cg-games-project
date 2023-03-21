@@ -1,7 +1,7 @@
-package games.project.casse_briques.metier.manager;
+package games.project.metier.manager;
 
-import games.project.casse_briques.metier.entite.Score;
-import games.project.casse_briques.stockage.sql.StockageScoreDatabase;
+import games.project.stockage.sql.StockageScoreDatabase;
+import games.project.metier.entite.Score;
 
 import java.util.List;
 

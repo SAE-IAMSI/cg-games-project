@@ -1,4 +1,4 @@
-package games.project.casse_briques.stockage;
+package games.project.stockage;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
