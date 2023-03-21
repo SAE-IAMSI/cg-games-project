@@ -10,10 +10,16 @@ import java.util.Objects;
 public class Player extends Sprite {
     private int width;
 
+    /**
+     * Constructeur de la classe Player
+     */
     public Player() {
         initPlayer();
     }
 
+    /**
+     * Initialise le joueur
+     */
     private void initPlayer() {
         var playerImg = SpaceInvadersClassic.class.getResource("images/player2.png");
         var ii = new ImageIcon(Objects.requireNonNull(playerImg));
@@ -28,6 +34,9 @@ public class Player extends Sprite {
         setY(START_Y);
     }
 
+    /**
+     * Déplace le joueur
+     */
     public void act() {
         x += dx;
         if (x <= 2) {
@@ -38,6 +47,10 @@ public class Player extends Sprite {
         }
     }
 
+    /**
+     * Quand une touche est pressée déplacement du joueur
+     * @param e
+     */
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_LEFT) {
@@ -48,6 +61,10 @@ public class Player extends Sprite {
         }
     }
 
+    /**
+     * Quand une touche est relâchée
+     * @param e
+     */
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_LEFT) {

@@ -36,7 +36,13 @@ public class Board extends JPanel {
 
     private final SpaceInvaders game;
 
-
+    /**
+     * constructeur de la classe Board
+     *
+     * @param rightPanel
+     * @param leftPanel
+     * @param game
+     */
     public Board(RightPanel rightPanel, LeftPanel leftPanel, SpaceInvaders game) {
         initBoard();
         this.rightPanel = rightPanel;
@@ -44,6 +50,9 @@ public class Board extends JPanel {
         this.game = game;
     }
 
+    /**
+     * Initialise le plateau de jeu
+     */
     private void initBoard() {
 
         addKeyListener(new TAdapter());
@@ -56,7 +65,9 @@ public class Board extends JPanel {
         gameInit();
     }
 
-
+    /**
+     * Initialise le jeu
+     */
     private void gameInit() {
         aliens = new ArrayList<>();
 
@@ -73,6 +84,11 @@ public class Board extends JPanel {
         shot = new Shot();
     }
 
+    /**
+     * Dessine les aliens
+     *
+     * @param g
+     */
     private void drawAliens(Graphics g) {
         for (Alien alien : aliens) {
             if (alien.isVisible()) {
@@ -84,6 +100,11 @@ public class Board extends JPanel {
         }
     }
 
+    /**
+     * Dessine le joueur
+     *
+     * @param g
+     */
     private void drawPlayer(Graphics g) {
 
         if (player.isVisible()) {
@@ -95,12 +116,22 @@ public class Board extends JPanel {
         }
     }
 
+    /**
+     * Dessine le tir
+     *
+     * @param g
+     */
     private void drawShot(Graphics g) {
         if (shot.isVisible()) {
             g.drawImage(shot.getImage(), shot.getX(), shot.getY(), this);
         }
     }
 
+    /**
+     * Dessine les bombes
+     *
+     * @param g
+     */
     private void drawBombing(Graphics g) {
         for (Alien a : aliens) {
             Alien.Bomb b = a.getBomb();
@@ -116,6 +147,11 @@ public class Board extends JPanel {
         doDrawing(g);
     }
 
+    /**
+     * Dessine le plateau de jeu
+     *
+     * @param g
+     */
     private void doDrawing(Graphics g) {
         g.setColor(Color.black);
         g.fillRect(0, 0, d.width, d.height);
@@ -137,6 +173,11 @@ public class Board extends JPanel {
         Toolkit.getDefaultToolkit().sync();
     }
 
+    /**
+     * Affiche le message de fin de partie
+     *
+     * @param g
+     */
     private void gameOver(Graphics g) {
         g.setColor(Color.black);
         g.fillRect(0, 0, Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
@@ -154,11 +195,17 @@ public class Board extends JPanel {
                 Commons.BOARD_WIDTH / 2);
     }
 
+    /**
+     * Met à jour quand le joueur est touché
+     */
     private void updateDommage() {
         getDommage = true;
         timerLife.stop();
     }
 
+    /**
+     * Met à jour le plateau de jeu
+     */
     private void update() {
 
         if (deaths == Commons.NUMBER_OF_ALIENS_TO_DESTROY) {
@@ -287,11 +334,18 @@ public class Board extends JPanel {
         }
     }
 
+    /**
+     * Dessine les éléments du jeu
+     */
     private void doGameCycle() {
         update();
         repaint();
     }
 
+
+    /**
+     * Classe interne pour le timer
+     */
     private class GameCycle implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {

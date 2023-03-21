@@ -6,6 +6,10 @@ import java.awt.*;
 public class StartFrame extends JFrame {
 
     SpaceInvaders spaceInvaders;
+
+    /**
+     * Constructeur de la classe StartFrame
+     */
     public StartFrame() {
 
         Label title = new Label("Space Invaders");
@@ -46,6 +50,9 @@ public class StartFrame extends JFrame {
         });
     }
 
+    /**
+     * Rend la fenêtre SpaceInvaders visible et la fenêtre StartFrame invisible
+     */
     private void visibilityFrame(){
         spaceInvaders.setVisible(true);
         setVisible(false);

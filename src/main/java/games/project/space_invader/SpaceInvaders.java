@@ -9,12 +9,19 @@ public abstract class SpaceInvaders extends JFrame {
     RightPanel rightPanel;
     Board board;
 
+    /**
+     * Méthode main
+     * @param args
+     */
     public static void main(String[] args) {
         var startFrame = new StartFrame();
         startFrame.setPreferredSize(new Dimension(1280, 720));
         startFrame.setVisible(true);
     }
 
+    /**
+     * Constructeur de la classe SpaceInvaders
+     */
     public SpaceInvaders() {
         leftPanel = new LeftPanel();
         rightPanel = new RightPanel();
@@ -23,6 +30,9 @@ public abstract class SpaceInvaders extends JFrame {
         initialiser();
     }
 
+    /**
+     * initialise la fenêtre
+     */
     private void initialiser() {
         leftPanel.setPreferredSize(new Dimension(320, 720));
         leftPanel.setBackground(Color.BLACK);
@@ -48,7 +58,9 @@ public abstract class SpaceInvaders extends JFrame {
         setLocationRelativeTo(null);
     }
 
+    /**
+     * Définit le nombre de vies dans l'interface
+     */
     public abstract void setLives();
-
 
 }
