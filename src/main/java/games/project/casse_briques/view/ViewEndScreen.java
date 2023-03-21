@@ -4,7 +4,7 @@ import games.project.casse_briques.BrickBreakerApplication;
 import games.project.casse_briques.controller.BrickBreakerController;
 import games.project.casse_briques.controller.GameMenuController;
 import games.project.casse_briques.controller.SoundGestionController;
-import games.project.casse_briques.stockage.Session;
+import games.project.stockage.Session;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -1,6 +1,6 @@
-package games.project.casse_briques.stockage.sql;
+package games.project.stockage.sql;
 
-import games.project.casse_briques.metier.entite.AuthPlayer;
+import games.project.metier.entite.AuthPlayer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

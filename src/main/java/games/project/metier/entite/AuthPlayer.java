@@ -1,6 +1,6 @@
-package games.project.casse_briques.metier.entite;
+package games.project.metier.entite;
 
-import games.project.casse_briques.stockage.Security;
+import games.project.stockage.Security;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;

@@ -1,8 +1,8 @@
-package games.project.casse_briques.metier.manager;
+package games.project.metier.manager;
 
-import games.project.casse_briques.metier.entite.AuthPlayer;
-import games.project.casse_briques.stockage.Security;
-import games.project.casse_briques.stockage.sql.StockagePlayerDatabase;
+import games.project.stockage.Security;
+import games.project.stockage.sql.StockagePlayerDatabase;
+import games.project.metier.entite.AuthPlayer;
 
 import java.util.List;
 import java.util.Map;
