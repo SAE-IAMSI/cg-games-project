@@ -15,8 +15,6 @@ module games.project.launcher {
 
     exports games.project.casse_briques;
     exports games.project.casse_briques.controller;
-    exports games.project.casse_briques.stockage;
-    exports games.project.casse_briques.stockage.sql;
     opens games.project.casse_briques.controller to javafx.fxml;
     opens games.project.casse_briques.view to javafx.fxml;
 
@@ -26,6 +24,10 @@ module games.project.launcher {
 
     exports games.project;
     opens games.project.motron.controller to javafx.fxml;
-    
-    exports games.project.equipe6;
+
+    exports games.project.statitisques;
+    opens games.project.statitisques.controller to javafx.fxml;
+    exports games.project.statitisques.views;
+
+    exports games.project.space_invader;
 }

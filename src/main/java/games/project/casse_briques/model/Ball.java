@@ -3,7 +3,7 @@ package games.project.casse_briques.model;
 import games.project.casse_briques.BrickBreakerApplication;
 import games.project.casse_briques.controller.BrickBreakerController;
 import games.project.casse_briques.controller.SoundGestionController;
-import games.project.casse_briques.metier.entite.Player;
+import games.project.metier.entite.Player;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;

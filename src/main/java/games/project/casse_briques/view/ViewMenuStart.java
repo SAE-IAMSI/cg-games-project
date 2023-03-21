@@ -3,7 +3,7 @@ package games.project.casse_briques.view;
 import games.project.casse_briques.BrickBreakerApplication;
 import games.project.casse_briques.controller.BrickBreakerController;
 import games.project.casse_briques.controller.GameMenuController;
-import games.project.casse_briques.stockage.Session;
+import games.project.stockage.Session;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
