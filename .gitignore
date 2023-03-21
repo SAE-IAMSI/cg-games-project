@@ -233,3 +233,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 /.idea/*
+/src/main/java/games/project/statitisques/client64Bit/
