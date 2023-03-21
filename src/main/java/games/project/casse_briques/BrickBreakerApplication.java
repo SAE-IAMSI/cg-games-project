@@ -2,7 +2,7 @@ package games.project.casse_briques;
 
 import games.project.casse_briques.controller.BrickBreakerController;
 import games.project.casse_briques.controller.GameMenuController;
-import games.project.casse_briques.stockage.sql.SQLUtils;
+import games.project.stockage.sql.SQLUtils;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

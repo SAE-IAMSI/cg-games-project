@@ -6,18 +6,14 @@ public class ScorePartie {
     private int nbBlocs;
     private int death;
     private int kill;
-    private int score;
-    private String login;
-    private int id;
+    private int codeScore;
 
-    public ScorePartie(int id, String login,int score,int kill, int death, int nbBlocs, String resultat) {
+    public ScorePartie(int codeScore,int kill, int death, int nbBlocs, String resultat) {
         this.resultat = resultat;
         this.nbBlocs = nbBlocs;
         this.death = death;
         this.kill = kill;
-        this.score = score;
-        this.login = login;
-        this.id = id;
+        this.codeScore = codeScore;
     }
 
     public String getResultat() {
@@ -36,19 +32,7 @@ public class ScorePartie {
         return kill;
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public int getId() {
-        return id;
+    public int getCodeScore() {
+        return codeScore;
     }
 }

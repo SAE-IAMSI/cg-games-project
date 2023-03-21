@@ -1,12 +1,12 @@
 package games.project.casse_briques.controller;
 
 import games.project.casse_briques.BrickBreakerApplication;
-import games.project.casse_briques.metier.entite.Player;
-import games.project.casse_briques.metier.manager.ScoreManager;
+import games.project.metier.entite.Player;
+import games.project.metier.manager.ScoreManager;
 import games.project.casse_briques.model.Ball;
 import games.project.casse_briques.model.Brick;
 import games.project.casse_briques.model.Racket;
-import games.project.casse_briques.stockage.Session;
+import games.project.stockage.Session;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -27,7 +27,6 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-
 
 public class BrickBreakerController extends AnchorPane {
     private Ball ball;
