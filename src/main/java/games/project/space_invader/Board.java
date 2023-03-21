@@ -141,6 +141,11 @@ public class Board extends JPanel {
         }
     }
 
+    /**
+     * Dessine le plateau de jeu
+     *
+     * @param g the <code>Graphics</code> object to protect
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -353,15 +358,38 @@ public class Board extends JPanel {
         }
     }
 
+    /**
+     * Classe interne pour les touches du clavier
+     */
     private class TAdapter extends KeyAdapter {
+        Boolean isPressed = false;
+
+        /**
+         * Appelé quand une touche est relachée
+         *
+         * @param e the event to be processed
+         */
         @Override
         public void keyReleased(KeyEvent e) {
             player.keyReleased(e);
+            if (!isPressed) {
+                leftPanel.keyReleased(e);
+                isPressed = true;
+            }
         }
 
+        /**
+         * Appelé quand une touche est pressée
+         *
+         * @param e the event to be processed
+         */
         @Override
         public void keyPressed(KeyEvent e) {
             player.keyPressed(e);
+            if (isPressed) {
+                leftPanel.keyPressed(e);
+                isPressed = false;
+            }
             int x = player.getX();
             int y = player.getY();
             int key = e.getKeyCode();
