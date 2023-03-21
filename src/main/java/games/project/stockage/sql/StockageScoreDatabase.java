@@ -1,6 +1,6 @@
-package games.project.casse_briques.stockage.sql;
+package games.project.stockage.sql;
 
-import games.project.casse_briques.metier.entite.Score;
+import games.project.metier.entite.Score;
 
 import java.sql.*;
 import java.util.ArrayList;

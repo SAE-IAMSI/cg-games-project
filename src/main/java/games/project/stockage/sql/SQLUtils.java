@@ -1,4 +1,4 @@
-package games.project.casse_briques.stockage.sql;
+package games.project.stockage.sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

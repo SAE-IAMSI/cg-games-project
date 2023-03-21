@@ -123,33 +123,6 @@ public class StockageScoreDatabase {
         return score;
     }
 
-//    public List<Score> get10HighScore() {
-//        List<Score> scoreList = new ArrayList<>();
-//        SQLUtils utils = SQLUtils.getInstance();
-//        Connection connection = utils.getConnection();
-//        String req = "SELECT * FROM SCORES WHERE codeJeu = ? ORDER BY score DESC LIMIT 10";
-//        try (
-//                PreparedStatement st = connection.prepareStatement(req);
-//        ) {
-//            st.setString(1, Score.getGameCode());
-//            try (ResultSet result = st.executeQuery();) {
-//                while (result.next()) {
-//                    int id = result.getInt("codeScore");
-//                    int scoreValue = result.getInt("score");
-//                    Timestamp time = result.getTimestamp("horodatage");
-//                    String login = result.getString("login");
-//                    Score score = new Score(scoreValue, time);
-//                    score.setId(id);
-//                    score.setLogin(login);
-//                    scoreList.add(score);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return scoreList;
-//    }
-
     /**
      * Renvoie l'historique des scores sur votre jeu.
      *
@@ -187,7 +160,7 @@ public class StockageScoreDatabase {
         List<Double> tempsList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM scoreTemps WHERE login = ? ORDER BY temps ASC";
+        String req = "SELECT * FROM KOALAROCK k JOIN Scores s ON k.codeScore=s.codeScore WHERE login = ? ORDER BY temps ASC";
         try (
                 PreparedStatement st = connection.prepareStatement(req)
         ) {
@@ -213,7 +186,7 @@ public class StockageScoreDatabase {
         List<Score> scoreList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES WHERE codeJeu = ? ORDER BY score DESC";
+        String req = "SELECT * FROM SCORES WHERE codeJeu = ? AND score IS NOT NULL ORDER BY score DESC";
         try (
                 PreparedStatement st = connection.prepareStatement(req)
         ) {
@@ -240,7 +213,7 @@ public class StockageScoreDatabase {
         Map<Integer, Double> scoreList = new LinkedHashMap<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM scoreTemps ORDER BY temps ASC";
+        String req = "SELECT * FROM KOALAROCK ORDER BY temps ASC";
         try (PreparedStatement st = connection.prepareStatement(req)) {
             try (ResultSet result = st.executeQuery()) {
                 while (result.next()) {
@@ -259,7 +232,7 @@ public class StockageScoreDatabase {
         String res = "";
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM scoreTemps WHERE codeScore = ?";
+        String req = "SELECT * FROM KOALAROCK k JOIN Scores s ON k.codeScore=s.codeScore WHERE s.codeScore = ?";
         try (PreparedStatement st = connection.prepareStatement(req)) {
             st.setInt(1, id);
             try (ResultSet result = st.executeQuery()) {
@@ -277,7 +250,7 @@ public class StockageScoreDatabase {
         int res = 0;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM scoreTemps ORDER BY codeScore DESC";
+        String req = "SELECT MAX(codeScore) from Scores where codeJeu='KR'";
         try (PreparedStatement st = connection.prepareStatement(req)) {
             try (ResultSet result = st.executeQuery()) {
                 if (result.next()) {
@@ -293,7 +266,10 @@ public class StockageScoreDatabase {
     public void addTemps(double temps, String login) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "INSERT INTO scoreTemps (codeScore,temps,login) VALUES (?,?,?)";
+        Score tempo = new Score(0);
+        tempo.setLogin(login);
+        create(tempo);
+        String req = "INSERT INTO KOALAROCK (codeScore,temps) VALUES (?,?,?)";
         try (PreparedStatement st = connection.prepareStatement(req)) {
             st.setInt(1, getDernierCode() + 1);
             st.setDouble(2, temps);
@@ -428,7 +404,7 @@ public class StockageScoreDatabase {
         Map<Integer, Double> temps = new LinkedHashMap<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM scoreTemps WHERE login IN (SELECT login FROM Joueurs WHERE numDepartement = ?) ORDER BY temps ASC";
+        String req = "SELECT * FROM KOALAROCK k JOIN Scores s ON k.codeScore=s.codeScore WHERE login IN (SELECT login FROM Joueurs WHERE numDepartement = ?) ORDER BY temps ASC";
         try (
                 PreparedStatement st = connection.prepareStatement(req)
         ) {
@@ -443,6 +419,7 @@ public class StockageScoreDatabase {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        //System.out.println(temps);
         return temps;
     }
 }

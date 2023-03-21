@@ -1,4 +1,4 @@
-package games.project.casse_briques.stockage;
+package games.project.stockage;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
