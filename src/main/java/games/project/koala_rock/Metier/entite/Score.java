@@ -14,9 +14,9 @@ public class Score {
     private IntegerProperty score;
     private Timestamp horodatage;
     private String login;
-    private static final String gameCode = "DK"; //CodeJeu: Motron: 'TRON' | Tetris : 'TETRIS' | DonkeyKong : 'DK' | Brick breaker : 'CB'
+    private static final String gameCode = "KR"; //CodeJeu: Motron: 'TRON' | Tetris : 'TETRIS' | DonkeyKong : 'DK' | Brick breaker : 'CB'
     private static final String gameCodeTRON = "TRON";
-    private static final String gameCodeTETRIS = "TETRIS";
+    private static final String gameCodeTETRIS = "FF";
     private static final String gameCodeCB = "CB";
 
 
