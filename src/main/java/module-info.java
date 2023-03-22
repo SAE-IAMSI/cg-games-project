@@ -24,6 +24,8 @@ module games.project.launcher {
 
     exports games.project.factory_fall;
 
+    exports games.project.paco_mano;
+
     exports games.project;
 
 }
