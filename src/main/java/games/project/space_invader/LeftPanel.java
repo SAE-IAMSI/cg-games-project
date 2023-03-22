@@ -8,8 +8,10 @@ import java.util.Objects;
 public class LeftPanel extends JPanel {
 
     private int lives = 0;
-    private final Label livesLabel = new Label();
+    private JLabel livesLabel, live1, live2, live3;
     private JLabel boutonGauche, boutonDroite, boutonEspace, textDeplacement, textTire;
+
+    URL imgVie = SpaceInvadersClassic.class.getResource("images/player2.png");
     URL imgGauche = SpaceInvadersClassic.class.getResource("images/keyboard/Button_Gauche.png");
     URL imgDroite = SpaceInvadersClassic.class.getResource("images/keyboard/Button_Droite.png");
     URL imgEspace = SpaceInvadersClassic.class.getResource("images/keyboard/Button_Espace.png");
@@ -31,11 +33,11 @@ public class LeftPanel extends JPanel {
         keyboardJPanel.add(boutonEspace);
         keyboardJPanel.add(textDeplacement);
         keyboardJPanel.add(textTire);
-        keyboardJPanel.getComponent(0).setBounds(40, 475, 100, 50);
-        keyboardJPanel.getComponent(1).setBounds(180, 475, 100, 50);
-        keyboardJPanel.getComponent(2).setBounds(60, 570, 200, 50);
-        keyboardJPanel.getComponent(3).setBounds(110, 520, 150, 50);
-        keyboardJPanel.getComponent(4).setBounds(140, 610, 200, 50);
+        keyboardJPanel.getComponent(0).setBounds(40, 465, 100, 50);
+        keyboardJPanel.getComponent(1).setBounds(180, 465, 100, 50);
+        keyboardJPanel.getComponent(2).setBounds(60, 560, 200, 50);
+        keyboardJPanel.getComponent(3).setBounds(110, 510, 150, 50);
+        keyboardJPanel.getComponent(4).setBounds(140, 600, 200, 50);
         add(keyboardJPanel);
 
     }
@@ -44,19 +46,40 @@ public class LeftPanel extends JPanel {
      * Initialise le nombre de vies
      */
     private void initLives() {
-        livesLabel.setText("Vie(s): " + lives);
-        livesLabel.setAlignment(Label.CENTER);
+        livesLabel = new JLabel();
+        livesLabel.setText("Vie(s):");
         livesLabel.setFont(new Font("Arial", Font.BOLD, 30));
         livesLabel.setForeground(Color.WHITE);
-        livesLabel.setPreferredSize(new Dimension(320, 30));
+        livesLabel.setPreferredSize(new Dimension(150, 30));
         add(livesLabel);
+
+        ImageIcon imageVie = new ImageIcon(Objects.requireNonNull(imgVie));
+        imageVie.setImage(imageVie.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+
+        live1 = new JLabel(imageVie);
+        live1.setPreferredSize(new Dimension(40, 40));
+        add(live1);
+
+        live2 = new JLabel(imageVie);
+        live2.setPreferredSize(new Dimension(40, 40));
+        add(live2);
+
+        live3 = new JLabel(imageVie);
+        live3.setPreferredSize(new Dimension(40, 40));
+        add(live3);
     }
 
     /**
      * Met à jour le nombre de vies
      */
     public void updateLives() {
-        livesLabel.setText("Vie(s): " + lives);
+        System.out.println(lives);
+        if (lives == 2) {
+            remove(live3);
+        } else if (lives == 1) {
+            remove(live2);
+            remove(live3);
+        }
     }
 
     /**
