@@ -5,14 +5,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fill="WHITE" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pong" textAlignment="CENTER" wrappingWidth="1280.0">
+      <Text fill="WHITE" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Préhispong" textAlignment="CENTER" wrappingWidth="1280.0">
          <font>
             <Font name="Sans Serif Collection" size="30.0" />
          </font>
       </Text>
-      <Button layoutX="618.0" layoutY="348.0" mnemonicParsing="false" onAction="#clickJouer" text="Jouer" />
+      <Button layoutX="582.0" layoutY="271.0" mnemonicParsing="false" onAction="#clickJouer" prefHeight="46.0" prefWidth="143.0" text="Jouer " />
+      <Button layoutX="582.0" layoutY="360.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="143.0" text="Paramètre" />
+      <Button layoutX="582.0" layoutY="441.0" mnemonicParsing="false" onAction="#exit" prefHeight="46.0" prefWidth="143.0" text="Quitter" />
    </children>
 </fx:root>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+
+<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="254.0" layoutY="298.0" mnemonicParsing="false" onAction="#pvp" prefHeight="62.0" prefWidth="182.0" text="Joueur contre Joueur" />
+      <Button layoutX="847.0" layoutY="303.0" mnemonicParsing="false" onAction="#pvi" prefHeight="62.0" prefWidth="182.0" text="Joueur contre IA" />
+      <Button layoutX="549.0" layoutY="570.0" mnemonicParsing="false" onAction="#back" prefHeight="62.0" prefWidth="182.0" text="Retour" />
+   </children>
+</fx:root>

@@ -1,6 +1,7 @@
 package games.project.pong;
 
 import games.project.pong.controller.GameController;
+import games.project.pong.view.StartMenuView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -18,6 +19,7 @@ public class MainPong extends Application {
         stage.setResizable(false);
         stage.show();
         gameController.listener();
+        gameController.displayScreen(new StartMenuView());
     }
 
     public static void main(String[] args) {

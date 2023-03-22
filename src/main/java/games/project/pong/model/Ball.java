@@ -79,6 +79,7 @@ public class Ball extends Circle implements Element {
     public void hitboxWall(Rectangle wall) {
         if(this.getBoundsInParent().intersects(wall.getBoundsInParent())){
             reverseSpeedY();
+            this.setPos(this.getLayoutX(),this.getLayoutY()+this.getSpeedY()*1.2);
         }
     }
 }
