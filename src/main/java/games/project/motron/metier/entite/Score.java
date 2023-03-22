@@ -25,6 +25,13 @@ public class Score {
         this.horodatage = new Timestamp(System.currentTimeMillis());
     }
 
+    public Score(int id, int score) {
+        this();
+        this.id = id;
+        this.score = new SimpleIntegerProperty(score);
+        this.horodatage = new Timestamp(System.currentTimeMillis());
+    }
+
     public Score(int score, Timestamp time) {
         this();
         this.score = new SimpleIntegerProperty(score);
@@ -66,10 +73,6 @@ public class Score {
 
     public Timestamp getHorodatage() {
         return horodatage;
-    }
-
-    public void setHorodatage(Timestamp horodatage) {
-        this.horodatage = horodatage;
     }
 
     public String getLogin() {

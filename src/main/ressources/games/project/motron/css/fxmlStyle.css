@@ -1,7 +1,38 @@
+@font-face {
+    font-family: 'Public Pixel';
+    src: url('../font/arcadeFont.ttf');
+}
+
+@font-face {
+    font-family: 'TRON';
+    src: url('../font/TRON.ttf');
+}
+
+@font-face {
+    font-family: 'Megatron';
+    src: url('../font/Megatron.otf');
+}
+
+@font-face {
+    font-family: 'Arcade';
+    src: url('../font/ArcadeClassic.ttf');
+}
+
+*
+{
+    -fx-font-family: "Public Pixel";
+    /*-fx-font-family: "TRON";*/
+    /*-fx-font-family: "Megatron";*/
+
+
+}
+
 .button {
     -fx-background-color: rgba(0, 0, 0, .7);
     -fx-border-color: white;
     -fx-border-radius: 5px;
+    /*-fx-background-insets: 0 0 0 0, 0, 1, 2;*/
+    -fx-font-size: 18px;
 }
 
 .button:hover{
@@ -40,10 +71,108 @@
     -fx-background-color: rgba(0, 0, 0, .7);
     -fx-border-color: white;
     -fx-border-radius: 5px;
+    -fx-font-size: 18px;
 }
 
 .bouttonEffet{
     -fx-background-color: rgba(0, 0, 0, .7);
     -fx-border-color: white;
     -fx-border-radius: 5px;
+    -fx-text-fill: white;
+}
+
+/*.combo-box .context-menu*/
+/*{*/
+/*    !*-fx-pref-height: 350px;*!*/
+/*    -fx-background-color: rgba(0, 0, 0, .7);*/
+/*}*/
+
+.combo-box .list-view .list-cell
+{
+    -fx-text-fill: white;
+    -fx-background-color: rgba(0, 0, 0, .7);
+    /*-fx-wrap-text: true;*/
+}
+
+.combo-box .list-cell
+{
+    -fx-text-fill: white;
+    -fx-wrap-text: true;
+    -fx-text-alignment: justify;
+}
+
+.combo-box .list-view
+{
+    -fx-background-color: transparent;
+}
+
+.notificationSuccess
+{
+    /*-fx-background-color: rgba(223, 240, 216, 0.7);*/
+    -fx-background-color: rgba(0, 0, 0, .7);
+    -fx-border-color: #d6e9c6;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #62ff64;
+}
+
+.notificationError
+{
+    /*-fx-background-color: rgba(242, 222, 222, 0.7);*/
+    -fx-background-color: rgba(0, 0, 0, .7);
+    -fx-border-color: #ebccd1;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #ff5f5c;
+}
+
+.notificationWarning
+{
+    /*-fx-background-color: rgba(252, 248, 227, 0.7);*/
+    -fx-background-color: rgba(0, 0, 0, .7);
+    -fx-border-color: #faebcc;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #ffac26;
+}
+
+.titreMotron
+{
+    -fx-font-family: "TRON";
+}
+
+.gridStyle Line{
+    -fx-stroke: white;
+}
+
+.link
+{
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-border-color: rgba(0, 0, 0, 0);
+    -fx-border-radius: 0px;
+}
+
+.link:hover
+{
+    -fx-underline: true;
+    -fx-background-color: rgba(0, 0, 0, 0);
+    /*-fx-text-fill: #ff0000;*/
+}
+
+.gridStyle
+{
+    -fx-border-radius: 5px;
+    -fx-border-color: white;
+}
+
+.check-box .box
+{
+    -fx-background-color: rgba(0, 0, 0, .7);
+    -fx-border-color: white;
+    -fx-pref-width: 30px;
+    -fx-pref-height: 30px;
+    -fx-border-radius: 5px;
+}
+
+.check-box:selected .mark {
+
+    -fx-background-color: white;
+
 }
