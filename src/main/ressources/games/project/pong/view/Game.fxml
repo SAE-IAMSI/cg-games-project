@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle fx:id="topBar" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="56.0" layoutX="-4.0" layoutY="87.0" stroke="BLACK" strokeType="INSIDE" width="1288.0" />
+      <Rectangle fx:id="bottomBar" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="56.0" layoutX="-8.0" layoutY="577.0" stroke="BLACK" strokeType="INSIDE" width="1288.0" />
+      <Text fx:id="gameTitle" fill="WHITE" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pong" textAlignment="CENTER" wrappingWidth="1280.0000000000002">
+         <font>
+            <Font name="Sans Serif Collection" size="34.0" />
+         </font>
+      </Text>
+      <Text fx:id="p1" fill="WHITE" layoutX="84.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" wrappingWidth="102.13671875">
+         <font>
+            <Font name="Sans Serif Collection" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="p2" fill="WHITE" layoutX="1122.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2">
+         <font>
+            <Font name="Sans Serif Collection" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="scoreP1" fill="WHITE" layoutX="78.0" layoutY="680.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score : " textAlignment="CENTER">
+         <font>
+            <Font name="Sans Serif Collection" size="20.0" />
+         </font>
+      </Text>
+      <Text fx:id="scoreP2" fill="WHITE" layoutX="1157.0" layoutY="680.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score :" textAlignment="CENTER">
+         <font>
+            <Font name="Sans Serif Collection" size="20.0" />
+         </font>
+      </Text>
+      <Button disable="false" layoutX="614.0" layoutY="660.0" mnemonicParsing="false" onAction="#clickMenu" text="Menu" />
+      <Rectangle fx:id="limitL" arcHeight="5.0" arcWidth="5.0" fill="RED" height="430.0" layoutX="-21.0" layoutY="146.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+      <Rectangle fx:id="limitR" arcHeight="5.0" arcWidth="5.0" fill="#f80f07" height="430.0" layoutX="1231.0" layoutY="145.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+      <Text fx:id="information" fill="#867c7c" layoutX="45.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliquer pour commencer !" textAlignment="CENTER" wrappingWidth="1181.13671875">
+         <font>
+            <Font name="Arial Black" size="29.0" />
+         </font>
+      </Text>
+   </children>
+</fx:root>
