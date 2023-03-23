@@ -50,8 +50,6 @@ public class GameController extends GenericView {
     private Racket racketPlayer;
     private Timeline timeline;
 
-    /** True si focus sur la fenêtre principal, faux sinon **/
-    private boolean gameState = false;
 
     private GameController() { /** **/
         super("Game.fxml");
@@ -140,12 +138,11 @@ public class GameController extends GenericView {
         });
 
         this.getScene().setOnMouseClicked((MouseEvent event)->{
-                if(gameState){
-                    playLoop();
-                    event.consume();
-                }
+            playLoop();
+            event.consume();
         });
     }
+
     public void playLoop(){
         timeline.play();
         information.setVisible(false);
@@ -162,14 +159,10 @@ public class GameController extends GenericView {
         return bottomBar;
     }
 
-    public void setGameState(boolean gameState) {
-        this.gameState = gameState;
-    }
-
     @FXML
     public void clickMenu(){
         MenuController.startMenu();
         stopLoop();
-        setGameState(false);
+        resetPos();
     }
 }
