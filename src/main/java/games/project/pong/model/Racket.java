@@ -7,6 +7,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import java.util.Random;
+
 public class Racket extends Rectangle implements Element{
 
     public Racket(double posX, double posY,double width, double heigh) {
@@ -36,10 +38,10 @@ public class Racket extends Rectangle implements Element{
         if(this.getBoundsInParent().intersects(ball.getBoundsInParent())){
 
             if(left){
-               // System.out.println("toucher Left");
+                System.out.println("toucher Left");
                 ball.reverseSpeedX();
-                ball.increaseSpeedX(2);
-                ball.increaseSpeedY(0.5);
+                ball.increaseSpeedX(1);
+                ball.increaseSpeedY(1);
 
                 if(ball.getSpeedY()>0){
                     ball.reverseSpeedY();//vers le haut
@@ -48,10 +50,10 @@ public class Racket extends Rectangle implements Element{
                 ball.setPos(ball.getLayoutX()+ball.getSpeedX(),ball.getLayoutY()+ball.getSpeedY());
             }
             else if(right) {
-               // System.out.println("Toucher Right");
+                System.out.println("Toucher Right");
                 ball.reverseSpeedX();
-                ball.increaseSpeedX(2);
-                ball.increaseSpeedY(0.5);
+                ball.increaseSpeedX(1);
+                ball.increaseSpeedY(1);
                 if(ball.getSpeedY()<0){
                     ball.reverseSpeedY(); //vers le bas
                 }
@@ -59,13 +61,15 @@ public class Racket extends Rectangle implements Element{
 
             }
             else if(middle){
-               // System.out.println("toucher Middle");
+                System.out.println("toucher Middle");
                 ball.reverseSpeedX();
-                ball.increaseSpeedY(-1);
-                ball.increaseSpeedX(-0.5);
+                ball.increaseSpeedY(-ball.getSpeedY()*0.5);
+                ball.increaseSpeedX(2);
                 ball.setPos(ball.getLayoutX()+ball.getSpeedX(),ball.getLayoutY()+ball.getSpeedY());
             }
         }
+        //System.out.println("SpeedX :"+ball.getSpeedX());
+        System.out.println("SpeedY :"+ball.getSpeedY());
     }
 
     public void moveUp(){
@@ -75,12 +79,40 @@ public class Racket extends Rectangle implements Element{
         this.setLayoutY(this.getLayoutY()+5);
     }
 
-    public void racketAI(Ball ball){
+    public void racketAI(Ball ball,int mods){
 
         double mvt = ball.getLayoutY()-this.getHeight()/2;
+        int r1 = new Random().nextInt(0,500);
+
+        switch (mods){
+            case 0:{ //easy
+                break;
+            }
+            case 1:{ //normal
+                break;
+            }
+            case 2:{//hard
+                break;
+            }
+
+            case 3:{ //invincible
+                if(GameController.getInstance().topBar.getLayoutY() < mvt - this.getHeight()*0.5 && GameController.getInstance().bottomBar.getLayoutY() > mvt+(this.getHeight()*0.5 + GameController.getInstance().bottomBar.getHeight())){
+                    this.setLayoutY(mvt);
+                }
+                break;
+            }
+
+        }
+
+
 
         if(GameController.getInstance().topBar.getLayoutY() < mvt - this.getHeight()*0.5 && GameController.getInstance().bottomBar.getLayoutY() > mvt+(this.getHeight()*0.5 + GameController.getInstance().bottomBar.getHeight())){
-            this.setLayoutY(mvt);
+                if(this.getLayoutY()+this.getWidth()*0.5<mvt){ // 8 -
+                    this.setLayoutY(this.getLayoutY()+8);
+                }
+                else{
+                    this.setLayoutY(this.getLayoutY()-8);
+                }
         }
     }
 }

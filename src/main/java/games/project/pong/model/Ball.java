@@ -46,14 +46,21 @@ public class Ball extends Circle implements Element {
     }
 
     public void increaseSpeedX(double speedX ){
-        if(this.speedX + speedX<30 && this.speedX + speedX>-30){
+        if(this.speedX + speedX<30 && this.speedX>=0){
             this.speedX = this.speedX + speedX;
+        }
+        else if(this.speedX + speedX>-30 && this.speedX<0){
+            this.speedX = this.speedX-speedX;
         }
     }
 
     public void increaseSpeedY(double speedY){
-        if(this.speedY + speedY<30 && this.speedY + speedY>-30){
+
+        if(this.speedY + speedY<30 && this.speedY>=0){
             this.speedY = this.speedY + speedY;
+        }
+        else if(this.speedY + speedY>-30 && this.speedY<0){
+            this.speedY = this.speedY-speedY;
         }
     }
 

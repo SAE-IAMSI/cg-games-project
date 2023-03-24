@@ -73,7 +73,7 @@ public class GameController extends GenericView {
             ball.hitboxWall(bottomBar);
             hitboxLimit();
             ball.moveBall();
-            racketIA.racketAI(ball);
+            racketIA.racketAI(ball,3);
             racketIA.hitboxRacket(ball);
             racketPlayer.hitboxRacket(ball);
         }));
