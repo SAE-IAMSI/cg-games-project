@@ -26,7 +26,6 @@ module games.project.launcher {
     opens games.project.motron.controller to javafx.fxml;
 
     exports games.project.statistiques;
-    opens games.project.statistiques.controller to javafx.fxml;
     exports games.project.statistiques.views;
 
     exports games.project.space_invader;

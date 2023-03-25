@@ -1,64 +1,100 @@
 package games.project.statistiques.views;
 
 import games.project.statistiques.StatsLauncher;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-import java.awt.event.MouseEvent;
-import java.io.IOException;
+public class ViewMain extends Stage {
 
-public class ViewMain extends Pane {
-    @FXML
-    private Text txtJo;
+    public void afficherMenu(Stage stage){
+        Pane pane = new Pane();
+        Scene scene = new Scene(pane, 1280, 720);
+        scene.getStylesheets().add(String.valueOf(StatsLauncher.class.getResource("css/styleStats.css")));
+        pane.getStyleClass().add("fond");
 
-    @FXML
-    private Text txtT;
+        Label titre = new Label("Module Statistiques");
+        titre.getStyleClass().add("titre");
+        titre.setLayoutX(600);
+        titre.setLayoutY(100);
 
-    @FXML
-    private Text txtG;
+        Button btnTournois = new Button("Statistiques Tournoi");
+        btnTournois.getStyleClass().add("btn");
+        btnTournois.setMinHeight(100);
+        btnTournois.setMinWidth(300);
+        btnTournois.setLayoutX(190);
+        btnTournois.setLayoutY(202);
 
-    @FXML
-    private Text txtJe;
+        Button btnJoueurs = new Button("Statistiques Joueurs");
+        btnJoueurs.getStyleClass().add("btn");
+        btnJoueurs.setMinWidth(300);
+        btnJoueurs.setMinHeight(100);
+        btnJoueurs.setLayoutX(190);
+        btnJoueurs.setLayoutY(403);
 
-    @FXML
-    private Text title;
+
+        Button btnJeux = new Button("Statistiques par Jeux");
+        btnJeux.getStyleClass().add("btn");
+        btnJeux.setMinHeight(100);
+        btnJeux.setMinWidth(300);
+        btnJeux.setLayoutX(750);
+        btnJeux.setLayoutY(202);
+
+        Button btnGlobales = new Button("Statistiques Globales");
+        btnGlobales.getStyleClass().add("btn");
+        btnGlobales.setMinHeight(100);
+        btnGlobales.setMinWidth(300);
+        btnGlobales.setLayoutX(750);
+        btnGlobales.setLayoutY(403);
+
+        ImageView imageRetour = new ImageView(String.valueOf(StatsLauncher.class.getResource("textures/button.png")));
+        imageRetour.getStyleClass().add("btnRetour");
+        imageRetour.setFitHeight(33);
+        imageRetour.setFitWidth(100);
+
+        Button btnRetour = new Button("Retour");
+        btnRetour.getStyleClass().add("btnRetour");
+        btnRetour.setGraphic(imageRetour);
+        btnRetour.setContentDisplay(ContentDisplay.CENTER);
+        btnRetour.setLayoutX(64);
+        btnRetour.setLayoutY(616);
+
+        //ajout des actions pour les boutons
+        btnTournois.setOnAction(actionEvent -> {
+            ViewStatsTournament v = new ViewStatsTournament();
+            v.affichageStatsTournoi(stage);
+        });
+
+        btnGlobales.setOnAction(actionEvent -> {
+            ViewStatsGlobal v = new ViewStatsGlobal();
+            v.affichageStatsGlobales(stage);
+        });
+
+        btnJeux.setOnAction(actionEvent -> {
+            ViewStatsGames v = new ViewStatsGames();
+            v.affichageStatsJeu(stage);
+        });
+
+        btnJoueurs.setOnAction(actionEvent -> {
+            ViewStatsPlayers v = new ViewStatsPlayers();
+            v.affichageJoueurs(stage);
+        });
 
 
-    private final StatsLauncher statsLauncher;
+        btnRetour.setOnAction(actionEvent -> {
+            //doit appeler le launcher
+        });
 
-    public ViewMain(StatsLauncher statsLauncher) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/ViewStatsGlobal.fxml"));
-        this.statsLauncher = statsLauncher;
 
+        pane.getChildren().addAll(titre, btnTournois, btnJoueurs, btnJeux, btnGlobales, btnRetour);
+        stage.setScene(scene);
+        stage.setTitle("Module Statistiques");
+        stage.setResizable(false);
+        stage.show();
     }
 
-    //renvoie vers la page des stats globales
-    @FXML
-    private void globalButton(MouseEvent event){
-
-    }
-
-    //renvoie vers la page des stats des joueurs
-    @FXML
-    private void playersButton(MouseEvent event){
-
-    }
-
-    @FXML
-    private void tournamentButton(MouseEvent event){
-
-    }
-
-    @FXML
-    private void gamesButton(MouseEvent event){
-
-    }
-
-    //renvoie vers le launcher
-    @FXML
-    private void previousPage(){
-
-    }
 }

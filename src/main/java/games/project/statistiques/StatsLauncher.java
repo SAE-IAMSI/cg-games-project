@@ -1,6 +1,7 @@
 package games.project.statistiques;
 
 import games.project.statistiques.controller.StatsController;
+import games.project.statistiques.views.ViewMain;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -10,12 +11,8 @@ import java.io.IOException;
 public class StatsLauncher extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException {
-        StatsController statsController= new StatsController();
-        Scene scene = new Scene(statsController, 1280, 720);
-        stage.setTitle("Module Statistiques");
-        stage.setScene(scene);
-        stage.setResizable(false); // Empêche le redimensionnement de la fenêtre
-        stage.show();
+    public void start(Stage stage){
+        ViewMain viewMain = new ViewMain();
+        viewMain.afficherMenu(stage);
     }
 }

@@ -2,9 +2,9 @@ package games.project.statistiques.views;
 
 import javafx.stage.Stage;
 
-public class ViewStatsPlayers {
+public class ViewStatsGames {
 
-    public void affichageJoueurs(Stage stage){
+    public void affichageStatsJeu(Stage stage){
 
     }
 }
