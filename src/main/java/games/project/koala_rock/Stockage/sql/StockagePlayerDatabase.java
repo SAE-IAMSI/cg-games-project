@@ -1,7 +1,7 @@
 package games.project.koala_rock.Stockage.sql; //Votre package ici.
 
 import games.project.koala_rock.Metier.entite.AuthPlayer;
-
+import games.project.stockage.sql.SQLUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
