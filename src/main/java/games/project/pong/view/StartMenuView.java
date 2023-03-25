@@ -10,8 +10,8 @@ public class StartMenuView extends GenericView {
     }
     @FXML
     private void clickJouer(){
-        GameController.getInstance().removeScreen(this);
-        GameController.getInstance().displayScreen(new MenuPlayView());
+        gameController.removeScreen(this);
+        gameController.displayScreen(new MenuPlayView());
     }
 
     @FXML

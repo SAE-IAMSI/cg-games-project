@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="605.0" fitWidth="1304.0" layoutX="-4.0" layoutY="53.0" pickOnBounds="true">
          <image>
@@ -42,10 +42,10 @@
             <Font name="Sans Serif Collection" size="20.0" />
          </font>
       </Text>
-      <Button disable="false" layoutX="614.0" layoutY="660.0" mnemonicParsing="false" onAction="#clickMenu" text="Menu" />
-      <Rectangle fx:id="limitL" arcHeight="5.0" arcWidth="5.0" fill="RED" height="430.0" layoutX="-21.0" layoutY="146.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
-      <Rectangle fx:id="limitR" arcHeight="5.0" arcWidth="5.0" fill="#f80f07" height="430.0" layoutX="1231.0" layoutY="145.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
-      <Text fx:id="information" fill="#867c7c" layoutX="45.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliquer pour commencer !" textAlignment="CENTER" wrappingWidth="1181.13671875">
+      <Button disable="false" focusTraversable="false" layoutX="614.0" layoutY="660.0" mnemonicParsing="false" onAction="#clickMenu" text="Menu" />
+      <Rectangle fx:id="limitL" arcHeight="5.0" arcWidth="5.0" fill="RED" height="729.0" layoutX="-21.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+      <Rectangle fx:id="limitR" arcHeight="5.0" arcWidth="5.0" fill="#f80f07" height="729.0" layoutX="1231.0" layoutY="-7.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
+      <Text fx:id="information" fill="#867c7c" layoutX="45.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Espace pour commencer !" textAlignment="CENTER" wrappingWidth="1181.13671875">
          <font>
             <Font name="Arial Black" size="29.0" />
          </font>

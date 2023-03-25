@@ -3,19 +3,24 @@ package games.project.pong.model;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
 import java.util.Random;
 
 public class Ball extends Circle implements Element {
 
-    private double speedX = -10;
-    private double speedY = 10 ;
+    private double speedX;
+    private double speedY;
 
-    public Ball(double posX, double posY, double radius) {
+    private double defaultSpX;
+    private double defaultSpY;
+    public Ball(double posX, double posY, double radius,double spdX,double spdY) {
         setPos(posX, posY);
         this.setRadius(radius);
         this.setFill(Color.WHITE);
+        defaultSpX=spdX;
+        defaultSpY=spdY;
+        speedX = spdX;
+        speedY=spdY;
     }
 
     @Override
@@ -36,12 +41,12 @@ public class Ball extends Circle implements Element {
         int a = new Random().nextInt(2);
 
         if(a==0){
-            speedY = 10;
-            speedX = -10;
+            speedY = defaultSpY;
+            speedX = defaultSpX;
         }
         else{
-            speedY = -10;
-            speedX = 10;
+            speedY = -defaultSpY;
+            speedX = -defaultSpX;
         }
     }
 

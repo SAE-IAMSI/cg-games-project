@@ -63,7 +63,7 @@ public class Racket extends Rectangle implements Element{
             else if(middle){
                 System.out.println("toucher Middle");
                 ball.reverseSpeedX();
-                ball.increaseSpeedY(-ball.getSpeedY()*0.5);
+                ball.increaseSpeedY(-ball.getSpeedY()*0.25);
                 ball.increaseSpeedX(2);
                 ball.setPos(ball.getLayoutX()+ball.getSpeedX(),ball.getLayoutY()+ball.getSpeedY());
             }
@@ -79,6 +79,7 @@ public class Racket extends Rectangle implements Element{
         this.setLayoutY(this.getLayoutY()+5);
     }
 
+    /** Défini le comportement de la raquette en mode IA **/
     public void racketAI(Ball ball,int mods){
 
         double mvt = ball.getLayoutY()-this.getHeight()/2;
@@ -86,6 +87,23 @@ public class Racket extends Rectangle implements Element{
 
         switch (mods){
             case 0:{ //easy
+                if(r1<150){
+                    if(this.getLayoutY()<=mvt){
+                        this.setLayoutY(this.getLayoutY()+6);
+                    }
+                    else{
+                        this.setLayoutY(this.getLayoutY()-6);
+                    }
+                }
+                else{
+                    if(this.getLayoutY()<=mvt){
+                        this.setLayoutY(this.getLayoutY()-6);
+                    }
+                    else{
+                        this.setLayoutY(this.getLayoutY()+6);
+                    }
+                }
+
                 break;
             }
             case 1:{ //normal

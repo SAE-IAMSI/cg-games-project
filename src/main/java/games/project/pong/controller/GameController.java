@@ -3,21 +3,17 @@ package games.project.pong.controller;
 import games.project.pong.model.Ball;
 import games.project.pong.model.Racket;
 import games.project.pong.view.GenericView;
+import games.project.pong.view.StartMenuView;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.control.Menu;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-
-import java.security.Key;
 
 public class GameController extends GenericView {
 
@@ -50,6 +46,8 @@ public class GameController extends GenericView {
     private Racket racketPlayer;
     private Timeline timeline;
 
+    /** True quand le joueur a le focus sur l'écran de jeu, False sinon  **/
+    private boolean gameState = false;
 
     private GameController() { /** **/
         super("Game.fxml");
@@ -82,7 +80,7 @@ public class GameController extends GenericView {
 
     /** Crée et Ajoute les éléments de base **/
     private void initGame(){
-        this.ball = new Ball(640,360,12);
+        this.ball = new Ball(640,360,12,-10,8);
         this.racketPlayer = new Racket(66,308,24,105);
         this.racketIA = new Racket(1190,308,24,105);
 
@@ -100,13 +98,13 @@ public class GameController extends GenericView {
 
     public void hitboxLimit(){
         if(this.limitL.getBoundsInParent().intersects(this.ball.getBoundsInParent())){
-            stopLoop();
+            endLoop();
             resetPos();
             ball.resetMoveSpeed();
             //ajouter score p1
         }
         else if(this.limitR.getBoundsInParent().intersects(this.ball.getBoundsInParent())){
-            stopLoop();
+            endLoop();
             resetPos();
             ball.resetMoveSpeed();
             //ajouter score p2
@@ -128,6 +126,10 @@ public class GameController extends GenericView {
             if(event.getCode().equals(KeyCode.DOWN)){
                 this.racketPlayer.moveDown();
             }
+
+            if(event.getCode().equals(KeyCode.SPACE) && gameState){
+                playLoop();
+            }
             event.consume();
         });
         this.getScene().setOnMouseMoved((MouseEvent event)->{
@@ -136,19 +138,19 @@ public class GameController extends GenericView {
             }
             event.consume();
         });
-
-        this.getScene().setOnMouseClicked((MouseEvent event)->{
-            playLoop();
-            event.consume();
-        });
     }
 
+    /** Lance la boucle de jeu **/
     public void playLoop(){
         timeline.play();
         information.setVisible(false);
     }
-    public void stopLoop(){
+
+    /** Termine la boucle de jeu est reset tous les paramètres du jeu (position/vitesse objets)**/
+    public void endLoop(){
         timeline.stop();
+        resetPos();
+        ball.resetMoveSpeed();
         information.setVisible(true);
     }
     public Rectangle getTopBar() {
@@ -159,10 +161,13 @@ public class GameController extends GenericView {
         return bottomBar;
     }
 
+    public void setGameState(boolean state){
+        gameState = state;
+    }
     @FXML
     public void clickMenu(){
-        MenuController.startMenu();
-        stopLoop();
-        resetPos();
+        displayScreen(new StartMenuView());
+        endLoop();
+        setGameState(false);
     }
 }
