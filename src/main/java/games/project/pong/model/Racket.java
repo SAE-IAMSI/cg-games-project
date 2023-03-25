@@ -63,7 +63,7 @@ public class Racket extends Rectangle implements Element{
             else if(middle){
                 System.out.println("toucher Middle");
                 ball.reverseSpeedX();
-                ball.increaseSpeedY(-ball.getSpeedY()*0.25);
+                ball.increaseSpeedY(-ball.getSpeedY()*0.15);
                 ball.increaseSpeedX(2);
                 ball.setPos(ball.getLayoutX()+ball.getSpeedX(),ball.getLayoutY()+ball.getSpeedY());
             }
@@ -87,29 +87,59 @@ public class Racket extends Rectangle implements Element{
 
         switch (mods){
             case 0:{ //easy
-                if(r1<150){
+                if(r1>100){
                     if(this.getLayoutY()<=mvt){
-                        this.setLayoutY(this.getLayoutY()+6);
+                        this.setLayoutY(this.getLayoutY()+4);
                     }
                     else{
-                        this.setLayoutY(this.getLayoutY()-6);
+                        this.setLayoutY(this.getLayoutY()-4);
                     }
                 }
                 else{
                     if(this.getLayoutY()<=mvt){
-                        this.setLayoutY(this.getLayoutY()-6);
+                        this.setLayoutY(this.getLayoutY()-3);
                     }
                     else{
-                        this.setLayoutY(this.getLayoutY()+6);
+                        this.setLayoutY(this.getLayoutY()+3);
                     }
                 }
 
                 break;
             }
             case 1:{ //normal
+                if(r1>100){
+                    if(this.getLayoutY()<=mvt){
+                        this.setLayoutY(this.getLayoutY()+6);
+                    }
+                    else{
+                        this.setLayoutY(this.getLayoutY()-6);
+                    }
+                }
+                else {
+                    if (this.getLayoutY() <= mvt) {
+                        this.setLayoutY(this.getLayoutY() - 3);
+                    } else {
+                        this.setLayoutY(this.getLayoutY() + 3);
+                    }
+                }
                 break;
             }
             case 2:{//hard
+                if(r1>100){
+                    if(this.getLayoutY()<=mvt){
+                        this.setLayoutY(this.getLayoutY()+8);
+                    }
+                    else{
+                        this.setLayoutY(this.getLayoutY()-8);
+                    }
+                }
+                else {
+                    if (this.getLayoutY() <= mvt) {
+                        this.setLayoutY(this.getLayoutY() - 3);
+                    } else {
+                        this.setLayoutY(this.getLayoutY() + 3);
+                    }
+                }
                 break;
             }
 

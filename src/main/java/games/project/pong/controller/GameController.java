@@ -54,7 +54,7 @@ public class GameController extends GenericView {
         initGame();
         limitR.setVisible(false);
         limitL.setVisible(false);
-        run();
+        run(0);
     }
 
     public static GameController getInstance(){
@@ -65,13 +65,13 @@ public class GameController extends GenericView {
     }
 
 
-    public void run(){
+    public void run(int difficulty){
         this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
             ball.hitboxWall(topBar);
             ball.hitboxWall(bottomBar);
             hitboxLimit();
             ball.moveBall();
-            racketIA.racketAI(ball,3);
+            racketIA.racketAI(ball,difficulty);
             racketIA.hitboxRacket(ball);
             racketPlayer.hitboxRacket(ball);
         }));

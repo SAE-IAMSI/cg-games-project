@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 
 public class MenuPlayView extends GenericView {
-    GameController gameController = GameController.getInstance();
     public MenuPlayView() {
         super("MenuPlayView.fxml");
     }
@@ -19,7 +18,7 @@ public class MenuPlayView extends GenericView {
     @FXML
     private void pvi(){
         gameController.removeScreen(this);
-        gameController.setGameState(true);
+        gameController.displayScreen(new DifficultyMenuView());
     }
 
     @FXML
