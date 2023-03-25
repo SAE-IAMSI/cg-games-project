@@ -188,19 +188,32 @@ public class GameController extends GenericView {
         final Set<KeyCode> codes = new HashSet<>();
         final int DELAY = 10; // Délai en millisecondes
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(DELAY), new EventHandler<ActionEvent>() {
+       Timeline timeline = new Timeline(new KeyFrame(Duration.millis(DELAY), new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
+                boolean mvtConditionZ = racketPlayer1.getLayoutY()>topBar.getLayoutY() + topBar.getHeight();
+                boolean mvtConditionS = racketPlayer1.getLayoutY()<bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight()*0.5);
+                boolean mvtConditionUP = racketPlayer2.getLayoutY()>topBar.getLayoutY() + topBar.getHeight();
+                boolean mvtConditionDOWN = racketPlayer2.getLayoutY()<bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer2.getHeight()*0.5);
+
                 if (codes.contains(KeyCode.UP)) {
-                    racketPlayer2.moveUp();
+                    if(mvtConditionUP){
+                        racketPlayer2.moveUp();
+                    }
                 }
                 if (codes.contains(KeyCode.DOWN)) {
-                    racketPlayer2.moveDown();
+                    if(mvtConditionDOWN){
+                        racketPlayer2.moveDown();
+                    }
                 }
                 if (codes.contains(KeyCode.Z)) {
-                    racketPlayer1.moveUp();
+                    if(mvtConditionZ){
+                        racketPlayer1.moveUp();
+                    }
                 }
                 if (codes.contains(KeyCode.S)) {
-                    racketPlayer1.moveDown();
+                    if(mvtConditionS){
+                        racketPlayer1.moveDown();
+                    }
                 }
             }
         }));
@@ -221,6 +234,9 @@ public class GameController extends GenericView {
                 playLoop();
             }
         });
+
+
+        this.getScene().setOnMouseMoved((MouseEvent event)->{});
 
     }
 
