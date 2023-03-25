@@ -1,6 +1,9 @@
 import oracledb
 import os
+from datetime import *
 import datetime
+import matplotlib.pyplot as plt
+
 
 dir = "client64Bit"
 absolute = os.path.join(os.getcwd(), dir)
@@ -12,7 +15,6 @@ sid = "iut"
 
 oracledb.init_oracle_client(lib_dir=absolute)
 
-global connexion
 connexion = oracledb.connect(user= user, password= password, host= host, port= port, sid= sid)
 
 def getNbPlayers():
@@ -42,6 +44,44 @@ def getScoreMoyenEntreDates(jeu, dateAvant, dateApres):
         sql = f"""select getAvgBetweenDate('{jeu}','{dateAvant}','{dateApres}') from dual"""
         for r in cursor.execute(sql) :
             return r[0]
+        
+def getTabScoreMoyenParSemaine(jeu, idGraph):
+    itDate = date(2022, 11, 12)
+    d = datetime.date.today()
+    delta = timedelta(weeks=1)
+    nextDate = itDate + delta
+
+    scores = []
+
+    startDate = str(itDate.strftime("%d/%m/%Y"))[0:5] + "/" + str(itDate.strftime("%d/%m/%Y"))[8:10]
+    while(itDate < d):
+        if(idGraph == 0):
+            startDate = str(itDate.strftime("%d/%m/%Y"))[0:5] + "/" + str(itDate.strftime("%d/%m/%Y"))[8:10]
+        endDate = str(nextDate.strftime("%d/%m/%Y"))[0:5] + "/" + str(nextDate.strftime("%d/%m/%Y"))[8:10]
+        print(startDate)
+        itDate += delta
+        nextDate += delta
+        scores.append(getScoreMoyenEntreDates(jeu, startDate, endDate))
+
+
+
+    #print(scores)
+    scores, semaines = replaceNone(scores)
+    return scores, semaines
+
+def replaceNone(tab):
+    newTab = []
+    semaines = []
+    value = 0
+    for i in range(len(tab)):
+        if(tab[i] is not None):
+            value = tab[i]
+            newTab.append(value)
+        else:
+            newTab.append(value)
+        semaines.append(i+1)
+    return newTab, semaines
+
 
 def getScoreMoyen(jeu):
     today = datetime.date.today()
@@ -50,8 +90,7 @@ def getScoreMoyen(jeu):
 
 def getTempsMoyenKR(dateAvant, dateApres):
     with connexion.cursor() as cursor:
-        sql = f"""select getAvgTimeBetweenDate('{dateAvant}','{dateApres}') from dual"""
-        print(sql)
+        sql = f"""select getAvgTimeBetweenDates('{dateAvant}','{dateApres}') from dual"""
         for r in cursor.execute(sql) :
             return r[0]
 
@@ -60,6 +99,22 @@ def getJoueursParDepartements(numDepartement):
         sql = f"""SELECT getPlayersByDepartement({numDepartement}) FROM DUAL"""
         for r in cursor.execute(sql) :
             return r[0]
+        
+
+def getGrapheScoreMoyen(game, idGraph):
+    '''
+    game = idJeu
+    idGraph = id du graphe (0 = par semaine, 1 = au fil du temps)
+    '''
+    scores, semaines = getTabScoreMoyenParSemaine(game, idGraph)
+    print(scores, semaines)
+    plt.plot(semaines, scores, color='red')
+    plt.title(f'Scores moyen par semaines du jeu {game}', fontsize=14)
+    plt.xlabel('Semaines', fontsize=14)
+    plt.ylabel('Scores moyens', fontsize=14)
+    plt.grid(True)
+    plt.show()
+
 
 getNbPlayers()
 print(getTop10Departement())
@@ -67,3 +122,4 @@ print(getJoueursActifs())
 print(getScoreMoyen('KR'))
 print(getJoueursParDepartements(34))
 print(getTempsMoyenKR('01/01/22', '01/01/24'))
+print(getGrapheScoreMoyen('FF', 1))
