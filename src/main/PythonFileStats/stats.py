@@ -3,6 +3,7 @@ import os
 from datetime import *
 import datetime
 import matplotlib.pyplot as plt
+import math
 
 
 dir = "client64Bit"
@@ -46,39 +47,53 @@ def getScoreMoyenEntreDates(jeu, dateAvant, dateApres):
             return r[0]
         
 def getTabScoreMoyenParSemaine(jeu, idGraph):
-    itDate = date(2022, 11, 12)
+    itDate = date(2022, 11, 12) #la date qui sera itérée par delta
     d = datetime.date.today()
-    delta = timedelta(weeks=1)
-    nextDate = itDate + delta
+    delta = timedelta(weeks=1) #delta = une semaine
+    nextDate = itDate + delta #nexDate = date courante + une semaine
 
-    scores = []
-
+    scores = [] #tableau à return
+    scoreIncremente = 0
     startDate = str(itDate.strftime("%d/%m/%Y"))[0:5] + "/" + str(itDate.strftime("%d/%m/%Y"))[8:10]
-    while(itDate < d):
-        if(idGraph == 0):
-            startDate = str(itDate.strftime("%d/%m/%Y"))[0:5] + "/" + str(itDate.strftime("%d/%m/%Y"))[8:10]
+    while(itDate < d): #tant que itDate (date courante) n'atteint pas la date d'aujourd'hui
+        startDate = str(itDate.strftime("%d/%m/%Y"))[0:5] + "/" + str(itDate.strftime("%d/%m/%Y"))[8:10]
         endDate = str(nextDate.strftime("%d/%m/%Y"))[0:5] + "/" + str(nextDate.strftime("%d/%m/%Y"))[8:10]
         print(startDate)
         itDate += delta
         nextDate += delta
-        scores.append(getScoreMoyenEntreDates(jeu, startDate, endDate))
+        req = getScoreMoyenEntreDates(jeu, startDate, endDate)
 
+        if(idGraph == 0):
+            scores.append(req)
 
-
-    #print(scores)
+        elif(idGraph == 1):
+            if(req is None):
+                req = 0
+            if(scoreIncremente > 0):
+                scores.append((scoreIncremente + req)/(len(scores)+1)) 
+                scoreIncremente += req 
+            else:
+                scores.append(scoreIncremente + req) 
+                scoreIncremente += req
     scores, semaines = replaceNone(scores)
+    print(sum(scores)/len(scores))
     return scores, semaines
 
 def replaceNone(tab):
+    '''
+    Prend un tableau tab composé de int et/ou None
+    Remplace les None par des 0
+    Retourne deux tableaux :
+        -Un tableau représentant tab avec les None remplacés par eds 0
+        -Un tableau allant de 1 à len(tab)
+    '''
     newTab = []
     semaines = []
-    value = 0
     for i in range(len(tab)):
-        if(tab[i] is not None):
-            value = tab[i]
-            newTab.append(value)
+        if(tab[i] is None):
+            newTab.append(0)
         else:
-            newTab.append(value)
+            newTab.append(tab[i])
         semaines.append(i+1)
     return newTab, semaines
 
@@ -104,7 +119,7 @@ def getJoueursParDepartements(numDepartement):
 def getGrapheScoreMoyen(game, idGraph):
     '''
     game = idJeu
-    idGraph = id du graphe (0 = par semaine, 1 = au fil du temps)
+    idGraph = id du graphe (0 = par semaine (chaque semaine est indépendante) , 1 = "au fil du temps" (moyenne entre semaine 1 et 2, puis 1 2 3, etc...))
     '''
     scores, semaines = getTabScoreMoyenParSemaine(game, idGraph)
     print(scores, semaines)
