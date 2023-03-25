@@ -4,7 +4,7 @@ import games.project.koala_rock.Metier.entite.AuthPlayer;
 import games.project.koala_rock.Metier.manager.PlayerManager;
 import games.project.koala_rock.Model.Fond;
 import games.project.koala_rock.RessourcesAccess;
-import games.project.koala_rock.Stockage.Security;
+import games.project.stockage.Security;
 import games.project.koala_rock.Stockage.Session;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

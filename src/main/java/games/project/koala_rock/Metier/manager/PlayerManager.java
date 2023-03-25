@@ -2,7 +2,7 @@ package games.project.koala_rock.Metier.manager; //Votre package ici.
 
 
 import games.project.koala_rock.Metier.entite.AuthPlayer;
-import games.project.koala_rock.Stockage.Security;
+import games.project.stockage.Security;
 import games.project.koala_rock.Stockage.sql.StockagePlayerDatabase;
 
 import java.util.List;
