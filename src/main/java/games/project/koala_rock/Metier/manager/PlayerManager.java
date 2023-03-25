@@ -1,9 +1,9 @@
 package games.project.koala_rock.Metier.manager; //Votre package ici.
 
 
-import games.project.koala_rock.Metier.entite.AuthPlayer;
+import games.project.metier.entite.AuthPlayer;
 import games.project.stockage.Security;
-import games.project.koala_rock.Stockage.sql.StockagePlayerDatabase;
+import games.project.stockage.sql.StockagePlayerDatabase;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class PlayerManager {
         byte[] salt = Security.getSalt(); //Génération d'un sel de hachage
         p.setSalt(salt); //Application du sel au nouveau joueur.
         p.setPassword(password); //Hachage du mot de passe avec le sel.
-        p.setDepartement(departement);
+        p.setDepartment(departement);
         stockage.create(p);
     }
 
@@ -34,7 +34,7 @@ public class PlayerManager {
         byte[] salt = Security.getSalt();
         p.setSalt(salt);
         p.setPassword(password);
-        p.setDepartement(departement);
+        p.setDepartment(departement);
         stockage.update(p);
     }
 
