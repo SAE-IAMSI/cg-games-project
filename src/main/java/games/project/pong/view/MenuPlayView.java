@@ -11,8 +11,9 @@ public class MenuPlayView extends GenericView {
 
     @FXML
     private void pvp(){
-        //gameController.displayScreen(this);
-        //gameController.setGameState(true);
+        gameController.removeScreen(this);
+        gameController.setGameState(true);
+        gameController.run();
     }
 
     @FXML

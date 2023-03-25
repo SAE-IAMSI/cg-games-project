@@ -36,4 +36,5 @@ module games.project.launcher {
     exports games.project.statitisques.views;
 
     exports games.project.space_invader;
+    exports games.project.pong.metier;
 }

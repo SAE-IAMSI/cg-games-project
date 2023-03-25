@@ -68,15 +68,13 @@ public class Racket extends Rectangle implements Element{
                 ball.setPos(ball.getLayoutX()+ball.getSpeedX(),ball.getLayoutY()+ball.getSpeedY());
             }
         }
-        //System.out.println("SpeedX :"+ball.getSpeedX());
-        System.out.println("SpeedY :"+ball.getSpeedY());
     }
 
     public void moveUp(){
-        this.setLayoutY(this.getLayoutY()-5);
+        this.setLayoutY(this.getLayoutY()-6);
     }
     public void moveDown(){
-        this.setLayoutY(this.getLayoutY()+5);
+        this.setLayoutY(this.getLayoutY()+6);
     }
 
     /** Défini le comportement de la raquette en mode IA **/

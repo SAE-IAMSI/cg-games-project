@@ -1,5 +1,6 @@
 package games.project.pong.controller;
 
+import games.project.pong.metier.Score;
 import games.project.pong.model.Ball;
 import games.project.pong.model.Racket;
 import games.project.pong.view.GenericView;
@@ -7,6 +8,9 @@ import games.project.pong.view.StartMenuView;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -14,6 +18,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+
+import java.security.Key;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class GameController extends GenericView {
 
@@ -42,10 +52,11 @@ public class GameController extends GenericView {
 
     private static GameController instance;
     private Ball ball;
-    private Racket racketIA;
-    private Racket racketPlayer;
+    private Racket racketPlayer2;
+    private Racket racketPlayer1;
     private Timeline timeline;
-
+    private Score scorePlayer1;
+    private Score scorePlayer2;
     /** True quand le joueur a le focus sur l'écran de jeu, False sinon  **/
     private boolean gameState = false;
 
@@ -54,7 +65,6 @@ public class GameController extends GenericView {
         initGame();
         limitR.setVisible(false);
         limitL.setVisible(false);
-        run(0);
     }
 
     public static GameController getInstance(){
@@ -65,49 +75,86 @@ public class GameController extends GenericView {
     }
 
 
+    public void run() {
+            this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
+                ball.hitboxWall(topBar);
+                ball.hitboxWall(bottomBar);
+                hitboxLimit();
+                ball.moveBall();
+                racketPlayer1.hitboxRacket(ball);
+                racketPlayer2.hitboxRacket(ball);
+                checkEndCondition();
+
+            }));
+            timeline.setCycleCount(Animation.INDEFINITE);
+            listenerKeyboard();
+
+    }
+
     public void run(int difficulty){
-        this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
-            ball.hitboxWall(topBar);
-            ball.hitboxWall(bottomBar);
-            hitboxLimit();
-            ball.moveBall();
-            racketIA.racketAI(ball,difficulty);
-            racketIA.hitboxRacket(ball);
-            racketPlayer.hitboxRacket(ball);
-        }));
-        timeline.setCycleCount(Animation.INDEFINITE);
+            this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
+                ball.hitboxWall(topBar);
+                ball.hitboxWall(bottomBar);
+                hitboxLimit();
+                ball.moveBall();
+                racketPlayer2.racketAI(ball,difficulty);
+                racketPlayer2.hitboxRacket(ball);
+                racketPlayer1.hitboxRacket(ball);
+                checkEndCondition();
+            }));
+            timeline.setCycleCount(Animation.INDEFINITE);
+            listenerMouse();
     }
 
     /** Crée et Ajoute les éléments de base **/
     private void initGame(){
         this.ball = new Ball(640,360,12,-10,8);
-        this.racketPlayer = new Racket(66,308,24,105);
-        this.racketIA = new Racket(1190,308,24,105);
+        this.racketPlayer1 = new Racket(66,308,24,105);
+        this.racketPlayer2 = new Racket(1190,308,24,105);
+
+        scorePlayer1 = new Score();
+        scorePlayer2 = new Score();
+
+        scoreP1.textProperty().bind(new SimpleStringProperty("Score :").concat(scorePlayer1.getScoreProperty()));
+        scoreP2.textProperty().bind(new SimpleStringProperty("Score :").concat(scorePlayer2.getScoreProperty()));
 
         this.getChildren().add(ball);
-        this.getChildren().add(racketIA);
-        this.getChildren().add(racketPlayer);
+        this.getChildren().add(racketPlayer2);
+        this.getChildren().add(racketPlayer1);
     }
 
     /** Reset le positionnement de tous les éléments **/
     public void resetPos(){
         this.ball.setPos(640,360);
-        this.racketIA.setPos(1190,308);
-        this.racketPlayer.setPos(66,308);
+        this.racketPlayer2.setPos(1190,308);
+        this.racketPlayer1.setPos(66,308);
     }
 
     public void hitboxLimit(){
         if(this.limitL.getBoundsInParent().intersects(this.ball.getBoundsInParent())){
+            scorePlayer2.setScore(scorePlayer2.getScoreProperty().getValue()+1);
             endLoop();
             resetPos();
             ball.resetMoveSpeed();
+
+            
             //ajouter score p1
         }
         else if(this.limitR.getBoundsInParent().intersects(this.ball.getBoundsInParent())){
+            scorePlayer1.setScore(scorePlayer1.getScoreProperty().getValue()+1);
             endLoop();
             resetPos();
             ball.resetMoveSpeed();
             //ajouter score p2
+        }
+    }
+
+    private void checkEndCondition(){
+        if(scorePlayer1.getScoreProperty().getValue().equals(5)){
+
+        }
+        else if(scorePlayer2.getScoreProperty().getValue().equals(5)){
+
         }
     }
 
@@ -120,24 +167,61 @@ public class GameController extends GenericView {
 
     public void listener(){
         this.getScene().setOnKeyPressed((KeyEvent event)->{
-            if(event.getCode().equals(KeyCode.UP)){
-                this.racketPlayer.moveUp();
-            }
-            if(event.getCode().equals(KeyCode.DOWN)){
-                this.racketPlayer.moveDown();
-            }
-
             if(event.getCode().equals(KeyCode.SPACE) && gameState){
                 playLoop();
             }
             event.consume();
         });
+    }
+
+    public void listenerMouse(){
         this.getScene().setOnMouseMoved((MouseEvent event)->{
-            if(event.getSceneY()>topBar.getLayoutY() + topBar.getHeight() && event.getSceneY()<bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer.getHeight()*0.5)){
-                this.racketPlayer.setLayoutY(event.getSceneY());
+            if(event.getSceneY()>topBar.getLayoutY() + topBar.getHeight() && event.getSceneY()<bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight()*0.5)){
+                this.racketPlayer1.setLayoutY(event.getSceneY());
             }
             event.consume();
         });
+    }
+
+    public void listenerKeyboard(){
+        final List<KeyCode> acceptedCodes = Arrays.asList(KeyCode.Z, KeyCode.S, KeyCode.UP, KeyCode.DOWN);
+        final Set<KeyCode> codes = new HashSet<>();
+        final int DELAY = 10; // Délai en millisecondes
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(DELAY), new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                if (codes.contains(KeyCode.UP)) {
+                    racketPlayer2.moveUp();
+                }
+                if (codes.contains(KeyCode.DOWN)) {
+                    racketPlayer2.moveDown();
+                }
+                if (codes.contains(KeyCode.Z)) {
+                    racketPlayer1.moveUp();
+                }
+                if (codes.contains(KeyCode.S)) {
+                    racketPlayer1.moveDown();
+                }
+            }
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+
+        this.getScene().setOnKeyReleased((KeyEvent event) -> {
+            codes.remove(event.getCode());
+            if (codes.isEmpty()) {
+                timeline.stop();
+            }
+        });
+        this.getScene().setOnKeyPressed((KeyEvent event) -> {
+            if (acceptedCodes.contains(event.getCode())) {
+                codes.add(event.getCode());
+                timeline.play();
+            }
+            if (event.getCode().equals(KeyCode.SPACE) && gameState) {
+                playLoop();
+            }
+        });
+
     }
 
     /** Lance la boucle de jeu **/
