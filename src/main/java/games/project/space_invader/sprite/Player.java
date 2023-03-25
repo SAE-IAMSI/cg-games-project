@@ -1,5 +1,6 @@
 package games.project.space_invader.sprite;
 
+import games.project.space_invader.Board;
 import games.project.space_invader.Commons;
 import games.project.space_invader.SpaceInvadersClassic;
 
@@ -9,12 +10,14 @@ import java.util.Objects;
 
 public class Player extends Sprite {
     private int width;
+    private Board board;
 
     /**
      * Constructeur de la classe Player
      */
-    public Player() {
+    public Player(Board board) {
         initPlayer();
+        this.board = board;
     }
 
     /**
@@ -54,10 +57,10 @@ public class Player extends Sprite {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_LEFT) {
-            dx = -2;
+            dx = -board.getMovePlayer();
         }
         if (key == KeyEvent.VK_RIGHT) {
-            dx = 2;
+            dx = board.getMovePlayer();
         }
     }
 

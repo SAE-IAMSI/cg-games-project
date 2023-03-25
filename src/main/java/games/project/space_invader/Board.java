@@ -36,6 +36,12 @@ public class Board extends JPanel {
 
     private final SpaceInvaders game;
 
+    private int nbTours = 0;
+    private int tirPlayer = 4;
+    private int tirAlien = 1;
+    private int movePlayer = 2;
+    private int moveAlien = 1;
+
     /**
      * constructeur de la classe Board
      *
@@ -80,7 +86,7 @@ public class Board extends JPanel {
             }
         }
 
-        player = new Player();
+        player = new Player(this);
         shot = new Shot();
     }
 
@@ -220,6 +226,13 @@ public class Board extends JPanel {
                 shot = null;
                 deaths = 0;
                 removeKeyListener(this.getKeyListeners()[0]);
+                nbTours ++;
+                if (nbTours%2 == 0) {
+                    tirAlien++;
+                    tirPlayer += 4;
+                    moveAlien++;
+                    movePlayer += 2;
+                }
                 initBoard();
             } else if (game instanceof SpaceInvadersClassic) {
                 inGame = false;
@@ -256,7 +269,7 @@ public class Board extends JPanel {
             }
 
             int y = shot.getY();
-            y -= 4;
+            y -= tirPlayer;
             if (y < 0) {
                 shot.die();
             } else {
@@ -269,14 +282,14 @@ public class Board extends JPanel {
         for (Alien alien : aliens) {
             int x = alien.getX();
             if (x >= Commons.BOARD_WIDTH - Commons.BORDER_RIGHT && direction != -1) {
-                direction = -1;
+                direction = -moveAlien;
                 for (Alien a2 : aliens) {
                     a2.setY(a2.getY() + Commons.GO_DOWN);
                 }
             }
 
             if (x <= Commons.BORDER_LEFT && direction != 1) {
-                direction = 1;
+                direction = moveAlien;
                 for (Alien a : aliens) {
                     a.setY(a.getY() + Commons.GO_DOWN);
                 }
@@ -331,7 +344,7 @@ public class Board extends JPanel {
             }
 
             if (!bomb.isDestroyed()) {
-                bomb.setY(bomb.getY() + 1);
+                bomb.setY(bomb.getY() + tirAlien);
                 if (bomb.getY() >= Commons.GROUND - Commons.BOMB_HEIGHT) {
                     bomb.setDestroyed(true);
                 }
@@ -356,6 +369,10 @@ public class Board extends JPanel {
         public void actionPerformed(ActionEvent e) {
             doGameCycle();
         }
+    }
+
+    public int getMovePlayer() {
+        return movePlayer;
     }
 
     /**
