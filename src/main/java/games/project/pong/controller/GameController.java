@@ -3,6 +3,7 @@ package games.project.pong.controller;
 import games.project.pong.metier.Score;
 import games.project.pong.model.Ball;
 import games.project.pong.model.Racket;
+import games.project.pong.view.EndGameView;
 import games.project.pong.view.GenericView;
 import games.project.pong.view.StartMenuView;
 import javafx.animation.Animation;
@@ -19,7 +20,6 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 
-import java.security.Key;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -59,6 +59,8 @@ public class GameController extends GenericView {
     private Score scorePlayer2;
     /** True quand le joueur a le focus sur l'écran de jeu, False sinon  **/
     private boolean gameState = false;
+    private int difficulty = 0; // 0, 1, 2 ou 3
+    private String gamemode = ""; //Ancienne instance de jeu
 
     private GameController() { /** **/
         super("Game.fxml");
@@ -75,7 +77,10 @@ public class GameController extends GenericView {
     }
 
 
+
     public void run() {
+        resetScore();
+        setGamemode("PVP");
             this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
                 ball.hitboxWall(topBar);
                 ball.hitboxWall(bottomBar);
@@ -88,10 +93,12 @@ public class GameController extends GenericView {
             }));
             timeline.setCycleCount(Animation.INDEFINITE);
             listenerKeyboard();
-
     }
 
     public void run(int difficulty){
+        resetScore();
+        setDifficulty(difficulty);
+        setGamemode("IA");
             this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
                 ball.hitboxWall(topBar);
                 ball.hitboxWall(bottomBar);
@@ -100,7 +107,7 @@ public class GameController extends GenericView {
                 racketPlayer2.racketAI(ball,difficulty);
                 racketPlayer2.hitboxRacket(ball);
                 racketPlayer1.hitboxRacket(ball);
-                checkEndCondition();
+                if(!(difficulty == 3)){checkEndCondition();}
             }));
             timeline.setCycleCount(Animation.INDEFINITE);
             listenerMouse();
@@ -130,14 +137,16 @@ public class GameController extends GenericView {
         this.racketPlayer1.setPos(66,308);
     }
 
+    private void resetScore(){
+        scorePlayer1.setScore(0);
+        scorePlayer2.setScore(0);
+    }
     public void hitboxLimit(){
         if(this.limitL.getBoundsInParent().intersects(this.ball.getBoundsInParent())){
             scorePlayer2.setScore(scorePlayer2.getScoreProperty().getValue()+1);
             endLoop();
             resetPos();
             ball.resetMoveSpeed();
-
-            
             //ajouter score p1
         }
         else if(this.limitR.getBoundsInParent().intersects(this.ball.getBoundsInParent())){
@@ -151,10 +160,14 @@ public class GameController extends GenericView {
 
     private void checkEndCondition(){
         if(scorePlayer1.getScoreProperty().getValue().equals(5)){
-
+            resetScore();
+            endLoop();
+            displayScreen(new EndGameView("Player 1"));
         }
         else if(scorePlayer2.getScoreProperty().getValue().equals(5)){
-
+            resetScore();
+            endLoop();
+            displayScreen(new EndGameView("Player 2"));
         }
     }
 
@@ -234,10 +247,7 @@ public class GameController extends GenericView {
                 playLoop();
             }
         });
-
-
         this.getScene().setOnMouseMoved((MouseEvent event)->{});
-
     }
 
     /** Lance la boucle de jeu **/
@@ -259,6 +269,22 @@ public class GameController extends GenericView {
 
     public Rectangle getBottomBar() {
         return bottomBar;
+    }
+
+    public String getGamemode() {
+        return gamemode;
+    }
+
+    public void setGamemode(String gamemode) {
+        this.gamemode = gamemode;
+    }
+
+    public int getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(int difficulty) {
+        this.difficulty = difficulty;
     }
 
     public void setGameState(boolean state){
