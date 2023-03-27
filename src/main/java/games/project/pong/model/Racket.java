@@ -1,10 +1,13 @@
 package games.project.pong.model;
 
 
+import games.project.pong.MainPong;
 import games.project.pong.controller.GameController;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Random;
@@ -15,7 +18,8 @@ public class Racket extends Rectangle implements Element{
         setPos(posX,posY);
         this.setHeight(heigh);
         this.setWidth(width);
-        this.setFill(Color.RED);
+        Image img = new Image(MainPong.class.getResource("textures/raquette.png").toString());
+        this.setFill(new ImagePattern(img));
     }
 
     @Override
