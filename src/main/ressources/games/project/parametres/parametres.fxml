@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@css/parametresStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="games.project.parametres.controller.ControllerFXML">
+   <children>
+      <ImageView fitHeight="737.0" fitWidth="1280.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Background.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="motronButton" layoutX="325.0" layoutY="407.0" mnemonicParsing="false" onAction="#lanceMotron" prefHeight="61.0" prefWidth="250.0" text="Motron">
+         <font>
+            <Font size="25.0" />
+         </font></Button>
+      <Button fx:id="KoalaRockButton" layoutX="706.0" layoutY="407.0" mnemonicParsing="false" onAction="#lanceKoalaRock" prefHeight="61.0" prefWidth="250.0" text="Koala-rock">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="BrickBreakerButton" layoutX="325.0" layoutY="567.0" mnemonicParsing="false" onAction="#lanceBrickBreaker" prefHeight="61.0" prefWidth="250.0" text="Brick Breaker">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="FactoryFallButton" layoutX="706.0" layoutY="567.0" mnemonicParsing="false" onAction="#lanceFactoryFall" prefHeight="61.0" prefWidth="250.0" text="Factory Fall">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1280.0" styleClass="menuBar">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="325.0" text="CG Games" />
+         </children></HBox>
+   </children>
+</AnchorPane>
