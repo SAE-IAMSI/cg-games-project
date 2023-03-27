@@ -14,12 +14,18 @@ import java.util.Random;
 
 public class Racket extends Rectangle implements Element{
 
-    public Racket(double posX, double posY,double width, double heigh) {
+    public Racket(double posX, double posY,double width, double heigh, int sensImage) {
         setPos(posX,posY);
         this.setHeight(heigh);
         this.setWidth(width);
-        Image img = new Image(MainPong.class.getResource("textures/raquette.png").toString());
-        this.setFill(new ImagePattern(img));
+        if(sensImage==0){
+            Image img = new Image(MainPong.class.getResource("textures/raquetteDroit.png").toString());
+            this.setFill(new ImagePattern(img));
+        }else if(sensImage==1){
+            Image img = new Image(MainPong.class.getResource("textures/raquetteGauche.png").toString());
+            this.setFill(new ImagePattern(img));
+        }
+
     }
 
     @Override

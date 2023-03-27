@@ -116,8 +116,8 @@ public class GameController extends GenericView {
     /** Crée et Ajoute les éléments de base **/
     private void initGame(){
         this.ball = new Ball(640,360,20,-10,8);
-        this.racketPlayer1 = new Racket(66,308,50,105);
-        this.racketPlayer2 = new Racket(1190,308,50,105);
+        this.racketPlayer1 = new Racket(66,308,50,105,0);
+        this.racketPlayer2 = new Racket(1190,308,50,105,1);
 
         scorePlayer1 = new Score();
         scorePlayer2 = new Score();
