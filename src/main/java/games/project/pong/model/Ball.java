@@ -1,5 +1,6 @@
 package games.project.pong.model;
 
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -17,6 +18,7 @@ public class Ball extends Circle implements Element {
         setPos(posX, posY);
         this.setRadius(radius);
         this.setFill(Color.WHITE);
+        //Image img = new Image()
         defaultSpX=spdX;
         defaultSpY=spdY;
         speedX = spdX;
