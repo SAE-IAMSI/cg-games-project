@@ -1,5 +1,6 @@
 package games.project.pong.controller;
 
+import games.project.pong.metier.Player;
 import games.project.pong.metier.Score;
 import games.project.pong.model.Ball;
 import games.project.pong.model.Racket;
@@ -12,6 +13,7 @@ import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -55,8 +57,8 @@ public class GameController extends GenericView {
     private Racket racketPlayer2;
     private Racket racketPlayer1;
     private Timeline timeline;
-    private Score scorePlayer1;
-    private Score scorePlayer2;
+    private Player player1;
+    private Player player2;
     /** True quand le joueur a le focus sur l'écran de jeu, False sinon  **/
     private boolean gameState = false;
     private int difficulty = 0; // 0, 1, 2 ou 3
@@ -119,11 +121,11 @@ public class GameController extends GenericView {
         this.racketPlayer1 = new Racket(66,308,50,105,0);
         this.racketPlayer2 = new Racket(1190,308,50,105,1);
 
-        scorePlayer1 = new Score();
-        scorePlayer2 = new Score();
+        player1 = new Player("p1");
+        player2 = new Player("p2");
 
-        scoreP1.textProperty().bind(new SimpleStringProperty("Score :").concat(scorePlayer1.getScoreProperty()));
-        scoreP2.textProperty().bind(new SimpleStringProperty("Score :").concat(scorePlayer2.getScoreProperty()));
+        scoreP1.textProperty().bind(new SimpleStringProperty("Score :").concat(player1.getScore().getScoreProperty()));
+        scoreP2.textProperty().bind(new SimpleStringProperty("Score :").concat(player2.getScore().getScoreProperty()));
 
         this.getChildren().add(ball);
         this.getChildren().add(racketPlayer2);
@@ -138,19 +140,19 @@ public class GameController extends GenericView {
     }
 
     private void resetScore(){
-        scorePlayer1.setScore(0);
-        scorePlayer2.setScore(0);
+        player1.getScore().setScore(0);
+        player2.getScore().setScore(0);
     }
     public void hitboxLimit(){
         if(this.limitL.getBoundsInParent().intersects(this.ball.getBoundsInParent())){
-            scorePlayer2.setScore(scorePlayer2.getScoreProperty().getValue()+1);
+            player2.getScore().setScore(player2.getScore().getScoreProperty().getValue()+1);
             endLoop();
             resetPos();
             ball.resetMoveSpeed();
             //ajouter score p1
         }
         else if(this.limitR.getBoundsInParent().intersects(this.ball.getBoundsInParent())){
-            scorePlayer1.setScore(scorePlayer1.getScoreProperty().getValue()+1);
+            player1.getScore().setScore(player1.getScore().getScoreProperty().getValue()+1);
             endLoop();
             resetPos();
             ball.resetMoveSpeed();
@@ -159,12 +161,12 @@ public class GameController extends GenericView {
     }
 
     private void checkEndCondition(){
-        if(scorePlayer1.getScoreProperty().getValue().equals(5)){
+        if(player1.getScore().getScoreProperty().getValue().equals(5)){
             resetScore();
             endLoop();
             displayScreen(new EndGameView("Player 1"));
         }
-        else if(scorePlayer2.getScoreProperty().getValue().equals(5)){
+        else if(player2.getScore().getScoreProperty().getValue().equals(5)){
             resetScore();
             endLoop();
             displayScreen(new EndGameView("Player 2"));
@@ -194,6 +196,8 @@ public class GameController extends GenericView {
             }
             event.consume();
         });
+        listener();
+        this.getScene().setOnKeyReleased(keyEvent -> {});
     }
 
     public void listenerKeyboard(){
@@ -202,6 +206,7 @@ public class GameController extends GenericView {
         final int DELAY = 10; // Délai en millisecondes
 
        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(DELAY), new EventHandler<ActionEvent>() {
+
             public void handle(ActionEvent event) {
                 boolean mvtConditionZ = racketPlayer1.getLayoutY()>topBar.getLayoutY() + topBar.getHeight();
                 boolean mvtConditionS = racketPlayer1.getLayoutY()<bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight()*0.5);
