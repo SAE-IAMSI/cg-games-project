@@ -15,21 +15,21 @@
             <Image url="@images/Background.png" />
          </image>
       </ImageView>
-      <Button fx:id="motronButton" layoutX="325.0" layoutY="407.0" mnemonicParsing="false" onAction="#lanceMotron" prefHeight="61.0" prefWidth="250.0" text="Motron">
+      <Button fx:id="motronButton" layoutX="320.0" layoutY="409.0" mnemonicParsing="false" onAction="#lanceMotron" prefHeight="61.0" prefWidth="260.0" text="Motron">
          <font>
             <Font size="25.0" />
          </font></Button>
-      <Button fx:id="KoalaRockButton" layoutX="706.0" layoutY="407.0" mnemonicParsing="false" onAction="#lanceKoalaRock" prefHeight="61.0" prefWidth="250.0" text="Koala-rock">
+      <Button fx:id="KoalaRockButton" layoutX="701.0" layoutY="409.0" mnemonicParsing="false" onAction="#lanceKoalaRock" prefHeight="61.0" prefWidth="260.0" text="Koala-rock">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <Button fx:id="BrickBreakerButton" layoutX="325.0" layoutY="567.0" mnemonicParsing="false" onAction="#lanceBrickBreaker" prefHeight="61.0" prefWidth="250.0" text="Brick Breaker">
+      <Button fx:id="BrickBreakerButton" layoutX="320.0" layoutY="569.0" mnemonicParsing="false" onAction="#lanceBrickBreaker" prefHeight="61.0" prefWidth="260.0" text="Casse-Briques">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <Button fx:id="FactoryFallButton" layoutX="706.0" layoutY="567.0" mnemonicParsing="false" onAction="#lanceFactoryFall" prefHeight="61.0" prefWidth="250.0" text="Factory Fall">
+      <Button fx:id="FactoryFallButton" layoutX="701.0" layoutY="569.0" mnemonicParsing="false" onAction="#lanceFactoryFall" prefHeight="61.0" prefWidth="260.0" text="Factory Fall">
          <font>
             <Font size="25.0" />
          </font>
