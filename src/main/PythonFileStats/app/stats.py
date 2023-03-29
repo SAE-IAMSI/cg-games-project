@@ -5,7 +5,7 @@ import datetime
 import matplotlib.pyplot as plt
 import math
 
-dir = "client64Bit"
+dir = "../test/client64Bit"
 absolute = os.path.join(os.getcwd(), dir)
 user = "etusae1"
 password = "3tuS43"
@@ -81,7 +81,6 @@ def getTabScoreMoyenParSemaine(jeu, idGraph):
     while (itDate < d):  # tant que itDate (date courante) n'atteint pas la date d'aujourd'hui
         startDate = str(itDate.strftime("%d/%m/%Y"))[0:5] + "/" + str(itDate.strftime("%d/%m/%Y"))[8:10]
         endDate = str(nextDate.strftime("%d/%m/%Y"))[0:5] + "/" + str(nextDate.strftime("%d/%m/%Y"))[8:10]
-        print(startDate)
         itDate += delta
         nextDate += delta
         req = getScoreMoyenEntreDates(jeu, startDate, endDate)
@@ -99,7 +98,6 @@ def getTabScoreMoyenParSemaine(jeu, idGraph):
                 scores.append(scoreIncremente + req)
                 scoreIncremente += req
     scores, semaines = replaceNone(scores)
-    print(sum(scores) / len(scores))
     return scores, semaines
 
 
@@ -163,19 +161,9 @@ def getGrapheScoreMoyen(game: str, idGraph: int = 0):
     :param idGraph: 0 = par semaine (chaque semaine est indépendante) , 1 = "au fil du temps" (moyenne entre semaine 1 et 2, puis 1 2 3, etc...)
    '''
     scores, semaines = getTabScoreMoyenParSemaine(game, idGraph)
-    print(scores, semaines)
     plt.plot(semaines, scores, color='red')
     plt.title(f'Scores moyen par semaines du jeu {game}', fontsize=14)
     plt.xlabel('Semaines', fontsize=14)
     plt.ylabel('Scores moyens', fontsize=14)
     plt.grid(True)
     plt.show()
-
-
-getNbPlayers()
-print(getTop10Departement())
-print(getJoueursActifs())
-print(getScoreMoyen('KR'))
-print(getJoueursParDepartements(34))
-print(getTempsMoyenKR('01/01/22', '01/01/24'))
-print(getGrapheScoreMoyen('FF', 1))
