@@ -3,6 +3,7 @@ package games.project.parametres.controller;
 import games.project.casse_briques.BrickBreakerApplication;
 import games.project.factory_fall.FactoryFall;
 import games.project.koala_rock.RessourcesAccess;
+import games.project.metier.manager.JeuManager;
 import games.project.motron.Motron;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -24,7 +25,10 @@ public class ControllerFXML {
 
     @FXML
     public void setGames(){
-
+        for(String path : JeuManager.getInstance().getPaths()){
+            Button b = new Button(path.split("\\.")[3]);
+            vboxJeux.getChildren().add(b);
+        }
     }
 
     @FXML

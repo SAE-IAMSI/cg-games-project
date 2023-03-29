@@ -1,5 +1,6 @@
 package games.project.parametres;
 
+import games.project.metier.manager.JeuManager;
 import games.project.motron.Motron;
 import games.project.parametres.controller.ControllerFXML;
 import javafx.application.Application;

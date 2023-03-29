@@ -17,7 +17,8 @@
     -fx-border-width: 3px;
     -fx-font-weight: bold;
     -fx-effect: dropshadow(three-pass-box, #9f00cb, 3, 1, 4, 4);
-    -fx-pref-width: 200;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 60px;
 }
 
 .button:hover {

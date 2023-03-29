@@ -44,7 +44,7 @@ public class StockageJeuDatabase {
         }
     }
 
-    public void delete(String codeJeu) {
+    public void deleteByCode(String codeJeu) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
         String req = "DELETE FROM JEU WHERE code = ?";
@@ -80,7 +80,7 @@ public class StockageJeuDatabase {
         return jeux;
     }
 
-    public Jeu getByCode(int code) {
+    public Jeu getByCode(String code) {
         Jeu jeu = null;
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
@@ -88,7 +88,7 @@ public class StockageJeuDatabase {
         try (
                 PreparedStatement st = connection.prepareStatement(req)
         ) {
-            st.setInt(1, code);
+            st.setString(1, code);
             try (ResultSet result = st.executeQuery()) {
                 if (result.next()) {
                     String codeJeu = result.getString("code");
@@ -104,5 +104,23 @@ public class StockageJeuDatabase {
             e.printStackTrace();
         }
         return jeu;
+    }
+    public List<String> getPaths() {
+        List<String> paths = new ArrayList<>();
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT path FROM JEU";
+        try (
+                PreparedStatement st = connection.prepareStatement(req);
+                ResultSet result = st.executeQuery()
+        ) {
+            while (result.next()) {
+                String path = result.getString("path");
+                paths.add(path);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return paths;
     }
 }
