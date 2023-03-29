@@ -11,12 +11,13 @@
 .button {
     -fx-font-family: 'Orbitron', sans-serif;
     -fx-text-fill: #ffffff;
-    -fx-font-size: 25px;
+    -fx-font-size: 15px;
     -fx-background-color: #1b1b1b;
     -fx-border-color: #473bf0;
     -fx-border-width: 3px;
     -fx-font-weight: bold;
     -fx-effect: dropshadow(three-pass-box, #9f00cb, 3, 1, 4, 4);
+    -fx-pref-width: 200;
 }
 
 .button:hover {
@@ -40,4 +41,10 @@
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
     -fx-font-size: 50px;
+}
+
+.vbox{
+    -fx-background-color: #241e2c;
+    -fx-border-width: 0px 3px 0px 0px;
+    -fx-border-color: #56a3f3;
 }

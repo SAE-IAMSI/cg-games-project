@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@css/parametresStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="games.project.parametres.controller.ControllerFXML">
@@ -15,28 +16,33 @@
             <Image url="@images/Background.png" />
          </image>
       </ImageView>
-      <Button fx:id="motronButton" layoutX="320.0" layoutY="409.0" mnemonicParsing="false" onAction="#lanceMotron" prefHeight="61.0" prefWidth="260.0" text="Motron">
-         <font>
-            <Font size="25.0" />
-         </font></Button>
-      <Button fx:id="KoalaRockButton" layoutX="701.0" layoutY="409.0" mnemonicParsing="false" onAction="#lanceKoalaRock" prefHeight="61.0" prefWidth="260.0" text="Koala-rock">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="BrickBreakerButton" layoutX="320.0" layoutY="569.0" mnemonicParsing="false" onAction="#lanceBrickBreaker" prefHeight="61.0" prefWidth="260.0" text="Casse-Briques">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Button>
-      <Button fx:id="FactoryFallButton" layoutX="701.0" layoutY="569.0" mnemonicParsing="false" onAction="#lanceFactoryFall" prefHeight="61.0" prefWidth="260.0" text="Factory Fall">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Button>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1280.0" styleClass="menuBar">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="325.0" text="CG Games" />
          </children></HBox>
+      <VBox fx:id="vboxJeux" alignment="CENTER" layoutX="-1.0" layoutY="97.0" prefHeight="627.0" prefWidth="229.0" spacing="50.0" styleClass="vbox">
+         <children>
+            <Button fx:id="motronButton" mnemonicParsing="false" onAction="#lanceMotron" prefHeight="61.0" prefWidth="260.0" text="Motron">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Button fx:id="BrickBreakerButton" mnemonicParsing="false" onAction="#lanceBrickBreaker" prefHeight="61.0" prefWidth="260.0" text="Casse-Briques">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Button fx:id="KoalaRockButton" mnemonicParsing="false" onAction="#lanceKoalaRock" prefHeight="61.0" prefWidth="260.0" text="Koala-rock">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Button fx:id="FactoryFallButton" mnemonicParsing="false" onAction="#lanceFactoryFall" prefHeight="61.0" prefWidth="260.0" text="Factory Fall">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

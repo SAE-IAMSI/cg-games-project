@@ -1,11 +1,13 @@
 package games.project.parametres;
 
+import games.project.motron.Motron;
 import games.project.parametres.controller.ControllerFXML;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Parametres extends Application {
@@ -23,8 +25,10 @@ public class Parametres extends Application {
         sceneParametres = new Scene(fxmlLoader.load());
         ControllerFXML controllerFXML = fxmlLoader.getController();
 
-        stage.setTitle("MOTRON");
+        stage.setTitle("CG Games");
         stage.setScene(sceneParametres);
         stage.show();
+
+        controllerFXML.setGames();
     }
 }
