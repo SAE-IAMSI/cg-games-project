@@ -109,13 +109,15 @@ public class StockageJeuDatabase {
         List<String> paths = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT path FROM JEU";
+        String req = "SELECT libelle,path FROM JEU";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
                 ResultSet result = st.executeQuery()
         ) {
             while (result.next()) {
+                String libelle = result.getString("libelle");
                 String path = result.getString("path");
+                paths.add(libelle);
                 paths.add(path);
             }
         } catch (SQLException e) {
