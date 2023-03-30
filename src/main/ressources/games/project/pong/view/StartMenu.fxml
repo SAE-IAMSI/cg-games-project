@@ -25,7 +25,7 @@
          </font>
       </Text>
       <Button layoutX="582.0" layoutY="271.0" mnemonicParsing="false" onAction="#clickJouer" prefHeight="46.0" prefWidth="143.0" text="Jouer " />
-      <Button layoutX="582.0" layoutY="360.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="143.0" text="Paramètre" />
+      <Button layoutX="582.0" layoutY="360.0" mnemonicParsing="false" onAction="#parameter" prefHeight="46.0" prefWidth="143.0" text="Paramètre" />
       <Button layoutX="582.0" layoutY="441.0" mnemonicParsing="false" onAction="#exit" prefHeight="46.0" prefWidth="143.0" text="Quitter" />
    </children>
 </fx:root>

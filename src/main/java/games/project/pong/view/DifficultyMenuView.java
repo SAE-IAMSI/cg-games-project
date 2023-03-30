@@ -36,5 +36,6 @@ public class DifficultyMenuView extends GenericView{
     private void back(){
         gameController.removeScreen(this);
         gameController.setGameState(false);
+        gameController.displayScreen(new StartMenuView());
     }
 }

@@ -18,4 +18,10 @@ public class StartMenuView extends GenericView {
     private void exit(){
 
     }
+
+    @FXML
+    private void parameter(){
+        gameController.removeScreen(this);
+        gameController.displayScreen(new ParameterMenuView());
+    }
 }
