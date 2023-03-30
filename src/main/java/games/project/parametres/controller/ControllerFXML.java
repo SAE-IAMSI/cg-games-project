@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -37,7 +38,6 @@ public class ControllerFXML {
             Button b = new Button(jeuPath.get(i));
             b.setOnAction(actionEvent -> Platform.runLater(() -> {
                 File file = new File(jeuPath.get(fin).split("\\.")[3]);
-                System.out.println(file.getName());
                 try {
                     Application m = (Application) Class.forName(jeuPath.get(fin)).newInstance();
                     m.start(new Stage());

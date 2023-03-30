@@ -17,8 +17,8 @@
     -fx-border-width: 3px;
     -fx-font-weight: bold;
     -fx-effect: dropshadow(three-pass-box, #9f00cb, 3, 1, 4, 4);
-    -fx-pref-width: 200px;
-    -fx-pref-height: 60px;
+    -fx-min-width: 200px;
+    -fx-min-height: 60px;
 }
 
 .button:hover {
@@ -44,8 +44,30 @@
     -fx-font-size: 50px;
 }
 
-.vbox{
+.buttonPane{
+    -fx-background: #241e2c;
     -fx-background-color: #241e2c;
     -fx-border-width: 0px 3px 0px 0px;
-    -fx-border-color: #56a3f3;
+    -fx-border-color:  #56a3f3;
+}
+
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: linear-gradient(#56a3f3, #9f00cb);;
+    -fx-background-radius: 5em;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
 }
