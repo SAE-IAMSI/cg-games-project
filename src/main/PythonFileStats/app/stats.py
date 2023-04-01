@@ -12,17 +12,17 @@ password = "3tuS43"
 host = "162.38.222.149"
 port = 1521
 sid = "iut"
-
-oracledb.init_oracle_client(lib_dir=absolute)
-
-connexion = oracledb.connect(user=user, password=password, host=host, port=port, sid=sid)
-
+def createConnexion():
+    oracledb.init_oracle_client(lib_dir=absolute)
+    connexion = oracledb.connect(user=user, password=password, host=host, port=port, sid=sid)
+    return connexion
 
 def getNbPlayers() -> int:
     '''
     Renvoie le nombre de joueurs sur le PGI\n
     :return: r[0] : int
     '''
+    connexion = createConnexion()
     with connexion.cursor() as cursor:
         sql = """select getNumbersOfPlayers from dual"""
         for r in cursor.execute(sql):
@@ -34,6 +34,7 @@ def getTop10Departement() -> list:
     Renvoie les 10 départements avec le plus de joueurs\n
     :return: tab: un tableau de string
     '''
+    connexion = createConnexion()
     with connexion.cursor() as cursor:
         sql = """SELECT * FROM viewDepartementByPlayers WHERE ROWNUM <= 10"""
         cursor.execute(sql)
@@ -49,6 +50,7 @@ def getJoueursActifs() -> int:
     Renvoie le nombre de joueurs actifs sur le PGI\n
     :return: r[0] : int
     '''
+    connexion = createConnexion()
     with connexion.cursor() as cursor:
         sql = """select getNbActivePlayer from dual"""
         for r in cursor.execute(sql):
@@ -63,6 +65,7 @@ def getScoreMoyenEntreDates(jeu: str, dateAvant: str, dateApres: str) -> float:
     :param dateApres: date de fin de la période
     :return: r[0]: float
     '''
+    connexion = createConnexion()
     with connexion.cursor() as cursor:
         sql = f"""select getAvgBetweenDate('{jeu}','{dateAvant}','{dateApres}') from dual"""
         for r in cursor.execute(sql):
@@ -136,6 +139,7 @@ def getTempsMoyenKR(dateAvant: str, dateApres: str) -> float:
     :param dateApres: date de fin de période
     :return: r[0] : float
     '''
+    connexion = createConnexion()
     with connexion.cursor() as cursor:
         sql = f"""select getAvgTimeBetweenDates('{dateAvant}','{dateApres}') from dual"""
         for r in cursor.execute(sql):
@@ -148,6 +152,7 @@ def getJoueursParDepartements(numDepartement: str) -> int:
     :param numDepartement: numéro du département sur lequel on veut le nombre de joueurs
     :return: r[0] : int
     '''
+    connexion = createConnexion()
     with connexion.cursor() as cursor:
         sql = f"""SELECT getPlayersByDepartement({numDepartement}) FROM DUAL"""
         for r in cursor.execute(sql):
