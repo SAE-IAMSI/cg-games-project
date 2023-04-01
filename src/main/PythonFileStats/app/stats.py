@@ -12,10 +12,17 @@ password = "3tuS43"
 host = "162.38.222.149"
 port = 1521
 sid = "iut"
-def createConnexion():
+
+
+def createConnexion() -> oracledb.Connection:
+    """
+    Crée une connexion à la base de données\n
+    :return: connexion: oracledb.Connection
+    """
     oracledb.init_oracle_client(lib_dir=absolute)
     connexion = oracledb.connect(user=user, password=password, host=host, port=port, sid=sid)
     return connexion
+
 
 def getNbPlayers() -> int:
     '''
