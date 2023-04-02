@@ -35,6 +35,8 @@ public Button decoBt;
 @FXML
 public Label infoRegister;
 @FXML
+public Label infoDelete;
+@FXML
 public ComboBox comboBox;
 private Session session = Session.getInstance();
 private PlayerManager manager = PlayerManager.getInstance();
@@ -58,6 +60,8 @@ private PlayerManager manager = PlayerManager.getInstance();
     @FXML
     private void login(){
         AuthPlayer p = null;
+        infoDelete.setText("");
+        infoRegister.setText("");
 
         if(!(idLogin.getText().equals("")) && !(passwordLogin.getText().equals(""))){
                 p = manager.getPlayer(idLogin.getText());
@@ -88,6 +92,7 @@ private PlayerManager manager = PlayerManager.getInstance();
 
     @FXML
     private void disconnect(){
+        infoRegister.setText("");
         infoLogin.setText("Joueur déconnecté");
         session.disconnect();
         connectBt.setDisable(false);
@@ -98,7 +103,8 @@ private PlayerManager manager = PlayerManager.getInstance();
 
     @FXML
     private void register(){
-
+        infoDelete.setText("");
+        infoLogin.setText("");
         String dep;
         try {
             dep = this.comboBox.getValue().toString().split(" ")[0];
@@ -106,9 +112,13 @@ private PlayerManager manager = PlayerManager.getInstance();
             dep = "";
         }
 
-        if(!idRegister.getText().equals("") && !passwordRegister.getText().equals("") && !confirmRegister.getText().equals("")){
+        if(!idRegister.getText().equals("") && !passwordRegister.getText().equals("") && !confirmRegister.getText().equals("") && !dep.equals("")){
             if(passwordRegister.getText().equals(confirmRegister.getText())){
                 PlayerManager.getInstance().createPlayer(idRegister.getText(), dep, passwordRegister.getText());
+                infoRegister.setText("Joueur '"+idRegister.getText()+"' enregister !");
+                passwordRegister.setText("");
+                confirmRegister.setText("");
+                idRegister.setText("");
             }
         }
         else{
@@ -118,8 +128,15 @@ private PlayerManager manager = PlayerManager.getInstance();
 
     @FXML
     private void delete(){
+        infoRegister.setText("");
+        infoLogin.setText("");
         if(Session.getInstance().isConnected()){
             PlayerManager.getInstance().deletePlayer(Session.getInstance().getLogin());
+            infoDelete.setText("Joueur supprimer !");
+            disconnect();
+        }
+        else{
+            infoDelete.setText("Erreur !");
         }
 
     }

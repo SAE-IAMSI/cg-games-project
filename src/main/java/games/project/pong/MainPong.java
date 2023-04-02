@@ -2,6 +2,7 @@ package games.project.pong;
 
 import games.project.pong.controller.GameController;
 import games.project.pong.view.StartMenuView;
+import games.project.stockage.sql.SQLUtils;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -24,5 +25,11 @@ public class MainPong extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        SQLUtils.getInstance().closeConnection();
+        super.stop();
     }
 }
