@@ -1,5 +1,6 @@
 package games.project.pong.controller;
 
+import games.project.metier.manager.PlayerManager;
 import games.project.pong.metier.Player;
 import games.project.pong.metier.Score;
 import games.project.pong.model.Ball;
@@ -7,6 +8,7 @@ import games.project.pong.model.Racket;
 import games.project.pong.view.EndGameView;
 import games.project.pong.view.GenericView;
 import games.project.pong.view.StartMenuView;
+import games.project.stockage.Session;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -123,6 +125,8 @@ public class GameController extends GenericView {
 
         player1 = new Player("p1");
         player2 = new Player("p2");
+        p1.setText(player1.getNom());
+        p2.setText(player2.getNom());
 
         scoreP1.textProperty().bind(new SimpleStringProperty("Score :").concat(player1.getScore().getScoreProperty()));
         scoreP2.textProperty().bind(new SimpleStringProperty("Score :").concat(player2.getScore().getScoreProperty()));
@@ -164,12 +168,12 @@ public class GameController extends GenericView {
         if(player1.getScore().getScoreProperty().getValue().equals(5)){
             resetScore();
             endLoop();
-            displayScreen(new EndGameView("Player 1"));
+            displayScreen(new EndGameView(player1.getNom()));
         }
         else if(player2.getScore().getScoreProperty().getValue().equals(5)){
             resetScore();
             endLoop();
-            displayScreen(new EndGameView("Player 2"));
+            displayScreen(new EndGameView(player2.getNom()));
         }
     }
 
@@ -286,6 +290,10 @@ public class GameController extends GenericView {
 
     public int getDifficulty() {
         return difficulty;
+    }
+
+    public Player getPlayer1() {
+        return player1;
     }
 
     public void setDifficulty(int difficulty) {

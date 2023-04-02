@@ -4,6 +4,7 @@ import games.project.Launcher;
 import games.project.metier.entite.AuthPlayer;
 import games.project.metier.entite.Player;
 import games.project.metier.manager.PlayerManager;
+import games.project.pong.controller.GameController;
 import games.project.stockage.Security;
 import games.project.stockage.Session;
 import javafx.fxml.FXML;
@@ -49,7 +50,29 @@ private PlayerManager manager = PlayerManager.getInstance();
             String field = key + " - " + departments.get(key);
             comboBox.getItems().add(field);
         }
+
+        if(Session.getInstance().isConnected()){
+            connectBt.setDisable(true);
+            idLogin.setDisable(true);
+            passwordLogin.setDisable(true);
+            decoBt.setDisable(false);
+            infoLogin.setText("Le joueur '"+Session.getInstance().getLogin()+"' est connecté !");
+        }
+
     }
+
+
+    private void connectPlayer(){
+        GameController gameController = GameController.getInstance();
+        gameController.getPlayer1().setNom(Session.getInstance().getLogin());
+        gameController.p1.setText(gameController.getPlayer1().getNom());
+    }
+    private void disconnectPlayer(){
+        GameController gameController = GameController.getInstance();
+        gameController.getPlayer1().setNom("p1");
+        gameController.p1.setText(gameController.getPlayer1().getNom());
+    }
+
 
     @FXML
     private void back(){
@@ -76,6 +99,7 @@ private PlayerManager manager = PlayerManager.getInstance();
                             idLogin.setText("");
                             passwordLogin.setDisable(true);
                             idLogin.setDisable(true);
+                            connectPlayer();
                         }
                     }
                     else{
@@ -99,6 +123,7 @@ private PlayerManager manager = PlayerManager.getInstance();
         decoBt.setDisable(true);
         passwordLogin.setDisable(false);
         idLogin.setDisable(false);
+        disconnectPlayer();
     }
 
     @FXML

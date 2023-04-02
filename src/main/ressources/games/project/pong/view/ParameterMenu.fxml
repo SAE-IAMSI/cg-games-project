@@ -22,7 +22,16 @@
             <Image url="@../textures/classic.png" />
          </image>
       </ImageView>
-      <Button layoutX="625.0" layoutY="501.0" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="104.0" text="Retour" />
+      <TextField fx:id="idLogin" layoutX="1041.0" layoutY="226.0" />
+      <PasswordField fx:id="passwordLogin" layoutX="1041.0" layoutY="262.0" />
+      <Button fx:id="connectBt" layoutX="1084.0" layoutY="303.0" mnemonicParsing="false" onAction="#login" prefHeight="24.0" prefWidth="104.0" text="Connexion" />
+      <Button fx:id="decoBt" disable="true" layoutX="1084.0" layoutY="334.0" mnemonicParsing="false" onAction="#disconnect" prefHeight="24.0" prefWidth="104.0" text="Deconnexion" />
+      <TextField fx:id="idRegister" layoutX="1030.0" layoutY="481.0" />
+      <PasswordField fx:id="passwordRegister" layoutX="1030.0" layoutY="514.0" />
+      <PasswordField fx:id="confirmRegister" layoutX="1030.0" layoutY="551.0" />
+      <ComboBox fx:id="comboBox" layoutX="902.0" layoutY="596.0" prefHeight="24.0" prefWidth="133.0" promptText="dep" />
+      <Button fx:id="r" layoutX="1082.0" layoutY="584.0" mnemonicParsing="false" onAction="#register" text="Enregistrement" />
+      <Button focusTraversable="false" layoutX="625.0" layoutY="501.0" mnemonicParsing="false" onAction="#back" prefHeight="50.0" prefWidth="104.0" text="Retour" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="119.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../casse_briques/textures/Mouse.png" />
@@ -40,8 +49,8 @@
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="136.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contre IA" />
-      <Button layoutX="309.0" layoutY="419.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="38.0" text="Z" />
-      <Button layoutX="309.0" layoutY="462.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="38.0" text="S" />
+      <Button focusTraversable="false" layoutX="309.0" layoutY="419.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="38.0" text="Z" />
+      <Button focusTraversable="false" layoutX="309.0" layoutY="462.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="38.0" text="S" />
       <ImageView fitHeight="94.0" fitWidth="16.0" layoutX="320.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true" rotate="91.3">
          <image>
             <Image url="@../../casse_briques/textures/MouseEffects.png" />
@@ -54,24 +63,15 @@
       </ImageView>
       <Text fill="WHITE" layoutX="314.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PvP" />
       <Text fill="WHITE" layoutX="1083.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se connecter" />
-      <PasswordField fx:id="passwordLogin" layoutX="1041.0" layoutY="262.0" />
       <Text fill="WHITE" layoutX="943.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" />
-      <TextField fx:id="idLogin" layoutX="1041.0" layoutY="226.0" />
       <Text fill="WHITE" layoutX="1002.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id" />
-      <Button fx:id="connectBt" layoutX="1084.0" layoutY="303.0" mnemonicParsing="false" onAction="#login" prefHeight="24.0" prefWidth="104.0" text="Connexion" />
-      <PasswordField fx:id="passwordRegister" layoutX="1030.0" layoutY="514.0" />
-      <PasswordField fx:id="confirmRegister" layoutX="1030.0" layoutY="551.0" />
-      <TextField fx:id="idRegister" layoutX="1030.0" layoutY="481.0" />
       <Text fill="WHITE" layoutX="988.0" layoutY="498.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id" />
       <Text fill="WHITE" layoutX="927.0" layoutY="531.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe" />
       <Text fill="WHITE" layoutX="938.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirmer" />
-      <Button fx:id="r" layoutX="1067.0" layoutY="584.0" mnemonicParsing="false" onAction="#register" text="Enregistrement" />
       <Label fx:id="infoLogin" alignment="CENTER" layoutX="928.0" layoutY="371.0" prefHeight="24.0" prefWidth="310.0" textAlignment="CENTER" textFill="WHITE" />
       <Text fill="WHITE" layoutX="1049.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="S'enregistrer" textAlignment="CENTER" wrappingWidth="132.7294921875" />
-      <Button fx:id="decoBt" disable="true" layoutX="1084.0" layoutY="334.0" mnemonicParsing="false" onAction="#disconnect" prefHeight="24.0" prefWidth="104.0" text="Deconnexion" />
       <Label fx:id="infoRegister" layoutX="964.0" layoutY="628.0" prefHeight="17.0" prefWidth="281.0" textAlignment="CENTER" textFill="WHITE" />
-      <ComboBox fx:id="comboBox" layoutX="902.0" layoutY="596.0" prefHeight="24.0" prefWidth="133.0" promptText="dep" />
-      <Button fx:id="delete" layoutX="779.0" layoutY="242.0" mnemonicParsing="false" onAction="#delete" prefHeight="42.0" prefWidth="104.0" text="Supprimer" />
+      <Button fx:id="delete" focusTraversable="false" layoutX="779.0" layoutY="242.0" mnemonicParsing="false" onAction="#delete" prefHeight="42.0" prefWidth="104.0" text="Supprimer" />
       <Label fx:id="infoDelete" layoutX="765.0" layoutY="307.0" prefHeight="17.0" prefWidth="133.0" textAlignment="CENTER" textFill="WHITE" />
    </children>
 </fx:root>
