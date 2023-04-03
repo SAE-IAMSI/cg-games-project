@@ -37,6 +37,14 @@ public class StartFrame extends JFrame {
         infini.setFont(new Font("Arial", Font.BOLD, 30));
         add(infini);
 
+        JLabel credit = new JLabel("By: @janbodnar");
+        credit.setSize(200, 100);
+        credit.setLocation(20, 600);
+        credit.setFont(new Font("Arial", Font.BOLD, 20));
+        credit.setOpaque(false);
+        credit.setForeground(Color.WHITE);
+        add(credit);
+
         setTitle("Space Invaders");
         setSize(1280, 720);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
