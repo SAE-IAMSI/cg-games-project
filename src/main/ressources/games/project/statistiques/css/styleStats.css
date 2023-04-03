@@ -1,0 +1,20 @@
+.btn{
+    -fx-background-image: url("../textures/button.png");
+    -fx-background-color: none;
+}
+
+.btnRetour{
+    -fx-background-color: none;
+}
+
+.fond {
+    -fx-background-image: url("../textures/menuScreen.png");
+}
+
+.titre {
+
+}
+
+.texte {
+
+}
