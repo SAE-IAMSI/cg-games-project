@@ -1,11 +1,13 @@
 package games.project.prehispong.controller;
 
-import games.project.prehispong.metier.Player;
+import games.project.metier.entite.Player;
+import games.project.metier.manager.ScoreManager;
 import games.project.prehispong.model.Ball;
 import games.project.prehispong.model.Racket;
 import games.project.prehispong.view.EndGameView;
 import games.project.prehispong.view.GenericView;
 import games.project.prehispong.view.StartMenuView;
+import games.project.stockage.Session;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -119,13 +121,15 @@ public class GameController extends GenericView {
         this.racketPlayer1 = new Racket(66,308,50,105,0);
         this.racketPlayer2 = new Racket(1190,308,50,105,1);
 
-        player1 = new Player("p1");
-        player2 = new Player("p2");
-        p1.setText(player1.getNom());
-        p2.setText(player2.getNom());
+        player1 = new Player("p1",0);
+        player2 = new Player("p2",0);
+        player1.getScore().setGameCode("PONG");
+        player2.getScore().setGameCode("PONG");
+        p1.setText(player1.getName());
+        p2.setText(player2.getName());
 
-        scoreP1.textProperty().bind(new SimpleStringProperty("Score :").concat(player1.getScore().getScoreProperty()));
-        scoreP2.textProperty().bind(new SimpleStringProperty("Score :").concat(player2.getScore().getScoreProperty()));
+        scoreP1.textProperty().bind(new SimpleStringProperty("Score :").concat(player1.getScore().scoreProperty()));
+        scoreP2.textProperty().bind(new SimpleStringProperty("Score :").concat(player2.getScore().scoreProperty()));
 
         this.getChildren().add(ball);
         this.getChildren().add(racketPlayer2);
@@ -145,14 +149,14 @@ public class GameController extends GenericView {
     }
     public void hitboxLimit(){
         if(this.limitL.getBoundsInParent().intersects(this.ball.getBoundsInParent())){
-            player2.getScore().setScore(player2.getScore().getScoreProperty().getValue()+1);
+            player2.getScore().setScore(player2.getScore().scoreProperty().getValue()+1);
             endLoop();
             resetPos();
             ball.resetMoveSpeed();
             //ajouter score p1
         }
         else if(this.limitR.getBoundsInParent().intersects(this.ball.getBoundsInParent())){
-            player1.getScore().setScore(player1.getScore().getScoreProperty().getValue()+1);
+            player1.getScore().setScore(player1.getScore().scoreProperty().getValue()+1);
             endLoop();
             resetPos();
             ball.resetMoveSpeed();
@@ -160,16 +164,21 @@ public class GameController extends GenericView {
         }
     }
 
-    private void checkEndCondition(){
-        if(player1.getScore().getScoreProperty().getValue().equals(5)){
-            resetScore();
-            endLoop();
-            displayScreen(new EndGameView(player1.getNom()));
+    public void registerScore(){
+        if(Session.getInstance().isConnected()){
+            ScoreManager.getInstance().createScore(player1.getScore().getScore(),Session.getInstance().getLogin());
         }
-        else if(player2.getScore().getScoreProperty().getValue().equals(5)){
+    }
+    private void checkEndCondition(){
+        if(player1.getScore().scoreProperty().getValue().equals(5)){
             resetScore();
             endLoop();
-            displayScreen(new EndGameView(player2.getNom()));
+            displayScreen(new EndGameView(player1.getName()));
+        }
+        else if(player2.getScore().scoreProperty().getValue().equals(5)){
+            resetScore();
+            endLoop();
+            displayScreen(new EndGameView(player2.getName()));
         }
     }
 

@@ -59,13 +59,13 @@ private PlayerManager manager = PlayerManager.getInstance();
 
     private void connectPlayer(){
         GameController gameController = GameController.getInstance();
-        gameController.getPlayer1().setNom(Session.getInstance().getLogin());
-        gameController.p1.setText(gameController.getPlayer1().getNom());
+        gameController.getPlayer1().setName(Session.getInstance().getLogin());
+        gameController.p1.setText(gameController.getPlayer1().getName());
     }
     private void disconnectPlayer(){
         GameController gameController = GameController.getInstance();
-        gameController.getPlayer1().setNom("p1");
-        gameController.p1.setText(gameController.getPlayer1().getNom());
+        gameController.getPlayer1().setName("p1");
+        gameController.p1.setText(gameController.getPlayer1().getName());
     }
 
 

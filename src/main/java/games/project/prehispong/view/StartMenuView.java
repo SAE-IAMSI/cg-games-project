@@ -37,15 +37,14 @@ public class StartMenuView extends GenericView {
     @FXML
     private void clickCGU() {
         try {
-            if(Desktop.isDesktopSupported()){
-                File file = new File(MainPong.class.getResource("pdf/CGU.pdf").toExternalForm());
-                Desktop.getDesktop().open(file);
-            }
-            else{
-                Runtime.getRuntime().exec("explorer.exe" + MainPong.class.getResource("pdf/CGU.pdf"));
-            }
+            Runtime.getRuntime().exec("explorer.exe " + MainPong.class.getResource("pdf/CGU.pdf"));
+
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            try {
+                 Runtime.getRuntime().exec("./"+MainPong.class.getResource("pdf/CGU.pdf"));
+            }catch (Exception exception){
+                e.printStackTrace();
+            }
         }
     }
 }

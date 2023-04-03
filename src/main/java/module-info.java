@@ -18,7 +18,6 @@ module games.project.launcher {
     exports games.project.prehispong.model;
     exports games.project.prehispong to javafx.graphics;
     opens games.project.prehispong.view to javafx.fxml;
-    exports games.project.prehispong.metier;
 
     exports games.project.parametres;
     opens games.project.parametres.controller to javafx.fxml;
