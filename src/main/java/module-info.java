@@ -13,6 +13,16 @@ module games.project.launcher {
     exports games.project.koala_rock.Model;
     exports games.project.koala_rock.Sound;
 
+    exports games.project.pong.controller;
+    exports games.project.pong.view;
+    exports games.project.pong.model;
+    exports games.project.pong to javafx.graphics;
+    opens games.project.pong.view to javafx.fxml;
+    exports games.project.pong.metier;
+
+    exports games.project.parametres;
+    opens games.project.parametres.controller to javafx.fxml;
+
     exports games.project.casse_briques;
     exports games.project.casse_briques.controller;
     opens games.project.casse_briques.controller to javafx.fxml;
@@ -22,6 +32,8 @@ module games.project.launcher {
 
     exports games.project.factory_fall;
 
+    exports games.project.paco_mano;
+
     exports games.project;
     opens games.project.motron.controller to javafx.fxml;
 
@@ -29,4 +41,6 @@ module games.project.launcher {
     exports games.project.statistiques.views;
 
     exports games.project.space_invader;
+    
+    exports games.project.parametres.controller;
 }
