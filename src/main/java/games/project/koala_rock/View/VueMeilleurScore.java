@@ -4,7 +4,7 @@ import games.project.koala_rock.Metier.entite.Score;
 import games.project.koala_rock.Metier.manager.ScoreManager;
 import games.project.koala_rock.Model.Fond;
 import games.project.koala_rock.RessourcesAccess;
-import games.project.koala_rock.Stockage.Session;
+import games.project.stockage.Session;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;

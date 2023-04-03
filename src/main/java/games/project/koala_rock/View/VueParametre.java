@@ -3,7 +3,7 @@ package games.project.koala_rock.View;
 import games.project.koala_rock.Metier.manager.ScoreManager;
 import games.project.koala_rock.Model.*;
 import games.project.koala_rock.RessourcesAccess;
-import games.project.koala_rock.Stockage.Session;
+import games.project.stockage.Session;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;

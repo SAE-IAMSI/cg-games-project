@@ -1,7 +1,7 @@
 package games.project.koala_rock.Stockage.sql; //Votre package ici.
 
 import games.project.koala_rock.Metier.entite.Score;
-
+import games.project.stockage.sql.SQLUtils;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
