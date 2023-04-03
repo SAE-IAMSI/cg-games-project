@@ -1,12 +1,9 @@
-package games.project.pong.model;
+package games.project.prehispong.model;
 
 
-import games.project.pong.MainPong;
-import games.project.pong.controller.GameController;
+import games.project.prehispong.MainPong;
+import games.project.prehispong.controller.GameController;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 

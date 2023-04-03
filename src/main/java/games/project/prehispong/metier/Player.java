@@ -1,4 +1,4 @@
-package games.project.pong.metier;
+package games.project.prehispong.metier;
 
 public class Player {
     private String nom;

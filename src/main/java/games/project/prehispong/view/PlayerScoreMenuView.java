@@ -1,4 +1,4 @@
-package games.project.pong.view;
+package games.project.prehispong.view;
 
 
 import games.project.metier.entite.Score;
@@ -7,7 +7,6 @@ import games.project.stockage.Session;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -17,6 +16,7 @@ public class PlayerScoreMenuView extends GenericView{
 
     public PlayerScoreMenuView() {
         super("PlayerScoreMenu.fxml");
+        textScore.setText("");
         initScore();
     }
 

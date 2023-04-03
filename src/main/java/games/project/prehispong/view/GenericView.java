@@ -1,7 +1,7 @@
-package games.project.pong.view;
+package games.project.prehispong.view;
 
-import games.project.pong.MainPong;
-import games.project.pong.controller.GameController;
+import games.project.prehispong.MainPong;
+import games.project.prehispong.controller.GameController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 

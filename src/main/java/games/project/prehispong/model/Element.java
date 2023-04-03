@@ -1,6 +1,4 @@
-package games.project.pong.model;
-
-import javafx.scene.shape.Shape;
+package games.project.prehispong.model;
 
 public interface Element {
 

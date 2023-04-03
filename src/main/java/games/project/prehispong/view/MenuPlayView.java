@@ -1,4 +1,4 @@
-package games.project.pong.view;
+package games.project.prehispong.view;
 
 import javafx.fxml.FXML;
 

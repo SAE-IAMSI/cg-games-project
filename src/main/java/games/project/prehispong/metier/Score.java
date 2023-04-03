@@ -1,4 +1,4 @@
-package games.project.pong.metier;
+package games.project.prehispong.metier;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

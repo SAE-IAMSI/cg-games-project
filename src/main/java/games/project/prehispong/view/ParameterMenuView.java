@@ -1,18 +1,13 @@
-package games.project.pong.view;
+package games.project.prehispong.view;
 
-import games.project.Launcher;
 import games.project.metier.entite.AuthPlayer;
-import games.project.metier.entite.Player;
 import games.project.metier.manager.PlayerManager;
-import games.project.pong.controller.GameController;
+import games.project.prehispong.controller.GameController;
 import games.project.stockage.Security;
 import games.project.stockage.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.w3c.dom.Text;
 
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 public class ParameterMenuView extends GenericView{

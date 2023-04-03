@@ -1,4 +1,4 @@
-package games.project.pong.view;
+package games.project.prehispong.view;
 
 
 import games.project.metier.entite.Score;
@@ -6,8 +6,6 @@ import games.project.metier.manager.ScoreManager;
 import games.project.stockage.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
