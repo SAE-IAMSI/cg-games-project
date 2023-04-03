@@ -73,7 +73,6 @@ public class LeftPanel extends JPanel {
      * Met à jour le nombre de vies
      */
     public void updateLives() {
-        System.out.println(lives);
         if (lives == 2) {
             remove(live3);
             livesLabel.setText("Vie(s): 2");

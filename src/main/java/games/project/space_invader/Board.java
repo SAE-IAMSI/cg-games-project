@@ -74,7 +74,7 @@ public class Board extends JPanel {
     /**
      * Initialise le jeu
      */
-    private void gameInit() {
+    void gameInit() {
         aliens = new ArrayList<>();
 
         for (int i = 0; i < 6; i++) {
