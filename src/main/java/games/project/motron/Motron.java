@@ -5,6 +5,7 @@ import games.project.motron.metier.manager.ScoreManager;
 import games.project.motron.metier.manager.ScorePartieManager;
 import games.project.motron.view.VueJeu;
 import games.project.motron.view.VueMoto;
+import games.project.parametres.Parametres;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
@@ -29,7 +30,7 @@ public class Motron extends Application {
     private int numManche = 1;
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(Parametres.class, args);
     }
 
     @Override
