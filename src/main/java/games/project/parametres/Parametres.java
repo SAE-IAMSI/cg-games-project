@@ -5,7 +5,9 @@ import games.project.motron.Motron;
 import games.project.parametres.controller.ControllerFXML;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.File;

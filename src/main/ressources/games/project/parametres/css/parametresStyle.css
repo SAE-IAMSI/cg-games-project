@@ -37,11 +37,23 @@
     -fx-border-color: #56a3f3;
 }
 
-.label{
+#CGGamesTitle{
     -fx-font-family: 'Orbitron', sans-serif;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
     -fx-font-size: 50px;
+}
+
+.label{
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}
+
+.labelBarMenu:hover{
+    -fx-text-fill: linear-gradient(#56a3f3, #9f00cb);
+    -fx-cursor:hand;
 }
 
 .buttonPane{
@@ -56,7 +68,7 @@
 }
 
 .scroll-bar:vertical .thumb {
-    -fx-background-color: linear-gradient(#56a3f3, #9f00cb);;
+    -fx-background-color: linear-gradient(#56a3f3, #9f00cb);
     -fx-background-radius: 5em;
 }
 
