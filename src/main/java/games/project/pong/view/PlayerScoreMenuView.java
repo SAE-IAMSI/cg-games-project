@@ -1,8 +1,9 @@
 package games.project.pong.view;
 
-import games.project.koala_rock.Stockage.Session;
+
 import games.project.metier.entite.Score;
 import games.project.metier.manager.ScoreManager;
+import games.project.stockage.Session;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
