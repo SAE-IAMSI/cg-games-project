@@ -17,6 +17,9 @@ module games.project.launcher {
     exports games.project.pong.view;
     exports games.project.pong.model;
     exports games.project.pong to javafx.graphics;
+    exports games.project.space_invader;
+    exports games.project.pong.metier;
+    opens games.project.pong.pdf to javafx.controls;
     opens games.project.pong.view to javafx.fxml;
 
     exports games.project.casse_briques;
@@ -35,6 +38,5 @@ module games.project.launcher {
     opens games.project.statitisques.controller to javafx.fxml;
     exports games.project.statitisques.views;
 
-    exports games.project.space_invader;
-    exports games.project.pong.metier;
+
 }

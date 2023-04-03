@@ -1,6 +1,4 @@
 package games.project.pong.view;
-
-import games.project.casse_briques.BrickBreakerApplication;
 import games.project.pong.MainPong;
 import games.project.pong.controller.GameController;
 import javafx.fxml.FXML;
@@ -8,7 +6,6 @@ import javafx.fxml.FXML;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 
 public class StartMenuView extends GenericView {
@@ -29,6 +26,10 @@ public class StartMenuView extends GenericView {
     }
 
     @FXML
+    private void clickScore(){
+        gameController.displayScreen(new ScoreMenuView());
+    }
+    @FXML
     private void parameter() {
         gameController.removeScreen(this);
         gameController.displayScreen(new ParameterMenuView());
@@ -36,9 +37,9 @@ public class StartMenuView extends GenericView {
 
     @FXML
     private void clickCGU() {
-        /*try {
+        try {
             if(Desktop.isDesktopSupported()){
-                File file = new File(MainPong.class.getClassLoader().getResourceAsStream("pdf/CGU.pdf").toString());
+                File file = new File(MainPong.class.getResource("pdf/CGU.pdf").toExternalForm());
                 Desktop.getDesktop().open(file);
             }
             else{
@@ -46,6 +47,6 @@ public class StartMenuView extends GenericView {
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }*/
+        }
     }
 }
