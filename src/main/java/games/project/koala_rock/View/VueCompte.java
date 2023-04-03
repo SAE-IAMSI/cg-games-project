@@ -5,7 +5,7 @@ import games.project.koala_rock.Metier.manager.PlayerManager;
 import games.project.koala_rock.Metier.manager.ScoreManager;
 import games.project.koala_rock.Model.Fond;
 import games.project.koala_rock.RessourcesAccess;
-import games.project.koala_rock.Stockage.Session;
+import games.project.stockage.Session;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
