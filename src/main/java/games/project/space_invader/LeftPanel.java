@@ -47,7 +47,7 @@ public class LeftPanel extends JPanel {
      */
     private void initLives() {
         livesLabel = new JLabel();
-        livesLabel.setText("Vie(s):");
+        livesLabel.setText("Vie(s): 3");
         livesLabel.setFont(new Font("Arial", Font.BOLD, 30));
         livesLabel.setForeground(Color.WHITE);
         livesLabel.setPreferredSize(new Dimension(150, 30));
@@ -76,9 +76,11 @@ public class LeftPanel extends JPanel {
         System.out.println(lives);
         if (lives == 2) {
             remove(live3);
+            livesLabel.setText("Vie(s): 2");
         } else if (lives == 1) {
             remove(live2);
             remove(live3);
+            livesLabel.setText("Vie(s): 1");
         }
     }
 
