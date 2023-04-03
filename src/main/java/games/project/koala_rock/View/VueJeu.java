@@ -4,7 +4,7 @@ import games.project.koala_rock.Metier.manager.ScoreManager;
 import games.project.koala_rock.Model.*;
 import games.project.koala_rock.RessourcesAccess;
 import games.project.koala_rock.Sound.Son;
-import games.project.koala_rock.Stockage.Session;
+import games.project.stockage.Session;
 import javafx.animation.*;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.LongProperty;
