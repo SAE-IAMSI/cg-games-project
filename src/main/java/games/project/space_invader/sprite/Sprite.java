@@ -28,7 +28,7 @@ public class Sprite {
 
     /**
      * Désinit la visibilité
-     * @return
+     * @return visible
      */
     public boolean isVisible() {
         return visible;
@@ -36,15 +36,15 @@ public class Sprite {
 
     /**
      * Redéfinit la visibilité
-     * @param visible
+     * @param visible boolean
      */
-    protected void setVisible(boolean visible) {
+    public void setVisible(boolean visible) {
         this.visible = visible;
     }
 
     /**
      * Définit l'image
-     * @param image
+     * @param image Image
      */
     public void setImage(Image image) {
         this.image = image;
@@ -52,7 +52,7 @@ public class Sprite {
 
     /**
      * Récupère l'image
-     * @return
+     * @return image
      */
     public Image getImage() {
         return image;
@@ -60,7 +60,7 @@ public class Sprite {
 
     /**
      * Définit la position en x
-     * @param x
+     * @param x int
      */
     public void setX(int x) {
         this.x = x;
@@ -68,7 +68,7 @@ public class Sprite {
 
     /**
      * Définit la position en y
-     * @param y
+     * @param y int
      */
     public void setY(int y) {
         this.y = y;
@@ -90,7 +90,7 @@ public class Sprite {
 
     /**
      * Définit la mort
-     * @param dying
+     * @param dying boolean
      */
     public void setDying(boolean dying) {
         this.dying = dying;
@@ -98,7 +98,7 @@ public class Sprite {
 
     /**
      * Retourne la mort
-     * @return
+     * @return dying
      */
     public boolean isDying() {
         return this.dying;

@@ -45,9 +45,9 @@ public class Board extends JPanel {
     /**
      * constructeur de la classe Board
      *
-     * @param rightPanel
-     * @param leftPanel
-     * @param game
+     * @param rightPanel panel de droite
+     * @param leftPanel panel de gauche
+     * @param game instance de SpaceInvaders
      */
     public Board(RightPanel rightPanel, LeftPanel leftPanel, SpaceInvaders game) {
         initBoard();
@@ -93,7 +93,7 @@ public class Board extends JPanel {
     /**
      * Dessine les aliens
      *
-     * @param g
+     * @param g Graphics
      */
     private void drawAliens(Graphics g) {
         for (Alien alien : aliens) {
@@ -109,7 +109,7 @@ public class Board extends JPanel {
     /**
      * Dessine le joueur
      *
-     * @param g
+     * @param g Graphics
      */
     private void drawPlayer(Graphics g) {
 
@@ -125,7 +125,7 @@ public class Board extends JPanel {
     /**
      * Dessine le tir
      *
-     * @param g
+     * @param g Graphics
      */
     private void drawShot(Graphics g) {
         if (shot.isVisible()) {
@@ -136,7 +136,7 @@ public class Board extends JPanel {
     /**
      * Dessine les bombes
      *
-     * @param g
+     * @param g Graphics
      */
     private void drawBombing(Graphics g) {
         for (Alien a : aliens) {
@@ -161,7 +161,7 @@ public class Board extends JPanel {
     /**
      * Dessine le plateau de jeu
      *
-     * @param g
+     * @param g Graphics
      */
     private void doDrawing(Graphics g) {
         g.setColor(Color.black);
@@ -187,7 +187,7 @@ public class Board extends JPanel {
     /**
      * Affiche le message de fin de partie
      *
-     * @param g
+     * @param g Graphics
      */
     private void gameOver(Graphics g) {
         g.setColor(Color.black);
@@ -217,7 +217,7 @@ public class Board extends JPanel {
     /**
      * Met à jour le plateau de jeu
      */
-    private void update() {
+    void update() {
 
         if (deaths == Commons.NUMBER_OF_ALIENS_TO_DESTROY) {
             if (game instanceof SpaceInvadersInfinite) {
@@ -409,5 +409,8 @@ public class Board extends JPanel {
                 }
             }
         }
+    }
+    public List<Alien> getAliens() {
+        return aliens;
     }
 }

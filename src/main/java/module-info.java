@@ -41,6 +41,7 @@ module games.project.launcher {
     exports games.project.statistiques.views;
 
     exports games.project.space_invader;
+    exports games.project.space_invader.sprite;
     
     exports games.project.parametres.controller;
 }
