@@ -22,23 +22,21 @@ public class PlayerManager {
         return instance;
     }
 
-    public void createPlayer(String login, String department, String password, boolean isAdmin) {
+    public void createPlayer(String login, String department, String password) {
         AuthPlayer p = new AuthPlayer(login);
         byte[] salt = Security.getSalt();
         p.setSalt(salt);
         p.setPassword(password);
         p.setDepartment(department);
-        p.setAdmin(isAdmin);
         stockage.create(p);
     }
 
-    public void updatePlayer(String login, String department, String password, boolean isAdmin) {
+    public void updatePlayer(String login, String department, String password) {
         AuthPlayer p = stockage.getByLogin(login);
         byte[] salt = Security.getSalt();
         p.setSalt(salt);
         p.setPassword(password);
         p.setDepartment(department);
-        p.setAdmin(isAdmin);
         stockage.update(p);
     }
 

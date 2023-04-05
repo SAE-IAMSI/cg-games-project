@@ -44,11 +44,12 @@ public class StockageScoreDatabase {
     public void deleteByLogin(String login) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "DELETE FROM SCORES WHERE login = ?";
+        String req = "DELETE FROM SCORES WHERE login = ? AND codeJeu = ?";
         try (
                 PreparedStatement st = connection.prepareStatement(req)
         ) {
             st.setString(1, login);
+            st.setString(2, "CB");
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -83,8 +84,7 @@ public class StockageScoreDatabase {
                     int scoreValue = result.getInt("score");
                     Timestamp time = result.getTimestamp("horodatage");
                     String login = result.getString("login");
-                    String gameCode = result.getString("codeJeu");
-                    score = new Score(scoreValue, time, gameCode);
+                    score = new Score(scoreValue, time);
                     score.setId(id);
                     score.setLogin(login);
                 }
@@ -110,9 +110,10 @@ public class StockageScoreDatabase {
                     int scoreValue = result.getInt("score");
                     Timestamp time = result.getTimestamp("horodatage");
                     int id = result.getInt("codeScore");
-                    score = new Score(scoreValue, time, gameCode);
+                    score = new Score(scoreValue, time);
                     score.setId(id);
                     score.setLogin(login);
+                    score.setGameCode(gameCode);
                 }
             }
         } catch (SQLException e) {
@@ -125,18 +126,18 @@ public class StockageScoreDatabase {
         List<Score> scoresList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES WHERE login = ? ORDER BY score DESC";
+        String req = "SELECT * FROM SCORES WHERE login = ? AND codeJeu = ? ORDER BY score DESC";
         try (
                 PreparedStatement st = connection.prepareStatement(req)
         ) {
             st.setString(1, login);
+            st.setString(2, "CB");
             try (ResultSet result = st.executeQuery()) {
                 while (result.next()) {
                     int id = result.getInt("codeScore");
                     int scoreValue = result.getInt("score");
                     Timestamp time = result.getTimestamp("horodatage");
-                    String gameCode = result.getString("codeJeu");
-                    Score score = new Score(scoreValue, time, gameCode);
+                    Score score = new Score(scoreValue, time);
                     score.setId(id);
                     score.setLogin(login);
                     scoresList.add(score);
@@ -163,9 +164,10 @@ public class StockageScoreDatabase {
                     int id = result.getInt("codeScore");
                     int scoreValue = result.getInt("score");
                     Timestamp time = result.getTimestamp("horodatage");
-                    Score score = new Score(scoreValue, time, gameCode);
+                    Score score = new Score(scoreValue, time);
                     score.setId(id);
                     score.setLogin(login);
+                    score.setGameCode(gameCode);
                     scoreList.add(score);
                 }
             }
@@ -179,21 +181,22 @@ public class StockageScoreDatabase {
         List<Score> scoreList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM SCORES";
+        String req = "SELECT * FROM SCORES WHERE codeJeu = ?";
         try (
-                PreparedStatement st = connection.prepareStatement(req);
-                ResultSet result = st.executeQuery();
+                PreparedStatement st = connection.prepareStatement(req)
         ) {
-            while (result.next()) {
-                int id = result.getInt("codeScore");
-                int scoreValue = result.getInt("score");
-                Timestamp time = result.getTimestamp("horodatage");
-                String login = result.getString("login");
-                String gameCode = result.getString("codeJeu");
-                Score score = new Score(scoreValue, time, gameCode);
-                score.setId(id);
-                score.setLogin(login);
-                scoreList.add(score);
+            st.setString(1, "CB");
+            try (ResultSet result = st.executeQuery()) {
+                while (result.next()) {
+                    int id = result.getInt("codeScore");
+                    int scoreValue = result.getInt("score");
+                    Timestamp time = result.getTimestamp("horodatage");
+                    String login = result.getString("login");
+                    Score score = new Score(scoreValue, time);
+                    score.setId(id);
+                    score.setLogin(login);
+                    scoreList.add(score);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -216,9 +219,10 @@ public class StockageScoreDatabase {
                     int scoreValue = result.getInt("score");
                     Timestamp time = result.getTimestamp("horodatage");
                     String login = result.getString("login");
-                    Score score = new Score(scoreValue, time, gameCode);
+                    Score score = new Score(scoreValue, time);
                     score.setId(id);
                     score.setLogin(login);
+                    score.setGameCode(gameCode);
                     scoreList.add(score);
                 }
             }
@@ -228,7 +232,7 @@ public class StockageScoreDatabase {
         return scoreList;
     }
 
-    public List<Score> getLeaderboard(String gameCode) {
+    public List<Score> getLeaderboard() {
         List<Score> scoreList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
@@ -236,14 +240,14 @@ public class StockageScoreDatabase {
         try (
                 PreparedStatement st = connection.prepareStatement(req)
         ) {
-            st.setString(1, gameCode);
+            st.setString(1, "CB");
             try (ResultSet result = st.executeQuery()) {
                 while (result.next()) {
                     int id = result.getInt("codeScore");
                     int scoreValue = result.getInt("score");
                     Timestamp time = result.getTimestamp("horodatage");
                     String login = result.getString("login");
-                    Score score = new Score(scoreValue, time, gameCode);
+                    Score score = new Score(scoreValue, time);
                     score.setId(id);
                     score.setLogin(login);
                     scoreList.add(score);

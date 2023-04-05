@@ -101,7 +101,7 @@ public class ViewEditPlayerProfile extends Pane {
                 errorText.setVisible(true);
                 oldPassword.clear();
             } else {
-                PlayerManager.getInstance().updatePlayer(login, dep, nP, false);
+                PlayerManager.getInstance().updatePlayer(login, dep, nP);
                 brickBreakerController.getChildren().remove(this);
                 gameMenuController.showBtStartMenuConnected();
             }

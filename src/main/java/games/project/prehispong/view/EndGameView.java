@@ -1,6 +1,6 @@
-package games.project.pong.view;
+package games.project.prehispong.view;
 
-import games.project.pong.controller.GameController;
+import games.project.prehispong.controller.GameController;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
@@ -8,16 +8,15 @@ public class EndGameView extends GenericView{
 
     @FXML
     public Text title;
-    private GameController gameController = GameController.getInstance();
-    public EndGameView(String winner) {
-        super("EndGame.fxml");
+    public EndGameView(String winner,GameController controller) {
+        super("EndGame.fxml",controller);
         title.setText("Le joueur : "+winner+" à remporté la partie");
     }
 
     @FXML
     private void menu(){
         gameController.removeScreen(this);
-        gameController.displayScreen(new StartMenuView());
+        gameController.displayScreen(new StartMenuView(gameController));
     }
     @FXML
     private void replay(){

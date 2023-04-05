@@ -40,7 +40,7 @@ public class ViewParameters extends Pane {
 
     public ViewParameters(BrickBreakerController brickBreakerController) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Parameters.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ParameterMenu.fxml"));
             loader.setRoot(this);
             loader.setController(this);
             loader.load();

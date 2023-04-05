@@ -1,18 +1,13 @@
-package games.project.pong.view;
+package games.project.prehispong.view;
 
-import games.project.Launcher;
 import games.project.metier.entite.AuthPlayer;
-import games.project.metier.entite.Player;
 import games.project.metier.manager.PlayerManager;
-import games.project.pong.controller.GameController;
+import games.project.prehispong.controller.GameController;
 import games.project.stockage.Security;
 import games.project.stockage.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.w3c.dom.Text;
 
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 public class ParameterMenuView extends GenericView{
@@ -43,8 +38,8 @@ private Session session = Session.getInstance();
 private PlayerManager manager = PlayerManager.getInstance();
 
 
-    public ParameterMenuView() {
-        super("ParameterMenu.fxml");
+    public ParameterMenuView(GameController controller) {
+        super("ParameterMenu.fxml",controller);
         Map<String, String> departments = PlayerManager.getInstance().getDepartments();
         for (String key : departments.keySet()) {
             String field = key + " - " + departments.get(key);
@@ -63,21 +58,19 @@ private PlayerManager manager = PlayerManager.getInstance();
 
 
     private void connectPlayer(){
-        GameController gameController = GameController.getInstance();
-        gameController.getPlayer1().setNom(Session.getInstance().getLogin());
-        gameController.p1.setText(gameController.getPlayer1().getNom());
+        gameController.getPlayer1().setName(Session.getInstance().getLogin());
+        gameController.p1.setText(gameController.getPlayer1().getName());
     }
     private void disconnectPlayer(){
-        GameController gameController = GameController.getInstance();
-        gameController.getPlayer1().setNom("p1");
-        gameController.p1.setText(gameController.getPlayer1().getNom());
+        gameController.getPlayer1().setName("p1");
+        gameController.p1.setText(gameController.getPlayer1().getName());
     }
 
 
     @FXML
     private void back(){
         gameController.removeScreen(this);
-        gameController.displayScreen(new StartMenuView());
+        gameController.displayScreen(new StartMenuView(gameController));
     }
 
     @FXML
@@ -139,7 +132,7 @@ private PlayerManager manager = PlayerManager.getInstance();
 
         if(!idRegister.getText().equals("") && !passwordRegister.getText().equals("") && !confirmRegister.getText().equals("") && !dep.equals("")){
             if(passwordRegister.getText().equals(confirmRegister.getText())){
-                PlayerManager.getInstance().createPlayer(idRegister.getText(), dep, passwordRegister.getText(), false);
+                PlayerManager.getInstance().createPlayer(idRegister.getText(), dep, passwordRegister.getText());
                 infoRegister.setText("Joueur '"+idRegister.getText()+"' enregister !");
                 passwordRegister.setText("");
                 confirmRegister.setText("");

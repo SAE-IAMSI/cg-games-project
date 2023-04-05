@@ -9,18 +9,16 @@ public class AuthPlayer extends Player {
     private String department;
     private String hashedPassword;
     private byte[] salt;
-    private boolean isAdmin;
 
     public AuthPlayer(String login) {
         super(login);
     }
 
-    public AuthPlayer(String login, String department, String hashedPassword, byte[] salt, boolean isAdmin) {
+    public AuthPlayer(String login, String department, String hashedPassword, byte[] salt) {
         this(login);
         this.department = department;
         this.salt = salt;
         this.hashedPassword = hashedPassword;
-        this.isAdmin = isAdmin;
     }
 
     public String getLogin() {
@@ -28,7 +26,7 @@ public class AuthPlayer extends Player {
     }
 
     public void setLogin(String login) {
-        super.setName(login);
+        this.setName(login);
     }
 
     public String getHashedPassword() {
@@ -66,13 +64,5 @@ public class AuthPlayer extends Player {
 
     public void setDepartment(String department) {
         this.department = department;
-    }
-
-    public boolean isAdmin() {
-        return isAdmin;
-    }
-
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
     }
 }

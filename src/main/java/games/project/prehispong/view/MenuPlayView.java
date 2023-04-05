@@ -1,10 +1,11 @@
-package games.project.pong.view;
+package games.project.prehispong.view;
 
+import games.project.prehispong.controller.GameController;
 import javafx.fxml.FXML;
 
 public class MenuPlayView extends GenericView {
-    public MenuPlayView() {
-        super("MenuPlayView.fxml");
+    public MenuPlayView(GameController controller) {
+        super("MenuPlayView.fxml",controller);
     }
 
     @FXML
@@ -17,12 +18,12 @@ public class MenuPlayView extends GenericView {
     @FXML
     private void pvi(){
         gameController.removeScreen(this);
-        gameController.displayScreen(new DifficultyMenuView());
+        gameController.displayScreen(new DifficultyMenuView(gameController));
     }
 
     @FXML
     private void back(){
         gameController.removeScreen(this);
-        gameController.displayScreen(new StartMenuView());
+        gameController.displayScreen(new StartMenuView(gameController));
     }
 }

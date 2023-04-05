@@ -1,8 +1,7 @@
-package games.project.pong.model;
+package games.project.prehispong.model;
 
-import games.project.pong.MainPong;
+import games.project.prehispong.MainPong;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
