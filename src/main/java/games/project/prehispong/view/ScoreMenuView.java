@@ -22,7 +22,7 @@ public class ScoreMenuView extends GenericView {
     public ScoreMenuView(GameController controller) {
         super("ScoreMenu.fxml", controller);
         textScore.setText("");
-        //initScoreByGame("PONG");
+        initScoreByGame("PONG");
         playerScoreBt.setDisable(!Session.getInstance().isConnected());
     }
 

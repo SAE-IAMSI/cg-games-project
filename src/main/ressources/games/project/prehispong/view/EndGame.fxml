@@ -19,9 +19,14 @@
             <Image url="@../textures/classic.png" />
          </image>
       </ImageView>
-      <Button layoutX="611.0" layoutY="267.0" mnemonicParsing="false" onAction="#replay" prefHeight="25.0" prefWidth="95.0" text="Rejouer" />
-      <Button layoutX="611.0" layoutY="402.0" mnemonicParsing="false" onAction="#menu" text="Menu Principal" />
-      <Text fx:id="title" fill="WHITE" layoutX="34.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="1212.13671875">
+      <Button layoutX="593.0" layoutY="258.0" mnemonicParsing="false" onAction="#replay" prefHeight="25.0" prefWidth="95.0" text="Rejouer" />
+      <Button layoutX="593.0" layoutY="392.0" mnemonicParsing="false" onAction="#menu" text="Menu Principal" />
+      <Text fx:id="title" fill="WHITE" layoutX="32.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="1212.13671875">
+         <font>
+            <Font name="Arial" size="40.0" />
+         </font>
+      </Text>
+      <Text fx:id="score" fill="WHITE" layoutX="70.0" layoutY="601.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="1142.0">
          <font>
             <Font name="Arial" size="40.0" />
          </font>

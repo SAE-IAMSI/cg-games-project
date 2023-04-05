@@ -8,10 +8,22 @@ public class EndGameView extends GenericView {
 
     @FXML
     public Text title;
+    @FXML
+    public Text score;
 
+    public EndGameView(String winner,int score, GameController controller) {
+        super("EndGame.fxml", controller);
+        if(score>=0){
+            title.setText("Le joueur '" + winner + "' à remporté la partie");
+            this.score.setText("Score : "+score);
+        }
+        else{
+            title.setText("Vous avez perdu !");
+        }
+    }
     public EndGameView(String winner, GameController controller) {
         super("EndGame.fxml", controller);
-        title.setText("Le joueur : " + winner + " à remporté la partie");
+        title.setText("Le joueur '" + winner + "' à remporté la partie");
     }
 
     @FXML

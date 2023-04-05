@@ -27,7 +27,7 @@
       </Text>
       <Button layoutX="474.0" layoutY="337.0" mnemonicParsing="false" onAction="#normal" prefHeight="45.0" prefWidth="110.0" text="Normal" />
       <Button layoutX="677.0" layoutY="337.0" mnemonicParsing="false" onAction="#hard" prefHeight="45.0" prefWidth="110.0" text="Difficile" />
-      <Button layoutX="898.0" layoutY="337.0" mnemonicParsing="false" onAction="#training" prefHeight="45.0" prefWidth="110.0" text="Entrainement" />
+      <Button layoutX="898.0" layoutY="337.0" mnemonicParsing="false" onAction="#training" prefHeight="45.0" prefWidth="110.0" text="Survie" />
       <Button layoutX="584.0" layoutY="528.0" mnemonicParsing="false" onAction="#back" prefHeight="45.0" prefWidth="110.0" text="Retour" />
 
    </children>
