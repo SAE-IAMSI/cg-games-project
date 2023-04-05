@@ -7,14 +7,17 @@ import games.project.motron.stockage.sql.StockageScorePartieDatabase;
 public class ScorePartieManager {
 
     private static ScorePartieManager instance = null;
-    private static StockageScorePartieDatabase stockage = new StockageScorePartieDatabase();
-    private ScorePartieManager() {}
+    private static final StockageScorePartieDatabase stockage = new StockageScorePartieDatabase();
+
+    private ScorePartieManager() {
+    }
+
     public static ScorePartieManager getInstance() {
-        if (instance ==null) instance = new ScorePartieManager();
+        if (instance == null) instance = new ScorePartieManager();
         return instance;
     }
 
-    public void createScorePartie(int codeScore, int kill, int death, int nbBlocs,  String resultat){
+    public void createScorePartie(int codeScore, int kill, int death, int nbBlocs, String resultat) {
         ScorePartie s = new ScorePartie(codeScore, kill, death, nbBlocs, resultat);
         stockage.create(s);
     }

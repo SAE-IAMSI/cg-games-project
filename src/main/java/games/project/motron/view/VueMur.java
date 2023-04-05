@@ -6,13 +6,13 @@ import javafx.scene.shape.Rectangle;
 import java.util.ArrayList;
 
 public class VueMur {
-    private ArrayList<Rectangle> listeMur;
+    private final ArrayList<Rectangle> listeMur;
     private final int tailleMur = 20;
     private int nbMurs;
-    
+
     private static Color couleurMurs = Color.ALICEBLUE;
 
-    public VueMur(){
+    public VueMur() {
         listeMur = new ArrayList<>();
         nbMurs = 0;
     }
@@ -20,8 +20,8 @@ public class VueMur {
     public void dessinerArene(VueArene vueArene, int[][] matriceMurs) {
         vueArene.setMapHeight(matriceMurs.length * tailleMur);
         vueArene.setMapWidth(matriceMurs[0].length * tailleMur);
-        for (int y = 0; y<matriceMurs.length; y++){
-            for (int x = 0; x< matriceMurs[0].length; x++){
+        for (int y = 0; y < matriceMurs.length; y++) {
+            for (int x = 0; x < matriceMurs[0].length; x++) {
 
                 if (matriceMurs[y][x] == 1) {
                     Rectangle mur = new Rectangle(x * tailleMur, y * tailleMur, tailleMur, tailleMur);
@@ -34,7 +34,6 @@ public class VueMur {
             }
         }
     }
-
 
 
     public void dessinerBordures(VueArene vueArene) {
@@ -92,6 +91,7 @@ public class VueMur {
         }
 
     }
+
     public ArrayList<Rectangle> getMurList() {
         return listeMur;
     }

@@ -11,7 +11,7 @@ public class Score {
     private IntegerProperty score;
     private Timestamp horodatage;
     private String login;
-    private static String gameCode = "TRON";
+    private static final String gameCode = "TRON";
 
     public Score() {
         this.score = new SimpleIntegerProperty(0);

@@ -5,7 +5,7 @@ public class Jeu {
     private String libelle;
     private String path;
 
-    public Jeu(String code){
+    public Jeu(String code) {
         this.code = code;
     }
 

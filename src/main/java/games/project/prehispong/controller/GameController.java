@@ -1,7 +1,6 @@
 package games.project.prehispong.controller;
 
 import games.project.metier.entite.Player;
-import games.project.metier.manager.ScoreManager;
 import games.project.prehispong.model.Ball;
 import games.project.prehispong.model.Chronometer;
 import games.project.prehispong.model.Racket;
@@ -25,7 +24,7 @@ import javafx.util.Duration;
 
 import java.util.*;
 
-public class GameController extends GenericView{
+public class GameController extends GenericView {
 
 
     @FXML
@@ -55,13 +54,15 @@ public class GameController extends GenericView{
     private Timeline timeline;
     private Player player1;
     private Player player2;
-    /** True quand le joueur a le focus sur l'écran de jeu, False sinon  **/
+    /**
+     * True quand le joueur a le focus sur l'écran de jeu, False sinon
+     **/
     private boolean gameState = false;
     private int difficulty = 0; // 0, 1, 2 ou 3
     private String gamemode = ""; //Ancienne instance de jeu
 
     public GameController(GameController controller) { /** **/
-        super("Game.fxml",controller);
+        super("Game.fxml", controller);
         initGame();
         limitR.setVisible(false);
         limitL.setVisible(false);
@@ -71,56 +72,59 @@ public class GameController extends GenericView{
     public void run() {
         resetScore();
         setGamemode("PVP");
-            this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
-                ball.hitboxWall(topBar);
-                ball.hitboxWall(bottomBar);
-                hitboxLimit();
-                ball.moveBall();
-                racketPlayer1.hitboxRacket(ball);
-                racketPlayer2.hitboxRacket(ball);
-                checkEndCondition();
+        this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
+            ball.hitboxWall(topBar);
+            ball.hitboxWall(bottomBar);
+            hitboxLimit();
+            ball.moveBall();
+            racketPlayer1.hitboxRacket(ball);
+            racketPlayer2.hitboxRacket(ball);
+            checkEndCondition();
 
-            }));
-            timeline.setCycleCount(Animation.INDEFINITE);
-            listenerKeyboard();
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        listenerKeyboard();
     }
 
-    public void run(int difficulty){
+    public void run(int difficulty) {
         resetScore();
         setDifficulty(difficulty);
         setGamemode("IA");
 
-        if(difficulty==3){ //INIT Timer mode survie
+        if (difficulty == 3) { //INIT Timer mode survie
             Chronometer chronometer = new Chronometer();
             chronometer.initChrono();
             chronometer.launch();
         }
 
-            this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
-                ball.hitboxWall(topBar);
-                ball.hitboxWall(bottomBar);
-                hitboxLimit();
-                ball.moveBall();
-                racketAI(racketPlayer2,ball,difficulty);
-                racketPlayer2.hitboxRacket(ball);
-                racketPlayer1.hitboxRacket(ball);
-                if(!(difficulty == 3)){checkEndCondition();}
-                else{
+        this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
+            ball.hitboxWall(topBar);
+            ball.hitboxWall(bottomBar);
+            hitboxLimit();
+            ball.moveBall();
+            racketAI(racketPlayer2, ball, difficulty);
+            racketPlayer2.hitboxRacket(ball);
+            racketPlayer1.hitboxRacket(ball);
+            if (!(difficulty == 3)) {
+                checkEndCondition();
+            } else {
 
-                }
-            }));
-            timeline.setCycleCount(Animation.INDEFINITE);
-            listenerMouse();
+            }
+        }));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        listenerMouse();
     }
 
-    /** Crée et Ajoute les éléments de base **/
-    private void initGame(){
-        this.ball = new Ball(640,360,20,-10,8);
-        this.racketPlayer1 = new Racket(66,308,50,105,0);
-        this.racketPlayer2 = new Racket(1190,308,50,105,1);
+    /**
+     * Crée et Ajoute les éléments de base
+     **/
+    private void initGame() {
+        this.ball = new Ball(640, 360, 20, -10, 8);
+        this.racketPlayer1 = new Racket(66, 308, 50, 105, 0);
+        this.racketPlayer2 = new Racket(1190, 308, 50, 105, 1);
 
-        player1 = new Player("p1",0);
-        player2 = new Player("p2",0);
+        // player1 = new Player("p1",0);
+        // player2 = new Player("p2",0);
         player1.getScore().setGameCode("PONG");
         player2.getScore().setGameCode("PONG");
         p1.setText(player1.getName());
@@ -134,27 +138,29 @@ public class GameController extends GenericView{
         this.getChildren().add(racketPlayer1);
     }
 
-    /** Reset le positionnement de tous les éléments **/
-    public void resetPos(){
-        this.ball.setPos(640,360);
-        this.racketPlayer2.setPos(1190,308);
-        this.racketPlayer1.setPos(66,308);
+    /**
+     * Reset le positionnement de tous les éléments
+     **/
+    public void resetPos() {
+        this.ball.setPos(640, 360);
+        this.racketPlayer2.setPos(1190, 308);
+        this.racketPlayer1.setPos(66, 308);
     }
 
-    private void resetScore(){
+    private void resetScore() {
         player1.getScore().setScore(0);
         player2.getScore().setScore(0);
     }
-    public void hitboxLimit(){
-        if(this.limitL.getBoundsInParent().intersects(this.ball.getBoundsInParent())){
-            player2.getScore().setScore(player2.getScore().scoreProperty().getValue()+1);
+
+    public void hitboxLimit() {
+        if (this.limitL.getBoundsInParent().intersects(this.ball.getBoundsInParent())) {
+            player2.getScore().setScore(player2.getScore().scoreProperty().getValue() + 1);
             endLoop();
             resetPos();
             ball.resetMoveSpeed();
             //ajouter score p1
-        }
-        else if(this.limitR.getBoundsInParent().intersects(this.ball.getBoundsInParent())){
-            player1.getScore().setScore(player1.getScore().scoreProperty().getValue()+1);
+        } else if (this.limitR.getBoundsInParent().intersects(this.ball.getBoundsInParent())) {
+            player1.getScore().setScore(player1.getScore().scoreProperty().getValue() + 1);
             endLoop();
             resetPos();
             ball.resetMoveSpeed();
@@ -162,88 +168,90 @@ public class GameController extends GenericView{
         }
     }
 
-    public void registerScore(){
-        if(Session.getInstance().isConnected()){
-            ScoreManager.getInstance().createScore(player1.getScore().getScore(),Session.getInstance().getLogin());
-        }
-    }
-    private void checkEndCondition(){
-        if(player1.getScore().scoreProperty().getValue().equals(5)){
-            resetScore();
-            endLoop();
-            displayScreen(new EndGameView(player1.getName(),this));
-        }
-        else if(player2.getScore().scoreProperty().getValue().equals(5)){
-            resetScore();
-            endLoop();
-            displayScreen(new EndGameView(player2.getName(),this));
+    public void registerScore() {
+        if (Session.getInstance().isConnected()) {
+            // ScoreManager.getInstance().createScore(player1.getScore().getScore(),Session.getInstance().getLogin());
         }
     }
 
-    private void checkEndConditionSurvival(){
-        if(player1.getScore().scoreProperty().getValue()>=1){
+    private void checkEndCondition() {
+        if (player1.getScore().scoreProperty().getValue().equals(5)) {
+            resetScore();
+            endLoop();
+            displayScreen(new EndGameView(player1.getName(), this));
+        } else if (player2.getScore().scoreProperty().getValue().equals(5)) {
+            resetScore();
+            endLoop();
+            displayScreen(new EndGameView(player2.getName(), this));
+        }
+    }
+
+    private void checkEndConditionSurvival() {
+        if (player1.getScore().scoreProperty().getValue() >= 1) {
             resetScore();
             endLoop();
         }
     }
 
-    public void displayScreen(GenericView genericView){
+    public void displayScreen(GenericView genericView) {
         this.getChildren().add(genericView);
     }
-    public void removeScreen(GenericView genericView){
+
+    public void removeScreen(GenericView genericView) {
         this.getChildren().remove(genericView);
     }
 
-    public void listener(){
-        this.getScene().setOnKeyPressed((KeyEvent event)->{
-            if(event.getCode().equals(KeyCode.SPACE) && gameState){
+    public void listener() {
+        this.getScene().setOnKeyPressed((KeyEvent event) -> {
+            if (event.getCode().equals(KeyCode.SPACE) && gameState) {
                 playLoop();
             }
             event.consume();
         });
     }
 
-    public void listenerMouse(){
-        this.getScene().setOnMouseMoved((MouseEvent event)->{
-            if(event.getSceneY()>topBar.getLayoutY() + topBar.getHeight() && event.getSceneY()<bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight()*0.5)){
+    public void listenerMouse() {
+        this.getScene().setOnMouseMoved((MouseEvent event) -> {
+            if (event.getSceneY() > topBar.getLayoutY() + topBar.getHeight() && event.getSceneY() < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight() * 0.5)) {
                 this.racketPlayer1.setLayoutY(event.getSceneY());
             }
             event.consume();
         });
         listener();
-        this.getScene().setOnKeyReleased(keyEvent -> {});
+        this.getScene().setOnKeyReleased(keyEvent -> {
+        });
     }
 
-    public void listenerKeyboard(){
+    public void listenerKeyboard() {
         final List<KeyCode> acceptedCodes = Arrays.asList(KeyCode.Z, KeyCode.S, KeyCode.UP, KeyCode.DOWN);
         final Set<KeyCode> codes = new HashSet<>();
         final int DELAY = 10; // Délai en millisecondes
 
-       Timeline timeline = new Timeline(new KeyFrame(Duration.millis(DELAY), new EventHandler<ActionEvent>() {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(DELAY), new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
-                boolean mvtConditionZ = racketPlayer1.getLayoutY()>topBar.getLayoutY() + topBar.getHeight();
-                boolean mvtConditionS = racketPlayer1.getLayoutY()<bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight()*0.5);
-                boolean mvtConditionUP = racketPlayer2.getLayoutY()>topBar.getLayoutY() + topBar.getHeight();
-                boolean mvtConditionDOWN = racketPlayer2.getLayoutY()<bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer2.getHeight()*0.5);
+                boolean mvtConditionZ = racketPlayer1.getLayoutY() > topBar.getLayoutY() + topBar.getHeight();
+                boolean mvtConditionS = racketPlayer1.getLayoutY() < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight() * 0.5);
+                boolean mvtConditionUP = racketPlayer2.getLayoutY() > topBar.getLayoutY() + topBar.getHeight();
+                boolean mvtConditionDOWN = racketPlayer2.getLayoutY() < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer2.getHeight() * 0.5);
 
                 if (codes.contains(KeyCode.UP)) {
-                    if(mvtConditionUP){
+                    if (mvtConditionUP) {
                         racketPlayer2.moveUp();
                     }
                 }
                 if (codes.contains(KeyCode.DOWN)) {
-                    if(mvtConditionDOWN){
+                    if (mvtConditionDOWN) {
                         racketPlayer2.moveDown();
                     }
                 }
                 if (codes.contains(KeyCode.Z)) {
-                    if(mvtConditionZ){
+                    if (mvtConditionZ) {
                         racketPlayer1.moveUp();
                     }
                 }
                 if (codes.contains(KeyCode.S)) {
-                    if(mvtConditionS){
+                    if (mvtConditionS) {
                         racketPlayer1.moveDown();
                     }
                 }
@@ -266,47 +274,45 @@ public class GameController extends GenericView{
                 playLoop();
             }
         });
-        this.getScene().setOnMouseMoved((MouseEvent event)->{});
+        this.getScene().setOnMouseMoved((MouseEvent event) -> {
+        });
     }
 
 
-    /** Défini le comportement de la raquette en mode IA **/
-    public void racketAI(Racket racket,Ball ball,int mods){
+    /**
+     * Défini le comportement de la raquette en mode IA
+     **/
+    public void racketAI(Racket racket, Ball ball, int mods) {
 
-        double mvt = ball.getLayoutY()-racket.getHeight()/2;
-        int r1 = new Random().nextInt(0,500);
+        double mvt = ball.getLayoutY() - racket.getHeight() / 2;
+        int r1 = new Random().nextInt(0, 500);
 
-        switch (mods){
-            case 0:{ //easy
-                if(r1>100){
-                    if(racket.getLayoutY()<=mvt){
-                        racket.setLayoutY(racket.getLayoutY()+4);
+        switch (mods) {
+            case 0: { //easy
+                if (r1 > 100) {
+                    if (racket.getLayoutY() <= mvt) {
+                        racket.setLayoutY(racket.getLayoutY() + 4);
+                    } else {
+                        racket.setLayoutY(racket.getLayoutY() - 4);
                     }
-                    else{
-                        racket.setLayoutY(racket.getLayoutY()-4);
-                    }
-                }
-                else{
-                    if(racket.getLayoutY()<=mvt){
-                        racket.setLayoutY(racket.getLayoutY()-3);
-                    }
-                    else{
-                        racket.setLayoutY(racket.getLayoutY()+3);
+                } else {
+                    if (racket.getLayoutY() <= mvt) {
+                        racket.setLayoutY(racket.getLayoutY() - 3);
+                    } else {
+                        racket.setLayoutY(racket.getLayoutY() + 3);
                     }
                 }
 
                 break;
             }
-            case 1:{ //normal
-                if(r1>100){
-                    if(racket.getLayoutY()<=mvt){
-                        racket.setLayoutY(racket.getLayoutY()+6);
+            case 1: { //normal
+                if (r1 > 100) {
+                    if (racket.getLayoutY() <= mvt) {
+                        racket.setLayoutY(racket.getLayoutY() + 6);
+                    } else {
+                        racket.setLayoutY(racket.getLayoutY() - 6);
                     }
-                    else{
-                        racket.setLayoutY(racket.getLayoutY()-6);
-                    }
-                }
-                else {
+                } else {
                     if (racket.getLayoutY() <= mvt) {
                         racket.setLayoutY(racket.getLayoutY() - 3);
                     } else {
@@ -315,16 +321,14 @@ public class GameController extends GenericView{
                 }
                 break;
             }
-            case 2:{//hard
-                if(r1>100){
-                    if(racket.getLayoutY()<=mvt){
-                        racket.setLayoutY(racket.getLayoutY()+8);
+            case 2: {//hard
+                if (r1 > 100) {
+                    if (racket.getLayoutY() <= mvt) {
+                        racket.setLayoutY(racket.getLayoutY() + 8);
+                    } else {
+                        racket.setLayoutY(racket.getLayoutY() - 8);
                     }
-                    else{
-                        racket.setLayoutY(racket.getLayoutY()-8);
-                    }
-                }
-                else {
+                } else {
                     if (racket.getLayoutY() <= mvt) {
                         racket.setLayoutY(racket.getLayoutY() - 3);
                     } else {
@@ -334,8 +338,8 @@ public class GameController extends GenericView{
                 break;
             }
 
-            case 3:{ //invincible
-                if(this.topBar.getLayoutY() < mvt - racket.getHeight()*0.5 && this.bottomBar.getLayoutY() > mvt+(racket.getHeight()*0.5 + this.bottomBar.getHeight())){
+            case 3: { //invincible
+                if (this.topBar.getLayoutY() < mvt - racket.getHeight() * 0.5 && this.bottomBar.getLayoutY() > mvt + (racket.getHeight() * 0.5 + this.bottomBar.getHeight())) {
                     racket.setLayoutY(mvt);
                 }
                 break;
@@ -344,32 +348,34 @@ public class GameController extends GenericView{
         }
 
 
-
-        if(this.topBar.getLayoutY() < mvt - racket.getHeight()*0.5 && this.bottomBar.getLayoutY() > mvt+(racket.getHeight()*0.5 + this.bottomBar.getHeight())){
-            if(racket.getLayoutY()+racket.getWidth()*0.5<mvt){ // 8 -
-                racket.setLayoutY(racket.getLayoutY()+8);
-            }
-            else{
-                racket.setLayoutY(racket.getLayoutY()-8);
+        if (this.topBar.getLayoutY() < mvt - racket.getHeight() * 0.5 && this.bottomBar.getLayoutY() > mvt + (racket.getHeight() * 0.5 + this.bottomBar.getHeight())) {
+            if (racket.getLayoutY() + racket.getWidth() * 0.5 < mvt) { // 8 -
+                racket.setLayoutY(racket.getLayoutY() + 8);
+            } else {
+                racket.setLayoutY(racket.getLayoutY() - 8);
             }
         }
     }
 
 
-
-    /** Lance la boucle de jeu **/
-    public void playLoop(){
+    /**
+     * Lance la boucle de jeu
+     **/
+    public void playLoop() {
         timeline.play();
         information.setVisible(false);
     }
 
-    /** Termine la boucle de jeu est reset tous les paramètres du jeu (position/vitesse objets)**/
-    public void endLoop(){
+    /**
+     * Termine la boucle de jeu est reset tous les paramètres du jeu (position/vitesse objets)
+     **/
+    public void endLoop() {
         timeline.stop();
         resetPos();
         ball.resetMoveSpeed();
         information.setVisible(true);
     }
+
     public Rectangle getTopBar() {
         return topBar;
     }
@@ -398,11 +404,12 @@ public class GameController extends GenericView{
         this.difficulty = difficulty;
     }
 
-    public void setGameState(boolean state){
+    public void setGameState(boolean state) {
         gameState = state;
     }
+
     @FXML
-    public void clickMenu(){
+    public void clickMenu() {
         displayScreen(new StartMenuView(this));
         endLoop();
         setGameState(false);

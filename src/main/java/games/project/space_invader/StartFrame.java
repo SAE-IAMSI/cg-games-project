@@ -6,6 +6,7 @@ import java.awt.*;
 public class StartFrame extends JFrame {
 
     SpaceInvaders spaceInvaders;
+
     public StartFrame() {
 
         Label title = new Label("Space Invaders");
@@ -45,7 +46,7 @@ public class StartFrame extends JFrame {
         });
     }
 
-    private void visibilityFrame(){
+    private void visibilityFrame() {
         spaceInvaders.setVisible(true);
         setVisible(false);
     }
