@@ -1,8 +1,5 @@
 package games.project.metier.entite;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-
 public class Player {
     String name;
     private Score score;

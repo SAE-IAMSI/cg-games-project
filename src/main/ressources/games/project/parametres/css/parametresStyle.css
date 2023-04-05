@@ -11,7 +11,7 @@
 .button {
     -fx-font-family: 'Orbitron', sans-serif;
     -fx-text-fill: #ffffff;
-    -fx-font-size: 15px;
+    -fx-font-size: 20px;
     -fx-background-color: #1b1b1b;
     -fx-border-color: #473bf0;
     -fx-border-width: 3px;
@@ -48,6 +48,9 @@
     -fx-font-family: 'Orbitron', sans-serif;
     -fx-text-fill: #ffffff;
     -fx-font-weight: bold;
+}
+
+.labelBarMenu{
     -fx-font-size: 30px;
 }
 
@@ -82,4 +85,28 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-radius: 0em;
+}
+
+.text-field{
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-text-fill: #9f00cb;
+    -fx-font-size: 15px;
+    -fx-background-color: #b7b7b7;
+    -fx-border-color: #241e2c;
+    -fx-border-width: 3px;
+    -fx-font-weight: bold;
+    -fx-min-width: 200px;
+    -fx-min-height: 40px;
+}
+
+.combo-box{
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-text-fill: #9f00cb;
+    -fx-font-size: 15px;
+    -fx-background-color: #b7b7b7;
+    -fx-border-color: #241e2c;
+    -fx-border-width: 3px;
+    -fx-font-weight: bold;
+    -fx-min-width: 200px;
+    -fx-min-height: 40px;
 }

@@ -25,8 +25,9 @@
          </font>
       </Text>
       <Button layoutX="582.0" layoutY="271.0" mnemonicParsing="false" onAction="#clickJouer" prefHeight="46.0" prefWidth="143.0" text="Jouer " />
-      <Button layoutX="582.0" layoutY="360.0" mnemonicParsing="false" onAction="#parameter" prefHeight="46.0" prefWidth="143.0" text="Paramètre" />
-      <Button layoutX="582.0" layoutY="441.0" mnemonicParsing="false" onAction="#exit" prefHeight="46.0" prefWidth="143.0" text="Quitter" />
+      <Button layoutX="582.0" layoutY="409.0" mnemonicParsing="false" onAction="#parameter" prefHeight="46.0" prefWidth="143.0" text="Paramètre" />
+      <Button layoutX="582.0" layoutY="477.0" mnemonicParsing="false" onAction="#exit" prefHeight="46.0" prefWidth="143.0" text="Quitter" />
       <Button layoutX="1117.0" layoutY="597.0" mnemonicParsing="false" onAction="#clickCGU" prefHeight="35.0" prefWidth="69.0" text="CGU" />
+      <Button layoutX="582.0" layoutY="340.0" mnemonicParsing="false" onAction="#clickScore" prefHeight="46.0" prefWidth="143.0" text="Score" />
    </children>
 </fx:root>

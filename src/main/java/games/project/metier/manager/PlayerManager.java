@@ -1,8 +1,8 @@
 package games.project.metier.manager;
 
+import games.project.metier.entite.AuthPlayer;
 import games.project.stockage.Security;
 import games.project.stockage.sql.StockagePlayerDatabase;
-import games.project.metier.entite.AuthPlayer;
 
 import java.util.List;
 import java.util.Map;

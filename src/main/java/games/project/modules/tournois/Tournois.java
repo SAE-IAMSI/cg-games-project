@@ -8,25 +8,25 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Tournois {
-    private int IdTournoi;
+    private final int IdTournoi;
 
-    private String Nomtournoi;
+    private final String Nomtournoi;
 
-    private Timestamp Datedebut;
-    private Timestamp Datefin;
+    private final Timestamp Datedebut;
+    private final Timestamp Datefin;
 
-    private int NbParticipentMax;
+    private final int NbParticipentMax;
 
-    private ArrayList<Player> ListeParticipant;
+    private final ArrayList<Player> ListeParticipant;
 
-    private  ArrayList<Jeu> Listedesjeux;
+    private final ArrayList<Jeu> Listedesjeux;
 
     public Tournois(int idtournoi, String nomtournoi, Timestamp datedebut, Timestamp datefin, int nbparticipantmax, ArrayList<Jeu> listedesjeux) {
-        IdTournoi=idtournoi;
-        Nomtournoi=nomtournoi;
-        Datedebut=datedebut;
-        Datefin=datefin;
-        NbParticipentMax=nbparticipantmax;
+        IdTournoi = idtournoi;
+        Nomtournoi = nomtournoi;
+        Datedebut = datedebut;
+        Datefin = datefin;
+        NbParticipentMax = nbparticipantmax;
         ListeParticipant = new ArrayList<>();
         Listedesjeux = listedesjeux;
     }
@@ -35,8 +35,8 @@ public class Tournois {
         return IdTournoi;
     }
 
-    public String getNomtournoi(){
-        return  Nomtournoi;
+    public String getNomtournoi() {
+        return Nomtournoi;
     }
 
     public Date getDatedebut() {

@@ -6,7 +6,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class BrickBreakerPlayer extends Player {
-    private IntegerProperty life;
+    private final IntegerProperty life;
 
     public BrickBreakerPlayer(String name, Score score, int life) {
         super(name, score);

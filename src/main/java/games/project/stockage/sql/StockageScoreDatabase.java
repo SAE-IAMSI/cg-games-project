@@ -182,7 +182,7 @@ public class StockageScoreDatabase {
         String req = "SELECT * FROM SCORES";
         try (
                 PreparedStatement st = connection.prepareStatement(req);
-                ResultSet result = st.executeQuery();
+                ResultSet result = st.executeQuery()
         ) {
             while (result.next()) {
                 int id = result.getInt("codeScore");
