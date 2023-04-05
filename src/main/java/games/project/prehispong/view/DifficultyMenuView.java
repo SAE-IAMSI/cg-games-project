@@ -1,10 +1,11 @@
 package games.project.prehispong.view;
 
+import games.project.prehispong.controller.GameController;
 import javafx.fxml.FXML;
 
 public class DifficultyMenuView extends GenericView{
-    public DifficultyMenuView() {
-        super("DifficultyMenu.fxml");
+    public DifficultyMenuView(GameController controller) {
+        super("DifficultyMenu.fxml",controller);
     }
 
     @FXML
@@ -36,6 +37,6 @@ public class DifficultyMenuView extends GenericView{
     private void back(){
         gameController.removeScreen(this);
         gameController.setGameState(false);
-        gameController.displayScreen(new StartMenuView());
+        gameController.displayScreen(new StartMenuView(gameController));
     }
 }

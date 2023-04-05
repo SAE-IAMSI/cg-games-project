@@ -3,6 +3,7 @@ package games.project.prehispong.view;
 
 import games.project.metier.entite.Score;
 import games.project.metier.manager.ScoreManager;
+import games.project.prehispong.controller.GameController;
 import games.project.stockage.Session;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
@@ -14,8 +15,8 @@ public class PlayerScoreMenuView extends GenericView{
     @FXML
     public Text textScore;
 
-    public PlayerScoreMenuView() {
-        super("PlayerScoreMenu.fxml");
+    public PlayerScoreMenuView(GameController controller) {
+        super("PlayerScoreMenu.fxml",controller);
         textScore.setText("");
         initScore();
     }
@@ -81,6 +82,6 @@ public class PlayerScoreMenuView extends GenericView{
     @FXML
     private void back(){
         gameController.removeScreen(this);
-        gameController.displayScreen(new ScoreMenuView());
+        gameController.displayScreen(new ScoreMenuView(gameController));
     }
 }

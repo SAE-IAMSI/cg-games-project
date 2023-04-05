@@ -38,8 +38,8 @@ private Session session = Session.getInstance();
 private PlayerManager manager = PlayerManager.getInstance();
 
 
-    public ParameterMenuView() {
-        super("ParameterMenu.fxml");
+    public ParameterMenuView(GameController controller) {
+        super("ParameterMenu.fxml",controller);
         Map<String, String> departments = PlayerManager.getInstance().getDepartments();
         for (String key : departments.keySet()) {
             String field = key + " - " + departments.get(key);
@@ -58,12 +58,10 @@ private PlayerManager manager = PlayerManager.getInstance();
 
 
     private void connectPlayer(){
-        GameController gameController = GameController.getInstance();
         gameController.getPlayer1().setName(Session.getInstance().getLogin());
         gameController.p1.setText(gameController.getPlayer1().getName());
     }
     private void disconnectPlayer(){
-        GameController gameController = GameController.getInstance();
         gameController.getPlayer1().setName("p1");
         gameController.p1.setText(gameController.getPlayer1().getName());
     }
@@ -72,7 +70,7 @@ private PlayerManager manager = PlayerManager.getInstance();
     @FXML
     private void back(){
         gameController.removeScreen(this);
-        gameController.displayScreen(new StartMenuView());
+        gameController.displayScreen(new StartMenuView(gameController));
     }
 
     @FXML

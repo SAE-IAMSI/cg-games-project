@@ -1,5 +1,6 @@
 package games.project.prehispong.view;
 import games.project.prehispong.MainPong;
+import games.project.prehispong.controller.GameController;
 import javafx.fxml.FXML;
 
 import java.awt.*;
@@ -9,14 +10,14 @@ import java.io.IOException;
 
 public class StartMenuView extends GenericView {
 
-    public StartMenuView() {
-        super("StartMenu.fxml");
+    public StartMenuView(GameController controller) {
+        super("StartMenu.fxml",controller);
     }
 
     @FXML
     private void clickJouer() {
         gameController.removeScreen(this);
-        gameController.displayScreen(new MenuPlayView());
+        gameController.displayScreen(new MenuPlayView(gameController));
     }
 
     @FXML
@@ -26,12 +27,12 @@ public class StartMenuView extends GenericView {
 
     @FXML
     private void clickScore(){
-        gameController.displayScreen(new ScoreMenuView());
+        gameController.displayScreen(new ScoreMenuView(gameController));
     }
     @FXML
     private void parameter() {
         gameController.removeScreen(this);
-        gameController.displayScreen(new ParameterMenuView());
+        gameController.displayScreen(new ParameterMenuView(gameController));
     }
 
     @FXML
