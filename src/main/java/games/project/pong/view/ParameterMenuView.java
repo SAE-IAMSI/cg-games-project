@@ -139,7 +139,7 @@ private PlayerManager manager = PlayerManager.getInstance();
 
         if(!idRegister.getText().equals("") && !passwordRegister.getText().equals("") && !confirmRegister.getText().equals("") && !dep.equals("")){
             if(passwordRegister.getText().equals(confirmRegister.getText())){
-                PlayerManager.getInstance().createPlayer(idRegister.getText(), dep, passwordRegister.getText());
+                PlayerManager.getInstance().createPlayer(idRegister.getText(), dep, passwordRegister.getText(), false);
                 infoRegister.setText("Joueur '"+idRegister.getText()+"' enregister !");
                 passwordRegister.setText("");
                 confirmRegister.setText("");
