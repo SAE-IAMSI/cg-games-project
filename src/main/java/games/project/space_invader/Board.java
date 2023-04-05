@@ -111,7 +111,7 @@ public class Board extends JPanel {
      *
      * @param g Graphics
      */
-    private void drawPlayer(Graphics g) {
+    void drawPlayer(Graphics g) {
 
         if (player.isVisible()) {
             g.drawImage(player.getImage(), player.getX(), player.getY(), this);

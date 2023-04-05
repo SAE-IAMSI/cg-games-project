@@ -2,13 +2,14 @@ package games.project.space_invader;
 
 import games.project.space_invader.sprite.Alien;
 import games.project.space_invader.sprite.Player;
+import games.project.space_invader.sprite.Shot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TestUnitaire {
 
@@ -30,7 +31,7 @@ public class TestUnitaire {
         spaceInvaders.initialiser();
 
         player = new Player(board);
-        alien = new Alien(0, 0);
+        alien = new Alien(100, 100);
     }
 
     /**
@@ -91,7 +92,7 @@ public class TestUnitaire {
     }
 
     @Test
-    void testKeyPressed(){
+    void KeyPressedAndReleased() {
         // Deplacment du player sur la gauche
         assertEquals(0, player.getDx());
         Button b = new Button();
@@ -108,5 +109,32 @@ public class TestUnitaire {
         assertEquals(2, player.getDx());
         player.keyReleased(e);
         assertEquals(0, player.getDx());
+    }
+
+    //TODO: Fix this test
+    @Test
+    void positionShot() {
+        Shot shot = new Shot(player.getX(), player.getY());
+        shot.initShot(player.getX(), player.getY());
+        assertEquals(player.getX() + 15, shot.getX());
+    }
+    //TODO: Fix this test
+    @Test
+    void positionBomb() {
+        Alien.Bomb bomb = new Alien.Bomb(player.getX(), player.getY());
+        board.update();
+    }
+
+    @Test
+    void killAlien(){
+        Shot shot = new Shot(player.getX(), player.getY());
+        shot.initShot(alien.getX(), alien.getY() + 10);
+        board.update();
+        if (shot.getX() >= (alien.getX())
+                && shot.getX() <= (alien.getX() + Commons.ALIEN_WIDTH)
+                && shot.getY() >= (alien.getY())
+                && shot.getY() <= (alien.getY() + Commons.ALIEN_HEIGHT)) {
+            System.out.println("Touche");
+        }
     }
 }
