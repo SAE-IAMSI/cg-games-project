@@ -108,7 +108,7 @@ public class ViewRegisterPlayer extends Pane {
                 errorText.setVisible(true);
                 this.confirmPassword.clear();
             } else {
-                PlayerManager.getInstance().createPlayer(loginR, dep, pass);
+                PlayerManager.getInstance().createPlayer(loginR, dep, pass, false);
                 brickBreakerController.getChildren().remove(this);
                 gameMenu.showBtStartMenuConnected();
                 Session.getInstance().connect(loginR);

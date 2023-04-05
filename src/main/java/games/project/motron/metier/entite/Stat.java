@@ -5,9 +5,9 @@ public class Stat {
     private int nbVictoire;
     private int nbDefaite;
     private int nbEgalite;
-    private int nbBlocs;
-    private int death;
-    private int kill;
+    private final int nbBlocs;
+    private final int death;
+    private final int kill;
     private float moyenneKillParPartie;
 
     public Stat(int nbBlocs, int death, int kill) {
@@ -73,8 +73,7 @@ public class Stat {
     public void setMoyenneKillParPartie() {
         if (nbVictoire + nbDefaite + nbEgalite == 0) {
             moyenneKillParPartie = 0;
-        }
-        else {
+        } else {
             float k = kill;
             float v = nbVictoire;
             float d = nbDefaite;

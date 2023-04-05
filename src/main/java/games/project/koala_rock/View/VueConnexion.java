@@ -1,9 +1,9 @@
 package games.project.koala_rock.View;
 
-import games.project.metier.entite.AuthPlayer;
 import games.project.koala_rock.Metier.manager.PlayerManager;
 import games.project.koala_rock.Model.Fond;
 import games.project.koala_rock.RessourcesAccess;
+import games.project.metier.entite.AuthPlayer;
 import games.project.stockage.Security;
 import games.project.stockage.Session;
 import javafx.scene.Scene;
