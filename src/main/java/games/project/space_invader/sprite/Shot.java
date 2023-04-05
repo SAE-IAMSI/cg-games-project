@@ -2,7 +2,7 @@ package games.project.space_invader.sprite;
 
 import games.project.space_invader.SpaceInvadersClassic;
 
-import javax.swing.ImageIcon;
+import javax.swing.*;
 import java.util.Objects;
 
 public class Shot extends Sprite {

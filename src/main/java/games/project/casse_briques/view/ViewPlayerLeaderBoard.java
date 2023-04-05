@@ -3,7 +3,9 @@ package games.project.casse_briques.view;
 import games.project.casse_briques.BrickBreakerApplication;
 import games.project.casse_briques.controller.BrickBreakerController;
 import games.project.casse_briques.controller.GameMenuController;
+import games.project.metier.entite.Jeu;
 import games.project.metier.entite.Score;
+import games.project.metier.manager.JeuManager;
 import games.project.metier.manager.ScoreManager;
 import games.project.stockage.Session;
 import javafx.beans.value.ChangeListener;
@@ -96,26 +98,15 @@ public class ViewPlayerLeaderBoard extends Pane {
         if (Session.getInstance().isConnected()) {
             String login = Session.getInstance().getLogin();
             ScoreManager sm = ScoreManager.getInstance();
-            Score highScoreDK = sm.getHighScoreByGame(login, "DK");
-            Score highScoreTetris = sm.getHighScoreByGame(login, "TETRIS");
-            Score highScoreTRON = sm.getHighScoreByGame(login, "TRON");
-            String scoreDK = "";
-            String scoreTETRIS = "";
-            String scoreTRON = "";
-
-            if (highScoreTetris != null) {
-                Calendar cal = getTime(highScoreTetris);
-                scoreTETRIS = highScoreTetris.getGameCode() + " : " + highScoreTetris.getLogin() + " ---> " + highScoreTetris.getScore() + " || " + +cal.get(Calendar.DAY_OF_MONTH) + " " + getMonth(cal) + " " + cal.get(Calendar.YEAR) + " " + cal.get(Calendar.HOUR_OF_DAY) + "H" + cal.get(Calendar.MINUTE) + " ||";
+            for (Jeu j : JeuManager.getInstance().getJeux()) {
+                Score highScoreJeu = sm.getHighScoreByLoginAndGame(login, j.getCode());
+                String scoreJeu = "";
+                if (highScoreJeu != null) {
+                    Calendar cal = getTime(highScoreJeu);
+                    scoreJeu = j.getLibelle() + " : " + login + " ---> " + highScoreJeu.getScore() + " || " + +cal.get(Calendar.DAY_OF_MONTH) + " " + getMonth(cal) + " " + cal.get(Calendar.YEAR) + " " + cal.get(Calendar.HOUR_OF_DAY) + "H" + cal.get(Calendar.MINUTE) + " ||";
+                }
+                listScoreText.setText(listScoreText.getText() + scoreJeu + "\n");
             }
-            if (highScoreDK != null) {
-                Calendar cal = getTime(highScoreDK);
-                scoreDK = highScoreDK.getGameCode() + " : " + highScoreDK.getLogin() + " ---> " + highScoreDK.getScore() + " || " + +cal.get(Calendar.DAY_OF_MONTH) + " " + getMonth(cal) + " " + cal.get(Calendar.YEAR) + " " + cal.get(Calendar.HOUR_OF_DAY) + "H" + cal.get(Calendar.MINUTE) + " ||";
-            }
-            if (highScoreTRON != null) {
-                Calendar cal = getTime(highScoreTRON);
-                scoreTRON = highScoreTRON.getGameCode() + " : " + highScoreTRON.getLogin() + " ---> " + highScoreTRON.getScore() + " || " + +cal.get(Calendar.DAY_OF_MONTH) + " " + getMonth(cal) + " " + cal.get(Calendar.YEAR) + " " + cal.get(Calendar.HOUR_OF_DAY) + "H" + cal.get(Calendar.MINUTE) + " ||";
-            }
-            listScoreText.setText(listScoreText.getText() + scoreTETRIS + "\n" + scoreDK + "\n" + scoreTRON);
         }
     }
 

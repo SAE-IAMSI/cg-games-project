@@ -41,7 +41,7 @@ public class AuthPlayer extends Joueur {
         return numDepartement;
     }
 
-    public void setDepartement( String departement) {
+    public void setDepartement(String departement) {
         this.numDepartement = departement;
     }
 

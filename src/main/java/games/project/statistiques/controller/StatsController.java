@@ -20,16 +20,15 @@ public class StatsController extends AnchorPane {
     @FXML
     private Text txtG;
 
-    public StatsController(){
-        try{
+    public StatsController() {
+        try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(new URL(StatsLauncher.class.getResource("fxml/ViewMainStats.fxml").toString()));
 
             loader.setRoot(this);
             loader.setController(this);
             loader.load();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

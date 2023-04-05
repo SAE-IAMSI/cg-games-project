@@ -1,13 +1,9 @@
 package games.project.metier.manager;
 
-import games.project.metier.entite.AuthPlayer;
 import games.project.metier.entite.Jeu;
-import games.project.stockage.Security;
 import games.project.stockage.sql.StockageJeuDatabase;
-import games.project.stockage.sql.StockagePlayerDatabase;
 
 import java.util.List;
-import java.util.Map;
 
 public class JeuManager {
     private static JeuManager instance = null;

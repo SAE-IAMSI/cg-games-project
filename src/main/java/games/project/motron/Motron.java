@@ -22,7 +22,7 @@ public class Motron extends Application {
 
     private Timeline timeline;
     private KeyFrame keyFrame;
-    private int keyFrameMillis = 90;
+    private final int keyFrameMillis = 90;
     private Scene scenemenu;
     private VueJeu jeu;
     private VueMoto j1;

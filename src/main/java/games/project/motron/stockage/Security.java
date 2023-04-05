@@ -11,7 +11,7 @@ import java.security.SecureRandom;
 
 public class Security {
 
-    private static String pepper = "vpoLfbyP5KQ22vQ5z2KfJw";
+    private static final String pepper = "vpoLfbyP5KQ22vQ5z2KfJw";
 
     public static byte[] getSalt() {
         SecureRandom random = new SecureRandom();

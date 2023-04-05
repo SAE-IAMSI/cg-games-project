@@ -8,12 +8,13 @@ import java.util.List;
 public class ScoreManager {
 
     private static ScoreManager instance = null;
-    private static StockageScoreDatabase stockage = new StockageScoreDatabase();
+    private static final StockageScoreDatabase stockage = new StockageScoreDatabase();
 
-    private ScoreManager() {}
+    private ScoreManager() {
+    }
 
     public static ScoreManager getInstance() {
-        if (instance ==null) instance = new ScoreManager();
+        if (instance == null) instance = new ScoreManager();
         return instance;
     }
 
@@ -51,7 +52,9 @@ public class ScoreManager {
         return stockage.getByLogin(login);
     }
 
-    public Score getScoreRecentByLogin(String login) {return stockage.getByLoginRecent(login);}
+    public Score getScoreRecentByLogin(String login) {
+        return stockage.getByLoginRecent(login);
+    }
 
     public List<Score> getScores() {
         return stockage.getAll();
@@ -60,7 +63,12 @@ public class ScoreManager {
     public int sommeScore(String login) {
         return stockage.getSommeScore(login);
     }
-    public int highScore(String login){return stockage.highScore(login);}
 
-    public int getMaxId(){return stockage.getMaxId();}
+    public int highScore(String login) {
+        return stockage.highScore(login);
+    }
+
+    public int getMaxId() {
+        return stockage.getMaxId();
+    }
 }

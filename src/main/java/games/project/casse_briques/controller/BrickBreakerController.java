@@ -1,11 +1,12 @@
 package games.project.casse_briques.controller;
 
 import games.project.casse_briques.BrickBreakerApplication;
-import games.project.metier.entite.Player;
-import games.project.metier.manager.ScoreManager;
+import games.project.casse_briques.metier.entite.BrickBreakerPlayer;
 import games.project.casse_briques.model.Ball;
 import games.project.casse_briques.model.Brick;
 import games.project.casse_briques.model.Racket;
+import games.project.metier.entite.Score;
+import games.project.metier.manager.ScoreManager;
 import games.project.stockage.Session;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -33,7 +34,7 @@ public class BrickBreakerController extends AnchorPane {
     private Font cFont;
     private Timeline timeline;
     private ChronometerController chronometer;
-    private Player player;
+    private BrickBreakerPlayer player;
     private Racket racket;
 
     private final ArrayList<Brick> brickMemoryAdd; //prend en mémoire les bricks ajouter
@@ -151,7 +152,7 @@ public class BrickBreakerController extends AnchorPane {
         return wallR;
     }
 
-    public Player getPlayer() {
+    public BrickBreakerPlayer getPlayer() {
         return player;
     }
 
@@ -229,7 +230,7 @@ public class BrickBreakerController extends AnchorPane {
     }
 
     private void initPlayer() {
-        this.player = new Player("Anonyme", 3);
+        this.player = new BrickBreakerPlayer("Anonyme", new Score("CB"), 3);
         lifeText.textProperty().bind(new SimpleStringProperty("X").concat(player.lifeProperty().asString()));
         scoreText.textProperty().bind(new SimpleStringProperty("Score : ").concat(this.player.getScore().scoreProperty().asString()));
     }
@@ -307,9 +308,9 @@ public class BrickBreakerController extends AnchorPane {
     private void registerScore() {
         ScoreManager sm = ScoreManager.getInstance();
         if (Session.getInstance().isConnected()) {
-            sm.createScore(player.getScore().getScore(), Session.getInstance().getLogin());
+            sm.createScore(player.getScore().getScore(), Session.getInstance().getLogin(), "CB");
         } else {
-            sm.createScore(player.getScore().getScore(), "");
+            sm.createScore(player.getScore().getScore(), "", "CB");
         }
 
     }
