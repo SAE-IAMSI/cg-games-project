@@ -22,13 +22,12 @@ public class VueRegles extends Stage implements Menu {
 
     private final BorderPane root;
     private final Scene scene;
-    private final VBox style, regles, infoScore ;
+    private final VBox style, regles, infoScore;
     private final BorderPane conteneur;
     //Label des règles
     private final Label but, completionLigne, gainScore, prochainePiece, pieceSauvegardee, gameOver;
     // Label description score
     private final Label titre, softDrop, hardDrop, singleLine, doubleLine, tripleLine, Tetris, asterix;
-
 
 
     public VueRegles() {
@@ -109,8 +108,8 @@ public class VueRegles extends Stage implements Menu {
                 ((Label) ((VBox) infoScore.getChildren().get(i)).getChildren().get(0)).setFont(Ressources.getPolice(30));
                 ((VBox) infoScore.getChildren().get(i)).setAlignment(Pos.CENTER);
                 ((VBox) infoScore.getChildren().get(i)).setPadding(new Insets(10));
-                ((VBox)infoScore.getChildren().get(i)).getChildren().get(0).setStyle("-fx-text-fill: white");
-            } else if (i == infoScore.getChildren().size()-1) {
+                ((VBox) infoScore.getChildren().get(i)).getChildren().get(0).setStyle("-fx-text-fill: white");
+            } else if (i == infoScore.getChildren().size() - 1) {
                 ((Label) infoScore.getChildren().get(i)).setFont(Ressources.getPolice(15));
                 ((Label) infoScore.getChildren().get(i)).setPadding(new Insets(10));
                 infoScore.getChildren().get(i).setStyle("-fx-text-fill: white");

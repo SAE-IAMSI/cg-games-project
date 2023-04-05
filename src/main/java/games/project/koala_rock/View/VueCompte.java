@@ -205,7 +205,7 @@ public class VueCompte {
                 } else {
                     for (Score scoreDK : scoresDK) {
                         if (scoreDK.getLogin() != null && scoreDK.getLogin().equals(Session.getInstance().getLogin())) {
-                            Label labelScoreDK = new Label(scoreDK.getScore() + "");
+                            Label labelScoreDK = new Label(String.valueOf(scoreDK.getScore()));
                             labelScoreDK.getStyleClass().add("LabelConnexionField");
                             labelScoreDK.setLayoutX(450);
                             labelScoreDK.setLayoutY(150 + i * 35);
@@ -280,7 +280,7 @@ public class VueCompte {
         } else {
             for (Score scoreDK : scoresDK) {
                 if (scoreDK.getLogin() != null && scoreDK.getLogin().equals(Session.getInstance().getLogin())) {
-                    Label labelScoreDK = new Label(scoreDK.getScore() + "");
+                    Label labelScoreDK = new Label(String.valueOf(scoreDK.getScore()));
                     labelScoreDK.getStyleClass().add("LabelConnexionField");
                     labelScoreDK.setLayoutX(450);
                     labelScoreDK.setLayoutY(150 + i * 35);
@@ -324,7 +324,7 @@ public class VueCompte {
             for (Score scoreTRON : scoresTRON) {
                 if (scoreTRON.getLogin() != null && scoreTRON.getLogin().equals(Session.getInstance().getLogin())) {
 
-                    Label labelScoreTRON = new Label(scoreTRON.getScore() + "");
+                    Label labelScoreTRON = new Label(String.valueOf(scoreTRON.getScore()));
                     labelScoreTRON.getStyleClass().add("LabelConnexionField");
                     labelScoreTRON.setLayoutX(450);
                     labelScoreTRON.setLayoutY(150 + j * 35);
@@ -374,7 +374,7 @@ public class VueCompte {
             for (Score scoreCB : scoresCB) {
                 if (scoreCB.getLogin() != null && scoreCB.getLogin().equals(Session.getInstance().getLogin())) {
 
-                    Label labelScoreCB = new Label(scoreCB.getScore() + "");
+                    Label labelScoreCB = new Label(String.valueOf(scoreCB.getScore()));
                     labelScoreCB.getStyleClass().add("LabelConnexionField");
                     labelScoreCB.setLayoutX(925);
                     labelScoreCB.setLayoutY(150 + k * 35);
@@ -424,7 +424,7 @@ public class VueCompte {
             for (Score scoreTETRIS : scoresTETRIS) {
                 if (scoreTETRIS.getLogin() != null && scoreTETRIS.getLogin().equals(Session.getInstance().getLogin())) {
 
-                    Label labelScoreTETRIS = new Label(scoreTETRIS.getScore() + "");
+                    Label labelScoreTETRIS = new Label(String.valueOf(scoreTETRIS.getScore()));
                     labelScoreTETRIS.getStyleClass().add("LabelConnexionField");
                     labelScoreTETRIS.setLayoutX(450);
                     labelScoreTETRIS.setLayoutY(150 + p * 35);

@@ -3,7 +3,7 @@ package games.project.casse_briques.model;
 import games.project.casse_briques.BrickBreakerApplication;
 import games.project.casse_briques.controller.BrickBreakerController;
 import games.project.casse_briques.controller.SoundGestionController;
-import games.project.metier.entite.Player;
+import games.project.casse_briques.metier.entite.BrickBreakerPlayer;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -38,7 +38,7 @@ public class Ball extends Circle {
     /**
      * Gère les collisions entre la balle et les murs (dont la limit)
      **/
-    public void wallHitbox(Player player) {
+    public void wallHitbox(BrickBreakerPlayer player) {
         //------------Hitbox Murs-----------//
         if (getBoundsInParent().intersects(brickBreakerController.getWallL().getBoundsInParent())) { //Mur Gauche
             if (this.getLayoutX() <= brickBreakerController.getWallL().getLayoutX() + brickBreakerController.getWallL().getFitWidth() * 0.85) {

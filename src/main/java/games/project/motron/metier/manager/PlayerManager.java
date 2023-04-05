@@ -10,9 +10,10 @@ import java.util.List;
 public class PlayerManager {
 
     private static PlayerManager instance = null;
-    private static StockagePlayerDatabase stockage = new StockagePlayerDatabase();
+    private static final StockagePlayerDatabase stockage = new StockagePlayerDatabase();
 
-    private PlayerManager() {}
+    private PlayerManager() {
+    }
 
     public static PlayerManager getInstance() {
         if (instance == null) instance = new PlayerManager();
@@ -34,10 +35,20 @@ public class PlayerManager {
         p.setPassword(password);
         stockage.update(p);
     }
+
     public AuthPlayer getPlayer(String login) {
         return stockage.getByLogin(login);
     }
-    public List<Player> getMeilleurs(){return stockage.getMeilleurs();}
-    public int getNbPartie(String login){return stockage.getNbPartie(login);}
-    public String getDepartementByLogin(String login){return stockage.getDepByLogin(login);}
+
+    public List<Player> getMeilleurs() {
+        return stockage.getMeilleurs();
+    }
+
+    public int getNbPartie(String login) {
+        return stockage.getNbPartie(login);
+    }
+
+    public String getDepartementByLogin(String login) {
+        return stockage.getDepByLogin(login);
+    }
 }

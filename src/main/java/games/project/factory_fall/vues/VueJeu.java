@@ -204,7 +204,7 @@ public class VueJeu extends Stage implements Menu {
         });
 
         // Listener sur le score du joueur
-        jeu.getJoueur().getScore().addListener((observableValue, number, t1) -> score.setText("score : " + jeu.getJoueur().getScore().getValue() + ""));
+        jeu.getJoueur().getScore().addListener((observableValue, number, t1) -> score.setText("score : " + jeu.getJoueur().getScore().getValue()));
 
         // Listener pour actualiser le rang de la partie
         jeu.getRang(jeu.getPlateau()).addListener((observableValue, number, t1) -> rang.setText("rang : " + jeu.getRang(jeu.getPlateau()).getValue()));

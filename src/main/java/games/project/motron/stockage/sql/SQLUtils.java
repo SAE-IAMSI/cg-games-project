@@ -25,7 +25,9 @@ public class SQLUtils {
         return instance;
     }
 
-    public Connection getConnection() { return connection; }
+    public Connection getConnection() {
+        return connection;
+    }
 
     public static void main(String[] args) {
         SQLUtils utils = SQLUtils.getInstance();
@@ -34,7 +36,7 @@ public class SQLUtils {
 
         try (
                 Statement st = connection.createStatement();
-                ResultSet rs = st.executeQuery("SELECT * FROM SCORES");
+                ResultSet rs = st.executeQuery("SELECT * FROM SCORES")
         ) {
             while (rs.next()) {
                 System.out.println(rs.getInt("codeScore"));

@@ -9,18 +9,18 @@ import java.util.ArrayList;
 
 public class VueJeu extends Pane {
     private Pane pane;
-    private VueArene vueArene;
-    private VueMoto j1;
-    private VueMoto j2;
+    private final VueArene vueArene;
+    private final VueMoto j1;
+    private final VueMoto j2;
 
     private boolean pauseOn = false;
 
-    private ArrayList<VueMoto> motoList = new ArrayList<>();
+    private final ArrayList<VueMoto> motoList = new ArrayList<>();
 
 
-    private ArrayList<Rectangle> trailList = new ArrayList<>();
+    private final ArrayList<Rectangle> trailList = new ArrayList<>();
 
-    private ArrayList<KeyCode> keyList;
+    private final ArrayList<KeyCode> keyList;
     private boolean gameOver;
 
     // Getters & setters-----------------------------
@@ -68,7 +68,7 @@ public class VueJeu extends Pane {
     // ----------------------------------------------
 
 
-    public VueJeu(VueMoto j1, VueMoto j2, VueArene vueArene, ArrayList<KeyCode> keyList){
+    public VueJeu(VueMoto j1, VueMoto j2, VueArene vueArene, ArrayList<KeyCode> keyList) {
         this.j1 = j1;
         this.j1.setMotoX((vueArene.getMapWidth() + 120) - vueArene.getMapWidth());
         this.j2 = j2;
@@ -78,7 +78,7 @@ public class VueJeu extends Pane {
         this.vueArene = vueArene;
         this.keyList = keyList;
     }
-    
+
     // ajoute les murs au pane du Jeu
     public void setMurs() {
         for (int i = 0; i < vueArene.getMurs().getMurList().size(); i++) {
@@ -93,7 +93,7 @@ public class VueJeu extends Pane {
         }
     }
 
-    public void jouer(int xJ1, int yJ1, int xJ2, int yJ2){
+    public void jouer(int xJ1, int yJ1, int xJ2, int yJ2) {
         j1.setMotoX(xJ1);
         j2.setMotoX(xJ2);
         j1.setMotoY(yJ1);
@@ -113,10 +113,10 @@ public class VueJeu extends Pane {
     public void setTouche(Scene scene) {
         scene.setOnKeyPressed(event -> {
 
-            if (event.getCode() == KeyCode.ESCAPE){
+            if (event.getCode() == KeyCode.ESCAPE) {
                 pauseOn = !pauseOn;
             }
-            
+
             if (event.getCode() == keyList.get(0)) {
                 if (j1.getMovingAt() != VueMoto.Dir.DOWN) {
                     j1.setNewDir(VueMoto.Dir.UP);
@@ -133,8 +133,7 @@ public class VueJeu extends Pane {
                 if (j1.getMovingAt() != VueMoto.Dir.LEFT) {
                     j1.setNewDir(VueMoto.Dir.RIGHT);
                 }
-            }
-            else if (event.getCode() == keyList.get(4)) {
+            } else if (event.getCode() == keyList.get(4)) {
                 if (j2.getMovingAt() != VueMoto.Dir.DOWN) {
                     j2.setNewDir(VueMoto.Dir.UP);
                 }
