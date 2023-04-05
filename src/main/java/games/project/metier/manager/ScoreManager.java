@@ -1,7 +1,7 @@
 package games.project.metier.manager;
 
-import games.project.stockage.sql.StockageScoreDatabase;
 import games.project.metier.entite.Score;
+import games.project.stockage.sql.StockageScoreDatabase;
 
 import java.util.List;
 
@@ -36,6 +36,7 @@ public class ScoreManager {
 
     /**
      * Supprime tous les scores du joueur d'identifiant login
+     *
      * @param login L'identifiant du joueur dont les scores seront supprimés.
      */
     public void deleteScoreByLogin(String login) {
@@ -44,7 +45,8 @@ public class ScoreManager {
 
     /**
      * Récupère le meilleur score d'un joueur pour un jeu précisé.
-     * @param login L'identifiant du joueur dont le meilleur score sera récupéré.
+     *
+     * @param login    L'identifiant du joueur dont le meilleur score sera récupéré.
      * @param gameCode Le code du jeu sur lequel le meilleur score sera récupéré.
      * @return Le meilleur score d'un joueur sur un jeu précisé.
      */
@@ -58,6 +60,7 @@ public class ScoreManager {
 
     /**
      * Récupère tous les scores d'un joueur identifié login.
+     *
      * @param login L'identifiant du joueur dont les scores seront récupérés.
      * @return La liste des scores du joueur identifié login.
      */
@@ -67,7 +70,8 @@ public class ScoreManager {
 
     /**
      * Récupère tous les scores d'un jeu précisé réalisés par le joueur identifié login.
-     * @param login L'identifiant du joueur dont les scores seront récupérés.
+     *
+     * @param login    L'identifiant du joueur dont les scores seront récupérés.
      * @param gameCode Le code du jeu sur lequel les scores ont été réalisés.
      * @return La liste des scores d'un jeu précisé réalisés par le joueur identifié login.
      */
@@ -77,6 +81,7 @@ public class ScoreManager {
 
     /**
      * Récupère l'ensemble des scores enregistrés.
+     *
      * @return La liste de tous les scores enregistrés.
      */
     public List<Score> getScores() {
@@ -85,6 +90,7 @@ public class ScoreManager {
 
     /**
      * Récupère le classement TOP 10 des meilleurs scores du jeu précisé.
+     *
      * @param gameCode Le code du jeu dont le classement est récupéré.
      * @return La liste des 10 meilleurs scores du jeu précisé.
      */
@@ -94,6 +100,7 @@ public class ScoreManager {
 
     /**
      * Récupère tous les scores du jeu précisé.
+     *
      * @param gameCode Le code du jeu dont les scores sont récupérés.
      * @return La liste de tous les scores du jeu précisé.
      */

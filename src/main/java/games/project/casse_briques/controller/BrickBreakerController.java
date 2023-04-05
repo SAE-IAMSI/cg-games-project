@@ -2,12 +2,11 @@ package games.project.casse_briques.controller;
 
 import games.project.casse_briques.BrickBreakerApplication;
 import games.project.casse_briques.metier.entite.BrickBreakerPlayer;
-import games.project.metier.entite.Player;
-import games.project.metier.entite.Score;
-import games.project.metier.manager.ScoreManager;
 import games.project.casse_briques.model.Ball;
 import games.project.casse_briques.model.Brick;
 import games.project.casse_briques.model.Racket;
+import games.project.metier.entite.Score;
+import games.project.metier.manager.ScoreManager;
 import games.project.stockage.Session;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;

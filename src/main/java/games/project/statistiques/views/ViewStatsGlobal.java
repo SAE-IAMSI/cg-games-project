@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class ViewStatsGlobal {
 
-    public void affichageStatsGlobales(Stage stage){
+    public void affichageStatsGlobales(Stage stage) {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
@@ -51,7 +51,7 @@ public class ViewStatsGlobal {
             v.afficherMenu(stage);
         });
 
-        pane.getChildren().addAll(titre, joueursActifs, nbJoueursActifs ,btnRetour);
+        pane.getChildren().addAll(titre, joueursActifs, nbJoueursActifs, btnRetour);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);
