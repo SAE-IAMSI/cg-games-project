@@ -14,13 +14,13 @@ port = 1521
 sid = "iut"
 
 
-def createConnexion() -> oracledb.Connection:
+def createConnexion(u, p, h, po, s) -> oracledb.Connection:
     """
     Crée une connexion à la base de données\n
     :return: connexion: oracledb.Connection
     """
     oracledb.init_oracle_client(lib_dir=absolute)
-    connexion = oracledb.connect(user=user, password=password, host=host, port=port, sid=sid)
+    connexion = oracledb.connect(user=u, password=p, host=h, port=po, sid=s)
     return connexion
 
 
@@ -29,7 +29,7 @@ def getNbPlayers() -> int:
     Renvoie le nombre de joueurs sur le PGI\n
     :return: r[0] : int
     '''
-    connexion = createConnexion()
+    connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = """select getNumbersOfPlayers from dual"""
         for r in cursor.execute(sql):
@@ -41,7 +41,7 @@ def getTop10Departement() -> list:
     Renvoie les 10 départements avec le plus de joueurs\n
     :return: tab: un tableau de string
     '''
-    connexion = createConnexion()
+    connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = """SELECT * FROM viewDepartementByPlayers WHERE ROWNUM <= 10"""
         cursor.execute(sql)
@@ -57,7 +57,7 @@ def getJoueursActifs() -> int:
     Renvoie le nombre de joueurs actifs sur le PGI\n
     :return: r[0] : int
     '''
-    connexion = createConnexion()
+    connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = """select getNbActivePlayer from dual"""
         for r in cursor.execute(sql):
@@ -72,14 +72,21 @@ def getScoreMoyenEntreDates(jeu: str, dateAvant: str, dateApres: str) -> float:
     :param dateApres: date de fin de la période
     :return: r[0]: float
     '''
-    connexion = createConnexion()
+    connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = f"""select getAvgBetweenDate('{jeu}','{dateAvant}','{dateApres}') from dual"""
         for r in cursor.execute(sql):
             return r[0]
 
 
-def getTabScoreMoyenParSemaine(jeu, idGraph):
+def getTabScoreMoyenParSemaine(jeu: str, idGraph):
+    # a refactor passer en tuples ou alors virer les semaines
+    """
+    Renvoie tableau de scores et le tableau de semaines associé \n
+    :param jeu: code de jeu voulu pour le graphe
+    :param idGraph: 0 = par semaine (chaque semaine est indépendante) , 1 = "au fil du temps" (moyenne entre semaine 1 et 2, puis 1 2 3, etc...)
+    :return: scores: list et semaines:list
+    """
     itDate = date(2022, 11, 12)  # la date qui sera itérée par delta
     d = datetime.date.today()
     delta = timedelta(weeks=1)  # delta = une semaine
@@ -146,7 +153,7 @@ def getTempsMoyenKR(dateAvant: str, dateApres: str) -> float:
     :param dateApres: date de fin de période
     :return: r[0] : float
     '''
-    connexion = createConnexion()
+    connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = f"""select getAvgTimeBetweenDates('{dateAvant}','{dateApres}') from dual"""
         for r in cursor.execute(sql):
@@ -159,7 +166,7 @@ def getJoueursParDepartements(numDepartement: str) -> int:
     :param numDepartement: numéro du département sur lequel on veut le nombre de joueurs
     :return: r[0] : int
     '''
-    connexion = createConnexion()
+    connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = f"""SELECT getPlayersByDepartement({numDepartement}) FROM DUAL"""
         for r in cursor.execute(sql):
