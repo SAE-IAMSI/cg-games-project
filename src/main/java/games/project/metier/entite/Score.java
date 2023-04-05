@@ -13,21 +13,21 @@ public class Score {
     private String login;
     private String gameCode;
 
-    public Score(String gameCode) {
+    private Score() {
         this.score = new SimpleIntegerProperty(0);
         this.horodatage = new Timestamp(System.currentTimeMillis());
-        this.gameCode = gameCode;
+        this.gameCode = "CB";
         this.login = "";
     }
 
-    public Score(int score, String gameCode) {
-        this(gameCode);
+    public Score(int score) {
+        this();
         this.score = new SimpleIntegerProperty(score);
         this.horodatage = new Timestamp(System.currentTimeMillis());
     }
 
-    public Score(int score, Timestamp time, String gameCode) {
-        this(gameCode);
+    public Score(int score, Timestamp time) {
+        this();
         this.score = new SimpleIntegerProperty(score);
         this.horodatage = time;
     }

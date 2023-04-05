@@ -47,7 +47,7 @@ public class ViewLeaderBoard extends Pane {
         txtBack.setFont(cFont);
 
         ScoreManager sm = ScoreManager.getInstance();
-        List<Score> scores = sm.getLeaderboardByGame("CB");
+        List<Score> scores = sm.getLeaderboard();
 
         scoreText.setFont(cFont);
         scoreText.setText("");

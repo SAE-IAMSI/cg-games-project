@@ -1,9 +1,7 @@
 package games.project.casse_briques.controller;
 
 import games.project.casse_briques.BrickBreakerApplication;
-import games.project.casse_briques.metier.entite.BrickBreakerPlayer;
 import games.project.metier.entite.Player;
-import games.project.metier.entite.Score;
 import games.project.metier.manager.ScoreManager;
 import games.project.casse_briques.model.Ball;
 import games.project.casse_briques.model.Brick;
@@ -35,7 +33,7 @@ public class BrickBreakerController extends AnchorPane {
     private Font cFont;
     private Timeline timeline;
     private ChronometerController chronometer;
-    private BrickBreakerPlayer player;
+    private Player player;
     private Racket racket;
 
     private final ArrayList<Brick> brickMemoryAdd; //prend en mémoire les bricks ajouter
@@ -153,7 +151,7 @@ public class BrickBreakerController extends AnchorPane {
         return wallR;
     }
 
-    public BrickBreakerPlayer getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
@@ -231,7 +229,7 @@ public class BrickBreakerController extends AnchorPane {
     }
 
     private void initPlayer() {
-        this.player = new BrickBreakerPlayer("Anonyme", new Score("CB"), 3);
+        this.player = new Player("Anonyme", 3);
         lifeText.textProperty().bind(new SimpleStringProperty("X").concat(player.lifeProperty().asString()));
         scoreText.textProperty().bind(new SimpleStringProperty("Score : ").concat(this.player.getScore().scoreProperty().asString()));
     }
@@ -309,9 +307,9 @@ public class BrickBreakerController extends AnchorPane {
     private void registerScore() {
         ScoreManager sm = ScoreManager.getInstance();
         if (Session.getInstance().isConnected()) {
-            sm.createScore(player.getScore().getScore(), Session.getInstance().getLogin(), "CB");
+            sm.createScore(player.getScore().getScore(), Session.getInstance().getLogin());
         } else {
-            sm.createScore(player.getScore().getScore(), "", "CB");
+            sm.createScore(player.getScore().getScore(), "");
         }
 
     }
