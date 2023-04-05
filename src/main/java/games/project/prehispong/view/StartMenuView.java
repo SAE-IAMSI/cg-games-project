@@ -1,17 +1,16 @@
 package games.project.prehispong.view;
+
 import games.project.prehispong.MainPong;
 import games.project.prehispong.controller.GameController;
 import javafx.fxml.FXML;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 
 
 public class StartMenuView extends GenericView {
 
     public StartMenuView(GameController controller) {
-        super("StartMenu.fxml",controller);
+        super("StartMenu.fxml", controller);
     }
 
     @FXML
@@ -26,9 +25,10 @@ public class StartMenuView extends GenericView {
     }
 
     @FXML
-    private void clickScore(){
+    private void clickScore() {
         gameController.displayScreen(new ScoreMenuView(gameController));
     }
+
     @FXML
     private void parameter() {
         gameController.removeScreen(this);
@@ -42,8 +42,8 @@ public class StartMenuView extends GenericView {
 
         } catch (IOException e) {
             try {
-                 Runtime.getRuntime().exec("./"+MainPong.class.getResource("pdf/CGU.pdf"));
-            }catch (Exception exception){
+                Runtime.getRuntime().exec("./" + MainPong.class.getResource("pdf/CGU.pdf"));
+            } catch (Exception exception) {
                 e.printStackTrace();
             }
         }

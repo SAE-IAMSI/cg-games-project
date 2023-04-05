@@ -10,105 +10,104 @@ import javafx.scene.control.*;
 
 import java.util.Map;
 
-public class ParameterMenuView extends GenericView{
+public class ParameterMenuView extends GenericView {
 
-@FXML
-public TextField idLogin;
-@FXML
-public PasswordField passwordLogin;
-@FXML
-public TextField idRegister;
-@FXML
-public PasswordField passwordRegister;
-@FXML
-public PasswordField confirmRegister;
-@FXML
-public Label infoLogin;
-@FXML
-public Button connectBt;
-@FXML
-public Button decoBt;
-@FXML
-public Label infoRegister;
-@FXML
-public Label infoDelete;
-@FXML
-public ComboBox comboBox;
-private Session session = Session.getInstance();
-private PlayerManager manager = PlayerManager.getInstance();
+    @FXML
+    public TextField idLogin;
+    @FXML
+    public PasswordField passwordLogin;
+    @FXML
+    public TextField idRegister;
+    @FXML
+    public PasswordField passwordRegister;
+    @FXML
+    public PasswordField confirmRegister;
+    @FXML
+    public Label infoLogin;
+    @FXML
+    public Button connectBt;
+    @FXML
+    public Button decoBt;
+    @FXML
+    public Label infoRegister;
+    @FXML
+    public Label infoDelete;
+    @FXML
+    public ComboBox comboBox;
+    private final Session session = Session.getInstance();
+    private final PlayerManager manager = PlayerManager.getInstance();
 
 
     public ParameterMenuView(GameController controller) {
-        super("ParameterMenu.fxml",controller);
+        super("ParameterMenu.fxml", controller);
         Map<String, String> departments = PlayerManager.getInstance().getDepartments();
         for (String key : departments.keySet()) {
             String field = key + " - " + departments.get(key);
             comboBox.getItems().add(field);
         }
 
-        if(Session.getInstance().isConnected()){
+        if (Session.getInstance().isConnected()) {
             connectBt.setDisable(true);
             idLogin.setDisable(true);
             passwordLogin.setDisable(true);
             decoBt.setDisable(false);
-            infoLogin.setText("Le joueur '"+Session.getInstance().getLogin()+"' est connecté !");
+            infoLogin.setText("Le joueur '" + Session.getInstance().getLogin() + "' est connecté !");
         }
 
     }
 
 
-    private void connectPlayer(){
+    private void connectPlayer() {
         gameController.getPlayer1().setName(Session.getInstance().getLogin());
         gameController.p1.setText(gameController.getPlayer1().getName());
     }
-    private void disconnectPlayer(){
+
+    private void disconnectPlayer() {
         gameController.getPlayer1().setName("p1");
         gameController.p1.setText(gameController.getPlayer1().getName());
     }
 
 
     @FXML
-    private void back(){
+    private void back() {
         gameController.removeScreen(this);
         gameController.displayScreen(new StartMenuView(gameController));
     }
 
     @FXML
-    private void login(){
+    private void login() {
         AuthPlayer p = null;
         infoDelete.setText("");
         infoRegister.setText("");
 
-        if(!(idLogin.getText().equals("")) && !(passwordLogin.getText().equals(""))){
-                p = manager.getPlayer(idLogin.getText());
-                try {
-                    if(p!=null&&Security.checkPassword(passwordLogin.getText(),p.getSalt(),p.getHashedPassword())){
-                        session.connect(idLogin.getText());
-                        if(session.isConnected()){
-                            infoLogin.setText("Le joueur '"+session.getLogin()+"' est connecté");
-                            connectBt.setDisable(true);
-                            decoBt.setDisable(false);
-                            passwordLogin.setText("");
-                            idLogin.setText("");
-                            passwordLogin.setDisable(true);
-                            idLogin.setDisable(true);
-                            connectPlayer();
-                        }
+        if (!(idLogin.getText().equals("")) && !(passwordLogin.getText().equals(""))) {
+            p = manager.getPlayer(idLogin.getText());
+            try {
+                if (p != null && Security.checkPassword(passwordLogin.getText(), p.getSalt(), p.getHashedPassword())) {
+                    session.connect(idLogin.getText());
+                    if (session.isConnected()) {
+                        infoLogin.setText("Le joueur '" + session.getLogin() + "' est connecté");
+                        connectBt.setDisable(true);
+                        decoBt.setDisable(false);
+                        passwordLogin.setText("");
+                        idLogin.setText("");
+                        passwordLogin.setDisable(true);
+                        idLogin.setDisable(true);
+                        connectPlayer();
                     }
-                    else{
-                        infoLogin.setText("Identifiant ou mot de passe incorrect");
-                    }
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
+                } else {
+                    infoLogin.setText("Identifiant ou mot de passe incorrect");
                 }
-        }
-        else{
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } else {
             infoLogin.setText("Tous les champs ne sont pas remplis");
         }
     }
 
     @FXML
-    private void disconnect(){
+    private void disconnect() {
         infoRegister.setText("");
         infoLogin.setText("Joueur déconnecté");
         session.disconnect();
@@ -120,7 +119,7 @@ private PlayerManager manager = PlayerManager.getInstance();
     }
 
     @FXML
-    private void register(){
+    private void register() {
         infoDelete.setText("");
         infoLogin.setText("");
         String dep;
@@ -130,30 +129,28 @@ private PlayerManager manager = PlayerManager.getInstance();
             dep = "";
         }
 
-        if(!idRegister.getText().equals("") && !passwordRegister.getText().equals("") && !confirmRegister.getText().equals("") && !dep.equals("")){
-            if(passwordRegister.getText().equals(confirmRegister.getText())){
-                PlayerManager.getInstance().createPlayer(idRegister.getText(), dep, passwordRegister.getText());
-                infoRegister.setText("Joueur '"+idRegister.getText()+"' enregister !");
+        if (!idRegister.getText().equals("") && !passwordRegister.getText().equals("") && !confirmRegister.getText().equals("") && !dep.equals("")) {
+            if (passwordRegister.getText().equals(confirmRegister.getText())) {
+                //  PlayerManager.getInstance().createPlayer(idRegister.getText(), dep, passwordRegister.getText());
+                infoRegister.setText("Joueur '" + idRegister.getText() + "' enregister !");
                 passwordRegister.setText("");
                 confirmRegister.setText("");
                 idRegister.setText("");
             }
-        }
-        else{
+        } else {
             infoRegister.setText("Tous les champs ne sont pas remplis");
         }
     }
 
     @FXML
-    private void delete(){
+    private void delete() {
         infoRegister.setText("");
         infoLogin.setText("");
-        if(Session.getInstance().isConnected()){
+        if (Session.getInstance().isConnected()) {
             PlayerManager.getInstance().deletePlayer(Session.getInstance().getLogin());
             infoDelete.setText("Joueur supprimer !");
             disconnect();
-        }
-        else{
+        } else {
             infoDelete.setText("Erreur !");
         }
 

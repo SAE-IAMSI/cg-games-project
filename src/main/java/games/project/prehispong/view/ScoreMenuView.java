@@ -12,35 +12,32 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class ScoreMenuView extends GenericView{
+public class ScoreMenuView extends GenericView {
 
     @FXML
     public Text textScore;
     @FXML
     public Button playerScoreBt;
+
     public ScoreMenuView(GameController controller) {
-        super("ScoreMenu.fxml",controller);
+        super("ScoreMenu.fxml", controller);
         textScore.setText("");
         //initScoreByGame("PONG");
-        if(Session.getInstance().isConnected()){
-            playerScoreBt.setDisable(false);
-        }
-        else{
-            playerScoreBt.setDisable(true);
-        }
+        playerScoreBt.setDisable(!Session.getInstance().isConnected());
     }
 
 
-    private void initScoreByGame(String codeGame){
+    private void initScoreByGame(String codeGame) {
         ScoreManager sm = ScoreManager.getInstance();
         ArrayList<Score> listScore = new ArrayList<>();
         listScore.addAll(sm.getScoresByGame(codeGame));
         int size = 0;
-        if(listScore.size()>=10){size=10;}
-        else {
+        if (listScore.size() >= 10) {
+            size = 10;
+        } else {
             size = listScore.size();
         }
-       for (int i=0;i<size;i++) {
+        for (int i = 0; i < size; i++) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(listScore.get(i).getHorodatage());
             String month = "";
@@ -88,11 +85,12 @@ public class ScoreMenuView extends GenericView{
     }
 
     @FXML
-    public void back(){
+    public void back() {
         gameController.removeScreen(this);
     }
+
     @FXML
-    private void clickPlayerScore(){
+    private void clickPlayerScore() {
         gameController.removeScreen(this);
         gameController.displayScreen(new PlayerScoreMenuView(gameController));
     }

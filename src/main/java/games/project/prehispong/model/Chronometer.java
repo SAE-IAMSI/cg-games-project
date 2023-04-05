@@ -25,9 +25,10 @@ public class Chronometer {
         timeline.setCycleCount(Animation.INDEFINITE);
     }
 
-    public void addTime(){
-        time.set(time.getValue()+1);
+    public void addTime() {
+        time.set(time.getValue() + 1);
     }
+
     public void launch() {
         timeline.play();
     }

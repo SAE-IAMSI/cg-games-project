@@ -24,9 +24,9 @@ public class VueSelectionJeu extends Stage implements Menu {
     private final Scene scene;
     private VueJeu vueJeu;
 
-    private Button modeNormal;
-    private Button modeAventure;
-    private HBox choix;
+    private final Button modeNormal;
+    private final Button modeAventure;
+    private final HBox choix;
 
     public VueSelectionJeu() {
         root = new BorderPane();

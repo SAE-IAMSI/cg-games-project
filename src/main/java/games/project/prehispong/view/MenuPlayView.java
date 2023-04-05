@@ -5,24 +5,24 @@ import javafx.fxml.FXML;
 
 public class MenuPlayView extends GenericView {
     public MenuPlayView(GameController controller) {
-        super("MenuPlayView.fxml",controller);
+        super("MenuPlayView.fxml", controller);
     }
 
     @FXML
-    private void pvp(){
+    private void pvp() {
         gameController.removeScreen(this);
         gameController.setGameState(true);
         gameController.run();
     }
 
     @FXML
-    private void pvi(){
+    private void pvi() {
         gameController.removeScreen(this);
         gameController.displayScreen(new DifficultyMenuView(gameController));
     }
 
     @FXML
-    private void back(){
+    private void back() {
         gameController.removeScreen(this);
         gameController.displayScreen(new StartMenuView(gameController));
     }

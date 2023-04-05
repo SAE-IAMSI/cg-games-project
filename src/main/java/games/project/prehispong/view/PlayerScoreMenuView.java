@@ -11,26 +11,27 @@ import javafx.scene.text.Text;
 import java.util.Calendar;
 import java.util.List;
 
-public class PlayerScoreMenuView extends GenericView{
+public class PlayerScoreMenuView extends GenericView {
     @FXML
     public Text textScore;
 
     public PlayerScoreMenuView(GameController controller) {
-        super("PlayerScoreMenu.fxml",controller);
+        super("PlayerScoreMenu.fxml", controller);
         textScore.setText("");
         initScore();
     }
 
-    private void initScore(){
+    private void initScore() {
         ScoreManager sm = ScoreManager.getInstance();
         List<Score> listScore = sm.getScoresHistoryByLogin(Session.getInstance().getLogin());
 
         int size = 0;
-        if(listScore.size()>=10){size=10;}
-        else {
+        if (listScore.size() >= 10) {
+            size = 10;
+        } else {
             size = listScore.size();
         }
-        for (int i=0;i<size;i++) {
+        for (int i = 0; i < size; i++) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(listScore.get(i).getHorodatage());
             String month = "";
@@ -80,7 +81,7 @@ public class PlayerScoreMenuView extends GenericView{
     }
 
     @FXML
-    private void back(){
+    private void back() {
         gameController.removeScreen(this);
         gameController.displayScreen(new ScoreMenuView(gameController));
     }
