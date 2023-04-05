@@ -3,6 +3,7 @@ package games.project.prehispong.controller;
 import games.project.metier.entite.Player;
 import games.project.metier.manager.ScoreManager;
 import games.project.prehispong.model.Ball;
+import games.project.prehispong.model.Chronometer;
 import games.project.prehispong.model.Racket;
 import games.project.prehispong.view.EndGameView;
 import games.project.prehispong.view.GenericView;
@@ -88,6 +89,13 @@ public class GameController extends GenericView{
         resetScore();
         setDifficulty(difficulty);
         setGamemode("IA");
+
+        if(difficulty==3){ //INIT Timer mode survie
+            Chronometer chronometer = new Chronometer();
+            chronometer.initChrono();
+            chronometer.launch();
+        }
+
             this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
                 ball.hitboxWall(topBar);
                 ball.hitboxWall(bottomBar);
@@ -97,6 +105,9 @@ public class GameController extends GenericView{
                 racketPlayer2.hitboxRacket(ball);
                 racketPlayer1.hitboxRacket(ball);
                 if(!(difficulty == 3)){checkEndCondition();}
+                else{
+
+                }
             }));
             timeline.setCycleCount(Animation.INDEFINITE);
             listenerMouse();
@@ -166,6 +177,13 @@ public class GameController extends GenericView{
             resetScore();
             endLoop();
             displayScreen(new EndGameView(player2.getName(),this));
+        }
+    }
+
+    private void checkEndConditionSurvival(){
+        if(player1.getScore().scoreProperty().getValue()>=1){
+            resetScore();
+            endLoop();
         }
     }
 
