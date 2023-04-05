@@ -17,11 +17,6 @@
       </ImageView>
       <Rectangle fx:id="topBar" arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="-4.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="1288.0" />
       <Rectangle fx:id="bottomBar" arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="-8.0" layoutY="651.0" stroke="#ffffff00" strokeType="INSIDE" width="1288.0" />
-      <Text fx:id="gameTitle" fill="WHITE" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pong" textAlignment="CENTER" wrappingWidth="1280.0000000000002">
-         <font>
-            <Font name="Sans Serif Collection" size="34.0" />
-         </font>
-      </Text>
       <Text fx:id="p1" fill="WHITE" layoutX="84.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" wrappingWidth="102.13671875">
          <font>
             <Font name="Sans Serif Collection" size="20.0" />
@@ -48,6 +43,11 @@
       <Text fx:id="information" fill="#867c7c" layoutX="45.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Espace pour commencer !" textAlignment="CENTER" wrappingWidth="1181.13671875">
          <font>
             <Font name="Arial Black" size="29.0" />
+         </font>
+      </Text>
+      <Text fx:id="chronoText" fill="WHITE" layoutX="568.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chronometre : " wrappingWidth="159.13671875">
+         <font>
+            <Font name="Sans Serif Collection" size="20.0" />
          </font>
       </Text>
    </children>

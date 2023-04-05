@@ -1,6 +1,8 @@
 package games.project.prehispong.controller;
 
 import games.project.metier.entite.Player;
+import games.project.metier.entite.Score;
+import games.project.metier.manager.ScoreManager;
 import games.project.prehispong.model.Ball;
 import games.project.prehispong.model.Chronometer;
 import games.project.prehispong.model.Racket;
@@ -54,6 +56,7 @@ public class GameController extends GenericView {
     private Timeline timeline;
     private Player player1;
     private Player player2;
+    private Chronometer chronometer;
     /**
      * True quand le joueur a le focus sur l'écran de jeu, False sinon
      **/
@@ -92,9 +95,9 @@ public class GameController extends GenericView {
         setGamemode("IA");
 
         if (difficulty == 3) { //INIT Timer mode survie
-            Chronometer chronometer = new Chronometer();
+            /*Chronometer chronometer = new Chronometer();
             chronometer.initChrono();
-            chronometer.launch();
+            chronometer.launch();*/
         }
 
         this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
@@ -107,8 +110,6 @@ public class GameController extends GenericView {
             racketPlayer1.hitboxRacket(ball);
             if (!(difficulty == 3)) {
                 checkEndCondition();
-            } else {
-
             }
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -123,10 +124,8 @@ public class GameController extends GenericView {
         this.racketPlayer1 = new Racket(66, 308, 50, 105, 0);
         this.racketPlayer2 = new Racket(1190, 308, 50, 105, 1);
 
-        // player1 = new Player("p1",0);
-        // player2 = new Player("p2",0);
-        player1.getScore().setGameCode("PONG");
-        player2.getScore().setGameCode("PONG");
+        player1 = new Player("p1",new Score("PONG"));
+        player2 = new Player("p2",new Score("PONG"));
         p1.setText(player1.getName());
         p2.setText(player2.getName());
 
@@ -170,7 +169,7 @@ public class GameController extends GenericView {
 
     public void registerScore() {
         if (Session.getInstance().isConnected()) {
-            // ScoreManager.getInstance().createScore(player1.getScore().getScore(),Session.getInstance().getLogin());
+            ScoreManager.getInstance().createScore(player1.getScore().getScore(),player1.getName(),player1.getScore().getGameCode());
         }
     }
 
@@ -187,9 +186,10 @@ public class GameController extends GenericView {
     }
 
     private void checkEndConditionSurvival() {
-        if (player1.getScore().scoreProperty().getValue() >= 1) {
+        if (player1.getScore().scoreProperty().getValue() >= 1 || player2.getScore().scoreProperty().getValue()>=1) {
             resetScore();
             endLoop();
+            player1.getScore().setScore(chronometer.getTime()*100);
         }
     }
 
