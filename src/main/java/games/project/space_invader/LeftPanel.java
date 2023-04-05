@@ -8,6 +8,7 @@ import java.util.Objects;
 public class LeftPanel extends JPanel {
 
     private int lives = 0;
+
     private JLabel livesLabel, live1, live2, live3;
     private JLabel boutonGauche, boutonDroite, boutonEspace, textDeplacement, textTire;
 
@@ -138,6 +139,9 @@ public class LeftPanel extends JPanel {
 
         textDeplacement.setPreferredSize(new Dimension(100, 100));
         textTire.setPreferredSize(new Dimension(100, 100));
+    }
+    public JLabel getLivesLabel() {
+        return livesLabel;
     }
 
 }

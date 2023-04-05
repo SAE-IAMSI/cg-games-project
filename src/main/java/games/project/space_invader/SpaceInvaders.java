@@ -33,7 +33,7 @@ public abstract class SpaceInvaders extends JFrame {
     /**
      * initialise la fenêtre
      */
-    private void initialiser() {
+    void initialiser() {
         leftPanel.setPreferredSize(new Dimension(320, 720));
         leftPanel.setBackground(Color.BLACK);
 

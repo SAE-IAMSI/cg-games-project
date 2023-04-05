@@ -21,7 +21,7 @@ public class RightPanel extends JPanel {
      * Initialise le score
      */
     private void initScore() {
-        scoreLabel.setText("Score: " + score);
+        scoreLabel.setText("Score(s): " + score);
         scoreLabel.setAlignment(Label.CENTER);
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 30));
         scoreLabel.setForeground(Color.WHITE);
@@ -33,7 +33,7 @@ public class RightPanel extends JPanel {
      * Met à jour le score
      */
     public void updateScore() {
-        scoreLabel.setText("Score: " + score);
+        scoreLabel.setText("Score(s): " + score);
         scoreLabel.repaint();
     }
 
@@ -51,5 +51,9 @@ public class RightPanel extends JPanel {
      */
     public int getScore() {
         return score;
+    }
+
+    public Label getScoreLabel() {
+        return scoreLabel;
     }
 }

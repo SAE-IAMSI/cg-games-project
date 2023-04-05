@@ -27,7 +27,7 @@ public class Sprite {
     }
 
     /**
-     * Désinit la visibilité
+     * Défini la visibilité
      * @return visible
      */
     public boolean isVisible() {
@@ -103,4 +103,10 @@ public class Sprite {
     public boolean isDying() {
         return this.dying;
     }
+
+    public int getDx() {
+        return dx;
+    }
+
+
 }
