@@ -27,21 +27,39 @@ public class Alien extends Sprite {
         setImage(ii.getImage());
     }
 
+    /**
+     * Déplace l'alien
+     * @param direction
+     */
     public void act(int direction) {
         this.x += direction;
     }
 
+    /**
+     * Définit la bombe
+     */
     public Bomb getBomb() {
         return bomb;
     }
 
+
     public static class Bomb extends Sprite {
         private boolean destroyed;
 
+        /**
+         * Constructeur de la classe Bomb
+         * @param x
+         * @param y
+         */
         public Bomb(int x, int y) {
             initBomb(x, y);
         }
 
+        /**
+         * Initialise la bombe
+         * @param x
+         * @param y
+         */
         private void initBomb(int x, int y) {
 
             setDestroyed(true);
@@ -54,10 +72,17 @@ public class Alien extends Sprite {
             setImage(ii.getImage());
         }
 
+        /**
+         * Définit si la bombe est détruite
+         * @param destroyed
+         */
         public void setDestroyed(boolean destroyed) {
             this.destroyed = destroyed;
         }
 
+        /**
+         * Est détruite
+         */
         public boolean isDestroyed() {
             return destroyed;
         }

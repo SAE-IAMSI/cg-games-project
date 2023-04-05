@@ -36,7 +36,19 @@ public class Board extends JPanel {
 
     private final SpaceInvaders game;
 
+    private int nbTours = 0;
+    private int tirPlayer = 4;
+    private int tirAlien = 1;
+    private int movePlayer = 2;
+    private int moveAlien = 1;
 
+    /**
+     * constructeur de la classe Board
+     *
+     * @param rightPanel panel de droite
+     * @param leftPanel panel de gauche
+     * @param game instance de SpaceInvaders
+     */
     public Board(RightPanel rightPanel, LeftPanel leftPanel, SpaceInvaders game) {
         initBoard();
         this.rightPanel = rightPanel;
@@ -44,6 +56,9 @@ public class Board extends JPanel {
         this.game = game;
     }
 
+    /**
+     * Initialise le plateau de jeu
+     */
     private void initBoard() {
 
         addKeyListener(new TAdapter());
@@ -56,8 +71,10 @@ public class Board extends JPanel {
         gameInit();
     }
 
-
-    private void gameInit() {
+    /**
+     * Initialise le jeu
+     */
+    void gameInit() {
         aliens = new ArrayList<>();
 
         for (int i = 0; i < 6; i++) {
@@ -69,10 +86,15 @@ public class Board extends JPanel {
             }
         }
 
-        player = new Player();
+        player = new Player(this);
         shot = new Shot();
     }
 
+    /**
+     * Dessine les aliens
+     *
+     * @param g Graphics
+     */
     private void drawAliens(Graphics g) {
         for (Alien alien : aliens) {
             if (alien.isVisible()) {
@@ -84,7 +106,12 @@ public class Board extends JPanel {
         }
     }
 
-    private void drawPlayer(Graphics g) {
+    /**
+     * Dessine le joueur
+     *
+     * @param g Graphics
+     */
+    void drawPlayer(Graphics g) {
 
         if (player.isVisible()) {
             g.drawImage(player.getImage(), player.getX(), player.getY(), this);
@@ -95,12 +122,22 @@ public class Board extends JPanel {
         }
     }
 
+    /**
+     * Dessine le tir
+     *
+     * @param g Graphics
+     */
     private void drawShot(Graphics g) {
         if (shot.isVisible()) {
             g.drawImage(shot.getImage(), shot.getX(), shot.getY(), this);
         }
     }
 
+    /**
+     * Dessine les bombes
+     *
+     * @param g Graphics
+     */
     private void drawBombing(Graphics g) {
         for (Alien a : aliens) {
             Alien.Bomb b = a.getBomb();
@@ -110,12 +147,22 @@ public class Board extends JPanel {
         }
     }
 
+    /**
+     * Dessine le plateau de jeu
+     *
+     * @param g the <code>Graphics</code> object to protect
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         doDrawing(g);
     }
 
+    /**
+     * Dessine le plateau de jeu
+     *
+     * @param g Graphics
+     */
     private void doDrawing(Graphics g) {
         g.setColor(Color.black);
         g.fillRect(0, 0, d.width, d.height);
@@ -137,6 +184,11 @@ public class Board extends JPanel {
         Toolkit.getDefaultToolkit().sync();
     }
 
+    /**
+     * Affiche le message de fin de partie
+     *
+     * @param g Graphics
+     */
     private void gameOver(Graphics g) {
         g.setColor(Color.black);
         g.fillRect(0, 0, Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
@@ -154,12 +206,18 @@ public class Board extends JPanel {
                 Commons.BOARD_WIDTH / 2);
     }
 
+    /**
+     * Met à jour quand le joueur est touché
+     */
     private void updateDommage() {
         getDommage = true;
         timerLife.stop();
     }
 
-    private void update() {
+    /**
+     * Met à jour le plateau de jeu
+     */
+    void update() {
 
         if (deaths == Commons.NUMBER_OF_ALIENS_TO_DESTROY) {
             if (game instanceof SpaceInvadersInfinite) {
@@ -168,6 +226,13 @@ public class Board extends JPanel {
                 shot = null;
                 deaths = 0;
                 removeKeyListener(this.getKeyListeners()[0]);
+                nbTours ++;
+                if (nbTours%2 == 0) {
+                    tirAlien++;
+                    tirPlayer += 4;
+                    moveAlien++;
+                    movePlayer += 2;
+                }
                 initBoard();
             } else if (game instanceof SpaceInvadersClassic) {
                 inGame = false;
@@ -204,7 +269,7 @@ public class Board extends JPanel {
             }
 
             int y = shot.getY();
-            y -= 4;
+            y -= tirPlayer;
             if (y < 0) {
                 shot.die();
             } else {
@@ -217,14 +282,14 @@ public class Board extends JPanel {
         for (Alien alien : aliens) {
             int x = alien.getX();
             if (x >= Commons.BOARD_WIDTH - Commons.BORDER_RIGHT && direction != -1) {
-                direction = -1;
+                direction = -moveAlien;
                 for (Alien a2 : aliens) {
                     a2.setY(a2.getY() + Commons.GO_DOWN);
                 }
             }
 
             if (x <= Commons.BORDER_LEFT && direction != 1) {
-                direction = 1;
+                direction = moveAlien;
                 for (Alien a : aliens) {
                     a.setY(a.getY() + Commons.GO_DOWN);
                 }
@@ -279,7 +344,7 @@ public class Board extends JPanel {
             }
 
             if (!bomb.isDestroyed()) {
-                bomb.setY(bomb.getY() + 1);
+                bomb.setY(bomb.getY() + tirAlien);
                 if (bomb.getY() >= Commons.GROUND - Commons.BOMB_HEIGHT) {
                     bomb.setDestroyed(true);
                 }
@@ -287,11 +352,18 @@ public class Board extends JPanel {
         }
     }
 
+    /**
+     * Dessine les éléments du jeu
+     */
     private void doGameCycle() {
         update();
         repaint();
     }
 
+
+    /**
+     * Classe interne pour le timer
+     */
     private class GameCycle implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -299,12 +371,30 @@ public class Board extends JPanel {
         }
     }
 
+    public int getMovePlayer() {
+        return movePlayer;
+    }
+
+    /**
+     * Classe interne pour les touches du clavier
+     */
     private class TAdapter extends KeyAdapter {
+
+        /**
+         * Appelé quand une touche est relachée
+         *
+         * @param e the event to be processed
+         */
         @Override
         public void keyReleased(KeyEvent e) {
             player.keyReleased(e);
         }
 
+        /**
+         * Appelé quand une touche est pressée
+         *
+         * @param e the event to be processed
+         */
         @Override
         public void keyPressed(KeyEvent e) {
             player.keyPressed(e);
@@ -319,5 +409,8 @@ public class Board extends JPanel {
                 }
             }
         }
+    }
+    public List<Alien> getAliens() {
+        return aliens;
     }
 }
