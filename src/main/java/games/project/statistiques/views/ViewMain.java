@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class ViewMain extends Stage {
 
-    public void afficherMenu(Stage stage){
+    public void afficherMenu(Stage stage) {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(StatsLauncher.class.getResource("css/styleStats.css")));

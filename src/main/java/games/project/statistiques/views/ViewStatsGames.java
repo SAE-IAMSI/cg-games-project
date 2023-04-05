@@ -1,7 +1,6 @@
 package games.project.statistiques.views;
 
 import games.project.statistiques.StatsLauncher;
-import javafx.collections.ObservableArray;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -13,7 +12,7 @@ import javafx.stage.Stage;
 
 public class ViewStatsGames {
 
-    public void affichageStatsJeu(Stage stage){
+    public void affichageStatsJeu(Stage stage) {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(StatsLauncher.class.getResource("css/styleStats.css")));
@@ -75,7 +74,7 @@ public class ViewStatsGames {
             v.afficherMenu(stage);
         });
 
-        pane.getChildren().addAll(titre, select, scoreB, scoreM ,comboSelect, bestScore ,btnRetour);
+        pane.getChildren().addAll(titre, select, scoreB, scoreM, comboSelect, bestScore, btnRetour);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);

@@ -38,9 +38,11 @@ public class Player {
         return name;
     }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public void setScore(int score) {
-            this.score = new Score(score, this.name);
+        this.score = new Score(score, this.name);
     }
 }

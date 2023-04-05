@@ -33,7 +33,7 @@ public class PacoMano extends Application {
     }
 
     enum Dir {
-        UP, DOWN, LEFT, RIGHT;
+        UP, DOWN, LEFT, RIGHT
     }
 
     private final int mapWidth = 600;
@@ -58,9 +58,9 @@ public class PacoMano extends Application {
     private Timeline timeline;
     private Label scoreLabel, highLabel;
 
-    private ArrayList<Rectangle> wallList = new ArrayList<Rectangle>();
-    private ArrayList<Circle> pelletList = new ArrayList<Circle>();
-    private ArrayList<Circle> bonusList = new ArrayList<Circle>();
+    private final ArrayList<Rectangle> wallList = new ArrayList<Rectangle>();
+    private final ArrayList<Circle> pelletList = new ArrayList<Circle>();
+    private final ArrayList<Circle> bonusList = new ArrayList<Circle>();
     private Dir red_movingAt, pink_movingAt, orange_movingAt, cyan_movingAt;
     private Dir movingAt, newDir;
 
@@ -78,7 +78,7 @@ public class PacoMano extends Application {
         scoreLabel = new Label();
         scoreLabel.setPrefWidth(130);
 
-        highLabel = new Label("High Score : " + Integer.toString(highScore));
+        highLabel = new Label("High Score : " + highScore);
         highLabel.setPrefWidth(150);
 
         HBox h_box = new HBox(250);
@@ -160,7 +160,7 @@ public class PacoMano extends Application {
                     endGame();
 
             // only when pacman cannot continue in its current direction, its direction is updated
-            if (checkForWalls(newDir, pacmanX, pacmanY) == false) {
+            if (!checkForWalls(newDir, pacmanX, pacmanY)) {
                 if (movingAt != newDir)        // when pacman makes a turn, record the coordinates of the position he turned at
                 {
                     pacmanTurnedAt_x = pacman.getCenterX();
@@ -171,16 +171,16 @@ public class PacoMano extends Application {
             }
 
             if (movingAt == Dir.UP) {
-                if (checkForWalls(movingAt, pacmanX, pacmanY) == false)
+                if (!checkForWalls(movingAt, pacmanX, pacmanY))
                     pacman.setCenterY(pacmanY - speed);
             } else if (movingAt == Dir.DOWN) {
-                if (checkForWalls(movingAt, pacmanX, pacmanY) == false)
+                if (!checkForWalls(movingAt, pacmanX, pacmanY))
                     pacman.setCenterY(pacmanY + speed);
             } else if (movingAt == Dir.LEFT) {
-                if (checkForWalls(movingAt, pacmanX, pacmanY) == false)
+                if (!checkForWalls(movingAt, pacmanX, pacmanY))
                     pacman.setCenterX(pacmanX - speed);
             } else if (movingAt == Dir.RIGHT) {
-                if (checkForWalls(movingAt, pacmanX, pacmanY) == false)
+                if (!checkForWalls(movingAt, pacmanX, pacmanY))
                     pacman.setCenterX(pacmanX + speed);
             }
 
@@ -194,9 +194,9 @@ public class PacoMano extends Application {
             moveCyan();
 
             // check if all the pellets & bonus food have been eaten and then end the game
-            if (pelletList.isEmpty() == true && bonusList.isEmpty()) endGame();
+            if (pelletList.isEmpty() && bonusList.isEmpty()) endGame();
 
-            scoreLabel.setText("Score : " + Integer.toString(score));
+            scoreLabel.setText("Score : " + score);
 
             // update pacman's coordinates
             pacmanX = pacman.getCenterX();
@@ -215,13 +215,13 @@ public class PacoMano extends Application {
         if (bonusEaten && redGhost.getColor() == Color.BLUE)
             dontGo = pacmanAt(redGhost);        // the ghost must not go to this direction
 
-        if (redGhost.isTransparent() == true)    // move the ghost out of the cell
+        if (redGhost.isTransparent())    // move the ghost out of the cell
         {
             if (redGhost.getX() < 210)
                 red_movingAt = Dir.RIGHT;
             else
                 redGhost.setTransparent(false);    // only when the ghost has passed the right border of the cell it loses its transparency
-        } else if (checkForWalls(red_movingAt, redGhost.getX(), redGhost.getY()) == true && numOfTurns(red_movingAt, redGhost.getX(), redGhost.getY()) == 1) {                            // if the ghost runs to a dead end it goes in the direction opposite to its current direction
+        } else if (checkForWalls(red_movingAt, redGhost.getX(), redGhost.getY()) && numOfTurns(red_movingAt, redGhost.getX(), redGhost.getY()) == 1) {                            // if the ghost runs to a dead end it goes in the direction opposite to its current direction
             red_movingAt = oppositeDir(red_movingAt);
         } else {
             for (; ; ) {
@@ -234,7 +234,7 @@ public class PacoMano extends Application {
 
                 // move in a random direction
                 Dir direction = getRandomDir();
-                if (checkForWalls(direction, redGhost.getX(), redGhost.getY()) == false) {
+                if (!checkForWalls(direction, redGhost.getX(), redGhost.getY())) {
                     if (dontGo != null && direction != dontGo) {
                         red_movingAt = direction;
                         break;
@@ -247,16 +247,16 @@ public class PacoMano extends Application {
         }
 
         if (red_movingAt == Dir.UP) {
-            if (checkForWalls(red_movingAt, redGhost.getX(), redGhost.getY()) == false || redGhost.isTransparent() == true)
+            if (!checkForWalls(red_movingAt, redGhost.getX(), redGhost.getY()) || redGhost.isTransparent())
                 redGhost.setY(redGhost.getY() - speed);
         } else if (red_movingAt == Dir.DOWN) {
-            if (checkForWalls(red_movingAt, redGhost.getX(), redGhost.getY()) == false || redGhost.isTransparent() == true)
+            if (!checkForWalls(red_movingAt, redGhost.getX(), redGhost.getY()) || redGhost.isTransparent())
                 redGhost.setY(redGhost.getY() + speed);
         } else if (red_movingAt == Dir.LEFT) {
-            if (checkForWalls(red_movingAt, redGhost.getX(), redGhost.getY()) == false || redGhost.isTransparent() == true)
+            if (!checkForWalls(red_movingAt, redGhost.getX(), redGhost.getY()) || redGhost.isTransparent())
                 redGhost.setX(redGhost.getX() - speed);
         } else if (red_movingAt == Dir.RIGHT) {
-            if (checkForWalls(red_movingAt, redGhost.getX(), redGhost.getY()) == false || redGhost.isTransparent() == true)
+            if (!checkForWalls(red_movingAt, redGhost.getX(), redGhost.getY()) || redGhost.isTransparent())
                 redGhost.setX(redGhost.getX() + speed);
         }
     }
@@ -269,13 +269,13 @@ public class PacoMano extends Application {
             dontGo = pacmanAt(pinkGhost);        // the ghost must not go to this direction
 
 
-        if (pinkGhost.isTransparent() == true)    // move the ghost out of the cell
+        if (pinkGhost.isTransparent())    // move the ghost out of the cell
         {
             if (pinkGhost.getY() < 200)
                 pink_movingAt = Dir.DOWN;
             else
                 pinkGhost.setTransparent(false);    // only when the ghost has passed the bottom border of the cell it loses its transparency
-        } else if (checkForWalls(pink_movingAt, pinkGhost.getX(), pinkGhost.getY()) == true && numOfTurns(pink_movingAt, pinkGhost.getX(), pinkGhost.getY()) == 1) {                            // if the ghost runs to a dead end it goes in the direction opposite to its current direction
+        } else if (checkForWalls(pink_movingAt, pinkGhost.getX(), pinkGhost.getY()) && numOfTurns(pink_movingAt, pinkGhost.getX(), pinkGhost.getY()) == 1) {                            // if the ghost runs to a dead end it goes in the direction opposite to its current direction
             pink_movingAt = oppositeDir(pink_movingAt);
         } else {
             for (; ; ) {
@@ -288,7 +288,7 @@ public class PacoMano extends Application {
 
                 // move in a random direction
                 Dir direction = getRandomDir();
-                if (checkForWalls(direction, pinkGhost.getX(), pinkGhost.getY()) == false) {
+                if (!checkForWalls(direction, pinkGhost.getX(), pinkGhost.getY())) {
                     if (dontGo != null && direction != dontGo) {
                         pink_movingAt = direction;
                         break;
@@ -301,16 +301,16 @@ public class PacoMano extends Application {
         }
 
         if (pink_movingAt == Dir.UP) {
-            if (checkForWalls(pink_movingAt, pinkGhost.getX(), pinkGhost.getY()) == false || pinkGhost.isTransparent() == true)
+            if (!checkForWalls(pink_movingAt, pinkGhost.getX(), pinkGhost.getY()) || pinkGhost.isTransparent())
                 pinkGhost.setY(pinkGhost.getY() - speed);
         } else if (pink_movingAt == Dir.DOWN) {
-            if (checkForWalls(pink_movingAt, pinkGhost.getX(), pinkGhost.getY()) == false || pinkGhost.isTransparent() == true)
+            if (!checkForWalls(pink_movingAt, pinkGhost.getX(), pinkGhost.getY()) || pinkGhost.isTransparent())
                 pinkGhost.setY(pinkGhost.getY() + speed);
         } else if (pink_movingAt == Dir.LEFT) {
-            if (checkForWalls(pink_movingAt, pinkGhost.getX(), pinkGhost.getY()) == false || pinkGhost.isTransparent() == true)
+            if (!checkForWalls(pink_movingAt, pinkGhost.getX(), pinkGhost.getY()) || pinkGhost.isTransparent())
                 pinkGhost.setX(pinkGhost.getX() - speed);
         } else if (pink_movingAt == Dir.RIGHT) {
-            if (checkForWalls(pink_movingAt, pinkGhost.getX(), pinkGhost.getY()) == false || pinkGhost.isTransparent() == true)
+            if (!checkForWalls(pink_movingAt, pinkGhost.getX(), pinkGhost.getY()) || pinkGhost.isTransparent())
                 pinkGhost.setX(pinkGhost.getX() + speed);
         }
     }
@@ -322,13 +322,13 @@ public class PacoMano extends Application {
         if (bonusEaten && orangeGhost.getColor() == Color.BLUE)
             dontGo = pacmanAt(orangeGhost);        // the ghost must not go to this direction
 
-        if (orangeGhost.isTransparent() == true)    // move the ghost out of the cell
+        if (orangeGhost.isTransparent())    // move the ghost out of the cell
         {
             if (orangeGhost.getY() > 70)
                 orange_movingAt = Dir.UP;
             else
                 orangeGhost.setTransparent(false);    // only when the ghost has passed the top border of the cell it loses its transparency
-        } else if (checkForWalls(orange_movingAt, orangeGhost.getX(), orangeGhost.getY()) == true && numOfTurns(orange_movingAt, orangeGhost.getX(), orangeGhost.getY()) == 1) {                            // if the ghost runs to a dead end it goes in the direction opposite to its current direction
+        } else if (checkForWalls(orange_movingAt, orangeGhost.getX(), orangeGhost.getY()) && numOfTurns(orange_movingAt, orangeGhost.getX(), orangeGhost.getY()) == 1) {                            // if the ghost runs to a dead end it goes in the direction opposite to its current direction
             orange_movingAt = oppositeDir(orange_movingAt);
         } else {
             for (; ; ) {
@@ -341,7 +341,7 @@ public class PacoMano extends Application {
 
                 // move in a random direction
                 Dir direction = getRandomDir();
-                if (checkForWalls(direction, orangeGhost.getX(), orangeGhost.getY()) == false) {
+                if (!checkForWalls(direction, orangeGhost.getX(), orangeGhost.getY())) {
                     if (dontGo != null && direction != dontGo) {
                         orange_movingAt = direction;
                         break;
@@ -354,16 +354,16 @@ public class PacoMano extends Application {
         }
 
         if (orange_movingAt == Dir.UP) {
-            if (checkForWalls(orange_movingAt, orangeGhost.getX(), orangeGhost.getY()) == false || orangeGhost.isTransparent() == true)
+            if (!checkForWalls(orange_movingAt, orangeGhost.getX(), orangeGhost.getY()) || orangeGhost.isTransparent())
                 orangeGhost.setY(orangeGhost.getY() - speed);
         } else if (orange_movingAt == Dir.DOWN) {
-            if (checkForWalls(orange_movingAt, orangeGhost.getX(), orangeGhost.getY()) == false || orangeGhost.isTransparent() == true)
+            if (!checkForWalls(orange_movingAt, orangeGhost.getX(), orangeGhost.getY()) || orangeGhost.isTransparent())
                 orangeGhost.setY(orangeGhost.getY() + speed);
         } else if (orange_movingAt == Dir.LEFT) {
-            if (checkForWalls(orange_movingAt, orangeGhost.getX(), orangeGhost.getY()) == false || orangeGhost.isTransparent() == true)
+            if (!checkForWalls(orange_movingAt, orangeGhost.getX(), orangeGhost.getY()) || orangeGhost.isTransparent())
                 orangeGhost.setX(orangeGhost.getX() - speed);
         } else if (orange_movingAt == Dir.RIGHT) {
-            if (checkForWalls(orange_movingAt, orangeGhost.getX(), orangeGhost.getY()) == false || orangeGhost.isTransparent() == true)
+            if (!checkForWalls(orange_movingAt, orangeGhost.getX(), orangeGhost.getY()) || orangeGhost.isTransparent())
                 orangeGhost.setX(orangeGhost.getX() + speed);
         }
     }
@@ -374,13 +374,13 @@ public class PacoMano extends Application {
         if (bonusEaten && cyanGhost.getColor() == Color.BLUE)
             dontGo = pacmanAt(cyanGhost);        // the ghost must not go to this direction
 
-        if (cyanGhost.isTransparent() == true)    // move the ghost out of the cell
+        if (cyanGhost.isTransparent())    // move the ghost out of the cell
         {
             if (cyanGhost.getX() > 50)
                 cyan_movingAt = Dir.LEFT;
             else
                 cyanGhost.setTransparent(false);    // only when the ghost has passed the left border of the cell it loses its transparency
-        } else if (checkForWalls(cyan_movingAt, cyanGhost.getX(), cyanGhost.getY()) == true && numOfTurns(cyan_movingAt, cyanGhost.getX(), cyanGhost.getY()) == 1) {                            // if the ghost runs to a dead end it goes in the direction opposite to its current direction
+        } else if (checkForWalls(cyan_movingAt, cyanGhost.getX(), cyanGhost.getY()) && numOfTurns(cyan_movingAt, cyanGhost.getX(), cyanGhost.getY()) == 1) {                            // if the ghost runs to a dead end it goes in the direction opposite to its current direction
             cyan_movingAt = oppositeDir(cyan_movingAt);
         } else {
             for (; ; ) {
@@ -393,7 +393,7 @@ public class PacoMano extends Application {
                 }
 
                 Dir direction = getRandomDir();
-                if (checkForWalls(direction, cyanGhost.getX(), cyanGhost.getY()) == false) {
+                if (!checkForWalls(direction, cyanGhost.getX(), cyanGhost.getY())) {
                     if (dontGo != null && direction != dontGo) {
                         cyan_movingAt = direction;
                         break;
@@ -406,16 +406,16 @@ public class PacoMano extends Application {
         }
 
         if (cyan_movingAt == Dir.UP) {
-            if (checkForWalls(cyan_movingAt, cyanGhost.getX(), cyanGhost.getY()) == false || cyanGhost.isTransparent() == true)
+            if (!checkForWalls(cyan_movingAt, cyanGhost.getX(), cyanGhost.getY()) || cyanGhost.isTransparent())
                 cyanGhost.setY(cyanGhost.getY() - speed);
         } else if (cyan_movingAt == Dir.DOWN) {
-            if (checkForWalls(cyan_movingAt, cyanGhost.getX(), cyanGhost.getY()) == false || cyanGhost.isTransparent() == true)
+            if (!checkForWalls(cyan_movingAt, cyanGhost.getX(), cyanGhost.getY()) || cyanGhost.isTransparent())
                 cyanGhost.setY(cyanGhost.getY() + speed);
         } else if (cyan_movingAt == Dir.LEFT) {
-            if (checkForWalls(cyan_movingAt, cyanGhost.getX(), cyanGhost.getY()) == false || cyanGhost.isTransparent() == true)
+            if (!checkForWalls(cyan_movingAt, cyanGhost.getX(), cyanGhost.getY()) || cyanGhost.isTransparent())
                 cyanGhost.setX(cyanGhost.getX() - speed);
         } else if (cyan_movingAt == Dir.RIGHT) {
-            if (checkForWalls(cyan_movingAt, cyanGhost.getX(), cyanGhost.getY()) == false || cyanGhost.isTransparent() == true)
+            if (!checkForWalls(cyan_movingAt, cyanGhost.getX(), cyanGhost.getY()) || cyanGhost.isTransparent())
                 cyanGhost.setX(cyanGhost.getX() + speed);
         }
     }
@@ -428,13 +428,13 @@ public class PacoMano extends Application {
         Dir pacmanDir = pacmanAt(ghost);        // from the ghost's current position find out in which direction pacman is
 
         if (pacmanDir == Dir.DOWN && pacmanY - ghostY <= (wallSize * wallCount)) {
-            if (checkForWallsBetween(ghostX, ghostY, pacmanX, pacmanY, Dir.DOWN) == false) direction = Dir.DOWN;
+            if (!checkForWallsBetween(ghostX, ghostY, pacmanX, pacmanY, Dir.DOWN)) direction = Dir.DOWN;
         } else if (pacmanDir == Dir.UP && ghostY - pacmanY <= (wallSize * wallCount)) {
-            if (checkForWallsBetween(ghostX, ghostY, pacmanX, pacmanY, Dir.UP) == false) direction = Dir.UP;
+            if (!checkForWallsBetween(ghostX, ghostY, pacmanX, pacmanY, Dir.UP)) direction = Dir.UP;
         } else if (pacmanDir == Dir.LEFT && ghostX - pacmanX <= (wallSize * wallCount)) {
-            if (checkForWallsBetween(ghostX, ghostY, pacmanX, pacmanY, Dir.LEFT) == false) direction = Dir.LEFT;
+            if (!checkForWallsBetween(ghostX, ghostY, pacmanX, pacmanY, Dir.LEFT)) direction = Dir.LEFT;
         } else if (pacmanDir == Dir.RIGHT && pacmanX - ghostX <= (wallSize * wallCount)) {
-            if (checkForWallsBetween(ghostX, ghostY, pacmanX, pacmanY, Dir.RIGHT) == false) direction = Dir.RIGHT;
+            if (!checkForWallsBetween(ghostX, ghostY, pacmanX, pacmanY, Dir.RIGHT)) direction = Dir.RIGHT;
         }
 
         return direction;
@@ -445,13 +445,13 @@ public class PacoMano extends Application {
         double x = ghost.getX();
         double y = ghost.getY();
 
-        if (y == pacmanY && (pacmanX - x) > 0 && (pacmanX - x) < 100 && checkForWallsBetween(x, y, pacmanX, pacmanY, Dir.RIGHT) == false)
+        if (y == pacmanY && (pacmanX - x) > 0 && (pacmanX - x) < 100 && !checkForWallsBetween(x, y, pacmanX, pacmanY, Dir.RIGHT))
             return Dir.RIGHT;
-        else if (y == pacmanY && (x - pacmanX) > 0 && (x - pacmanX) < 100 && checkForWallsBetween(x, y, pacmanX, pacmanY, Dir.LEFT) == false)
+        else if (y == pacmanY && (x - pacmanX) > 0 && (x - pacmanX) < 100 && !checkForWallsBetween(x, y, pacmanX, pacmanY, Dir.LEFT))
             return Dir.LEFT;
-        else if (x == pacmanX && (pacmanY - y) > 0 && (pacmanY - y) < 100 && checkForWallsBetween(x, y, pacmanX, pacmanY, Dir.DOWN) == false)
+        else if (x == pacmanX && (pacmanY - y) > 0 && (pacmanY - y) < 100 && !checkForWallsBetween(x, y, pacmanX, pacmanY, Dir.DOWN))
             return Dir.DOWN;
-        else if (x == pacmanX && (y - pacmanY) > 0 && (y - pacmanY) < 100 && checkForWallsBetween(x, y, pacmanX, pacmanY, Dir.UP) == false)
+        else if (x == pacmanX && (y - pacmanY) > 0 && (y - pacmanY) < 100 && !checkForWallsBetween(x, y, pacmanX, pacmanY, Dir.UP))
             return Dir.UP;
 
         return null;
@@ -490,13 +490,13 @@ public class PacoMano extends Application {
     private Integer numOfTurns(Dir currentDir, double x, double y) {
         int numOfTurns = 0;
 
-        if (currentDir != Dir.UP && checkForWalls(Dir.UP, x, y) == false) numOfTurns++;
+        if (currentDir != Dir.UP && !checkForWalls(Dir.UP, x, y)) numOfTurns++;
 
-        if (currentDir != Dir.DOWN && checkForWalls(Dir.DOWN, x, y) == false) numOfTurns++;
+        if (currentDir != Dir.DOWN && !checkForWalls(Dir.DOWN, x, y)) numOfTurns++;
 
-        if (currentDir != Dir.LEFT && checkForWalls(Dir.LEFT, x, y) == false) numOfTurns++;
+        if (currentDir != Dir.LEFT && !checkForWalls(Dir.LEFT, x, y)) numOfTurns++;
 
-        if (currentDir != Dir.RIGHT && checkForWalls(Dir.RIGHT, x, y) == false) numOfTurns++;
+        if (currentDir != Dir.RIGHT && !checkForWalls(Dir.RIGHT, x, y)) numOfTurns++;
 
         return numOfTurns;
     }
@@ -533,22 +533,22 @@ public class PacoMano extends Application {
         boolean wall_present = false;
 
         if (direction == Dir.UP) {
-            while (from_y > to_y && wall_present == false) {
+            while (from_y > to_y && !wall_present) {
                 wall_present = checkForWalls(direction, from_x, from_y);
                 from_y -= wallSize;
             }
         } else if (direction == Dir.DOWN) {
-            while (from_y < to_y && wall_present == false) {
+            while (from_y < to_y && !wall_present) {
                 wall_present = checkForWalls(direction, from_x, from_y);
                 from_y += wallSize;
             }
         } else if (direction == Dir.LEFT) {
-            while (from_x > to_x && wall_present == false) {
+            while (from_x > to_x && !wall_present) {
                 wall_present = checkForWalls(direction, from_x, from_y);
                 from_x -= wallSize;
             }
         } else if (direction == Dir.RIGHT) {
-            while (from_x < to_x && wall_present == false) {
+            while (from_x < to_x && !wall_present) {
                 wall_present = checkForWalls(direction, from_x, from_y);
                 from_x += wallSize;
             }
@@ -789,7 +789,7 @@ public class PacoMano extends Application {
 
         for (x = 30; x < mapWidth; x += wallSize) {
             for (y = 30; y < mapHeight; y += wallSize) {
-                if (isAWall(x - (wallSize / 2), y - (wallSize / 2)) == false && !isABonusFood(x, y) && (x < 50 || x > 190 || y < 90 || y > 200)) {
+                if (!isAWall(x - (wallSize / 2), y - (wallSize / 2)) && !isABonusFood(x, y) && (x < 50 || x > 190 || y < 90 || y > 200)) {
                     Circle pellet = new Circle();
                     pellet.setRadius(1.5);
                     pellet.setCenterX(x);

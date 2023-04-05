@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 public class ViewStatsPlayers {
 
-    public void affichageJoueurs(Stage stage){
+    public void affichageJoueurs(Stage stage) {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
@@ -93,7 +93,7 @@ public class ViewStatsPlayers {
             v.afficherMenu(stage);
         });
 
-        pane.getChildren().addAll(titre,total, nbTotal, dernierInscrit, pseudo, topDep, dep, topDepScrollLabel, topDepScroll, btnRetour);
+        pane.getChildren().addAll(titre, total, nbTotal, dernierInscrit, pseudo, topDep, dep, topDepScrollLabel, topDepScroll, btnRetour);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);

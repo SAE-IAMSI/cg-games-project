@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class ViewStatsTournament {
 
-    public void affichageStatsTournoi(Stage stage){
+    public void affichageStatsTournoi(Stage stage) {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
@@ -64,7 +64,7 @@ public class ViewStatsTournament {
             v.afficherMenu(stage);
         });
 
-        pane.getChildren().addAll(titre, tournoisCrees, nbTournois, moyenTournoi, avgTournoi ,btnRetour);
+        pane.getChildren().addAll(titre, tournoisCrees, nbTournois, moyenTournoi, avgTournoi, btnRetour);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);
