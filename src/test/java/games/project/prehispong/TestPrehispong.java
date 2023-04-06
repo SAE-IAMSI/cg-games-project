@@ -1,9 +1,19 @@
 package games.project.prehispong;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class TestPrehispong {
+
  /** TESTER LES HITBOX RAQUETTE / BALLE  + TESTER LES DIFFICULTEES **/
+
+
+
+ @BeforeEach()
+ void init(){
+
+ }
 
  /** TESTER LES MOUVEMENT DE LA BALL **/
  @Test
