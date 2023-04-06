@@ -30,7 +30,7 @@ public class DifficultyMenuView extends GenericView {
     }
 
     @FXML
-    private void training() {
+    private void survival() {
         gameController.removeScreen(this);
         gameController.setGameState(true);
         gameController.run(3);

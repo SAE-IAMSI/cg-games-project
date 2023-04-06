@@ -21,7 +21,10 @@ public class StartMenuView extends GenericView {
 
     @FXML
     private void exit() {
-
+        GenericView exit = new ExitView(gameController);
+        exit.setLayoutX(gameController.getPrefWidth()*0.5-exit.getPrefWidth()*0.5);
+        exit.setLayoutY(gameController.getPrefHeight()*0.5-exit.getPrefHeight()*0.5);
+        gameController.displayScreen(exit);
     }
 
     @FXML

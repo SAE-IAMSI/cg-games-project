@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="728.0" fitWidth="1280.0" layoutX="-1.0" layoutY="-4.0" pickOnBounds="true">
          <image>
@@ -22,7 +22,7 @@
       </Text>
       <Button layoutX="474.0" layoutY="337.0" mnemonicParsing="false" onAction="#normal" prefHeight="49.0" prefWidth="117.0" styleClass="buttonEcran" stylesheets="@../css/cssPong.css" text="Normal" />
       <Button layoutX="677.0" layoutY="337.0" mnemonicParsing="false" onAction="#hard" prefHeight="49.0" prefWidth="117.0" styleClass="buttonEcran" stylesheets="@../css/cssPong.css" text="Difficile" />
-      <Button layoutX="898.0" layoutY="337.0" mnemonicParsing="false" onAction="#training" prefHeight="49.0" prefWidth="117.0" styleClass="buttonEcran" stylesheets="@../css/cssPong.css" text="Survie" />
+      <Button layoutX="898.0" layoutY="337.0" mnemonicParsing="false" onAction="#survival" prefHeight="49.0" prefWidth="117.0" styleClass="buttonEcran" stylesheets="@../css/cssPong.css" text="Survie" />
       <Button layoutX="581.0" layoutY="528.0" mnemonicParsing="false" onAction="#back" prefHeight="49.0" prefWidth="117.0" styleClass="btnRed" stylesheets="@../css/cssPong.css" text="Retour" />
 
    </children>
