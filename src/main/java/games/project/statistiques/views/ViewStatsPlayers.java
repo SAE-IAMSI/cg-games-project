@@ -1,5 +1,6 @@
 package games.project.statistiques.views;
 
+import games.project.parametres.Parametres;
 import games.project.statistiques.StatsLauncher;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,13 +18,14 @@ public class ViewStatsPlayers {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
-        scene.getStylesheets().add(String.valueOf(StatsLauncher.class.getResource("css/styleStats.css")));
-        pane.getStyleClass().add("fond");
+        scene.getStylesheets().add(String.valueOf(Parametres.class.getResource("css/parametresStyle.css")));
+        ImageView i = new ImageView(String.valueOf(Parametres.class.getResource("images/Background.png")));
+        pane.getChildren().add(i);
 
         Label titre = new Label("Statistiques Joueurs");
-        titre.getStyleClass().add("titre");
-        titre.setLayoutX(600);
-        titre.setLayoutY(100);
+        titre.setId("CGGamesTitle");
+        titre.setLayoutX(350);
+        titre.setLayoutY(50);
 
         Label total = new Label("Nombres d'inscrits : ");
         total.getStyleClass().add("texte");
@@ -62,7 +64,7 @@ public class ViewStatsPlayers {
 
         Label topDepScrollLabel = new Label("Classement des départements par nombre de joueurs");
         topDepScrollLabel.getStyleClass().add("texte");
-        topDepScrollLabel.setLayoutX(811);
+        topDepScrollLabel.setLayoutX(800);
         topDepScrollLabel.setLayoutY(121);
 
         ScrollPane topDepScroll = new ScrollPane();
@@ -76,14 +78,8 @@ public class ViewStatsPlayers {
         //content.getChildren().addAll();
         topDepScroll.setContent(content);
 
-        ImageView imageRetour = new ImageView(String.valueOf(StatsLauncher.class.getResource("textures/button.png")));
-        imageRetour.getStyleClass().add("btnRetour");
-        imageRetour.setFitHeight(33);
-        imageRetour.setFitWidth(100);
-
         Button btnRetour = new Button("Retour");
-        btnRetour.getStyleClass().add("btnRetour");
-        btnRetour.setGraphic(imageRetour);
+        btnRetour.getStyleClass().add("button");
         btnRetour.setContentDisplay(ContentDisplay.CENTER);
         btnRetour.setLayoutX(64);
         btnRetour.setLayoutY(616);

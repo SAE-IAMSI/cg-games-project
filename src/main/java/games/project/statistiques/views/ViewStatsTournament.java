@@ -1,5 +1,6 @@
 package games.project.statistiques.views;
 
+import games.project.parametres.Parametres;
 import games.project.statistiques.StatsLauncher;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,13 +16,14 @@ public class ViewStatsTournament {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
-        scene.getStylesheets().add(String.valueOf(StatsLauncher.class.getResource("css/styleStats.css")));
-        pane.getStyleClass().add("fond");
+        scene.getStylesheets().add(String.valueOf(Parametres.class.getResource("css/parametresStyle.css")));
+        ImageView i = new ImageView(String.valueOf(Parametres.class.getResource("images/Background.png")));
+        pane.getChildren().add(i);
 
         Label titre = new Label("Statistiques Tournois");
-        titre.getStyleClass().add("titre");
-        titre.setLayoutX(600);
-        titre.setLayoutY(100);
+        titre.setId("CGGamesTitle");
+        titre.setLayoutX(350);
+        titre.setLayoutY(50);
 
         Label tournoisCrees = new Label("Nombres de tournois crées  : ");
         tournoisCrees.getStyleClass().add("texte");
@@ -47,14 +49,8 @@ public class ViewStatsTournament {
         avgTournoi.setLayoutX(378);
         avgTournoi.setLayoutY(343);
 
-        ImageView imageRetour = new ImageView(String.valueOf(StatsLauncher.class.getResource("textures/button.png")));
-        imageRetour.getStyleClass().add("btnRetour");
-        imageRetour.setFitHeight(33);
-        imageRetour.setFitWidth(100);
-
         Button btnRetour = new Button("Retour");
-        btnRetour.getStyleClass().add("btnRetour");
-        btnRetour.setGraphic(imageRetour);
+        btnRetour.getStyleClass().add("button");
         btnRetour.setContentDisplay(ContentDisplay.CENTER);
         btnRetour.setLayoutX(64);
         btnRetour.setLayoutY(616);

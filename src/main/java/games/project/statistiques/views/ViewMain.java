@@ -1,11 +1,13 @@
 package games.project.statistiques.views;
 
+import games.project.parametres.Parametres;
 import games.project.statistiques.StatsLauncher;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -14,23 +16,24 @@ public class ViewMain extends Stage {
     public void afficherMenu(Stage stage) {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
-        scene.getStylesheets().add(String.valueOf(StatsLauncher.class.getResource("css/styleStats.css")));
-        pane.getStyleClass().add("fond");
+        scene.getStylesheets().add(String.valueOf(Parametres.class.getResource("css/parametresStyle.css")));
+        ImageView i = new ImageView(String.valueOf(Parametres.class.getResource("images/Background.png")));
+        pane.getChildren().add(i);
 
         Label titre = new Label("Module Statistiques");
-        titre.getStyleClass().add("titre");
-        titre.setLayoutX(600);
-        titre.setLayoutY(100);
+        titre.setId("CGGamesTitle");
+        titre.setLayoutX(350);
+        titre.setLayoutY(50);
 
         Button btnTournois = new Button("Statistiques Tournoi");
-        btnTournois.getStyleClass().add("btn");
+        btnTournois.getStyleClass().add("button");
         btnTournois.setMinHeight(100);
         btnTournois.setMinWidth(300);
         btnTournois.setLayoutX(190);
         btnTournois.setLayoutY(202);
 
         Button btnJoueurs = new Button("Statistiques Joueurs");
-        btnJoueurs.getStyleClass().add("btn");
+        btnJoueurs.getStyleClass().add("button");
         btnJoueurs.setMinWidth(300);
         btnJoueurs.setMinHeight(100);
         btnJoueurs.setLayoutX(190);
@@ -38,27 +41,21 @@ public class ViewMain extends Stage {
 
 
         Button btnJeux = new Button("Statistiques par Jeux");
-        btnJeux.getStyleClass().add("btn");
+        btnJeux.getStyleClass().add("button");
         btnJeux.setMinHeight(100);
         btnJeux.setMinWidth(300);
         btnJeux.setLayoutX(750);
         btnJeux.setLayoutY(202);
 
         Button btnGlobales = new Button("Statistiques Globales");
-        btnGlobales.getStyleClass().add("btn");
+        btnGlobales.getStyleClass().add("button");
         btnGlobales.setMinHeight(100);
         btnGlobales.setMinWidth(300);
         btnGlobales.setLayoutX(750);
         btnGlobales.setLayoutY(403);
 
-        ImageView imageRetour = new ImageView(String.valueOf(StatsLauncher.class.getResource("textures/button.png")));
-        imageRetour.getStyleClass().add("btnRetour");
-        imageRetour.setFitHeight(33);
-        imageRetour.setFitWidth(100);
-
         Button btnRetour = new Button("Retour");
-        btnRetour.getStyleClass().add("btnRetour");
-        btnRetour.setGraphic(imageRetour);
+        btnRetour.getStyleClass().add("button");
         btnRetour.setContentDisplay(ContentDisplay.CENTER);
         btnRetour.setLayoutX(64);
         btnRetour.setLayoutY(616);
