@@ -120,8 +120,8 @@ public class GameController extends GenericView {
      **/
     private void initGame() {
         this.ball = new Ball(640, 360, 20, -10, 8);
-        this.racketPlayer1 = new Racket(66, 308, 50, 105, 0);
-        this.racketPlayer2 = new Racket(1190, 308, 50, 105, 1);
+        this.racketPlayer1 = new Racket(100, 308, 50, 105, 0);
+        this.racketPlayer2 = new Racket(1164, 308, 50, 105, 1);
         this.chronometer = new Chronometer();
         chronometer.initChrono();
         chronoText.textProperty().bind(new SimpleStringProperty("Chronometre : ").concat(chronometer.getIntegerProperty().asString()));
@@ -143,8 +143,8 @@ public class GameController extends GenericView {
      **/
     public void resetPos() {
         this.ball.setPos(640, 360);
-        this.racketPlayer2.setPos(1190, 308);
-        this.racketPlayer1.setPos(66, 308);
+        this.racketPlayer2.setPos(1164, 308);
+        this.racketPlayer1.setPos(100, 308);
     }
 
     private void resetScore() {

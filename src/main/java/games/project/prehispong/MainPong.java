@@ -5,13 +5,17 @@ import games.project.prehispong.view.StartMenuView;
 import games.project.stockage.sql.SQLUtils;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class MainPong extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        Font.loadFont(String.valueOf(getClass().getResource("font/prehistoric.ttf")), 10);
+
         GameController gameController = new GameController(null);
 
         Scene scene = new Scene(gameController);
