@@ -2,6 +2,7 @@ package games.project.statistiques.views;
 
 import games.project.parametres.Parametres;
 import games.project.statistiques.StatsLauncher;
+import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -9,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -71,12 +73,22 @@ public class ViewStatsPlayers {
         topDepScroll.setLayoutX(775);
         topDepScroll.setLayoutY(151);
         topDepScroll.setMinHeight(435);
-        topDepScroll.setMinWidth(345);
-        FlowPane content = new FlowPane();
+        topDepScroll.setMinWidth(400);
+        GridPane content = new GridPane();
         //mettre les départements avec les nbInscrits
-
-        //content.getChildren().addAll();
+/*
+        topDepScroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        GridPane.setHalignment(nbInscrit, HPos.RIGHT);
+        content.add(nomDep, 0, 0);
+        content.add(nbInscrits, 1, 0);
+        content.getChildren().addAll();
+*/
         topDepScroll.setContent(content);
+
+        Button btnGraph = new Button("Graphiques");
+        btnGraph.getStyleClass().add("button");
+        btnGraph.setLayoutX(875);
+        btnGraph.setLayoutY(616);
 
         Button btnRetour = new Button("Retour");
         btnRetour.getStyleClass().add("button");
@@ -89,7 +101,12 @@ public class ViewStatsPlayers {
             v.afficherMenu(stage);
         });
 
-        pane.getChildren().addAll(titre, total, nbTotal, dernierInscrit, pseudo, topDep, dep, topDepScrollLabel, topDepScroll, btnRetour);
+        btnGraph.setOnAction(actionEvent -> {
+            ViewStatsGraphs v = new ViewStatsGraphs();
+            v.affichageGraphiques(stage);
+        });
+
+        pane.getChildren().addAll(titre, total, nbTotal, dernierInscrit, pseudo, topDep, dep, topDepScrollLabel, topDepScroll, btnGraph, btnRetour);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);
