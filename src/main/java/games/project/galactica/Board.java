@@ -1,8 +1,10 @@
-package games.project.space_invader;
+package games.project.galactica;
 
-import games.project.space_invader.sprite.Alien;
-import games.project.space_invader.sprite.Player;
-import games.project.space_invader.sprite.Shot;
+import games.project.galactica.sprite.Alien;
+import games.project.galactica.sprite.Player;
+import games.project.galactica.sprite.Shot;
+import games.project.metier.manager.ScoreManager;
+import games.project.stockage.Session;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,13 +30,13 @@ public class Board extends JPanel {
     private int deaths = 0;
 
     private boolean inGame = true;
-    private final URL explImg = SpaceInvadersClassic.class.getResource("images/explosion2.png");
+    private final URL explImg = GalacticaClassic.class.getResource("images/explosion2.png");
     private String message = "Game Over";
 
     private Timer timer, timerLife;
     private Boolean getDommage = true;
 
-    private final SpaceInvaders game;
+    private final Galactica game;
 
     private int nbTours = 0;
     private int tirPlayer = 4;
@@ -49,7 +51,7 @@ public class Board extends JPanel {
      * @param leftPanel panel de gauche
      * @param game instance de SpaceInvaders
      */
-    public Board(RightPanel rightPanel, LeftPanel leftPanel, SpaceInvaders game) {
+    public Board(RightPanel rightPanel, LeftPanel leftPanel, Galactica game) {
         initBoard();
         this.rightPanel = rightPanel;
         this.leftPanel = leftPanel;
@@ -190,6 +192,7 @@ public class Board extends JPanel {
      * @param g Graphics
      */
     private void gameOver(Graphics g) {
+        this.registerScore();
         g.setColor(Color.black);
         g.fillRect(0, 0, Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
         g.setColor(new Color(0, 32, 48));
@@ -220,7 +223,7 @@ public class Board extends JPanel {
     void update() {
 
         if (deaths == Commons.NUMBER_OF_ALIENS_TO_DESTROY) {
-            if (game instanceof SpaceInvadersInfinite) {
+            if (game instanceof GalacticaInfinite) {
                 aliens.clear();
                 player = null;
                 shot = null;
@@ -234,7 +237,7 @@ public class Board extends JPanel {
                     movePlayer += 2;
                 }
                 initBoard();
-            } else if (game instanceof SpaceInvadersClassic) {
+            } else if (game instanceof GalacticaClassic) {
                 inGame = false;
                 message = "Game won!";
             }
@@ -412,5 +415,18 @@ public class Board extends JPanel {
     }
     public List<Alien> getAliens() {
         return aliens;
+    }
+
+    /**
+     * Enregistre le score dans la BD
+     **/
+    private void registerScore() {
+        ScoreManager sm = ScoreManager.getInstance();
+        if (Session.getInstance().isConnected()) {
+            sm.createScore(rightPanel.getScore(), Session.getInstance().getLogin(), "GALAC");
+        } else {
+            sm.createScore(rightPanel.getScore(), "", "GALAC");
+        }
+
     }
 }

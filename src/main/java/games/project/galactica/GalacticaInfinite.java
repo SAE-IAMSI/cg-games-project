@@ -1,11 +1,11 @@
-package games.project.space_invader;
+package games.project.galactica;
 
-public class SpaceInvadersInfinite extends SpaceInvaders {
+public class GalacticaInfinite extends Galactica {
 
     /**
      * Constructeur de la classe SpaceInvadersClassic
      */
-    public SpaceInvadersInfinite() {
+    public GalacticaInfinite() {
         super();
     }
 

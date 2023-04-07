@@ -1,6 +1,6 @@
-package games.project.space_invader.sprite;
+package games.project.galactica.sprite;
 
-import games.project.space_invader.SpaceInvadersClassic;
+import games.project.galactica.GalacticaClassic;
 
 import javax.swing.*;
 import java.util.Objects;
@@ -28,7 +28,7 @@ public class Shot extends Sprite {
      * @param y
      */
     public void initShot(int x, int y) {
-        var shotImg = SpaceInvadersClassic.class.getResource("images/shot2.png");
+        var shotImg = GalacticaClassic.class.getResource("images/shot2.png");
         var ii = new ImageIcon(Objects.requireNonNull(shotImg));
         setImage(ii.getImage());
 

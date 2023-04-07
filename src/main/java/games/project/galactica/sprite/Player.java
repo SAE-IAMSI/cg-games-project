@@ -1,8 +1,8 @@
-package games.project.space_invader.sprite;
+package games.project.galactica.sprite;
 
-import games.project.space_invader.Board;
-import games.project.space_invader.Commons;
-import games.project.space_invader.SpaceInvadersClassic;
+import games.project.galactica.Board;
+import games.project.galactica.Commons;
+import games.project.galactica.GalacticaClassic;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -24,7 +24,7 @@ public class Player extends Sprite {
      * Initialise le joueur
      */
     private void initPlayer() {
-        var playerImg = SpaceInvadersClassic.class.getResource("images/player2.png");
+        var playerImg = GalacticaClassic.class.getResource("images/player2.png");
         var ii = new ImageIcon(Objects.requireNonNull(playerImg));
 
         width = ii.getImage().getWidth(null);

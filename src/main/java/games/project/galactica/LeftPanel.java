@@ -1,4 +1,4 @@
-package games.project.space_invader;
+package games.project.galactica;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,10 +12,10 @@ public class LeftPanel extends JPanel {
     private JLabel livesLabel, live1, live2, live3;
     private JLabel boutonGauche, boutonDroite, boutonEspace, textDeplacement, textTire;
 
-    URL imgVie = SpaceInvadersClassic.class.getResource("images/player2.png");
-    URL imgGauche = SpaceInvadersClassic.class.getResource("images/keyboard/Button_Gauche.png");
-    URL imgDroite = SpaceInvadersClassic.class.getResource("images/keyboard/Button_Droite.png");
-    URL imgEspace = SpaceInvadersClassic.class.getResource("images/keyboard/Button_Espace.png");
+    URL imgVie = GalacticaClassic.class.getResource("images/player2.png");
+    URL imgGauche = GalacticaClassic.class.getResource("images/keyboard/Button_Gauche.png");
+    URL imgDroite = GalacticaClassic.class.getResource("images/keyboard/Button_Droite.png");
+    URL imgEspace = GalacticaClassic.class.getResource("images/keyboard/Button_Espace.png");
 
     /**
      * Constructeur de la classe LeftPanel

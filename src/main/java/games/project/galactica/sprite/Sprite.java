@@ -1,4 +1,4 @@
-package games.project.space_invader.sprite;
+package games.project.galactica.sprite;
 
 import java.awt.*;
 

@@ -1,4 +1,4 @@
-package games.project.space_invader;
+package games.project.galactica;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,13 +6,13 @@ import java.util.Objects;
 
 public class StartFrame extends JFrame {
 
-    SpaceInvaders spaceInvaders;
+    Galactica galactica;
 
     /**
      * Constructeur de la classe StartFrame
      */
     public StartFrame() {
-        ImageIcon imgBackground = new ImageIcon(Objects.requireNonNull(SpaceInvadersClassic.class.getResource("images/background.jpeg")));
+        ImageIcon imgBackground = new ImageIcon(Objects.requireNonNull(GalacticaClassic.class.getResource("images/background.jpeg")));
         imgBackground = new ImageIcon(imgBackground.getImage().getScaledInstance(1280, 720, Image.SCALE_DEFAULT));
         JLabel background = new JLabel(imgBackground);
         background.setSize(1280, 720);
@@ -54,12 +54,12 @@ public class StartFrame extends JFrame {
         getContentPane().setBackground(Color.BLACK);
 
         classic.addActionListener(e -> {
-            spaceInvaders = new SpaceInvadersClassic();
+            galactica = new GalacticaClassic();
             visibilityFrame();
         });
 
         infini.addActionListener(e -> {
-            spaceInvaders = new SpaceInvadersInfinite();
+            galactica = new GalacticaInfinite();
             visibilityFrame();
         });
         add(background);
@@ -69,7 +69,7 @@ public class StartFrame extends JFrame {
      * Rend la fenêtre SpaceInvaders visible et la fenêtre StartFrame invisible
      */
     private void visibilityFrame() {
-        spaceInvaders.setVisible(true);
+        galactica.setVisible(true);
         setVisible(false);
     }
 }

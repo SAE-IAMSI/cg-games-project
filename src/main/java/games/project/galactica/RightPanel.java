@@ -1,4 +1,4 @@
-package games.project.space_invader;
+package games.project.galactica;
 
 import javax.swing.*;
 import java.awt.*;

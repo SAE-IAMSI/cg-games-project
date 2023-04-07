@@ -1,9 +1,9 @@
-package games.project.space_invader;
+package games.project.galactica;
 
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class SpaceInvaders extends JFrame {
+public abstract class Galactica extends JFrame {
 
     LeftPanel leftPanel;
     RightPanel rightPanel;
@@ -22,7 +22,7 @@ public abstract class SpaceInvaders extends JFrame {
     /**
      * Constructeur de la classe SpaceInvaders
      */
-    public SpaceInvaders() {
+    public Galactica() {
         leftPanel = new LeftPanel();
         rightPanel = new RightPanel();
         board = new Board(rightPanel, leftPanel, this);

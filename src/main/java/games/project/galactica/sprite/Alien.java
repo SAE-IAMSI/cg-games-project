@@ -1,6 +1,6 @@
-package games.project.space_invader.sprite;
+package games.project.galactica.sprite;
 
-import games.project.space_invader.SpaceInvadersClassic;
+import games.project.galactica.GalacticaClassic;
 
 import javax.swing.*;
 import java.util.Objects;
@@ -21,7 +21,7 @@ public class Alien extends Sprite {
 
         bomb = new Bomb(x, y);
 
-        var alienImg = SpaceInvadersClassic.class.getResource("images/alien2.png");
+        var alienImg = GalacticaClassic.class.getResource("images/alien2.png");
         var ii = new ImageIcon(Objects.requireNonNull(alienImg));
 
         setImage(ii.getImage());
@@ -67,7 +67,7 @@ public class Alien extends Sprite {
             this.x = x;
             this.y = y;
 
-            var bombImg = SpaceInvadersClassic.class.getResource("images/bomb2.png");
+            var bombImg = GalacticaClassic.class.getResource("images/bomb2.png");
             var ii = new ImageIcon(Objects.requireNonNull(bombImg));
             setImage(ii.getImage());
         }

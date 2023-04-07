@@ -1,8 +1,8 @@
-package games.project.space_invader;
+package games.project.galactica;
 
-import games.project.space_invader.sprite.Alien;
-import games.project.space_invader.sprite.Player;
-import games.project.space_invader.sprite.Shot;
+import games.project.galactica.sprite.Alien;
+import games.project.galactica.sprite.Player;
+import games.project.galactica.sprite.Shot;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestUnitaire {
 
-    SpaceInvaders spaceInvaders;
+    Galactica galactica;
     LeftPanel leftPanel;
     RightPanel rightPanel;
     Board board;
@@ -25,10 +25,10 @@ public class TestUnitaire {
     void setUp() {
         leftPanel = new LeftPanel();
         rightPanel = new RightPanel();
-        board = new Board(rightPanel, leftPanel, spaceInvaders);
-        spaceInvaders = new SpaceInvadersInfinite();
-        spaceInvaders.setLives();
-        spaceInvaders.initialiser();
+        board = new Board(rightPanel, leftPanel, galactica);
+        galactica = new GalacticaInfinite();
+        galactica.setLives();
+        galactica.initialiser();
 
         player = new Player(board);
         alien = new Alien(100, 100);
