@@ -5,21 +5,28 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String absolutePath = FileSystems.getDefault().getPath("src/main/PythonFileStats/app/test.py").normalize().toAbsolutePath().toString();
-        // execute le fichier python et récupère les lignes affichées dans la console
-        String[] cmd = new String[]{"python", absolutePath,"test"};
-        System.out.println("Executing command: " + String.join(" ", cmd));
-        Process p = Runtime.getRuntime().exec(cmd);
+        System.out.println(recupFonction("getNbPlayers",null));
+    }
 
+    public static String recupFonction(String nomFunc, ArrayList<String> args) throws IOException {
+        String absolutePath = FileSystems.getDefault().getPath("src/main/PythonFileStats/app/execute.py").normalize().toAbsolutePath().toString();
+        ArrayList<String> commandeListe = new ArrayList<>();
+        commandeListe.add("python");commandeListe.add(absolutePath);commandeListe.add(nomFunc);
+        if(args != null){
+            commandeListe.addAll(args);
+        }
+        String[] cmd = commandeListe.toArray(String[]::new);
+        Process p = Runtime.getRuntime().exec(cmd);
         BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream(), StandardCharsets.UTF_8));
         String line;
         while ((line = in.readLine()) != null) {
-            System.out.println(line);
+            return line;
         }
         in.close();
-
+        return "Erreur de lecture";
     }
 }

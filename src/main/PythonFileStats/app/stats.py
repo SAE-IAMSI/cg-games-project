@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 import math
 import shutil
 
-dir = "../test/client64Bit"
+dir = "src/main/java/games/project/statistiques/client64Bit"
+dir2 = 'client64Bit'
 absolute = os.path.join(os.getcwd(), dir)
 user = "etusae1"
 password = "3tuS43"
