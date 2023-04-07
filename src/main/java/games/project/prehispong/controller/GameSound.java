@@ -1,7 +1,6 @@
 package games.project.prehispong.controller;
 
 import games.project.prehispong.MainPong;
-import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -11,7 +10,7 @@ import java.util.Random;
 public class GameSound {
     private Media adventure;
     private Media mainSong;
-    private Media gigaChad;
+    private Media win;
     private Media camel;
     private Media tcp;
     private ArrayList<Media> playlist;
@@ -22,7 +21,7 @@ public class GameSound {
     private GameSound(){
         adventure = new Media(MainPong.class.getResource("musique/adventure.mp3").toString());
         camel = new Media(MainPong.class.getResource("musique/camel.mp3").toString());
-        gigaChad = new Media(MainPong.class.getResource("musique/gigachad.mp3").toString());
+        win = new Media(MainPong.class.getResource("musique/gigachad.mp3").toString());
         mainSong = new Media(MainPong.class.getResource("musique/s1.mp3").toString());
         tcp = new Media(MainPong.class.getResource("musique/tcp.mp3").toString());
 
@@ -60,11 +59,11 @@ public class GameSound {
         }
     }
 
-    public void playGigaChad(){
+    public void playWin(){
         if(mediaPlayer!=null){
             mediaPlayer.stop();
         }
-        mediaPlayer = new MediaPlayer(gigaChad);
+        mediaPlayer = new MediaPlayer(win);
         this.mediaPlayer.setVolume(0.1);
         this.mediaPlayer.setAutoPlay(true);
     }

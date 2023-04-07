@@ -64,7 +64,7 @@ public class GameController extends GenericView {
     private int difficulty = 0; // 0, 1, 2 ou 3
     private String gamemode = ""; // Ancien mode de jeu
 
-    public GameController(GameController controller) { /** **/
+    public GameController(GameController controller) {
         super("Game.fxml", controller);
         initGame();
         limitR.setVisible(false);
@@ -130,8 +130,8 @@ public class GameController extends GenericView {
         p1.setText(player1.getName());
         p2.setText(player2.getName());
 
-        scoreP1.textProperty().bind(new SimpleStringProperty("Score :").concat(player1.getScore().scoreProperty()));
-        scoreP2.textProperty().bind(new SimpleStringProperty("Score :").concat(player2.getScore().scoreProperty()));
+        scoreP1.textProperty().bind(new SimpleStringProperty("Score : ").concat(player1.getScore().scoreProperty()));
+        scoreP2.textProperty().bind(new SimpleStringProperty("Score : ").concat(player2.getScore().scoreProperty()));
 
         this.getChildren().add(ball);
         this.getChildren().add(racketPlayer2);
@@ -222,6 +222,8 @@ public class GameController extends GenericView {
         this.getChildren().remove(genericView);
     }
 
+
+    /** Ecoute les inputs clavier pour lancer la boucle de jeu **/
     public void listener() {
         this.getScene().setOnKeyPressed((KeyEvent event) -> {
             if (event.getCode().equals(KeyCode.SPACE) && gameState) {
@@ -231,10 +233,11 @@ public class GameController extends GenericView {
         });
     }
 
+    /** Ecoute les inputs souris pour déplacer la racket pour le mode PVIA  **/
     public void listenerMouse() {
         this.getScene().setOnMouseMoved((MouseEvent event) -> {
-            if (event.getSceneY() > topBar.getLayoutY() + topBar.getHeight() && event.getSceneY() < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight() * 0.5)) {
-                this.racketPlayer1.setLayoutY(event.getSceneY());
+            if (event.getSceneY()-racketPlayer1.getHeight()*0.5 > topBar.getLayoutY() + topBar.getHeight() && event.getSceneY()-racketPlayer1.getHeight()*0.5 < bottomBar.getLayoutY()- (bottomBar.getHeight() + racketPlayer1.getHeight()*0.25) ) {
+                this.racketPlayer1.setLayoutY(event.getSceneY()-racketPlayer1.getHeight()*0.5);
             }
             event.consume();
         });
@@ -243,6 +246,8 @@ public class GameController extends GenericView {
         });
     }
 
+
+    /** Ecoute les inputs clavier pour les déplacements en PVP racket **/
     public void listenerKeyboard() {
         final List<KeyCode> acceptedCodes = Arrays.asList(KeyCode.Z, KeyCode.S, KeyCode.UP, KeyCode.DOWN);
         final Set<KeyCode> codes = new HashSet<>();
@@ -251,9 +256,9 @@ public class GameController extends GenericView {
 
             public void handle(ActionEvent event) {
                 boolean mvtConditionZ = racketPlayer1.getLayoutY() > topBar.getLayoutY() + topBar.getHeight();
-                boolean mvtConditionS = racketPlayer1.getLayoutY() < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight() * 0.5);
+                boolean mvtConditionS = racketPlayer1.getLayoutY() < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight() * 0.25);
                 boolean mvtConditionUP = racketPlayer2.getLayoutY() > topBar.getLayoutY() + topBar.getHeight();
-                boolean mvtConditionDOWN = racketPlayer2.getLayoutY() < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer2.getHeight() * 0.5);
+                boolean mvtConditionDOWN = racketPlayer2.getLayoutY() < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer2.getHeight() * 0.25);
 
                 if (codes.contains(KeyCode.UP)) {
                     if (mvtConditionUP) {
@@ -301,7 +306,7 @@ public class GameController extends GenericView {
 
 
     /**
-     * Défini le comportement de la raquette en mode IA
+     * Défini le comportement de la raquette en mode IA et en fonction de la difficulté choisi
      **/
     public void racketAI(Racket racket, Ball ball, int mods) {
 
