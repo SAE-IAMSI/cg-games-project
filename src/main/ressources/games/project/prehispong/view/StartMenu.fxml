@@ -14,7 +14,7 @@
             <Image url="@../textures/fondMenu.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="6.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nameGame" text="Préhispong" textAlignment="CENTER" wrappingWidth="1280.0">
+      <Text fill="WHITE" layoutX="6.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nameGame" text="Prehispong" textAlignment="CENTER" wrappingWidth="1280.0">
          <font>
             <Font name="Sans Serif Collection" size="30.0" />
          </font>
