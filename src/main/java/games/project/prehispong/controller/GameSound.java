@@ -9,27 +9,27 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GameSound {
-    private Media rasputin;
+    private Media adventure;
     private Media mainSong;
     private Media gigaChad;
     private Media camel;
-    private Media dav;
+    private Media tcp;
     private ArrayList<Media> playlist;
 
     private MediaPlayer mediaPlayer;
 
     private static GameSound instance;
     private GameSound(){
-        //rasputin = new Media(MainPong.class.getResource("musique/").toString());
+        adventure = new Media(MainPong.class.getResource("musique/adventure.mp3").toString());
         camel = new Media(MainPong.class.getResource("musique/camel.mp3").toString());
         gigaChad = new Media(MainPong.class.getResource("musique/gigachad.mp3").toString());
         mainSong = new Media(MainPong.class.getResource("musique/s1.mp3").toString());
-      //  dav = new Media(MainPong.class.getResource("musique/").toString()); //easter
+        tcp = new Media(MainPong.class.getResource("musique/tcp.mp3").toString());
 
         playlist = new ArrayList();
         playlist.add(mainSong);
-       // playlist.add(rasputin);
         playlist.add(camel);
+        playlist.add(adventure);
     }
 
     public static GameSound getInstance() {
@@ -59,10 +59,6 @@ public class GameSound {
             this.mediaPlayer.setAutoPlay(true);
         }
     }
-    public void playDav(){
-
-    }
-
 
     public void playGigaChad(){
         if(mediaPlayer!=null){
@@ -74,6 +70,15 @@ public class GameSound {
     }
 
     public void playTcp(){
+        if(mediaPlayer!=null){
+            mediaPlayer.stop();
+        }
+        mediaPlayer = new MediaPlayer(tcp);
+        this.mediaPlayer.setVolume(0.1);
+        this.mediaPlayer.setAutoPlay(true);
+    }
 
+    public void stop(){
+        mediaPlayer.stop();
     }
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" stylesheets="@../css/cssPong.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" stylesheets="@../css/cssPong.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1279.0" layoutY="3.0" pickOnBounds="true">
          <image>
@@ -67,6 +67,6 @@
       <Text fill="WHITE" layoutX="1049.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="LabelCgu" text="S'enregistrer" textAlignment="CENTER" wrappingWidth="132.7294921875" />
       <Label fx:id="infoRegister" layoutX="943.0" layoutY="667.0" prefHeight="17.0" prefWidth="281.0" styleClass="LabelCgu" textAlignment="CENTER" textFill="WHITE" />
       <Button fx:id="delete" focusTraversable="false" layoutX="764.0" layoutY="242.0" mnemonicParsing="false" onAction="#delete" prefHeight="24.0" prefWidth="119.0" styleClass="btnRed" text="Supprimer" />
-      <Label fx:id="infoDelete" layoutX="765.0" layoutY="307.0" prefHeight="17.0" prefWidth="133.0" textAlignment="CENTER" textFill="WHITE" />
+      <Label fx:id="infoDelete" layoutX="765.0" layoutY="307.0" prefHeight="17.0" prefWidth="133.0" styleClass="LabelCgu" textAlignment="CENTER" textFill="WHITE" />
    </children>
 </fx:root>

@@ -247,7 +247,6 @@ public class GameController extends GenericView {
         final List<KeyCode> acceptedCodes = Arrays.asList(KeyCode.Z, KeyCode.S, KeyCode.UP, KeyCode.DOWN);
         final Set<KeyCode> codes = new HashSet<>();
         final int DELAY = 10; // Délai en millisecondes
-
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(DELAY), new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
@@ -291,6 +290,7 @@ public class GameController extends GenericView {
                 codes.add(event.getCode());
                 timeline.play();
             }
+
             if (event.getCode().equals(KeyCode.SPACE) && gameState) {
                 playLoop();
             }

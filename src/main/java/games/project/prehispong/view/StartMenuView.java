@@ -57,4 +57,14 @@ public class StartMenuView extends GenericView {
     private void changeSound(){
         GameSound.getInstance().changeSound();
     }
+
+    @FXML
+    private void tcp(){
+        GameSound.getInstance().playTcp();
+    }
+
+    @FXML
+    private void stopSound(){
+        GameSound.getInstance().stop();
+    }
 }

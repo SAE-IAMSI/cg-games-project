@@ -24,6 +24,8 @@
       <Button layoutX="564.0" layoutY="477.0" mnemonicParsing="false" onAction="#exit" prefHeight="49.0" prefWidth="179.0" styleClass="buttonEcran" text="Quitter" />
       <Button layoutX="1117.0" layoutY="597.0" mnemonicParsing="false" onAction="#clickCGU" prefHeight="35.0" prefWidth="69.0" styleClass="btnGrey" text="CGU" />
       <Button layoutX="564.0" layoutY="339.0" mnemonicParsing="false" onAction="#clickScore" prefHeight="49.0" prefWidth="179.0" styleClass="buttonEcran" text="Score" />
-      <Button layoutX="30.0" layoutY="593.0" mnemonicParsing="false" onAction="#changeSound" prefHeight="52.0" prefWidth="146.0" styleClass="buttonEcran" text="Changer son" />
+      <Button layoutX="30.0" layoutY="571.0" mnemonicParsing="false" onAction="#changeSound" prefHeight="52.0" prefWidth="146.0" styleClass="buttonEcran" text="Changer son" />
+      <Button fx:id="tcp" focusTraversable="false" layoutX="-18.0" layoutY="-21.0" mnemonicParsing="false" onAction="#tcp" prefHeight="24.0" prefWidth="18.0" style="-fx-background-color: #342D49;" text="Button" />
+      <Button layoutX="30.0" layoutY="654.0" mnemonicParsing="false" onAction="#stopSound" prefHeight="44.0" prefWidth="146.0" styleClass="buttonEcran" text="Arreter son" />
    </children>
 </fx:root>

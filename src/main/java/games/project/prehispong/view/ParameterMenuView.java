@@ -51,7 +51,7 @@ public class ParameterMenuView extends GenericView {
             idLogin.setDisable(true);
             passwordLogin.setDisable(true);
             decoBt.setDisable(false);
-            infoLogin.setText("Le joueur '" + Session.getInstance().getLogin() + "' est connecté !");
+            infoLogin.setText("Le joueur '" + Session.getInstance().getLogin() + "' est connecte !");
         }
 
     }
@@ -86,7 +86,7 @@ public class ParameterMenuView extends GenericView {
                 if (p != null && Security.checkPassword(passwordLogin.getText(), p.getSalt(), p.getHashedPassword())) {
                     session.connect(idLogin.getText());
                     if (session.isConnected()) {
-                        infoLogin.setText("Le joueur '" + session.getLogin() + "' est connecté");
+                        infoLogin.setText("Le joueur '" + session.getLogin() + "' est connecte");
                         connectBt.setDisable(true);
                         decoBt.setDisable(false);
                         passwordLogin.setText("");
@@ -109,7 +109,7 @@ public class ParameterMenuView extends GenericView {
     @FXML
     private void disconnect() {
         infoRegister.setText("");
-        infoLogin.setText("Joueur déconnecté");
+        infoLogin.setText("Joueur deconnecte");
         session.disconnect();
         connectBt.setDisable(false);
         decoBt.setDisable(true);

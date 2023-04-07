@@ -15,7 +15,7 @@ public class EndGameView extends GenericView {
     public EndGameView(String winner,int score, GameController controller) {
         super("EndGame.fxml", controller);
         if(score>=0){
-            title.setText("Le joueur '" + winner + "' à remporté la partie");
+            title.setText("Le joueur '" + winner + "' à remporte la partie");
             this.score.setText("Score : "+score);
             GameSound.getInstance().playGigaChad();
         }
@@ -25,7 +25,7 @@ public class EndGameView extends GenericView {
     }
     public EndGameView(String winner, GameController controller) {
         super("EndGame.fxml", controller);
-        title.setText("Le joueur '" + winner + "' à remporté la partie");
+        title.setText("Le joueur '" + winner + "' à remporte la partie");
         GameSound.getInstance().playGigaChad();
     }
 
