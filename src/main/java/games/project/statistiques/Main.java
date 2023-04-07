@@ -8,9 +8,9 @@ import java.nio.file.FileSystems;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String absolutePath = FileSystems.getDefault().getPath("src/main/PythonFileStats/test.py").normalize().toAbsolutePath().toString();
+        String absolutePath = FileSystems.getDefault().getPath("src/main/PythonFileStats/app/test.py").normalize().toAbsolutePath().toString();
         // execute le fichier python et récupère les lignes affichées dans la console
-        String[] cmd = new String[]{"python", absolutePath};
+        String[] cmd = new String[]{"python", absolutePath,"test"};
         System.out.println("Executing command: " + String.join(" ", cmd));
         Process p = Runtime.getRuntime().exec(cmd);
 

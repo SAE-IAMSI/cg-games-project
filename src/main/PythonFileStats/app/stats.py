@@ -4,6 +4,7 @@ from datetime import *
 import datetime
 import matplotlib.pyplot as plt
 import math
+import shutil
 
 dir = "../test/client64Bit"
 absolute = os.path.join(os.getcwd(), dir)
@@ -186,3 +187,14 @@ def getGrapheScoreMoyen(game: str, idGraph: int = 0):
     plt.ylabel('Scores moyens', fontsize=14)
     plt.grid(True)
     plt.show()
+
+
+def downloadGraphe(pathToSaveImg : str) -> None:
+    """
+    Télécharge le graphe donné en paramètre
+    :param pathToSaveImg : string du dossier ou on enregistre les images temporaires
+    """
+    chemin = os.path.join(os.getcwd(),f'../../java/games/project/statistiques/imgTemp')
+    listDir = os.listdir(chemin)
+    for dir in listDir:
+        shutil.copyfile(os.path.join(chemin,dir), pathToSaveImg)
