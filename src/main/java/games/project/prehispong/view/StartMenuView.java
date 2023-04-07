@@ -2,6 +2,7 @@ package games.project.prehispong.view;
 
 import games.project.prehispong.MainPong;
 import games.project.prehispong.controller.GameController;
+import games.project.prehispong.controller.GameSound;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
@@ -50,5 +51,10 @@ public class StartMenuView extends GenericView {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    private void changeSound(){
+        GameSound.getInstance().changeSound();
     }
 }

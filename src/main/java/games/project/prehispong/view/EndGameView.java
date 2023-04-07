@@ -1,6 +1,7 @@
 package games.project.prehispong.view;
 
 import games.project.prehispong.controller.GameController;
+import games.project.prehispong.controller.GameSound;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
@@ -16,6 +17,7 @@ public class EndGameView extends GenericView {
         if(score>=0){
             title.setText("Le joueur '" + winner + "' à remporté la partie");
             this.score.setText("Score : "+score);
+            GameSound.getInstance().playGigaChad();
         }
         else{
             title.setText("Vous avez perdu !");
@@ -24,17 +26,20 @@ public class EndGameView extends GenericView {
     public EndGameView(String winner, GameController controller) {
         super("EndGame.fxml", controller);
         title.setText("Le joueur '" + winner + "' à remporté la partie");
+        GameSound.getInstance().playGigaChad();
     }
 
     @FXML
     private void menu() {
         gameController.removeScreen(this);
         gameController.displayScreen(new StartMenuView(gameController));
+        GameSound.getInstance().changeSound();
     }
 
     @FXML
     private void replay() {
         gameController.removeScreen(this);
+        GameSound.getInstance().changeSound();
         switch (gameController.getGamemode()) {
             case "PVP" -> gameController.run();
             case "IA" -> gameController.run(gameController.getDifficulty());
