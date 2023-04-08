@@ -1,7 +1,7 @@
 package games.project.motron.view;
 
 import games.project.motron.Motron;
-import games.project.motron.metier.entite.Score;
+import games.project.motron.metier.entite.ScoreMotron;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -34,7 +34,7 @@ public class VueMoto {
     private Dir newDir;
     private Dir oldDir;
     private final MediaPlayer deathSound;
-    private final Score score;
+    private final ScoreMotron score;
     private int scoreManche;
     private VueSprite sprite;
     private boolean connecter;
@@ -52,7 +52,7 @@ public class VueMoto {
         Media soundDeath = new Media(String.valueOf(Motron.class.getResource("music/Explosion8bit.mp3")));
         this.deathSound = new MediaPlayer(soundDeath);
         deathSound.setVolume(0.25);
-        this.score = new Score(nomJoueur);
+        this.score = new ScoreMotron(nomJoueur);
         connecter = false;
     }
 
@@ -129,7 +129,7 @@ public class VueMoto {
         return deathSound;
     }
 
-    public Score getScore() {
+    public ScoreMotron getScore() {
         return score;
     }
 
