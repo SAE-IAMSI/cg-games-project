@@ -7,6 +7,7 @@ import games.project.modules.tournois.metier.manager.TournamentManager;
 import games.project.modules.tournois.view.TournamentCreationView;
 import games.project.modules.tournois.view.TournamentDetailView;
 import games.project.stockage.Session;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -41,6 +42,7 @@ public class TournamentController extends AnchorPane {
             e.printStackTrace();
         }
 
+        Session.getInstance().connect("brizayg");
         if (Session.getInstance().isConnected()) checkAdmin();
         refresh();
     }
@@ -122,4 +124,17 @@ public class TournamentController extends AnchorPane {
             tournaments.getChildren().add(l);
         }
     }
+    public static void delay(long millis, Runnable continuation) {
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try { Thread.sleep(millis); }
+                catch (InterruptedException e) { }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(event -> continuation.run());
+        new Thread(sleeper).start();
+    }
+
 }
