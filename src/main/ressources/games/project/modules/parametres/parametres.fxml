@@ -29,12 +29,12 @@
                   <Label id="CGGamesTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="327.0" text="CG Games" />
                   <HBox alignment="CENTER" prefHeight="97.0" prefWidth="987.0" spacing="100.0">
                      <children>
-                        <Label fx:id="labelTournois" styleClass="labelBarMenu" text="Tournois">
+                        <Label fx:id="labelTournois" onMouseClicked="#lanceTournois" styleClass="labelBarMenu" text="Tournois">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Label fx:id="labelStatistiques" prefHeight="40.0" prefWidth="210.0" styleClass="labelBarMenu" text="Statistiques">
+                        <Label fx:id="labelStatistiques" onMouseClicked="#lanceStatistiques" prefHeight="40.0" prefWidth="210.0" styleClass="labelBarMenu" text="Statistiques">
                            <font>
                               <Font size="30.0" />
                            </font>

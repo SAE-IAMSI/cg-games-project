@@ -79,4 +79,14 @@ public class ControllerFXML {
         paneConnexion.setVisible(false);
         paneCreationCompte.setVisible(false);
     }
+
+    @FXML
+    public void lanceTournois(){
+
+    }
+
+    @FXML
+    public void lanceStatistiques(){
+
+    }
 }
