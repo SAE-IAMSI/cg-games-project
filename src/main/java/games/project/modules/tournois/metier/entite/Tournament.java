@@ -2,12 +2,12 @@ package games.project.modules.tournois.metier.entite;
 
 import games.project.metier.entite.AuthPlayer;
 import games.project.metier.entite.Jeu;
+import games.project.metier.entite.Score;
+import games.project.metier.manager.PlayerManager;
+import games.project.modules.tournois.metier.manager.TournamentManager;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-import java.util.Vector;
+import java.util.*;
 
 public class Tournament {
     private int tournamentCode;
@@ -92,11 +92,43 @@ public class Tournament {
         participants.add(player);
     }
 
-    public Stack<AuthPlayer> getGameLeaderboard(Jeu game) {
-        return new Stack<>();
+    /**
+     * Renvoie une map représentant le classement du jeu passé en paramètre contenant une ligne de score
+     * et le nombre de points associé à cette chaque ligne.
+     * @param game Le jeu dont le classement sera renvoyé.
+     * @return Une map représentant le classement d'un jeu du tournoi.
+     */
+    public Map<Score, Integer> getGameLeaderboard(Jeu game) {
+       Map<Score, Integer> leaderboard = new HashMap<>();
+       List<Score> scores = TournamentManager.getInstance().getLeaderboardByGame(game, tournamentCode);
+       for (int i = 0; i < scores.size(); i++) {
+           leaderboard.put(scores.get(i), getPoints(i));
+       }
+       return leaderboard;
     }
 
-    public Stack<AuthPlayer> getMainLeaderboard() {
-        return new Stack<>();
+    /**
+     * Renvoie le classement général d'un tournoi à partir des classements de chaque jeu du tournoi.
+     * @return Une map représentant le classement général du tournoi.
+     */
+    public Map<AuthPlayer, Integer> getMainLeaderboard() {
+        Map<AuthPlayer, Integer> mainLeaderboard = new HashMap<>();
+        for (Jeu game : games) {
+            Map<Score, Integer> leaderboard = getGameLeaderboard(game);
+            for (Score s : leaderboard.keySet()) {
+                AuthPlayer p = PlayerManager.getInstance().getPlayer(s.getLogin());
+                mainLeaderboard.put(p, mainLeaderboard.getOrDefault(p, 0) + leaderboard.get(s));
+            }
+        }
+        return mainLeaderboard;
+    }
+
+    /**
+     * Renvoie le nombre de points que chaque joueur gagne selon sa position dans le classement.
+     * @param position La position du joueur dans le classement, comprise entre 0 (1er) et maxParticipants - 1 (dernier)
+     * @return Le nombre de points d'un joueur
+     */
+    private int getPoints(int position) {
+        return maxParticipants - position;
     }
 }
