@@ -102,7 +102,8 @@ public class Tournament {
        Map<Score, Integer> leaderboard = new HashMap<>();
        List<Score> scores = TournamentManager.getInstance().getLeaderboardByGame(game, tournamentCode);
        for (int i = 0; i < scores.size(); i++) {
-           leaderboard.put(scores.get(i), getPoints(i));
+           if (scores.get(i).getScore() > 0) leaderboard.put(scores.get(i), getPoints(i));
+           else leaderboard.put(scores.get(i), 0);
        }
        return leaderboard;
     }
