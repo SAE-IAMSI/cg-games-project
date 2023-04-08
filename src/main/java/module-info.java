@@ -19,8 +19,8 @@ module games.project.launcher {
     exports games.project.prehispong to javafx.graphics;
     opens games.project.prehispong.view to javafx.fxml;
 
-    exports games.project.parametres;
-    opens games.project.parametres.controller to javafx.fxml;
+    exports games.project.modules.parametres;
+    opens games.project.modules.parametres.controller to javafx.fxml;
 
     exports games.project.casse_briques;
     exports games.project.casse_briques.controller;
@@ -41,5 +41,5 @@ module games.project.launcher {
 
     exports games.project.space_invader;
     exports games.project.space_invader.sprite;
-    exports games.project.parametres.controller;
+    exports games.project.modules.parametres.controller;
 }

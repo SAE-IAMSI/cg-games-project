@@ -1,4 +1,4 @@
-package games.project.parametres.controller;
+package games.project.modules.parametres.controller;
 
 import games.project.metier.manager.JeuManager;
 import javafx.application.Application;

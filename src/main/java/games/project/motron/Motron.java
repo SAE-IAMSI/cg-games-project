@@ -5,7 +5,7 @@ import games.project.motron.metier.manager.ScoreManagerMotron;
 import games.project.motron.metier.manager.ScorePartieManager;
 import games.project.motron.view.VueJeu;
 import games.project.motron.view.VueMoto;
-import games.project.parametres.Parametres;
+import games.project.modules.parametres.Parametres;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
