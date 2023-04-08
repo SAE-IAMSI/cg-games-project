@@ -232,4 +232,38 @@ public class StockageTournamentDatabase {
         }
     }
 
+    public List<Score> getLeaderboardByGame(Jeu game, int tournamentCode) {
+        List<Score> leaderboard = new ArrayList<>();
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT tmp.hs.codeScore AS codeScore, tmp.hs.score AS score, tmp.hs.horodatage AS horodatage, tmp.hs.login AS login, tmp.hs.codeJeu AS codeJeu\n" +
+                "FROM (SELECT HIGHSCOREBYGAMEANDPERIOD(login, ?, codeTournoi) AS hs \n" +
+                "      FROM PARTICIPER\n" +
+                "      WHERE codeTournoi = ?) tmp\n" +
+                "ORDER BY score DESC";
+        try (
+                PreparedStatement statement = connection.prepareStatement(req)
+            ) {
+            statement.setString(1, game.getCode());
+            statement.setInt(2, tournamentCode);
+            try (
+                    ResultSet result = statement.executeQuery()
+                ) {
+                while (result.next()) {
+                    int codeScore = result.getInt("codeScore");
+                    int score = result.getInt("score");
+                    Timestamp horodatage = result.getTimestamp("horodatage");
+                    String login = result.getString("login");
+                    Score s = new Score(score, horodatage, game.getCode());
+                    s.setLogin(login);
+                    s.setId(codeScore);
+                    leaderboard.add(s);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return leaderboard;
+    }
+
 }

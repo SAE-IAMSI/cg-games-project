@@ -2,6 +2,7 @@ package games.project.modules.tournois.metier.manager;
 
 import games.project.metier.entite.AuthPlayer;
 import games.project.metier.entite.Jeu;
+import games.project.metier.entite.Score;
 import games.project.modules.tournois.metier.entite.Tournament;
 import games.project.modules.tournois.stockage.sql.StockageTournamentDatabase;
 
@@ -65,5 +66,9 @@ public class TournamentManager {
 
     public void addParticipant(AuthPlayer p, int tournamentCode) {
         stockage.addParticipantInTournament(p, tournamentCode);
+    }
+
+    public List<Score> getLeaderboardByGame(Jeu game, int tournamentCode) {
+        return stockage.getLeaderboardByGame(game, tournamentCode);
     }
 }
