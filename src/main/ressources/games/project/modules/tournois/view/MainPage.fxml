@@ -8,11 +8,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Label?>
 <fx:root maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../css/tournamentStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button disable="true" layoutX="1042.0" layoutY="70.0" mnemonicParsing="false" text="Créer un tournoi" visible="false" />
       <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../parametres/images/Background.png" />
@@ -25,5 +22,6 @@
          </content>
       </ScrollPane>
       <Button layoutX="1050.0" layoutY="630.0" mnemonicParsing="false" text="Retour" />
+      <Button layoutX="1050.0" layoutY="91.0" mnemonicParsing="false" text="nouveau tournoi" />
    </children>
 </fx:root>
