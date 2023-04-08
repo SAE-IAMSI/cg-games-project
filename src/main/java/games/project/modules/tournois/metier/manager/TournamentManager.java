@@ -23,8 +23,9 @@ public class TournamentManager {
 
     public void createTournament(Tournament tournament) {
         stockage.create(tournament);
-        stockage.setGamesOnTournament(tournament.getGames(), tournament.getTournamentCode());
-        for (AuthPlayer p : tournament.getParticipants()) stockage.addParticipantInTournament(p, tournament.getTournamentCode());
+        int code = stockage.getLastTournamentCode();
+        stockage.setGamesOnTournament(tournament.getGames(), code);
+        for (AuthPlayer p : tournament.getParticipants()) stockage.addParticipantInTournament(p, code);
     }
 
     public void updateTournament(int tournamentCode, String label, Timestamp startDate, Timestamp endDate, int maxParticipants) {

@@ -266,4 +266,22 @@ public class StockageTournamentDatabase {
         return leaderboard;
     }
 
+    public int getLastTournamentCode() {
+        int code = Integer.MAX_VALUE;
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT MAX(codeTournoi) AS codeTournoi FROM TOURNOIS";
+        try (
+                PreparedStatement statement = connection.prepareStatement(req);
+                ResultSet result = statement.executeQuery();
+            ) {
+            if (result.next()) {
+                code = result.getInt("codeTournoi");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return code;
+    }
+
 }
