@@ -75,4 +75,8 @@ public class Score {
     public void setGameCode(String gameCode) {
         this.gameCode = gameCode;
     }
+
+    public void incrementScore(int score) {
+        setScore(this.getScore() + score);
+    }
 }
