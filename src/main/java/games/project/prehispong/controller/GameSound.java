@@ -21,7 +21,7 @@ public class GameSound {
     private GameSound(){
         adventure = new Media(MainPong.class.getResource("musique/adventure.mp3").toString());
         camel = new Media(MainPong.class.getResource("musique/camel.mp3").toString());
-        win = new Media(MainPong.class.getResource("musique/gigachad.mp3").toString());
+        win = new Media(MainPong.class.getResource("musique/win.mp3").toString());
         mainSong = new Media(MainPong.class.getResource("musique/s1.mp3").toString());
         tcp = new Media(MainPong.class.getResource("musique/tcp.mp3").toString());
 
