@@ -31,6 +31,7 @@ def getNbPlayers() -> int:
     Renvoie le nombre de joueurs sur le PGI\n
     :return: r[0] : int
     '''
+    print(absolute)
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = """select getNumbersOfPlayers from dual"""
