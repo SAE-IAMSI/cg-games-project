@@ -5,6 +5,9 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -17,6 +20,14 @@ public class ControllerFXML {
     private Button motronButton;
     @FXML
     private VBox vboxJeux;
+    @FXML
+    private Pane paneCompte;
+    @FXML
+    private Pane paneConnexion;
+    @FXML
+    private Pane paneCreationCompte;
+    @FXML
+    private Button buttonRetour;
 
     @FXML
     public void setGames() {
@@ -36,5 +47,36 @@ public class ControllerFXML {
             }));
             vboxJeux.getChildren().add(b);
         }
+    }
+
+    @FXML
+    public void lanceCompte(){
+        resetPane();
+        paneCompte.setVisible(true);
+        buttonRetour.setVisible(true);
+        buttonRetour.setOnMouseClicked(e -> {
+            resetPane();
+            buttonRetour.setVisible(false);
+        });
+    }
+
+    @FXML
+    public void lanceConnexion(){
+        resetPane();
+        paneConnexion.setVisible(true);
+        buttonRetour.setOnMouseClicked(e -> lanceCompte());
+    }
+
+    @FXML
+    public void lanceCreationCompte(){
+        resetPane();
+        paneCreationCompte.setVisible(true);
+        buttonRetour.setOnMouseClicked(e -> lanceCompte());
+    }
+
+    public void resetPane(){
+        paneCompte.setVisible(false);
+        paneConnexion.setVisible(false);
+        paneCreationCompte.setVisible(false);
     }
 }
