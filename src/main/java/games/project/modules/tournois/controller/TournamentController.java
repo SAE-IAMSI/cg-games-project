@@ -33,6 +33,7 @@ public class TournamentController extends AnchorPane {
             HBox box = new HBox();
             Label lab = new Label("                       Tournoi n" + i + "   nom : " + "   date debut : " + "   date fin :"
                     );
+            lab.getStyleClass().add("label-main");
             Button bouton = new Button("detail");
             box.getChildren().add(lab);
             box.getChildren().add(bouton);
