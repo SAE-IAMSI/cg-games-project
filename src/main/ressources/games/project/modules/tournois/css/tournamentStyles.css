@@ -40,7 +40,14 @@
 .label{
     -fx-font-family: 'Orbitron', sans-serif;
     -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-background-color: #1b1b1b;
+    -fx-border-color: #473bf0;
+    -fx-border-width: 3px;
     -fx-font-weight: bold;
+    -fx-min-width: 682px;
+    -fx-min-height: 60px;
+    -fx-max-width:683px;
 }
 
 .labelBarMenu{
