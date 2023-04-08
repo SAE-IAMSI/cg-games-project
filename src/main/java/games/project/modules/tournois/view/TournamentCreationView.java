@@ -2,10 +2,10 @@ package games.project.modules.tournois.view;
 
 import games.project.metier.entite.Jeu;
 import games.project.metier.manager.JeuManager;
-import games.project.modules.tournois.TournamentApplication;
 import games.project.modules.tournois.controller.TournamentController;
 import games.project.modules.tournois.metier.entite.Tournament;
 import games.project.modules.tournois.metier.manager.TournamentManager;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -56,6 +56,7 @@ public class TournamentCreationView extends AnchorPane {
 
     public void quit() {
         controller.getChildren().remove(this);
+        controller.refresh();
     }
 
     private void fillGames() {
@@ -88,6 +89,17 @@ public class TournamentCreationView extends AnchorPane {
             Tournament t = new Tournament(name, startDate, endDate, maxParticipants);
             t.setGames(games);
             TournamentManager.getInstance().createTournament(t);
+            tournamentName.clear();
+            tournamentStart.setValue(null);
+            tournamentEnd.setValue(null);
+            tournamentMax.clear();
+            for (CheckBox cb : gamesCheckbox) cb.setSelected(false);
+            createTournament.setDisable(true);
+            createTournament.setText("Tournoi créé !");
+            TournamentController.delay(2000, () -> {
+                createTournament.setText("Créer tournoi");
+                createTournament.setDisable(false);
+            });
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
