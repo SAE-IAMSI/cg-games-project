@@ -40,16 +40,19 @@
 .label{
     -fx-font-family: 'Orbitron', sans-serif;
     -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.label-main {
     -fx-font-size: 20px;
     -fx-background-color: #1b1b1b;
     -fx-border-color: #473bf0;
     -fx-border-width: 3px;
-    -fx-font-weight: bold;
     -fx-min-width: 682px;
     -fx-min-height: 60px;
-    -fx-max-width:683px;
-}
+    -fx-max-width: 683px;
 
+}
 .labelBarMenu{
     -fx-font-size: 30px;
 }
@@ -111,10 +114,61 @@
     -fx-min-height: 40px;
 }
 
-.tournamentList {
-    -fx-background-color: rgba(36, 30, 44, 0.5);
+.scroll-pane {
+    -fx-background-color: rgba(36, 30, 44, 0.4);
 }
 
-.vboxTest {
-    -fx-background-color: rgba(0, 0, 0, 0.1);
+.check-box {
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: rgba(36, 30, 44, 0.4);
+}
+
+.tournament {
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-font-size: 20px;
+    -fx-text-fill: #ffffff;
+    -fx-max-height: 60px;
+    -fx-max-width: 879px;
+    -fx-pref-height: 60px;
+    -fx-pref-width: 879px;
+    -fx-min-height: 60px;
+    -fx-min-width: 879px;
+    -fx-alignment: center;
+    -fx-border-width: 2px;
+    -fx-border-color: #473bf0;
+    -fx-border-radius: 10px;
+}
+
+.tournament:hover {
+    -fx-border-color: #ffffff;
+    -fx-background-color: rgba(159, 0, 203, 0.2);
+    -fx-cursor: hand;
+}
+
+.leaderBoard {
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-font-size: 20px;
+    -fx-text-fill: #ffffff;
+    -fx-alignment: center;
+    -fx-pref-width: 155px;
+    /*-fx-border-width: 2px;
+    -fx-border-color: #473bf0;
+    -fx-border-radius: 10px;*/
+}
+
+.lbHbox {
+    -fx-alignment: center;
+}
+
+.myScore {
+    -fx-background-color: rgba(159, 0, 203, 0.2);
+    -fx-border-color: rgba(159, 0, 203);
+    -fx-border-radius: 1px;
+    -fx-border-radius: 5px;
 }

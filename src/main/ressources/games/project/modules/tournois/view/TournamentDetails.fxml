@@ -21,7 +21,6 @@
                   <Image url="@../../../parametres/images/Background.png" />
                </image>
             </ImageView>
-            <Button layoutX="1030.0" layoutY="607.0" mnemonicParsing="false" text="Retour" />
             <Label layoutX="483.0" layoutY="53.0" prefHeight="34.0" prefWidth="317.0" text="Informations Tournoi" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="25.0" />
@@ -74,11 +73,16 @@
                   <Insets />
                </opaqueInsets>
             </Pane>
+            <Label layoutX="256.0" layoutY="192.0" text="Classement Général :">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
             <Pane layoutX="169.0" layoutY="222.0" prefHeight="438.0" prefWidth="405.0">
                <children>
                   <ScrollPane layoutX="42.0" layoutY="47.0" prefHeight="376.0" prefWidth="337.0">
                      <content>
-                        <VBox prefHeight="417.0" prefWidth="311.0" />
+                        <VBox fx:id="mainLeaderboard" prefHeight="417.0" prefWidth="311.0" />
                      </content>
                      <opaqueInsets>
                         <Insets />
@@ -124,11 +128,7 @@
                   </Label>
                </children>
             </Pane>
-            <Label layoutX="256.0" layoutY="192.0" text="Classement Général :">
-               <font>
-                  <Font size="21.0" />
-               </font>
-            </Label>
+            <Button layoutX="1030.0" layoutY="607.0" mnemonicParsing="false" text="Retour" />
          </children></Pane>
    </children>
 </fx:root>
