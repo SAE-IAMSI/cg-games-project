@@ -2,7 +2,10 @@ package games.project.modules.tournois.controller;
 
 import games.project.metier.manager.PlayerManager;
 import games.project.modules.tournois.TournamentApplication;
+import games.project.modules.tournois.metier.entite.Tournament;
+import games.project.modules.tournois.metier.manager.TournamentManager;
 import games.project.modules.tournois.view.TournamentCreationView;
+import games.project.modules.tournois.view.TournamentDetailView;
 import games.project.stockage.Session;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,15 +17,17 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class TournamentController extends AnchorPane {
 
     @FXML
     private VBox tournaments;
-
     @FXML
-    private Button adminMode;
-
+    private Button createTournamentBtn;
 
     public TournamentController() {
         try {
@@ -35,11 +40,70 @@ public class TournamentController extends AnchorPane {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         if (Session.getInstance().isConnected()) checkAdmin();
+        refresh();
+    }
+
+    private void checkAdmin() {
+        if (PlayerManager.getInstance().getPlayer(Session.getInstance().getLogin()).isAdmin()) {
+            createTournamentBtn.setDisable(false);
+            createTournamentBtn.setVisible(true);
+        } else {
+            createTournamentBtn.setDisable(true);
+            createTournamentBtn.setVisible(false);
+        }
+    }
+
+    private String dateFormat(Timestamp t) {
+        String date = "";
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(t.getTime());
+        String month = "";
+        switch (cal.get(Calendar.MONTH)) {
+            case 0:
+                month = "Janvier";
+                break;
+            case 1:
+                month = "Fevrier";
+                break;
+            case 2:
+                month = "Mars";
+                break;
+            case 3:
+                month = "Avril";
+                break;
+            case 4:
+                month = "Mai";
+                break;
+            case 5:
+                month = "Juin";
+                break;
+            case 6:
+                month = "Juillet";
+                break;
+            case 7:
+                month = "Aout";
+                break;
+            case 8:
+                month = "Septembre";
+                break;
+            case 9:
+                month = "Octobre";
+                break;
+            case 10:
+                month = "Novembre";
+                break;
+            default:
+                month = "Decembre";
+                break;
+        }
+        date = cal.get(Calendar.DAY_OF_MONTH) + " " + month + " " + cal.get(Calendar.YEAR) + " " + cal.get(Calendar.HOUR_OF_DAY) + "h" + cal.get(Calendar.MINUTE);
+        return date;
     }
 
     @FXML
-    public void open() {
+    public void createTournamentMenu() {
         this.getChildren().add(new TournamentCreationView(this));
     }
 
@@ -48,13 +112,14 @@ public class TournamentController extends AnchorPane {
         ((Stage) getScene().getWindow()).close();
     }
 
-    private void checkAdmin() {
-        if (PlayerManager.getInstance().getPlayer(Session.getInstance().getLogin()).isAdmin()) {
-            adminMode.setDisable(false);
-            adminMode.setVisible(true);
-        } else {
-            adminMode.setDisable(true);
-            adminMode.setVisible(false);
+    public void refresh() {
+        tournaments.getChildren().clear();
+        List<Tournament> actualTournaments = TournamentManager.getInstance().getByDate(new Timestamp(new Date().getTime()));
+        for (Tournament t : actualTournaments) {
+            Label l = new Label(t.getLabel() + "\t" + dateFormat(t.getStartDate()) + "\t" + dateFormat(t.getEndDate()));
+            l.getStyleClass().add("tournament");
+            l.setOnMouseClicked(mouseEvent -> getChildren().add(new TournamentDetailView(t)));
+            tournaments.getChildren().add(l);
         }
     }
 }

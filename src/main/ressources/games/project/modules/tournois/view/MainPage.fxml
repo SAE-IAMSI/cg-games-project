@@ -21,7 +21,7 @@
             <VBox fx:id="tournaments" prefHeight="580.0" prefWidth="900.0" styleClass="vboxTest" />
          </content>
       </ScrollPane>
-      <Button layoutX="1050.0" layoutY="630.0" mnemonicParsing="false" text="Retour" />
-      <Button layoutX="1050.0" layoutY="91.0" mnemonicParsing="false" text="nouveau tournoi" />
+      <Button fx:id="createTournamentBtn" disable="true" layoutX="1042.0" layoutY="70.0" mnemonicParsing="false" text="Créer un tournoi" visible="false" onMouseClicked="#createTournamentMenu"/>
+      <Button layoutX="1050.0" layoutY="630.0" mnemonicParsing="false" text="Retour" onMouseClicked="#quit"/>
    </children>
 </fx:root>
