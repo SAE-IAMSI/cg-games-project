@@ -169,7 +169,7 @@ def getNbAdmin()->int:
     """
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
-        sql = """select count(*) from joueurs where estadmin=1"""
+        sql = """select getNbAdmin from dual"""
         for r in cursor.execute(sql):
             return r[0]
 
