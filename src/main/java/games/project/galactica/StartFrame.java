@@ -78,6 +78,6 @@ public class StartFrame extends JFrame {
      */
     private void visibilityFrame() {
         galactica.setVisible(true);
-        setVisible(false);
+        dispose();
     }
 }

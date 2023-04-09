@@ -18,21 +18,29 @@ public class GameOverFrame extends JFrame {
 
         JLabel title = new JLabel("Game Over");
         title.setSize(500, 100);
-        title.setLocation(470, 300);
+        title.setLocation(510, 250);
         title.setFont(new Font("Arial", Font.BOLD, 50));
         title.setOpaque(false);
         title.setForeground(Color.WHITE);
         add(title);
 
+        JLabel score = new JLabel("Vous avez fait " + board.rightPanel.getScore() + " points");
+        score.setSize(500, 100);
+        score.setLocation(530, 320);
+        score.setFont(new Font("Arial", Font.BOLD, 20));
+        score.setOpaque(false);
+        score.setForeground(Color.WHITE);
+        add(score);
+
         Button restart = new Button("Recommencer");
-        restart.setSize(200, 100);
-        restart.setLocation(540, 430);
+        restart.setSize(250, 100);
+        restart.setLocation(515, 430);
         restart.setFont(new Font("Arial", Font.BOLD, 30));
         add(restart);
 
         Button mainMenu = new Button("Menu Principal");
-        mainMenu.setSize(200, 100);
-        mainMenu.setLocation(540, 540);
+        mainMenu.setSize(250, 100);
+        mainMenu.setLocation(515, 540);
         mainMenu.setFont(new Font("Arial", Font.BOLD, 30));
         add(mainMenu);
 
