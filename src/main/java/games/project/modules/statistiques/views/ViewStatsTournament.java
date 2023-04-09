@@ -42,26 +42,38 @@ public class ViewStatsTournament {
         Label moyenTournoi = new Label("Nombre de participants moyen par tournoi : ");
         moyenTournoi.getStyleClass().add("texte");
         moyenTournoi.setLayoutX(122);
-        moyenTournoi.setLayoutY(343);
+        moyenTournoi.setLayoutY(250);
 
         //mettre le nombre de participants moyen par tournois
         String s1 = Surcouche.recupFonction("getAvgParticipants",null);
         Label avgTournoi = new Label(s1);
         avgTournoi.getStyleClass().add("texte");
         avgTournoi.setLayoutX(430);
-        avgTournoi.setLayoutY(343);
+        avgTournoi.setLayoutY(250);
 
         Label moyenTournoiAttente = new Label("Nombre de participants maximum par tournoi : ");
         moyenTournoiAttente.getStyleClass().add("texte");
         moyenTournoiAttente.setLayoutX(122);
-        moyenTournoiAttente.setLayoutY(495);
+        moyenTournoiAttente.setLayoutY(393);
 
         //mettre le nombre de participants moyen par tournois
         String s2 = Surcouche.recupFonction("getAvgAttendees",null);
         Label avgTournoiAttente = new Label(s2);
         avgTournoiAttente.getStyleClass().add("texte");
         avgTournoiAttente.setLayoutX(430);
-        avgTournoiAttente.setLayoutY(495);
+        avgTournoiAttente.setLayoutY(393);
+
+        Label dateDernierTournoi = new Label("La date la plus tard pour le début d'un tournoi: ");
+        dateDernierTournoi.getStyleClass().add("texte");
+        dateDernierTournoi.setLayoutX(122);
+        dateDernierTournoi.setLayoutY(450);
+
+        //mettre la date du dernier tournoi crée
+        String s3 = Surcouche.dateLisible(Surcouche.recupFonction("getMaxDateDebutTournois",null));
+        Label dateDernierTournoiCree = new Label(s3);
+        dateDernierTournoiCree.getStyleClass().add("texte");
+        dateDernierTournoiCree.setLayoutX(430);
+        dateDernierTournoiCree.setLayoutY(450);
 
         Button btnRetour = new Button("Retour");
         btnRetour.getStyleClass().add("button");
@@ -74,7 +86,7 @@ public class ViewStatsTournament {
             v.afficherMenu(stage);
         });
 
-        pane.getChildren().addAll(titre, tournoisCrees, nbTournois, moyenTournoi, avgTournoi, btnRetour, moyenTournoiAttente, avgTournoiAttente);
+        pane.getChildren().addAll(titre, tournoisCrees, nbTournois, moyenTournoi, avgTournoi, btnRetour, moyenTournoiAttente, avgTournoiAttente, dateDernierTournoi, dateDernierTournoiCree);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);

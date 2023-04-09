@@ -280,3 +280,14 @@ def getMaxDateFinTournois():
         sql = """select MAX(datefin) from tournois"""
         for r in cursor.execute(sql):
             return r[0]
+
+def getMaxDateDebutTournois():
+    """
+    Renvoie la date du dernier tournoi créé\n
+    :return: r[0] : int
+    """
+    connexion = createConnexion(user, password, host, port, sid)
+    with connexion.cursor() as cursor:
+        sql = """select MAX(datedebut) from tournois"""
+        for r in cursor.execute(sql):
+            return r[0]

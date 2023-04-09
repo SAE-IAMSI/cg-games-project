@@ -40,6 +40,12 @@ public class Surcouche {
         return res;
     }
 
+    public static String dateLisible(String s){
+        String[] tab = s.split(" ");
+        String[] date = tab[0].split("-");
+        return date[2] + "/" + date[1] + "/" + date[0];
+    }
+
     public static void main(String[] args) throws IOException {
         ArrayList<String> arg = new ArrayList<>();
         arg.add("KR");
