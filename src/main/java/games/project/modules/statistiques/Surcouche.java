@@ -32,7 +32,10 @@ public class Surcouche {
         ArrayList<String> res = new ArrayList<>();
         s = s.substring(1, s.length() - 1);
         String[] tab = s.split(",");
-        res.addAll(Arrays.asList(tab));
+        for (String str : tab){
+            str = str.substring(1, str.length() - 1);
+            res.add(str);
+        }
         return res;
     }
 }

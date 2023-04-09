@@ -13,10 +13,13 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ViewStatsPlayers {
 
     public void affichageJoueurs(Stage stage) throws IOException {
+
+        ArrayList<String> listeDPT = Surcouche.splitTableau(Surcouche.recupFonction("getTop10Departement",null));
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
@@ -38,7 +41,7 @@ public class ViewStatsPlayers {
         String s = Surcouche.recupFonction("getNbPlayers",null);
         Label nbTotal = new Label(s);
         nbTotal.getStyleClass().add("texte");
-        nbTotal.setLayoutX(244);
+        nbTotal.setLayoutX(400);
         nbTotal.setLayoutY(191);
 
         Label dernierInscrit = new Label("Pseudo du dernier inscrit : ");
@@ -48,7 +51,7 @@ public class ViewStatsPlayers {
 
         //mettre le pseudo du dernier inscrit
         String s1 = "";
-        Label pseudo = new Label(s);
+        Label pseudo = new Label(s1);
         pseudo.getStyleClass().add("texte");
         pseudo.setLayoutX(244);
         pseudo.setLayoutY(191);
@@ -59,9 +62,9 @@ public class ViewStatsPlayers {
         topDep.setLayoutY(476);
 
         //mettre le top département
-        Label dep = new Label(s);
+        Label dep = new Label(listeDPT.get(0));
         dep.getStyleClass().add("texte");
-        dep.setLayoutX(341);
+        dep.setLayoutX(400);
         dep.setLayoutY(476);
 
         Label topDepScrollLabel = new Label("Classement des départements par nombre de joueurs");
