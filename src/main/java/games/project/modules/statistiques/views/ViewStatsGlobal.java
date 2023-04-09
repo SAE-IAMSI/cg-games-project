@@ -1,5 +1,6 @@
 package games.project.modules.statistiques.views;
 
+import games.project.modules.statistiques.Surcouche;
 import games.project.parametres.Parametres;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,9 +10,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class ViewStatsGlobal {
 
-    public void affichageStatsGlobales(Stage stage) {
+    public void affichageStatsGlobales(Stage stage) throws IOException {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
@@ -25,9 +28,13 @@ public class ViewStatsGlobal {
         titre.setLayoutY(50);
 
         Label joueursActifs = new Label("Nombre de joueurs actifs : ");
+        Label nbJoueurs = new Label(Surcouche.recupFonction("getNbPlayers",null));
         joueursActifs.getStyleClass().add("texte");
+        nbJoueurs.getStyleClass().add("texte");
         joueursActifs.setLayoutX(122);
         joueursActifs.setLayoutY(191);
+        nbJoueurs.setLayoutX(400);
+        nbJoueurs.setLayoutY(191);
 
         //stocker le nombre de joueurs actifs
         String s = "";
@@ -46,7 +53,7 @@ public class ViewStatsGlobal {
             v.afficherMenu(stage);
         });
 
-        pane.getChildren().addAll(titre, joueursActifs, nbJoueursActifs, btnRetour);
+        pane.getChildren().addAll(titre, joueursActifs, nbJoueurs, nbJoueursActifs, btnRetour);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);

@@ -9,6 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class ViewMain extends Stage {
 
     public void afficherMenu(Stage stage) {
@@ -66,7 +68,11 @@ public class ViewMain extends Stage {
 
         btnGlobales.setOnAction(actionEvent -> {
             ViewStatsGlobal v = new ViewStatsGlobal();
-            v.affichageStatsGlobales(stage);
+            try {
+                v.affichageStatsGlobales(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         btnJeux.setOnAction(actionEvent -> {
