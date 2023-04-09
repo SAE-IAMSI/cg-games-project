@@ -45,11 +45,4 @@ public class Surcouche {
         String[] date = tab[0].split("-");
         return date[2] + "/" + date[1] + "/" + date[0];
     }
-
-    public static void main(String[] args) throws IOException {
-        ArrayList<String> arg = new ArrayList<>();
-        arg.add("KR");
-        System.out.println(recupFonction("getGrapheScoreMoyen", arg));
-        //getGrapheScoreMoyen
-    }
 }
