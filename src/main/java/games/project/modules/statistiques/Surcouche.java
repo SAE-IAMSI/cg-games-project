@@ -7,10 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
 
-public class Main {
-    public static void main(String[] args) throws IOException {
-        System.out.println(recupFonction("getNbPlayers",null));
-    }
+public class Surcouche {
 
     public static String recupFonction(String nomFunc, ArrayList<String> args) throws IOException {
         String absolutePath = FileSystems.getDefault().getPath("src/main/PythonFileStats/app/execute.py").normalize().toAbsolutePath().toString();
