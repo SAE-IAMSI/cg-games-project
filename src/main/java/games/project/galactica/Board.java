@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Board extends JPanel {
-    private final RightPanel rightPanel;
-    private final LeftPanel leftPanel;
+    final RightPanel rightPanel;
+    final LeftPanel leftPanel;
 
     private Dimension d;
     private List<Alien> aliens;
@@ -33,16 +33,13 @@ public class Board extends JPanel {
     private Timer timer, timerLife;
     private Boolean getDommage = true;
 
-    private Galactica game;
+    Galactica game;
 
     private int nbTours = 0;
     private int tirPlayer = 4;
     private int tirAlien = 1;
     private int movePlayer = 2;
     private int moveAlien = 1;
-    private boolean isGameOver = false;
-
-    private int instance;
 
     /**
      * constructeur de la classe Board
@@ -56,7 +53,6 @@ public class Board extends JPanel {
         this.rightPanel = rightPanel;
         this.leftPanel = leftPanel;
         this.game = game;
-        this.instance = instance;
     }
 
     /**
@@ -193,7 +189,6 @@ public class Board extends JPanel {
      * @param g Graphics
      */
     private void gameOver(Graphics g) {
-        isGameOver = true;
         this.registerScore();
         g.setColor(Color.black);
         g.fillRect(0, 0, Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
@@ -209,21 +204,10 @@ public class Board extends JPanel {
         g.setFont(small);
         g.drawString(message, (Commons.BOARD_WIDTH - fontMetrics.stringWidth(message)) / 2,
                 Commons.BOARD_WIDTH / 2);
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                int key = e.getKeyCode();
-                if (key == KeyEvent.VK_SPACE) {
-                    game.dispose();
-                    if (game instanceof GalacticaClassic) {
-                        game = new GalacticaClassic();
-                    } else {
-                        game = new GalacticaInfinite();
-                    }
-                    game.setVisible(true);
-                }
-            }
-        });
+        game.dispose();
+        var gameOverFrame = new GameOverFrame(this);
+        gameOverFrame.setPreferredSize(new Dimension(1280, 720));
+        gameOverFrame.setVisible(true);
     }
 
     /**
@@ -375,12 +359,8 @@ public class Board extends JPanel {
      * Dessine les éléments du jeu
      */
     private void doGameCycle() {
-        if (!isGameOver) {
-            System.out.println("nbTours = " + nbTours + " tirPlayer = " + tirPlayer + " tirAlien = " + tirAlien + " movePlayer = " + movePlayer + " moveAlien = " + moveAlien);
-            System.out.println("timer = " + timer.getDelay());
-            update();
-            repaint();
-        }
+        update();
+        repaint();
     }
 
 
