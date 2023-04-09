@@ -35,7 +35,7 @@ public class ViewStatsGlobal {
         //stocker le nombre de joueurs actifs
         String s = Surcouche.recupFonction("getJoueursActifs",null);
         Label nbJoueursActifs = new Label(s);
-        nbJoueursActifs.setLayoutX(284);
+        nbJoueursActifs.setLayoutX(400);
         nbJoueursActifs.setLayoutY(191);
 
         Button btnRetour = new Button("Retour");
