@@ -194,7 +194,7 @@ def getBestScore(jeu:str)->float:
     """
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
-        sql = f"""select max(score) from scores where codejeu='{jeu}'"""
+        sql = f"""SELECT getBestScore({jeu}) FROM dual"""
         for r in cursor.execute(sql):
             return r[0]
 
