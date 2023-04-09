@@ -40,9 +40,9 @@ public class Surcouche {
         return res;
     }
 
-    /*public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         ArrayList<String> arg = new ArrayList<>();
         arg.add("KR");
         recupFonction("getGrapheScoreMoyen", arg);
-    }*/
+    }
 }
