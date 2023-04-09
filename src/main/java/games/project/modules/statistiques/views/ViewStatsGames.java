@@ -1,5 +1,6 @@
 package games.project.modules.statistiques.views;
 
+import games.project.modules.statistiques.Surcouche;
 import games.project.parametres.Parametres;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,9 +11,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class ViewStatsGames {
 
-    public void affichageStatsJeu(Stage stage){
+    public void affichageStatsJeu(Stage stage) throws IOException {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(Parametres.class.getResource("css/parametresStyle.css")));
@@ -30,7 +34,8 @@ public class ViewStatsGames {
         select.setLayoutY(191);
 
         ComboBox<String> comboSelect = new ComboBox<>();
-        comboSelect.getItems().setAll(/*mettre les valeurs des jeux*/);
+        ArrayList<String> listeJeux = Surcouche.splitTableau(Surcouche.recupFonction("getAllGame",null));
+        comboSelect.getItems().setAll(listeJeux);
         comboSelect.setLayoutX(274);
         comboSelect.setLayoutY(187);
 

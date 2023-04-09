@@ -103,7 +103,11 @@ public class ViewMain extends Stage {
 
         btnJeux.setOnAction(actionEvent -> {
             ViewStatsGames v = new ViewStatsGames();
-            v.affichageStatsJeu(stage);
+            try {
+                v.affichageStatsJeu(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         btnJeux.setOnMouseEntered(mouseEvent -> {

@@ -54,6 +54,21 @@ def getTop10Departement() -> list:
     return tab
 
 
+def getAllGame()->list:
+    '''
+    Renvoie la liste de tous les jeux\n
+    :return: tab: un tableau de string
+    '''
+    connexion = createConnexion(user, password, host, port, sid)
+    with connexion.cursor() as cursor:
+        sql = """SELECT code FROM jeu"""
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        tab = []
+        for r in result:
+            tab.append(r[0])
+    return tab
+
 def getJoueursActifs() -> int:
     '''
     Renvoie le nombre de joueurs actifs sur le PGI\n
