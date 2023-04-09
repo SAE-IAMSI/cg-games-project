@@ -33,7 +33,8 @@ public class Surcouche {
         s = s.substring(1, s.length() - 1);
         String[] tab = s.split(",");
         for (String str : tab){
-            str = str.substring(1, str.length() - 1);
+            str = str.replaceAll(" ","");
+            str = str.replaceAll("'","");
             res.add(str);
         }
         return res;
