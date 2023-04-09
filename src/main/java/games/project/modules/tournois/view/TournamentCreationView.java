@@ -5,7 +5,6 @@ import games.project.metier.manager.JeuManager;
 import games.project.modules.tournois.controller.TournamentController;
 import games.project.modules.tournois.metier.entite.Tournament;
 import games.project.modules.tournois.metier.manager.TournamentManager;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -13,10 +12,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
