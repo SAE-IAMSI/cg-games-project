@@ -223,7 +223,7 @@ public class Board extends JPanel {
                     game.setVisible(true);
                 }
             }
-        });//TODO ici
+        });
     }
 
     /**
@@ -238,9 +238,6 @@ public class Board extends JPanel {
      * Met à jour le plateau de jeu
      */
     void update() {
-        System.out.println(this);
-        System.out.println(isGameOver);
-        System.out.println(instance);
         if (deaths == Commons.NUMBER_OF_ALIENS_TO_DESTROY) {
             if (game instanceof GalacticaInfinite) {
                 aliens.clear();
