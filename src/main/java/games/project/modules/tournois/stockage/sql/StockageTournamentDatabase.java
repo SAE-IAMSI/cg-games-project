@@ -152,6 +152,37 @@ public class StockageTournamentDatabase {
         return tournamentList;
     }
 
+    public List<Tournament> getTournamentByLogin(String login) {
+        List<Tournament> tournamentList = new ArrayList<>();
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT t.codeTournoi, libelleTournoi, dateDebut, dateFin, nbParticipantsMax FROM TOURNOIS t JOIN PARTICIPER p ON t.codeTournoi = p.codeTournoi WHERE login = ?";
+        try (
+                PreparedStatement statement = connection.prepareStatement(req)
+        ) {
+            statement.setString(1, login);
+            try (
+                    ResultSet result = statement.executeQuery()
+            ) {
+                while (result.next()) {
+                    int tournamentCode = result.getInt("codeTournoi");
+                    String label = result.getString("libelleTournoi");
+                    Timestamp startDate = result.getTimestamp("dateDebut");
+                    Timestamp endDate = result.getTimestamp("dateFin");
+                    int maxParticipants = result.getInt("nbParticipantsMax");
+                    Tournament tournament = new Tournament(label, startDate, endDate, maxParticipants);
+                    tournament.setTournamentCode(tournamentCode);
+                    tournament.setGames(getGamesByTournament(tournamentCode));
+                    tournament.setParticipants(getParticipantsByTournament(tournamentCode));
+                    tournamentList.add(tournament);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tournamentList;
+    }
+
     public List<Jeu> getGamesByTournament(int tournamentCode) {
         List<Jeu> gamesList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
