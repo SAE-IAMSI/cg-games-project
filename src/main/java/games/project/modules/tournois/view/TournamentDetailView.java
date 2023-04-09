@@ -4,6 +4,7 @@ import games.project.metier.entite.AuthPlayer;
 import games.project.metier.entite.Jeu;
 import games.project.metier.entite.Score;
 import games.project.metier.manager.JeuManager;
+import games.project.metier.manager.PlayerManager;
 import games.project.modules.tournois.controller.TournamentController;
 import games.project.modules.tournois.metier.entite.Tournament;
 import games.project.modules.tournois.metier.manager.TournamentManager;
@@ -12,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -46,6 +48,9 @@ public class TournamentDetailView extends AnchorPane {
     @FXML
     private VBox gameLeaderboard;
 
+    @FXML
+    private Button updateBtn;
+
     public TournamentDetailView(Tournament tournament, TournamentController controller) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("TournamentDetails.fxml"));
@@ -69,6 +74,18 @@ public class TournamentDetailView extends AnchorPane {
         }
         chosenGame.setItems(list);
         chosenGame.getSelectionModel().select(0);
+
+        checkAdmin();
+    }
+
+    private void checkAdmin() {
+        if (PlayerManager.getInstance().getPlayer(Session.getInstance().getLogin()).isAdmin()) {
+            updateBtn.setDisable(false);
+            updateBtn.setVisible(true);
+        } else {
+            updateBtn.setDisable(true);
+            updateBtn.setVisible(false);
+        }
     }
 
     private void displayMainLeaderboard() {
@@ -130,5 +147,10 @@ public class TournamentDetailView extends AnchorPane {
     @FXML
     public void quit() {
         controller.getChildren().remove(this);
+    }
+
+    @FXML void updateTournamentMenu() {
+        controller.getChildren().remove(this);
+        controller.getChildren().add(new TournamentUpdateView(tournament, controller));
     }
 }

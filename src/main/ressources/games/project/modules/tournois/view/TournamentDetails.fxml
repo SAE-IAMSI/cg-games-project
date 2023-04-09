@@ -163,6 +163,7 @@
                </children>
             </Pane>
             <Button layoutX="1030.0" layoutY="607.0" mnemonicParsing="false" onMouseClicked="#quit" text="Retour" />
+            <Button fx:id="updateBtn" disable="true" layoutX="1030.0" layoutY="40.0" mnemonicParsing="false" text="Modifier" visible="false" onMouseClicked="#updateTournamentMenu"/>
          </children></Pane>
    </children>
 </fx:root>
