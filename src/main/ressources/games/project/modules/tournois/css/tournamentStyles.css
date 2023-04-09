@@ -178,6 +178,7 @@
     -fx-font-family: 'Orbitron', sans-serif;
     -fx-font-size: 18px;
     -fx-alignment: center;
+    -fx-background-color: rgba(36, 30, 44, 0.5);
 }
 
 .choice-box {
@@ -189,9 +190,6 @@
 }
 
 .tournamentInfo {
-    /*-fx-border-width: 2px;
-    -fx-border-color: red;
-    -fx-border-radius: 5px;*/
     -fx-background-color: rgba(36, 30, 44, 0.4);
     -fx-background-radius: 5px;
     -fx-padding: 5px;

@@ -43,7 +43,6 @@ public class TournamentController extends AnchorPane {
             e.printStackTrace();
         }
 
-        Session.getInstance().connect("brizayg");
         if (Session.getInstance().isConnected()) checkAdmin();
         refresh();
     }
