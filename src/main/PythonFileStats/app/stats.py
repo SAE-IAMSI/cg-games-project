@@ -223,7 +223,7 @@ def getGrapheScoreMoyen(game: str, idGraph: int = 0):
     plt.xlabel('Semaines', fontsize=14)
     plt.ylabel('Scores moyens', fontsize=14)
     plt.grid(True)
-    plt.show()
+    plt.savefig(os.path.join(os.getcwd(), f'src/main/java/games/project/modules/statistiques/imgTemp/graphe{game}.png'))
 
 
 def downloadGraphe(pathToSaveImg : str) -> None:

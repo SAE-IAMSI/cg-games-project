@@ -49,6 +49,7 @@ public class Surcouche {
     public static void main(String[] args) throws IOException {
         ArrayList<String> arg = new ArrayList<>();
         arg.add("KR");
-        recupFonction("getGrapheScoreMoyen", arg);
+        System.out.println(recupFonction("getGrapheScoreMoyen", arg));
+        //getGrapheScoreMoyen
     }
 }
