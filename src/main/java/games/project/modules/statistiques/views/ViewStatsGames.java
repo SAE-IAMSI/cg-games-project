@@ -95,6 +95,22 @@ public class ViewStatsGames {
             v.afficherMenu(stage);
         });
 
+        Button btnDL = new Button("Télécharger les graphiques du jeu sélectionné");
+        btnDL.getStyleClass().add("button");
+        btnDL.setContentDisplay(ContentDisplay.CENTER);
+        btnDL.setLayoutX(250);
+        btnDL.setLayoutY(616);
+
+        btnDL.setOnAction(actionEvent -> {
+            String jeu = comboSelect.getValue();
+            args.clear();args.add(jeu);
+            try {
+                Surcouche.recupFonction("getGrapheScoreMoyen",args);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
         comboSelect.setOnAction(actionEvent -> {
             String jeu = comboSelect.getValue();
             args.clear();args.add(jeu);pane.getChildren().removeAll(bestScore, avgScore);

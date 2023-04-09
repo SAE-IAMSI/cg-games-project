@@ -61,7 +61,7 @@ def getAllGame()->list:
     '''
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
-        sql = """SELECT libelle FROM jeu"""
+        sql = """SELECT code FROM jeu"""
         cursor.execute(sql)
         result = cursor.fetchall()
         tab = []
