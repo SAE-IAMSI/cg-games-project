@@ -72,7 +72,6 @@ public class ViewMain extends Stage {
 
         //ajout des actions pour les boutons
         btnTournois.setOnAction(actionEvent -> {
-            pane.getChildren().add(chargement);
             ViewStatsTournament v = new ViewStatsTournament();
             v.affichageStatsTournoi(stage);
         });
@@ -86,7 +85,6 @@ public class ViewMain extends Stage {
         });
 
         btnGlobales.setOnAction(actionEvent -> {
-            pane.getChildren().add(chargement);
             ViewStatsGlobal v = new ViewStatsGlobal();
             try {
                 v.affichageStatsGlobales(stage);
@@ -104,7 +102,6 @@ public class ViewMain extends Stage {
         });
 
         btnJeux.setOnAction(actionEvent -> {
-            pane.getChildren().remove(chargement);
             ViewStatsGames v = new ViewStatsGames();
             v.affichageStatsJeu(stage);
         });
