@@ -46,3 +46,6 @@ class Integration(ut.TestCase):
         tabSansNone = [1,2,0,0,4]
 
         self.assertEqual((tabSansNone,tabSemaine),s.replaceNone(tabNone))
+    
+    def testGetNbTournois(self):
+        self.assertEqual(0, s.getNbTournois())
