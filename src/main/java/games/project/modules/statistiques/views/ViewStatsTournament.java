@@ -33,10 +33,10 @@ public class ViewStatsTournament {
         tournoisCrees.setLayoutY(191);
 
         //mettre le nombre de tournois crées
-        String s = "";
+        String s = Surcouche.recupFonction("getNbTournois",null);
         Label nbTournois = new Label(s);
         nbTournois.getStyleClass().add("texte");
-        nbTournois.setLayoutX(296);
+        nbTournois.setLayoutX(320);
         nbTournois.setLayoutY(191);
 
         Label moyenTournoi = new Label("Nombre de participants moyen par tournoi : ");

@@ -255,6 +255,17 @@ def getAvgParticipants()->float:
     """
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
-        sql = """SELECT avg(count(login)) FROM PARTICIPER p GROUP BY CODETOURNOI """
+        sql = """SELECT round(avg(count(login))) FROM PARTICIPER p GROUP BY CODETOURNOI """
+        for r in cursor.execute(sql):
+            return r[0]
+
+def getNbTournois()->int:
+    """
+    Renvoie le nombre de tournois\n
+    :return: r[0] : int
+    """
+    connexion = createConnexion(user, password, host, port, sid)
+    with connexion.cursor() as cursor:
+        sql = """select count(*) from tournois"""
         for r in cursor.execute(sql):
             return r[0]
