@@ -147,6 +147,16 @@ def getScoreMoyen(jeu: str) -> float:
     date = str(today.strftime("%d/%m/%Y"))[0:5] + "/" + str(today.strftime("%d/%m/%Y"))[8:10]
     return getScoreMoyenEntreDates(jeu, '01/01/22', date)
 
+def getNbAdmin()->int:
+    """
+    Renvoie le nombre d'administrateur du PGI\n
+    :return: r[0] : int
+    """
+    connexion = createConnexion(user, password, host, port, sid)
+    with connexion.cursor() as cursor:
+        sql = """select count(*) from joueurs where estadmin=1"""
+        for r in cursor.execute(sql):
+            return r[0]
 
 def getTempsMoyenKR(dateAvant: str, dateApres: str) -> float:
     '''

@@ -44,17 +44,17 @@ public class ViewStatsPlayers {
         nbTotal.setLayoutX(400);
         nbTotal.setLayoutY(191);
 
-        Label dernierInscrit = new Label("Pseudo du dernier inscrit : ");
+        Label dernierInscrit = new Label("Nombre d'administrateur : ");
         dernierInscrit.getStyleClass().add("texte");
         dernierInscrit.setLayoutX(122);
         dernierInscrit.setLayoutY(343);
 
         //mettre le pseudo du dernier inscrit
-        String s1 = "";
+        String s1 = Surcouche.recupFonction("getNbAdmin",null);
         Label pseudo = new Label(s1);
         pseudo.getStyleClass().add("texte");
-        pseudo.setLayoutX(244);
-        pseudo.setLayoutY(191);
+        pseudo.setLayoutX(400);
+        pseudo.setLayoutY(343);
 
         Label topDep = new Label("Département avec le plus d'inscrits : ");
         topDep.getStyleClass().add("texte");
