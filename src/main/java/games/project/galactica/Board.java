@@ -8,10 +8,7 @@ import games.project.stockage.Session;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,13 +33,16 @@ public class Board extends JPanel {
     private Timer timer, timerLife;
     private Boolean getDommage = true;
 
-    private final Galactica game;
+    private Galactica game;
 
     private int nbTours = 0;
     private int tirPlayer = 4;
     private int tirAlien = 1;
     private int movePlayer = 2;
     private int moveAlien = 1;
+    private boolean isGameOver = false;
+
+    private int instance;
 
     /**
      * constructeur de la classe Board
@@ -56,6 +56,7 @@ public class Board extends JPanel {
         this.rightPanel = rightPanel;
         this.leftPanel = leftPanel;
         this.game = game;
+        this.instance = instance;
     }
 
     /**
@@ -192,6 +193,7 @@ public class Board extends JPanel {
      * @param g Graphics
      */
     private void gameOver(Graphics g) {
+        isGameOver = true;
         this.registerScore();
         g.setColor(Color.black);
         g.fillRect(0, 0, Commons.BOARD_WIDTH, Commons.BOARD_HEIGHT);
@@ -207,6 +209,21 @@ public class Board extends JPanel {
         g.setFont(small);
         g.drawString(message, (Commons.BOARD_WIDTH - fontMetrics.stringWidth(message)) / 2,
                 Commons.BOARD_WIDTH / 2);
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int key = e.getKeyCode();
+                if (key == KeyEvent.VK_SPACE) {
+                    game.dispose();
+                    if (game instanceof GalacticaClassic) {
+                        game = new GalacticaClassic();
+                    } else {
+                        game = new GalacticaInfinite();
+                    }
+                    game.setVisible(true);
+                }
+            }
+        });//TODO ici
     }
 
     /**
@@ -221,7 +238,9 @@ public class Board extends JPanel {
      * Met à jour le plateau de jeu
      */
     void update() {
-
+        System.out.println(this);
+        System.out.println(isGameOver);
+        System.out.println(instance);
         if (deaths == Commons.NUMBER_OF_ALIENS_TO_DESTROY) {
             if (game instanceof GalacticaInfinite) {
                 aliens.clear();
@@ -359,8 +378,12 @@ public class Board extends JPanel {
      * Dessine les éléments du jeu
      */
     private void doGameCycle() {
-        update();
-        repaint();
+        if (!isGameOver) {
+            System.out.println("nbTours = " + nbTours + " tirPlayer = " + tirPlayer + " tirAlien = " + tirAlien + " movePlayer = " + movePlayer + " moveAlien = " + moveAlien);
+            System.out.println("timer = " + timer.getDelay());
+            update();
+            repaint();
+        }
     }
 
 
