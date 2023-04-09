@@ -17,6 +17,11 @@ import java.util.ArrayList;
 public class ViewStatsGames {
 
     public void affichageStatsJeu(Stage stage) throws IOException {
+
+        ArrayList<String> listeJeux = Surcouche.splitTableau(Surcouche.recupFonction("getAllGame",null));
+        String jeuCourant = listeJeux.get(0);
+        ArrayList<String> args = new ArrayList<>();
+
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(Parametres.class.getResource("css/parametresStyle.css")));
@@ -34,8 +39,8 @@ public class ViewStatsGames {
         select.setLayoutY(191);
 
         ComboBox<String> comboSelect = new ComboBox<>();
-        ArrayList<String> listeJeux = Surcouche.splitTableau(Surcouche.recupFonction("getAllGame",null));
-        comboSelect.getItems().setAll(listeJeux);
+        comboSelect.getItems().addAll(listeJeux);
+        comboSelect.setValue(jeuCourant);
         comboSelect.setLayoutX(274);
         comboSelect.setLayoutY(187);
 
@@ -45,7 +50,8 @@ public class ViewStatsGames {
         scoreM.setLayoutY(343);
 
         //résuperer le score moyen suivant un jeu
-        String s = "";
+        args.add(jeuCourant);
+        String s = Surcouche.recupFonction("getScoreMoyen",args);
         Label avgScore = new Label(s);
         avgScore.getStyleClass().add("texte");
         avgScore.setLayoutX(225);
@@ -57,11 +63,11 @@ public class ViewStatsGames {
         scoreB.setLayoutY(476);
 
         //mettre le meilleur score suivant un jeu
-        String s1 = "";
+        String s1 = Surcouche.recupFonction("getBestScore",args);
         Label bestScore = new Label(s1);
-        avgScore.getStyleClass().add("texte");
-        avgScore.setLayoutX(225);
-        avgScore.setLayoutY(475);
+        bestScore.getStyleClass().add("texte");
+        bestScore.setLayoutX(225);
+        bestScore.setLayoutY(476);
 
         Button btnRetour = new Button("Retour");
         btnRetour.getStyleClass().add("button");
@@ -74,7 +80,7 @@ public class ViewStatsGames {
             v.afficherMenu(stage);
         });
 
-        pane.getChildren().addAll(titre, select, scoreB, scoreM ,comboSelect, bestScore ,btnRetour);
+        pane.getChildren().addAll(titre, select, scoreB, scoreM ,comboSelect, bestScore ,btnRetour, avgScore);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);

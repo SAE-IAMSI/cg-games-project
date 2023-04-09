@@ -186,6 +186,17 @@ def getTempsMoyenKR(dateAvant: str, dateApres: str) -> float:
         for r in cursor.execute(sql):
             return r[0]
 
+def getBestScore(jeu:str)->float:
+    """
+    Renvoie le meilleur score sur le jeu donné\n
+    :param jeu: code du jeu
+    :return: r[0] : float
+    """
+    connexion = createConnexion(user, password, host, port, sid)
+    with connexion.cursor() as cursor:
+        sql = f"""select max(score) from scores where codejeu='{jeu}'"""
+        for r in cursor.execute(sql):
+            return r[0]
 
 def getJoueursParDepartements(numDepartement: str) -> int:
     '''
