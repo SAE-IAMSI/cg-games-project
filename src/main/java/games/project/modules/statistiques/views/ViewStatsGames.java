@@ -18,6 +18,10 @@ import java.util.Map;
 
 public class ViewStatsGames {
 
+    private static int compteur =0;
+    private Label avgScore = new Label();
+    Label bestScore;
+
     public void affichageStatsJeu(Stage stage) throws IOException {
 
         ArrayList<String> listeJeux = Surcouche.splitTableau(Surcouche.recupFonction("getAllGame",null));
@@ -63,7 +67,7 @@ public class ViewStatsGames {
         //résuperer le score moyen suivant un jeu
         args.clear();args.add(jeuCourant);
         String s = mapAvgScore.get(jeuCourant);
-        Label avgScore = new Label(s);
+        avgScore = new Label(s);
         avgScore.getStyleClass().add("texte");
         avgScore.setLayoutX(225);
         avgScore.setLayoutY(343);
@@ -75,7 +79,7 @@ public class ViewStatsGames {
 
         //mettre le meilleur score suivant un jeu
         String s1 = mapBestScore.get(jeuCourant);
-        Label bestScore = new Label(s1);
+        bestScore = new Label(s1);
         bestScore.getStyleClass().add("texte");
         bestScore.setLayoutX(225);
         bestScore.setLayoutY(476);
@@ -92,26 +96,21 @@ public class ViewStatsGames {
         });
 
         comboSelect.setOnAction(actionEvent -> {
-            Label scoreMoyen=null;
-            Label meilleurScore=null;
             String jeu = comboSelect.getValue();
-            args.clear();pane.getChildren().remove(avgScore);pane.getChildren().remove(bestScore);
-            pane.getChildren().remove(scoreMoyen);
-            pane.getChildren().remove(meilleurScore);
-            args.add(jeu);
+            args.clear();args.add(jeu);pane.getChildren().removeAll(bestScore, avgScore);
             String s2 = mapAvgScore.get(jeu);
             String s3 = mapBestScore.get(jeu);
-            scoreMoyen = new Label(s2);
-            scoreMoyen.getStyleClass().add("texte");
-            scoreMoyen.setLayoutX(225);
-            scoreMoyen.setLayoutY(343);
+            avgScore = new Label(s2);
+            avgScore.getStyleClass().add("texte");
+            avgScore.setLayoutX(225);
+            avgScore.setLayoutY(343);
 
-            meilleurScore = new Label(s3);
-            meilleurScore.getStyleClass().add("texte");
-            meilleurScore.setLayoutX(225);
-            meilleurScore.setLayoutY(476);
+            bestScore = new Label(s3);
+            bestScore.getStyleClass().add("texte");
+            bestScore.setLayoutX(225);
+            bestScore.setLayoutY(476);
 
-            pane.getChildren().addAll(scoreMoyen, meilleurScore);
+            pane.getChildren().addAll(bestScore, avgScore);
         });
 
         pane.getChildren().addAll(titre, select, scoreB, scoreM ,comboSelect, bestScore ,btnRetour, avgScore);
