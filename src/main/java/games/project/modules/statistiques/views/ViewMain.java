@@ -1,6 +1,8 @@
 package games.project.modules.statistiques.views;
 
 import games.project.parametres.Parametres;
+import javafx.animation.PauseTransition;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -8,8 +10,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
+
+import static java.lang.Thread.sleep;
 
 public class ViewMain extends Stage {
 
@@ -24,6 +29,11 @@ public class ViewMain extends Stage {
         titre.setId("CGGamesTitle");
         titre.setLayoutX(350);
         titre.setLayoutY(50);
+
+        Label chargement = new Label("Chargement en cours...");
+        chargement.getStyleClass().add("texte");
+        chargement.setLayoutX(122);
+        chargement.setLayoutY(191);
 
         Button btnTournois = new Button("Statistiques Tournoi");
         btnTournois.getStyleClass().add("button");
@@ -62,11 +72,21 @@ public class ViewMain extends Stage {
 
         //ajout des actions pour les boutons
         btnTournois.setOnAction(actionEvent -> {
+            pane.getChildren().add(chargement);
             ViewStatsTournament v = new ViewStatsTournament();
             v.affichageStatsTournoi(stage);
         });
 
+        btnTournois.setOnMouseEntered(mouseEvent -> {
+            pane.getChildren().add(chargement);
+        });
+
+        btnTournois.setOnMouseExited(mouseEvent -> {
+            pane.getChildren().remove(chargement);
+        });
+
         btnGlobales.setOnAction(actionEvent -> {
+            pane.getChildren().add(chargement);
             ViewStatsGlobal v = new ViewStatsGlobal();
             try {
                 v.affichageStatsGlobales(stage);
@@ -75,9 +95,26 @@ public class ViewMain extends Stage {
             }
         });
 
+        btnGlobales.setOnMouseEntered(mouseEvent -> {
+            pane.getChildren().add(chargement);
+        });
+
+        btnGlobales.setOnMouseExited(mouseEvent -> {
+            pane.getChildren().remove(chargement);
+        });
+
         btnJeux.setOnAction(actionEvent -> {
+            pane.getChildren().remove(chargement);
             ViewStatsGames v = new ViewStatsGames();
             v.affichageStatsJeu(stage);
+        });
+
+        btnJeux.setOnMouseEntered(mouseEvent -> {
+            pane.getChildren().add(chargement);
+        });
+
+        btnJeux.setOnMouseExited(mouseEvent -> {
+            pane.getChildren().remove(chargement);
         });
 
         btnJoueurs.setOnAction(actionEvent -> {
@@ -87,6 +124,14 @@ public class ViewMain extends Stage {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        });
+
+        btnJoueurs.setOnMouseEntered(mouseEvent -> {
+            pane.getChildren().add(chargement);
+        });
+
+        btnJoueurs.setOnMouseExited(mouseEvent -> {
+            pane.getChildren().remove(chargement);
         });
 
 
