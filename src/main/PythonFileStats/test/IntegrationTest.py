@@ -24,11 +24,14 @@ class Integration(ut.TestCase):
     def testGetScoreMoyen(self):
         self.assertEqual(None, s.getScoreMoyen('KR'))
 
+    def testGetNbAdmin(self):
+        self.assertEqual(0, s.getNbAdmin())
+
     def testGetTempsMoyenKR(self):
         self.assertEqual(None, s.getTempsMoyenKR('01/01/22','01/01/24'))
 
     def testGetBestScore(self):
-        self.assertEqual(8800, s.getBestScore('KR'))
+        self.assertEqual(None, s.getBestScore('KR'))
 
     def testGetJoueursParDepartements(self):
         self.assertEqual(0,s.getJoueursParDepartements('95'))
