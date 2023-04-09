@@ -29,13 +29,15 @@ def createConnexion(u, p, h, po, s) -> oracledb.Connection:
 def getNbPlayers() -> int:
     '''
     Renvoie le nombre de joueurs sur le PGI\n
-    :return: r[0] : int
+    :return: val : int
     '''
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = """select getNumbersOfPlayers from dual"""
         for r in cursor.execute(sql):
-            return r[0]
+            val = r[0]
+    connexion.close()
+    return val
 
 
 def getTop10Departement() -> list:
@@ -51,6 +53,7 @@ def getTop10Departement() -> list:
         tab = []
         for r in result:
             tab.append(r[0])
+    connexion.close()
     return tab
 
 
@@ -67,18 +70,21 @@ def getAllGame()->list:
         tab = []
         for r in result:
             tab.append(r[0])
+    connexion.close()
     return tab
 
 def getJoueursActifs() -> int:
     '''
     Renvoie le nombre de joueurs actifs sur le PGI\n
-    :return: r[0] : int
+    :return: val : int
     '''
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = """select getNbActivePlayer from dual"""
         for r in cursor.execute(sql):
-            return r[0]
+            val = r[0]
+    connexion.close()
+    return val
 
 
 def getScoreMoyenEntreDates(jeu: str, dateAvant: str, dateApres: str) -> float:
@@ -87,13 +93,15 @@ def getScoreMoyenEntreDates(jeu: str, dateAvant: str, dateApres: str) -> float:
     :param jeu: code du jeu
     :param dateAvant: date de début de la période
     :param dateApres: date de fin de la période
-    :return: r[0]: float
+    :return: val: float
     '''
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = f"""select getAvgBetweenDate('{jeu}','{dateAvant}','{dateApres}') from dual"""
         for r in cursor.execute(sql):
-            return r[0]
+            val = r[0]
+    connexion.close()
+    return val
 
 
 def getTabScoreMoyenParSemaine(jeu: str, idGraph):
@@ -165,50 +173,58 @@ def getScoreMoyen(jeu: str) -> float:
 def getNbAdmin()->int:
     """
     Renvoie le nombre d'administrateur du PGI\n
-    :return: r[0] : int
+    :return: val: int
     """
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = """select count(*) from joueurs where estadmin=1"""
         for r in cursor.execute(sql):
-            return r[0]
+            val = r[0]
+    connexion.close()
+    return val
 
 def getTempsMoyenKR(dateAvant: str, dateApres: str) -> float:
     '''
     Renvoie le temps moyen pour finir une partie de Koala Rock entre deux dates\n
     :param dateAvant: date de début de période
     :param dateApres: date de fin de période
-    :return: r[0] : float
+    :return: val: float
     '''
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = f"""select getAvgTimeBetweenDates('{dateAvant}','{dateApres}') from dual"""
         for r in cursor.execute(sql):
-            return r[0]
+            val = r[0]
+    connexion.close()
+    return val
 
 def getBestScore(jeu:str)->float:
     """
     Renvoie le meilleur score sur le jeu donné\n
     :param jeu: code du jeu
-    :return: r[0] : float
+    :return: val : float
     """
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = f"""select max(score) from scores where codejeu='{jeu}'"""
         for r in cursor.execute(sql):
-            return r[0]
+            val = r[0]
+    connexion.close()
+    return val
 
 def getJoueursParDepartements(numDepartement: str) -> int:
     '''
     Renvoie le nombre de joueurs sur un département donné\n
     :param numDepartement: numéro du département sur lequel on veut le nombre de joueurs
-    :return: r[0] : int
+    :return: val : int
     '''
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = f"""SELECT getPlayersByDepartement({numDepartement}) FROM DUAL"""
         for r in cursor.execute(sql):
-            return r[0]
+            val = r[0]
+    connexion.close()
+    return val
 
 
 def getGrapheScoreMoyen(game: str, idGraph: int = 0):
@@ -223,6 +239,7 @@ def getGrapheScoreMoyen(game: str, idGraph: int = 0):
     plt.xlabel('Semaines', fontsize=14)
     plt.ylabel('Scores moyens', fontsize=14)
     plt.grid(True)
+    plt.savefig(os.path.join(os.getcwd(), f'../../java/games/project/modules/statistiques/imgTemp'))
     plt.show()
 
 
@@ -240,32 +257,38 @@ def downloadGraphe(pathToSaveImg : str) -> None:
 def getAvgAttendees()->float:
     """
     Renvoie le nombre moyen de joueurs maximum dans les tournois\n
-    :return: r[0] : float
+    :return: val : float
     """
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = """select round(avg(nbparticipantsmax)) from tournois"""
         for r in cursor.execute(sql):
-            return r[0]
+            val = r[0]
+    connexion.close()
+    return val
 
 def getAvgParticipants()->float:
     """
     Renvoie le nombre moyen de joueurs inscrits dans les tournois\n
-    :return: r[0] : float
+    :return: val : float
     """
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = """SELECT round(avg(count(login))) FROM PARTICIPER p GROUP BY CODETOURNOI """
         for r in cursor.execute(sql):
-            return r[0]
+            val = r[0]
+    connexion.close()
+    return val
 
 def getNbTournois()->int:
     """
     Renvoie le nombre de tournois\n
-    :return: r[0] : int
+    :return: val : int
     """
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = """select count(*) from tournois"""
         for r in cursor.execute(sql):
-            return r[0]
+            val = r[0]
+    connexion.close()
+    return val
