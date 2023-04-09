@@ -61,8 +61,8 @@ public class TournamentManager {
      * Returns all tournaments where the player login is registered in.
      * @param login
      */
-    public List<Tournament> getByLogin(String login) {
-        return stockage.getTournamentByLogin(login);
+    public List<Tournament> getByLoginAndDate(String login, Timestamp date) {
+        return stockage.getTournamentByLoginAndDate(login, date);
     }
 
     public List<Jeu> getTournamentGames(int tournamentCode) {

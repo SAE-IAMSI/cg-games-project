@@ -125,11 +125,12 @@ public class StockageTournamentDatabase {
         List<Tournament> tournamentList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT * FROM TOURNOIS WHERE dateFin > ?";
+        String req = "SELECT * FROM TOURNOIS WHERE dateDebut <= ? AND dateFin >= ?";
         try (
                 PreparedStatement statement = connection.prepareStatement(req)
             ) {
             statement.setTimestamp(1, date);
+            statement.setTimestamp(2, date);
             try (
                     ResultSet result = statement.executeQuery()
                 ) {
@@ -152,15 +153,17 @@ public class StockageTournamentDatabase {
         return tournamentList;
     }
 
-    public List<Tournament> getTournamentByLogin(String login) {
+    public List<Tournament> getTournamentByLoginAndDate(String login, Timestamp date) {
         List<Tournament> tournamentList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
-        String req = "SELECT t.codeTournoi, libelleTournoi, dateDebut, dateFin, nbParticipantsMax FROM TOURNOIS t JOIN PARTICIPER p ON t.codeTournoi = p.codeTournoi WHERE login = ?";
+        String req = "SELECT t.codeTournoi, libelleTournoi, dateDebut, dateFin, nbParticipantsMax FROM TOURNOIS t JOIN PARTICIPER p ON t.codeTournoi = p.codeTournoi WHERE login = ? AND dateDebut <= ? AND dateFin >= ?";
         try (
                 PreparedStatement statement = connection.prepareStatement(req)
         ) {
             statement.setString(1, login);
+            statement.setTimestamp(2, date);
+            statement.setTimestamp(3, date);
             try (
                     ResultSet result = statement.executeQuery()
             ) {
