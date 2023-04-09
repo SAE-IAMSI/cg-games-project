@@ -12,7 +12,7 @@ public class StartFrame extends JFrame {
      * Constructeur de la classe StartFrame
      */
     public StartFrame() {
-        ImageIcon imgBackground = new ImageIcon(Objects.requireNonNull(GalacticaClassic.class.getResource("images/background.jpeg")));
+        ImageIcon imgBackground = new ImageIcon(Objects.requireNonNull(GalacticaClassic.class.getResource("images/background.png")));
         imgBackground = new ImageIcon(imgBackground.getImage().getScaledInstance(1280, 720, Image.SCALE_DEFAULT));
         JLabel background = new JLabel(imgBackground);
         background.setSize(1280, 720);

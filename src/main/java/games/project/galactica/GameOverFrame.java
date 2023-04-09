@@ -10,7 +10,7 @@ public class GameOverFrame extends JFrame {
 
     public GameOverFrame(Board board) {
         this.board = board;
-        ImageIcon imgBackground = new ImageIcon(Objects.requireNonNull(GalacticaClassic.class.getResource("images/background.jpeg")));
+        ImageIcon imgBackground = new ImageIcon(Objects.requireNonNull(GalacticaClassic.class.getResource("images/background.png")));
         imgBackground = new ImageIcon(imgBackground.getImage().getScaledInstance(1280, 720, Image.SCALE_DEFAULT));
         JLabel background = new JLabel(imgBackground);
         background.setSize(1280, 720);
