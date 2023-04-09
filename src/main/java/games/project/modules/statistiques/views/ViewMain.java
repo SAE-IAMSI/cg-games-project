@@ -82,7 +82,11 @@ public class ViewMain extends Stage {
 
         btnJoueurs.setOnAction(actionEvent -> {
             ViewStatsPlayers v = new ViewStatsPlayers();
-            v.affichageJoueurs(stage);
+            try {
+                v.affichageJoueurs(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
 

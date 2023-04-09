@@ -9,6 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class ViewStatsGraphs {
     public void affichageGraphiques(Stage stage){
         Pane pane = new Pane();
@@ -32,7 +34,11 @@ public class ViewStatsGraphs {
 
         btnRetour.setOnAction(actionEvent -> {
             ViewStatsPlayers v = new ViewStatsPlayers();
-            v.affichageJoueurs(stage);
+            try {
+                v.affichageJoueurs(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         pane.getChildren().addAll(titre, btnRetour);

@@ -1,5 +1,6 @@
 package games.project.modules.statistiques.views;
 
+import games.project.modules.statistiques.Surcouche;
 import games.project.parametres.Parametres;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,9 +12,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class ViewStatsPlayers {
 
-    public void affichageJoueurs(Stage stage) {
+    public void affichageJoueurs(Stage stage) throws IOException {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
@@ -32,7 +35,7 @@ public class ViewStatsPlayers {
         total.setLayoutY(191);
 
         //mettre le total d'inscrits
-        String s = "";
+        String s = Surcouche.recupFonction("getNbPlayers",null);
         Label nbTotal = new Label(s);
         nbTotal.getStyleClass().add("texte");
         nbTotal.setLayoutX(244);
