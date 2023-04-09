@@ -30,10 +30,10 @@ public class ViewMain extends Stage {
         titre.setLayoutX(350);
         titre.setLayoutY(50);
 
-        Label chargement = new Label("Chargement en cours...");
+        Label chargement = new Label("Chargement en cours... (cela peut prendre quelques secondes)");
         chargement.getStyleClass().add("texte");
-        chargement.setLayoutX(122);
-        chargement.setLayoutY(191);
+        chargement.setLayoutX(400);
+        chargement.setLayoutY(340);
 
         Button btnTournois = new Button("Statistiques Tournoi");
         btnTournois.getStyleClass().add("button");
