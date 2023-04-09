@@ -27,6 +27,9 @@ class Integration(ut.TestCase):
     def testGetTempsMoyenKR(self):
         self.assertEqual(None, s.getTempsMoyenKR('01/01/22','01/01/24'))
 
+    def testGetBestScore(self):
+        self.assertEqual(8800, s.getBestScore('KR'))
+
     def testGetJoueursParDepartements(self):
         self.assertEqual(0,s.getJoueursParDepartements('95'))
 
