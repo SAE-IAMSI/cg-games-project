@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ViewStatsGames {
 
@@ -21,6 +23,15 @@ public class ViewStatsGames {
         ArrayList<String> listeJeux = Surcouche.splitTableau(Surcouche.recupFonction("getAllGame",null));
         String jeuCourant = listeJeux.get(0);
         ArrayList<String> args = new ArrayList<>();
+        Map<String,String> mapAvgScore = new HashMap<>();
+        Map<String,String> mapBestScore = new HashMap<>();
+
+        for(String game : listeJeux){
+            args.clear();args.add(game);
+            mapAvgScore.put(game,Surcouche.recupFonction("getScoreMoyen",args));
+            mapBestScore.put(game,Surcouche.recupFonction("getBestScore",args));
+            args.clear();
+        }
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
@@ -50,8 +61,8 @@ public class ViewStatsGames {
         scoreM.setLayoutY(343);
 
         //résuperer le score moyen suivant un jeu
-        args.add(jeuCourant);
-        String s = Surcouche.recupFonction("getScoreMoyen",args);
+        args.clear();args.add(jeuCourant);
+        String s = mapAvgScore.get(jeuCourant);
         Label avgScore = new Label(s);
         avgScore.getStyleClass().add("texte");
         avgScore.setLayoutX(225);
@@ -63,7 +74,7 @@ public class ViewStatsGames {
         scoreB.setLayoutY(476);
 
         //mettre le meilleur score suivant un jeu
-        String s1 = Surcouche.recupFonction("getBestScore",args);
+        String s1 = mapBestScore.get(jeuCourant);
         Label bestScore = new Label(s1);
         bestScore.getStyleClass().add("texte");
         bestScore.setLayoutX(225);
@@ -78,6 +89,29 @@ public class ViewStatsGames {
         btnRetour.setOnAction(actionEvent -> {
             ViewMain v = new ViewMain();
             v.afficherMenu(stage);
+        });
+
+        comboSelect.setOnAction(actionEvent -> {
+            Label scoreMoyen=null;
+            Label meilleurScore=null;
+            String jeu = comboSelect.getValue();
+            args.clear();pane.getChildren().remove(avgScore);pane.getChildren().remove(bestScore);
+            pane.getChildren().remove(scoreMoyen);
+            pane.getChildren().remove(meilleurScore);
+            args.add(jeu);
+            String s2 = mapAvgScore.get(jeu);
+            String s3 = mapBestScore.get(jeu);
+            scoreMoyen = new Label(s2);
+            scoreMoyen.getStyleClass().add("texte");
+            scoreMoyen.setLayoutX(225);
+            scoreMoyen.setLayoutY(343);
+
+            meilleurScore = new Label(s3);
+            meilleurScore.getStyleClass().add("texte");
+            meilleurScore.setLayoutX(225);
+            meilleurScore.setLayoutY(476);
+
+            pane.getChildren().addAll(scoreMoyen, meilleurScore);
         });
 
         pane.getChildren().addAll(titre, select, scoreB, scoreM ,comboSelect, bestScore ,btnRetour, avgScore);
