@@ -59,6 +59,7 @@
                         </Label>
                      </children>
                   </Pane>
+                  <Label fx:id="errorMessage" layoutX="157.0" layoutY="416.0" prefHeight="17.0" prefWidth="637.0" styleClass="errorMessage" text="Error" textAlignment="CENTER" visible="false" />
                   <Button fx:id="createTournament" layoutX="358.0" layoutY="453.0" mnemonicParsing="false" onMouseClicked="#createNewTournament" text="Créer Tournoi" />
                </children>
             </Pane>
