@@ -17,9 +17,9 @@ public class StartFrame extends JFrame {
         JLabel background = new JLabel(imgBackground);
         background.setSize(1280, 720);
 
-        JLabel title = new JLabel("Space Invaders");
+        JLabel title = new JLabel("Galactica");
         title.setSize(500, 100);
-        title.setLocation(470, 300);
+        title.setLocation(525, 300);
         title.setFont(new Font("Arial", Font.BOLD, 50));
         title.setOpaque(false);
         title.setForeground(Color.WHITE);
@@ -53,6 +53,12 @@ public class StartFrame extends JFrame {
         getContentPane().setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLACK);
 
+        Button close = new Button("Quitter");
+        close.setSize(150, 60);
+        close.setLocation(1070, 600);
+        close.setFont(new Font("Arial", Font.BOLD, 30));
+        add(close);
+
         classic.addActionListener(e -> {
             galactica = new GalacticaClassic();
             visibilityFrame();
@@ -62,6 +68,8 @@ public class StartFrame extends JFrame {
             galactica = new GalacticaInfinite();
             visibilityFrame();
         });
+
+        close.addActionListener(e -> dispose());
         add(background);
     }
 
