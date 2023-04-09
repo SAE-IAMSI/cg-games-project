@@ -247,3 +247,14 @@ def getAvgAttendees()->float:
         sql = """select round(avg(nbparticipantsmax)) from tournois"""
         for r in cursor.execute(sql):
             return r[0]
+
+def getAvgParticipants()->float:
+    """
+    Renvoie le nombre moyen de joueurs inscrits dans les tournois\n
+    :return: r[0] : float
+    """
+    connexion = createConnexion(user, password, host, port, sid)
+    with connexion.cursor() as cursor:
+        sql = """SELECT avg(count(login)) FROM PARTICIPER p GROUP BY CODETOURNOI """
+        for r in cursor.execute(sql):
+            return r[0]

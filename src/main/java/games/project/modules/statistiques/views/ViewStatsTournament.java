@@ -45,10 +45,10 @@ public class ViewStatsTournament {
         moyenTournoi.setLayoutY(343);
 
         //mettre le nombre de participants moyen par tournois
-        String s1 = "";
+        String s1 = Surcouche.recupFonction("getAvgParticipants",null);
         Label avgTournoi = new Label(s1);
         avgTournoi.getStyleClass().add("texte");
-        avgTournoi.setLayoutX(378);
+        avgTournoi.setLayoutX(430);
         avgTournoi.setLayoutY(343);
 
         Label moyenTournoiAttente = new Label("Nombre de participants maximum par tournoi : ");
