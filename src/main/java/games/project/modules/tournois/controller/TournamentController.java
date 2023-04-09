@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -57,7 +58,7 @@ public class TournamentController extends AnchorPane {
         }
     }
 
-    private String dateFormat(Timestamp t) {
+    public static String dateFormat(Timestamp t) {
         String date = "";
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(t.getTime());
@@ -100,7 +101,7 @@ public class TournamentController extends AnchorPane {
                 month = "Decembre";
                 break;
         }
-        date = cal.get(Calendar.DAY_OF_MONTH) + " " + month + " " + cal.get(Calendar.YEAR) + " " + cal.get(Calendar.HOUR_OF_DAY) + "h" + cal.get(Calendar.MINUTE);
+        date = cal.get(Calendar.DAY_OF_MONTH) + " " + month + " " + cal.get(Calendar.YEAR);// + " " + cal.get(Calendar.HOUR_OF_DAY) + "h" + cal.get(Calendar.MINUTE);
         return date;
     }
 
@@ -115,15 +116,18 @@ public class TournamentController extends AnchorPane {
     }
 
     public void refresh() {
+        String login = Session.getInstance().getLogin();
+        Timestamp today = new Timestamp(new Date().getTime());
         tournaments.getChildren().clear();
-        List<Tournament> actualTournaments = TournamentManager.getInstance().getByDate(new Timestamp(new Date().getTime()));
+        List<Tournament> actualTournaments = PlayerManager.getInstance().getPlayer(login).isAdmin() ? TournamentManager.getInstance().getByDate(today) : TournamentManager.getInstance().getByLoginAndDate(login, today);
         for (Tournament t : actualTournaments) {
             Label l = new Label(t.getLabel() + "\t" + dateFormat(t.getStartDate()) + "\t" + dateFormat(t.getEndDate()));
             l.getStyleClass().add("tournament");
-            l.setOnMouseClicked(mouseEvent -> getChildren().add(new TournamentDetailView(t)));
+            l.setOnMouseClicked(mouseEvent -> getChildren().add(new TournamentDetailView(t, this)));
             tournaments.getChildren().add(l);
         }
     }
+
     public static void delay(long millis, Runnable continuation) {
         Task<Void> sleeper = new Task<Void>() {
             @Override

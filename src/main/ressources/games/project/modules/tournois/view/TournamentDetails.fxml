@@ -8,6 +8,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -26,48 +27,76 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Pane layoutX="113.0" layoutY="112.0" prefHeight="69.0" prefWidth="1126.0">
+            <Pane layoutX="2.0" layoutY="112.0" prefHeight="69.0" prefWidth="1271.0">
                <children>
-                  <Label layoutX="44.0" layoutY="24.0" text="Nom Tournoi :">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="203.0" layoutY="24.0" text="Nom">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="341.0" layoutY="22.0" text="Date début :">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="605.0" layoutY="24.0" text="Date fin :">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="863.0" layoutY="23.0" text="Nb Participants :">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="477.0" layoutY="22.0" text="Date">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="707.0" layoutY="23.0" text="Date">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="1045.0" layoutY="23.0" text="NB">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                  </Label>
+                  <HBox alignment="CENTER" layoutX="7.0" layoutY="20.0" prefHeight="29.0" prefWidth="358.0" styleClass="tournamentInfo">
+                     <children>
+                        <Label text="Nom Tournoi :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tournamentName" text="Nom">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="373.0" layoutY="19.0" prefHeight="27.0" prefWidth="343.0" styleClass="tournamentInfo">
+                     <children>
+                        <Label text="Date début :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tournamentStart" text="Date">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="728.0" layoutY="19.0" prefHeight="27.0" prefWidth="295.0" styleClass="tournamentInfo">
+                     <children>
+                        <Label text="Date fin :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tournamentEnd" text="Date">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="1035.0" layoutY="19.0" prefHeight="35.0" prefWidth="227.0" styleClass="tournamentInfo">
+                     <children>
+                        <Label text="Participants :">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tournamentParticipants" text="Nb">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
                <opaqueInsets>
                   <Insets />
@@ -107,7 +136,7 @@
                         <Insets />
                      </opaqueInsets>
                      <content>
-                        <VBox prefHeight="214.0" prefWidth="538.0" />
+                        <VBox fx:id="gameLeaderboard" prefHeight="214.0" prefWidth="538.0" />
                      </content>
                   </ScrollPane>
                   <Label layoutX="19.0" layoutY="12.0" prefHeight="45.0" prefWidth="191.0" text="Sélection de Jeu :">
@@ -115,20 +144,25 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ChoiceBox layoutX="186.0" layoutY="23.0" prefWidth="150.0" />
-                  <Label layoutX="130.0" layoutY="87.0" text="Joueur">
+                  <ChoiceBox fx:id="chosenGame" layoutX="186.0" layoutY="23.0" onAction="#chooseGame" prefWidth="150.0" />
+                  <Label layoutX="89.0" layoutY="86.0" text="Joueur">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label layoutX="359.0" layoutY="87.0" text="Points">
+                  <Label layoutX="436.0" layoutY="87.0" text="Points">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
+                  <Label layoutX="262.0" layoutY="86.0" text="Score">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
-            <Button layoutX="1030.0" layoutY="607.0" mnemonicParsing="false" text="Retour" />
+            <Button layoutX="1030.0" layoutY="607.0" mnemonicParsing="false" onMouseClicked="#quit" text="Retour" />
          </children></Pane>
    </children>
 </fx:root>
