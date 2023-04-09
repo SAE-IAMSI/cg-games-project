@@ -1,15 +1,12 @@
-package games.project.statistiques.views;
+package games.project.modules.statistiques.views;
 
 import games.project.parametres.Parametres;
-import games.project.statistiques.StatsLauncher;
-import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;

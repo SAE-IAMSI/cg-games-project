@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import math
 import shutil
 
-dir = "src/main/java/games/project/statistiques/client64Bit"
+dir = "src/main/java/games/project/modules/statistiques/client64Bit"
 dir2 = 'client64Bit'
 absolute = os.path.join(os.getcwd(), dir)
 user = "etusae1"
@@ -31,7 +31,6 @@ def getNbPlayers() -> int:
     Renvoie le nombre de joueurs sur le PGI\n
     :return: r[0] : int
     '''
-    print(absolute)
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
         sql = """select getNumbersOfPlayers from dual"""
@@ -196,7 +195,7 @@ def downloadGraphe(pathToSaveImg : str) -> None:
     Télécharge le graphe donné en paramètre
     :param pathToSaveImg : string du dossier ou on enregistre les images temporaires
     """
-    chemin = os.path.join(os.getcwd(),f'../../java/games/project/statistiques/imgTemp')
+    chemin = os.path.join(os.getcwd(), f'../../java/games/project/modules/statistiques/imgTemp')
     listDir = os.listdir(chemin)
     for dir in listDir:
         shutil.copyfile(os.path.join(chemin,dir), pathToSaveImg)

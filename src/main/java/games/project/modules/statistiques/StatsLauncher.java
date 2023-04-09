@@ -1,6 +1,6 @@
-package games.project.statistiques;
+package games.project.modules.statistiques;
 
-import games.project.statistiques.views.ViewMain;
+import games.project.modules.statistiques.views.ViewMain;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

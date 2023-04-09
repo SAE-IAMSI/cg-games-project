@@ -1,4 +1,4 @@
-package games.project.statistiques.views;
+package games.project.modules.statistiques.views;
 
 import games.project.parametres.Parametres;
 import javafx.scene.Scene;

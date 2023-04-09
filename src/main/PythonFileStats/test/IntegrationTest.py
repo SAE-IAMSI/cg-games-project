@@ -5,7 +5,7 @@ import os
 class Integration(ut.TestCase):
     s.user = "reinerk"
     s.password = "MDrlOl304"
-    s.dir = "client64Bit"
+    s.dir = "../app/client64Bit"
     s.absolute = os.path.join(os.getcwd(), s.dir)
 
     def testNbGetPlayers(self):
@@ -31,7 +31,8 @@ class Integration(ut.TestCase):
         self.assertEqual(0,s.getJoueursParDepartements('95'))
 
     def testGetTabScoreMoyenParSemaine(self):
-        self.assertEqual((None,None),s.getTabScoreMoyenParSemaine('KR',0))
+        self.assertEqual(([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                          [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]),s.getTabScoreMoyenParSemaine('KR',0))
 
     def testReplaceNone(self):
         tabNone = [1,2,None,None,4]
