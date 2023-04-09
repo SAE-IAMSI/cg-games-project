@@ -28,16 +28,12 @@ public class ViewStatsGlobal {
         titre.setLayoutY(50);
 
         Label joueursActifs = new Label("Nombre de joueurs actifs : ");
-        Label nbJoueurs = new Label(Surcouche.recupFonction("getNbPlayers",null));
         joueursActifs.getStyleClass().add("texte");
-        nbJoueurs.getStyleClass().add("texte");
         joueursActifs.setLayoutX(122);
         joueursActifs.setLayoutY(191);
-        nbJoueurs.setLayoutX(400);
-        nbJoueurs.setLayoutY(191);
 
         //stocker le nombre de joueurs actifs
-        String s = "";
+        String s = Surcouche.recupFonction("getJoueursActifs",null);
         Label nbJoueursActifs = new Label(s);
         nbJoueursActifs.setLayoutX(284);
         nbJoueursActifs.setLayoutY(191);
@@ -53,7 +49,7 @@ public class ViewStatsGlobal {
             v.afficherMenu(stage);
         });
 
-        pane.getChildren().addAll(titre, joueursActifs, nbJoueurs, nbJoueursActifs, btnRetour);
+        pane.getChildren().addAll(titre, joueursActifs, nbJoueursActifs, btnRetour);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);
