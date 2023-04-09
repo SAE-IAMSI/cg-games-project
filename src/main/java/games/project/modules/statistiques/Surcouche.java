@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Surcouche {
 
@@ -25,5 +26,13 @@ public class Surcouche {
         }
         in.close();
         return "Erreur de lecture";
+    }
+
+    public static ArrayList<String> splitTableau(String s){
+        ArrayList<String> res = new ArrayList<>();
+        s = s.substring(1, s.length() - 1);
+        String[] tab = s.split(",");
+        res.addAll(Arrays.asList(tab));
+        return res;
     }
 }
