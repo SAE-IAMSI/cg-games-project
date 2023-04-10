@@ -1,3 +1,4 @@
+import numpy as np
 import oracledb
 import os
 from datetime import *
@@ -293,3 +294,15 @@ def getMaxDateDebutTournois():
         sql = """select MAX(datedebut) from tournois"""
         for r in cursor.execute(sql):
             return r[0]
+
+def getPieActifsNonActifs()->None:
+    """
+    Sauvegarde dans un fichier temporaire un camembert représentant le nombre de joueurs actifs et non actifs\n
+    """
+    nbActifs = getJoueursActifs()
+    nbTotal = getNbPlayers()
+    nbNonActifs = nbTotal - nbActifs
+    a = np.array([nbActifs, nbNonActifs])
+    plt.pie(a, labels=['Actifs', 'Non actifs'], autopct='%1.1f%%', shadow=True, startangle=90)
+    plt.axis('equal')
+    plt.savefig(os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieActifsNonActifs.png'))
