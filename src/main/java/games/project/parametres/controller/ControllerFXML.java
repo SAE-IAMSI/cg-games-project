@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -25,8 +26,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ControllerFXML {
-    @FXML
-    private Button motronButton;
+
     @FXML
     private VBox vboxJeux;
     @FXML
@@ -37,6 +37,20 @@ public class ControllerFXML {
     private Pane paneCreationCompte;
     @FXML
     private Button buttonRetour;
+    @FXML
+    private ImageView imageFond;
+    @FXML
+    private Pane infoJeu;
+    @FXML
+    private HBox visuelJeu;
+    @FXML
+    private ImageView imageJeu;
+    @FXML
+    private ImageView flecheGauche;
+    @FXML
+    private ImageView flecheDroite;
+    @FXML
+    private HBox boutonJeu;
 
     @FXML
     public void setGames(){
@@ -61,6 +75,7 @@ public class ControllerFXML {
     @FXML
     public void lanceCompte(){
         resetPane();
+        imageFond.setOpacity(0.5);
         paneCompte.setVisible(true);
         buttonRetour.setVisible(true);
         buttonRetour.setOnMouseClicked(e -> {
@@ -72,6 +87,7 @@ public class ControllerFXML {
     @FXML
     public void lanceConnexion(){
         resetPane();
+        imageFond.setOpacity(0.5);
         paneConnexion.setVisible(true);
         buttonRetour.setOnMouseClicked(e -> lanceCompte());
     }
@@ -79,13 +95,22 @@ public class ControllerFXML {
     @FXML
     public void lanceCreationCompte(){
         resetPane();
+        imageFond.setOpacity(0.5);
         paneCreationCompte.setVisible(true);
         buttonRetour.setOnMouseClicked(e -> lanceCompte());
     }
 
+    @FXML
     public void resetPane(){
         paneCompte.setVisible(false);
         paneConnexion.setVisible(false);
         paneCreationCompte.setVisible(false);
+        imageFond.setOpacity(1);
+    }
+
+    @FXML
+    public void lanceInfoJeu() {
+        resetPane();
+        imageFond.setOpacity(0.5);
     }
 }
