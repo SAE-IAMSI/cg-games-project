@@ -1,9 +1,14 @@
 package games.project.galactica;
 
+import games.project.metier.entite.AuthPlayer;
 import games.project.metier.manager.PlayerManager;
+import games.project.stockage.Security;
+import games.project.stockage.Session;
 
 import javax.swing.*;
 import java.awt.*;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class CompteNonConnecteFrame extends JFrame {
@@ -141,12 +146,26 @@ public class CompteNonConnecteFrame extends JFrame {
         });
 
         connexion.addActionListener(e -> {
-            System.out.println("Pseudo : " + connexionPseudo.getText());
             StringBuilder mdp = new StringBuilder();
             for (char str : connexionMdp.getPassword()) {
                 mdp.append(str);
             }
-            System.out.println("mdp : " + mdp);
+            if (PlayerManager.getInstance().getPlayer(connexionPseudo.getText()) != null && !connexionPseudo.getText().equals("") && !mdp.toString().equals("")) {
+                AuthPlayer player = PlayerManager.getInstance().getPlayer(connexionPseudo.getText());
+                try {
+                    if (Security.checkPassword(mdp.toString(), player.getSalt(), player.getHashedPassword())) {
+                        Session.getInstance().connect(connexionPseudo.getText());
+                        Galactica.main(new String[0]);
+                        this.dispose();
+                    } else {
+                        System.out.println("Le login ou le pseudo est erroné");
+                    }
+                } catch (NoSuchAlgorithmException | InvalidKeyException ex) {
+                    throw new RuntimeException(ex);
+                }
+            } else {
+                System.out.println("Le compte n'existe pas");
+            }
         });
 
         inscrire.addActionListener(e -> {
@@ -172,6 +191,8 @@ public class CompteNonConnecteFrame extends JFrame {
                     }
                 }
                 PlayerManager.getInstance().createPlayer(inscrirePseudo.getText(), deptRegister, mdpRegister, false);
+                Galactica.main(new String[0]);
+                this.dispose();
             } else {
                 System.out.println("Les informations fournies sont incorrectes !");
             }
