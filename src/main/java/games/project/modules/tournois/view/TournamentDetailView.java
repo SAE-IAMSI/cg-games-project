@@ -22,10 +22,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.function.Predicate;
 
 public class TournamentDetailView extends AnchorPane {
 
@@ -92,9 +90,10 @@ public class TournamentDetailView extends AnchorPane {
         mainLeaderboard.getChildren().clear();
         Map<AuthPlayer, Integer> points = tournament.getMainLeaderboard();
         Comparator<AuthPlayer> comp = (o1, o2) -> points.get(o2) - points.get(o1);
+        System.out.println(points);
 
-        TreeSet<AuthPlayer> sorted = new TreeSet<>(comp);
-        sorted.addAll(points.keySet());
+        List<AuthPlayer> sorted = new ArrayList<>(points.keySet());
+        sorted.sort(comp);
 
         for (AuthPlayer p : sorted) {
             HBox box = new HBox();
@@ -133,6 +132,25 @@ public class TournamentDetailView extends AnchorPane {
             HBox.setHgrow(point, Priority.ALWAYS);
             box.getChildren().addAll(login, score, point);
             if (Session.getInstance().isLoggedIn(s.getLogin())) box.getStyleClass().add("myScore");
+            gameLeaderboard.getChildren().add(box);
+        }
+
+        List<AuthPlayer> players = TournamentManager.getInstance().getTournamentParticipants(tournament.getTournamentCode());
+        players.removeIf((o) -> TournamentManager.getInstance().hasPLayedOnGame(o.getLogin(), game.getCode(), tournament));
+        for (AuthPlayer p : players) {
+            HBox box = new HBox();
+            box.getStyleClass().add("lbHbox");
+            Label login = new Label(p.getLogin());
+            login.getStyleClass().add("leaderBoard");
+            HBox.setHgrow(login, Priority.ALWAYS);
+            Label score = new Label("N/A");
+            score.getStyleClass().add("leaderBoard");
+            HBox.setHgrow(score, Priority.ALWAYS);
+            Label point = new Label("0");
+            point.getStyleClass().add("leaderBoard");
+            HBox.setHgrow(point, Priority.ALWAYS);
+            box.getChildren().addAll(login, score, point);
+            if (Session.getInstance().isLoggedIn(p.getLogin())) box.getStyleClass().add("myScore");
             gameLeaderboard.getChildren().add(box);
         }
     }
