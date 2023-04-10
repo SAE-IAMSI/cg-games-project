@@ -28,11 +28,38 @@
                <children>
                   <HBox fx:id="visuelJeu" alignment="CENTER" prefHeight="476.0" prefWidth="1058.0">
                      <children>
-                        <ImageView fx:id="flecheGauche" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imageJeu" fitHeight="360.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="flecheDroite" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                     </children></HBox>
-                  <HBox fx:id="boutonJeu" alignment="CENTER" layoutY="467.0" prefHeight="150.0" prefWidth="1058.0" />
+                        <ImageView fx:id="flecheGauche" fitHeight="150.0" fitWidth="200.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/flecheGauche.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imageJeu" fitHeight="360.0" fitWidth="640.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="flecheDroite" fitHeight="150.0" fitWidth="200.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/flecheDroite.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Pane layoutY="476.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="147.0" prefWidth="1058.0">
+                     <children>
+                        <Pane fx:id="panePlay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="147.0" prefWidth="1058.0" style="-fx-background-color: black;" />
+                        <HBox fx:id="hboxPlay" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="147.0" prefWidth="1058.0">
+                           <children>
+                              <Button fx:id="buttonPlay" mnemonicParsing="false" text="Jouer">
+                                 <HBox.margin>
+                                    <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="buttonPlayRetour" mnemonicParsing="false" text="Retour">
+                                 <HBox.margin>
+                                    <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
                </children>
             </Pane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1280.0" styleClass="menuBar">
