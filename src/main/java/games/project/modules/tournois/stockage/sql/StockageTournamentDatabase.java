@@ -318,4 +318,26 @@ public class StockageTournamentDatabase {
         return code;
     }
 
+    public boolean hasPLayedOnGame(String login, String gameCode, Tournament tournament) {
+        SQLUtils utils = SQLUtils.getInstance();
+        Connection connection = utils.getConnection();
+        String req = "SELECT COUNT(codeScore) AS nbScore FROM SCORES WHERE login = ? AND codeJeu = ? AND horodatage BETWEEN ? AND ?";
+        try (
+                PreparedStatement statement = connection.prepareStatement(req)
+            ) {
+            statement.setString(1, login);
+            statement.setString(2, gameCode);
+            statement.setTimestamp(3, tournament.getStartDate());
+            statement.setTimestamp(4, tournament.getEndDate());
+            try (
+                    ResultSet result = statement.executeQuery()
+                ) {
+                if (result.next()) return result.getInt("nbScore") > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

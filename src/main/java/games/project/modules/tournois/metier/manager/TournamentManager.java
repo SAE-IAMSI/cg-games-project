@@ -80,4 +80,8 @@ public class TournamentManager {
     public List<Score> getLeaderboardByGame(Jeu game, int tournamentCode) {
         return stockage.getLeaderboardByGame(game, tournamentCode);
     }
+
+    public boolean hasPLayedOnGame(String login, String gameCode, Tournament tournament) {
+        return stockage.hasPLayedOnGame(login, gameCode, tournament);
+    }
 }
