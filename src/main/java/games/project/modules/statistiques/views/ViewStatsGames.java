@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,8 +20,9 @@ import java.util.Map;
 public class ViewStatsGames {
 
     private static int compteur =0;
-    private Label avgScore = new Label();
+    private Label avgScore;
     Label bestScore;
+    ImageView graphe;
 
     public void affichageStatsJeu(Stage stage) throws IOException {
 
@@ -34,6 +36,7 @@ public class ViewStatsGames {
             args.clear();args.add(game);
             mapAvgScore.put(game,Surcouche.recupFonction("getScoreMoyen",args));
             mapBestScore.put(game,Surcouche.recupFonction("getBestScore",args));
+            Surcouche.recupFonction("getGrapheScoreMoyen",args);
             args.clear();
         }
 
@@ -98,18 +101,23 @@ public class ViewStatsGames {
         Button btnDL = new Button("Télécharger les graphiques du jeu sélectionné");
         btnDL.getStyleClass().add("button");
         btnDL.setContentDisplay(ContentDisplay.CENTER);
-        btnDL.setLayoutX(250);
+        btnDL.setLayoutX(300);
         btnDL.setLayoutY(616);
 
         btnDL.setOnAction(actionEvent -> {
-            String jeu = comboSelect.getValue();
-            args.clear();args.add(jeu);
             try {
-                Surcouche.recupFonction("getGrapheScoreMoyen",args);
+                System.out.println("Téléchargement du graphe");
+                Surcouche.recupFonction("downloadGraphe",null);
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         });
+
+        graphe = new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/graphe"+jeuCourant+".png").normalize().toAbsolutePath().toString());
+        graphe.setLayoutX(500);
+        graphe.setLayoutY(200);
+        graphe.setFitHeight(400);
+        graphe.setFitWidth(700);
 
         comboSelect.setOnAction(actionEvent -> {
             String jeu = comboSelect.getValue();
@@ -121,6 +129,8 @@ public class ViewStatsGames {
             avgScore.setLayoutX(225);
             avgScore.setLayoutY(343);
 
+            graphe.setImage(new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/graphe"+jeu+".png").normalize().toAbsolutePath().toString()).getImage());
+
             bestScore = new Label(s3);
             bestScore.getStyleClass().add("texte");
             bestScore.setLayoutX(225);
@@ -129,7 +139,7 @@ public class ViewStatsGames {
             pane.getChildren().addAll(bestScore, avgScore);
         });
 
-        pane.getChildren().addAll(titre, select, scoreB, scoreM ,comboSelect, bestScore ,btnRetour, avgScore);
+        pane.getChildren().addAll(titre, select, scoreB, scoreM ,comboSelect, bestScore ,btnRetour, avgScore, btnDL, graphe);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);

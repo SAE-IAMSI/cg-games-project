@@ -194,7 +194,7 @@ def getBestScore(jeu:str)->float:
     """
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
-        sql = f"""SELECT getBestScore({jeu}) FROM dual"""
+        sql = f"""SELECT getBestScore('{jeu}') FROM dual"""
         for r in cursor.execute(sql):
             return r[0]
 
@@ -226,16 +226,18 @@ def getGrapheScoreMoyen(game: str, idGraph: int = 0):
     plt.savefig(os.path.join(os.getcwd(), f'src/main/java/games/project/modules/statistiques/imgTemp/graphe{game}.png'))
 
 
-def downloadGraphe(pathToSaveImg : str) -> None:
+def downloadGraphe() -> None:
     """
-    Télécharge le graphe donné en paramètre
-    :param pathToSaveImg : string du dossier ou on enregistre les images temporaires
+    Télécharge les graphes générés dans le dossier imgTemp\n
     """
-    chemin = os.path.join(os.getcwd(), f'../../java/games/project/modules/statistiques/imgTemp')
+    pathToSaveImg = os.path.join(os.environ['USERPROFILE'], 'Downloads')
+    chemin = os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp')
     listDir = os.listdir(chemin)
+    pathNewDir = "imagesGraphiques_"+datetime.datetime.now().strftime("%d_%m_%Y_%H%M%S")
+    os.mkdir(os.path.join(pathToSaveImg,pathNewDir))
+    pathSave = os.path.join(pathToSaveImg,pathNewDir)
     for dir in listDir:
-        shutil.copyfile(os.path.join(chemin,dir), pathToSaveImg)
-
+        shutil.copy(os.path.join(chemin,dir), pathSave)
 
 def getAvgAttendees()->float:
     """
