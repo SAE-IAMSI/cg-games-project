@@ -4,10 +4,7 @@ import games.project.metier.manager.PlayerManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Vector;
+import java.util.*;
 
 public class CompteNonConnecteFrame extends JFrame {
 
@@ -141,6 +138,43 @@ public class CompteNonConnecteFrame extends JFrame {
         retour.addActionListener(e -> {
             Galactica.main(new String[0]);
             this.dispose();
+        });
+
+        connexion.addActionListener(e -> {
+            System.out.println("Pseudo : " + connexionPseudo.getText());
+            StringBuilder mdp = new StringBuilder();
+            for (char str : connexionMdp.getPassword()) {
+                mdp.append(str);
+            }
+            System.out.println("mdp : " + mdp);
+        });
+
+        inscrire.addActionListener(e -> {
+            StringBuilder mdp = new StringBuilder();
+            for (char str : inscrireMdp.getPassword()) {
+                mdp.append(str);
+            }
+            StringBuilder mdpConfirm = new StringBuilder();
+            for (char str : inscrireMdpConfirmation.getPassword()) {
+                mdpConfirm.append(str);
+            }
+            if (mdp.toString().equals(mdpConfirm.toString()) && !inscrirePseudo.getText().equals("") && !mdp.toString().equals("") && !mdpConfirm.toString().equals("")) {
+                String mdpRegister = mdp.toString();
+                String deptRegister;
+                if (Objects.requireNonNull(departement.getSelectedItem()).equals("xx - Pas de département")) {
+                    deptRegister = null;
+                } else {
+                    deptRegister = departement.getSelectedItem().toString();
+                    if (deptRegister.charAt(2) == ' ') {
+                        deptRegister = deptRegister.substring(0, 2);
+                    } else {
+                        deptRegister = deptRegister.substring(0, 3);
+                    }
+                }
+                PlayerManager.getInstance().createPlayer(inscrirePseudo.getText(), deptRegister, mdpRegister, false);
+            } else {
+                System.out.println("Les informations fournies sont incorrectes !");
+            }
         });
 
         add(background);
