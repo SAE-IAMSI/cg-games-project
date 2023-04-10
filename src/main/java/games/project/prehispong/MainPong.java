@@ -1,16 +1,14 @@
 package games.project.prehispong;
 
 import games.project.prehispong.controller.GameController;
-import games.project.prehispong.controller.GameSound;
+import games.project.prehispong.sound.GameSound;
 import games.project.prehispong.view.StartMenuView;
 import games.project.stockage.sql.SQLUtils;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 
 

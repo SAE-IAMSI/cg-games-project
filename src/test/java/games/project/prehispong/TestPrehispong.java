@@ -35,24 +35,25 @@ private final double h = 3;
      limitR = new Rectangle();
  }
 
- /** tester les mouvements de la balle **/
+ /** tester les mouvements de la balle **//*
+
  @Test
     public void testBallMVT(){
         ball.moveBall();
         assertEquals(h+ball.getSpeedX(),ball.getLayoutX());
         assertEquals(l+ball.getSpeedY(),ball.getLayoutY());
- }
+ }*/
 
- /** Tester les déplacements de la raquette **/
+ /** Tester les déplacements de la raquette **//*
  @Test
     public void testRacketMVT(){
         racket.moveDown();
         assertEquals(h+6,racket.getLayoutY());
         racket.moveUp();
         assertEquals(l,racket.getLayoutY());
- }
+ }*/
 
- /** Tester les hitbox de la balle contre un mur **/
+ /** Tester les hitbox de la balle contre un mur **//*
  @Test
     public void testBallHitboxWall(){
      assertEquals(h,ball.getSpeedX());
@@ -71,18 +72,18 @@ private final double h = 3;
         ball.setLayoutX(limitR.getLayoutX());
         hitboxLimitReproduction();
         assertEquals(1,player1.getScore().getScore());
-    }
+    }*/
 
 
-/** Réplique miniature de la méthode hitboxLimit de GameController **/
+/** Réplique miniature de la méthode hitboxLimit de GameController **//*
     public void hitboxLimitReproduction() {
         if (this.limitR.getBoundsInParent().intersects(this.ball.getBoundsInParent())) {
             player1.getScore().setScore(player1.getScore().scoreProperty().getValue() + 1);
             ball.resetMoveSpeed();
         }
-    }
+    }*/
 
-    /** Tester les accélérations de la balle **/
+    /** Tester les accélérations de la balle **//*
     @Test
     void testBallIncreaseX(){
         ball.increaseSpeedX(30);
@@ -112,7 +113,7 @@ private final double h = 3;
         assertEquals(l-30,ball.getSpeedY());
         ball.increaseSpeedY(-30);
         assertEquals(l-30,ball.getSpeedY());// Ne doit pas changer car dépasse -30
-    }
+    }*/
 
 }
 

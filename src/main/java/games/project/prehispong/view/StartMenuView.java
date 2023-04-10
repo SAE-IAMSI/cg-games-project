@@ -2,7 +2,7 @@ package games.project.prehispong.view;
 
 import games.project.prehispong.MainPong;
 import games.project.prehispong.controller.GameController;
-import games.project.prehispong.controller.GameSound;
+import games.project.prehispong.sound.GameSound;
 import javafx.fxml.FXML;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package games.project.prehispong.controller;
+package games.project.prehispong.sound;
 
 import games.project.prehispong.MainPong;
 import javafx.scene.media.Media;
@@ -25,9 +25,9 @@ public class GameSound {
         mainSong = new Media(MainPong.class.getResource("musique/s1.mp3").toString());
         tcp = new Media(MainPong.class.getResource("musique/tcp.mp3").toString());
 
-        playlist = new ArrayList();
+        playlist = new ArrayList<>();
         playlist.add(mainSong);
-        playlist.add(camel);
+        //playlist.add(camel);
         playlist.add(adventure);
     }
 

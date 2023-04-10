@@ -310,16 +310,16 @@ public class GameController extends GenericView {
      **/
     public void racketAI(Racket racket, Ball ball, int mods) {
 
-        double mvt = ball.getLayoutY() - racket.getHeight() / 2;
+        double mvt = ball.getLayoutY()-racket.getHeight() / 2;
         int r1 = new Random().nextInt(0, 500);
 
         switch (mods) {
             case 0: { //easy
-                if (r1 > 100) {
+                if (r1 > 50) {
                     if (racket.getLayoutY() <= mvt) {
-                        racket.setLayoutY(racket.getLayoutY() + 4);
+                        racket.setLayoutY(racket.getLayoutY() + 7);
                     } else {
-                        racket.setLayoutY(racket.getLayoutY() - 4);
+                        racket.setLayoutY(racket.getLayoutY() - 7);
                     }
                 } else {
                     if (racket.getLayoutY() <= mvt) {
@@ -332,11 +332,11 @@ public class GameController extends GenericView {
                 break;
             }
             case 1: { //normal
-                if (r1 > 100) {
+                if (r1 > 25) {
                     if (racket.getLayoutY() <= mvt) {
-                        racket.setLayoutY(racket.getLayoutY() + 6);
+                        racket.setLayoutY(racket.getLayoutY() + 9);
                     } else {
-                        racket.setLayoutY(racket.getLayoutY() - 6);
+                        racket.setLayoutY(racket.getLayoutY() - 9);
                     }
                 } else {
                     if (racket.getLayoutY() <= mvt) {
@@ -348,11 +348,11 @@ public class GameController extends GenericView {
                 break;
             }
             case 2: {//hard
-                if (r1 > 100) {
+                if (r1 > 10) {
                     if (racket.getLayoutY() <= mvt) {
-                        racket.setLayoutY(racket.getLayoutY() + 8);
+                        racket.setLayoutY(racket.getLayoutY() + 10);
                     } else {
-                        racket.setLayoutY(racket.getLayoutY() - 8);
+                        racket.setLayoutY(racket.getLayoutY() - 10);
                     }
                 } else {
                     if (racket.getLayoutY() <= mvt) {
@@ -369,16 +369,6 @@ public class GameController extends GenericView {
                     racket.setLayoutY(mvt);
                 }
                 break;
-            }
-
-        }
-
-
-        if (this.topBar.getLayoutY() < mvt - racket.getHeight() * 0.5 && this.bottomBar.getLayoutY() > mvt + (racket.getHeight() * 0.5 + this.bottomBar.getHeight())) {
-            if (racket.getLayoutY() + racket.getWidth() * 0.5 < mvt) { // 8 -
-                racket.setLayoutY(racket.getLayoutY() + 8);
-            } else {
-                racket.setLayoutY(racket.getLayoutY() - 8);
             }
         }
     }

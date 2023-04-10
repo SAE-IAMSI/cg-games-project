@@ -21,7 +21,7 @@
             <Font name="Arial" size="40.0" />
          </font>
       </Text>
-      <Text fx:id="score" fill="WHITE" layoutX="70.0" layoutY="601.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="1142.0">
+      <Text fx:id="score" fill="WHITE" layoutX="70.0" layoutY="585.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="LabelScore" textAlignment="CENTER" wrappingWidth="1142.0">
          <font>
             <Font name="Arial" size="40.0" />
          </font>
