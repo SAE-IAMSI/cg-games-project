@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.FileSystems;
 
 public class ViewStatsGlobal {
 
@@ -38,6 +39,13 @@ public class ViewStatsGlobal {
         nbJoueursActifs.setLayoutX(400);
         nbJoueursActifs.setLayoutY(191);
 
+        Surcouche.recupFonction("getPieActifsNonActifs",null);
+        ImageView graphe = new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/pieActifsNonActifs.png").normalize().toAbsolutePath().toString());
+        graphe.setLayoutX(500);
+        graphe.setLayoutY(200);
+        graphe.setFitHeight(400);
+        graphe.setFitWidth(700);
+
         Button btnRetour = new Button("Retour");
         btnRetour.getStyleClass().add("button");
         btnRetour.setContentDisplay(ContentDisplay.CENTER);
@@ -49,7 +57,7 @@ public class ViewStatsGlobal {
             v.afficherMenu(stage);
         });
 
-        pane.getChildren().addAll(titre, joueursActifs, nbJoueursActifs, btnRetour);
+        pane.getChildren().addAll(titre, joueursActifs, nbJoueursActifs, btnRetour,graphe);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);
