@@ -102,14 +102,14 @@ public class Tournament {
        Map<Score, Integer> leaderboard = new HashMap<>();
        List<Score> scores = TournamentManager.getInstance().getLeaderboardByGame(game, tournamentCode);
        for (int i = 0; i < scores.size(); i++) {
-           if (scores.get(i).getScore() > 0) leaderboard.put(scores.get(i), getPoints(i));
-           else leaderboard.put(scores.get(i), 0);
+           if (scores.get(i).getHorodatage() != null) leaderboard.put(scores.get(i), getPoints(i));
        }
        return leaderboard;
     }
 
     /**
      * Renvoie le classement général d'un tournoi à partir des classements de chaque jeu du tournoi.
+     * Pour chaque joueur dont la participation n'est pas valide (S'il n'a pas joué à tous les jeux) le classement indiquera 0 points.
      * @return Une map représentant le classement général du tournoi.
      */
     public Map<AuthPlayer, Integer> getMainLeaderboard() {
@@ -119,6 +119,11 @@ public class Tournament {
             for (Score s : leaderboard.keySet()) {
                 AuthPlayer p = PlayerManager.getInstance().getPlayer(s.getLogin());
                 mainLeaderboard.put(p, mainLeaderboard.getOrDefault(p, 0) + leaderboard.get(s));
+            }
+        }
+        for (AuthPlayer p : participants) {
+            if (!hasValidParticipation(p)) {
+                mainLeaderboard.put(p, 0);
             }
         }
         return mainLeaderboard;
@@ -131,5 +136,12 @@ public class Tournament {
      */
     private int getPoints(int position) {
         return maxParticipants - position;
+    }
+
+    private boolean hasValidParticipation(AuthPlayer p) {
+        for (Jeu game : games) {
+            if (!TournamentManager.getInstance().hasPLayedOnGame(p.getLogin(), game.getCode(), this)) return false;
+        }
+        return true;
     }
 }
