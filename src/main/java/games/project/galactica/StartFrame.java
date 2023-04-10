@@ -63,6 +63,10 @@ public class StartFrame extends JFrame {
 
         Button compte = new Button("Compte");
         compte.setSize(150, 60);
+        if (Session.getInstance().isConnected()) {
+            compte.setLabel("Déconnexion");
+            compte.setSize(220, 60);
+        }
         compte.setLocation(20, 600);
         compte.setFont(new Font("Arial", Font.BOLD, 30));
         add(compte);
@@ -83,6 +87,10 @@ public class StartFrame extends JFrame {
                 var compteNonConnecteFrame = new CompteNonConnecteFrame();
                 compteNonConnecteFrame.setPreferredSize(new Dimension(1280, 720));
                 compteNonConnecteFrame.setVisible(true);
+            } else {
+                Session.getInstance().disconnect();
+                compte.setLabel("Compte");
+                compte.setSize(150, 60);
             }
         });
 
