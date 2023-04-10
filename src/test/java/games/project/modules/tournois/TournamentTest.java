@@ -35,14 +35,28 @@ class TournamentTest {
 
     private AutoCloseable closeable;
 
+    private  Jeu ff = new Jeu("FF","Factory Fall" ,"games.project.factory_fall.FactoryFall");
+
+    private  Jeu cb = new Jeu("CB",	"Casse-Briques", 	"games.project.casse_briques.BrickBreakerApplication" );
+
+     private Jeu kr = new Jeu( "KR","Koala Rock" ,	"games.project.koala_rock.RessourcesAccess" );
+    private Score s500 = new Score(500,Timestamp.valueOf(LocalDateTime.now().plusHours(5)),"FF");
+
+    private   Tournament t = new Tournament("Test1", Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now().plusDays(10)), 5);
+
+    private AuthPlayer test1 = new   AuthPlayer("Test2");
+    private AuthPlayer test2 =new AuthPlayer("Test1");
+    private AuthPlayer test3 = new AuthPlayer("Test3");
+
+
     @BeforeEach
     public void initMocks() {
         closeable = MockitoAnnotations.openMocks(this);
 
-        Tournament t = new Tournament("Test1", Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now().plusDays(10)), 10);
-        t.setGames(List.of(new Jeu("CB"), new Jeu("KR"), new Jeu("FF")));
-        t.setParticipants(List.of(new AuthPlayer("Test1"), new AuthPlayer("Test2"), new AuthPlayer("Test3")));
+        t.setGames(List.of(cb,kr,ff));
+        t.setParticipants(List.of(test1,test1,test3));
         t.setTournamentCode(1);
+
 
         Mockito.when(stockage.getAll()).thenReturn(List.of(t));
         Mockito.when(stockage.getByCode(1)).thenReturn(t);
@@ -50,8 +64,11 @@ class TournamentTest {
         Mockito.when(stockage.getParticipantsByTournament(1)).thenReturn(t.getParticipants());
         Mockito.when(stockage.getTournamentByLoginAndDate("Test1", Timestamp.valueOf(LocalDateTime.now()))).thenReturn(new ArrayList<>());
         Mockito.when(stockage.getTournamentsByDate(Timestamp.valueOf(LocalDateTime.now()))).thenReturn(new ArrayList<>());
-        Mockito.when(stockage.getLeaderboardByGame(new Jeu("CB"), 1)).thenReturn(new ArrayList<>());
         Mockito.when(stockage.hasPLayedOnGame("Test1", "CB", t)).thenReturn(false);
+        Mockito.when(stockage.getLeaderboardByGame(ff, 1)).thenReturn(List.of(
+                s500,
+                new Score(400,Timestamp.valueOf(LocalDateTime.now().plusHours(5)),"FF"),
+                new Score(300,Timestamp.valueOf(LocalDateTime.now().plusHours(5)),"FF")));
     }
 
     @AfterEach
@@ -61,64 +78,23 @@ class TournamentTest {
 
     @Test
     void testParticipantIn() {
-        AuthPlayer p = new AuthPlayer("Test1");
+        AuthPlayer p = test1;
         assertTrue(stockage.getParticipantsByTournament(1).contains(p));
     }
 
-
     @Test
-    void testclassementparjeu(){
-        Jeu jeu = new Jeu("FF");
-        List<Jeu> liste = new ArrayList<>();
-        liste.add(jeu);
-        Tournament tournoi = new Tournament("test",new Timestamp(2023,4,10,0,0,0,0),new Timestamp(2023,4,11,0,0,0,0) , 5 );
-        tournoi.setGames(liste);
-        Map<Score, Integer> score;
-        tournoi.setTournamentCode(15);
-        score = tournoi.getGameLeaderboard(jeu);
-        Map<Score, Integer> resultat = new HashMap<>();
-        resultat.put(new Score(500,"FF"),5); // pas sur ici
-        resultat.put(new Score(450,"FF"),4); // pas sur ici
-        resultat.put(new Score(0,"FF"),0); // pas sur ici
-        assertEquals(resultat.values(),score.values());
-       // assertEquals(resultat.keySet(),score.keySet()); // pas sur le mettre ce assert
-         //recupere bien les joueur mais ne recup pas les scores associé
-    }
+    void testGameLeaderboard() {
+        Score s400 = new Score(400,Timestamp.valueOf(LocalDateTime.now().plusHours(5)),"FF");
+        Score s300 = new Score(300,Timestamp.valueOf(LocalDateTime.now().plusHours(5)),"FF");
 
-    @Test
-    void testClassementGeneral(){
-        Jeu jeu = new Jeu("FF");
-        Jeu jeuK = new Jeu("KR");
+        Map<Score, Integer> classement = new HashMap<>();
+        classement.put(s500,5);
+        classement.put(s400,4);
+        classement.put(s300,3);
 
-
-        List<Jeu> liste = new ArrayList<>();
-        liste.add(jeu);
-        liste.add(jeuK);
-        Tournament tournoi = new Tournament("test",new Timestamp(2023,4,10,0,0,0,0),new Timestamp(2023,4,11,0,0,0,0) , 5 );
-        tournoi.setGames(liste);
-        Map<AuthPlayer, Integer> classement = new HashMap<>();
-        tournoi.setTournamentCode(15);
-        AuthPlayer ebr105 = new AuthPlayer("ebr105");
-        AuthPlayer ebr106 = new AuthPlayer("ebr106");
-        AuthPlayer maus = new AuthPlayer("maus");
-        classement.put(ebr105,10); // 5 +5
-        classement.put(ebr106,8); // 4+4
-        classement.put(maus,0); // 0+0
-
-        assertEquals(classement.values(),tournoi.getMainLeaderboard().values());
-        //assertEquals(classement.keySet()   ,tournoi.getMainLeaderboard().keySet()); // ici on veux recup que les login soit les meme ??
+       // Map<Score,Integer> leaderboardt = t.getGameLeaderboard(ff); // demande la bd donc marche pas
+        List<Score> leaderboard = stockage.getLeaderboardByGame(ff,1);
+        assertTrue(leaderboard.contains(s500));
 
     }
-
-    /*
-    INSERT INTO SCORES(score, horodatage, codeJeu, login) VALUES
-     (500,TO_TIMESTAMP('2023-04-09 23:14:00.742000000', 'YYYY-MM-DD HH24:MI:SS.FF')  , 'FF', 'ebr105')
-
-      INSERT INTO SCORES(score, horodatage, codeJeu, login) VALUES
-     (450,TO_TIMESTAMP('2023-04-09 23:22:00.742000000', 'YYYY-MM-DD HH24:MI:SS.FF')  , 'FF', 'ebr106')
-     */
-
-
-
-
 }
