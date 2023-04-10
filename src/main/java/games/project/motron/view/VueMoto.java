@@ -1,7 +1,7 @@
 package games.project.motron.view;
 
+import games.project.metier.entite.Score;
 import games.project.motron.Motron;
-import games.project.motron.metier.entite.Score;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -16,14 +16,15 @@ public class VueMoto {
     enum Dir {
         UP, DOWN, LEFT, RIGHT
     }
-    private String motoName;
+
+    private final String motoName;
     private String nomJoueur;
     private Rectangle moto;
-    private int size = 20;
+    private final int size = 20;
     private double motoX = 100;
     private double motoY = 400;
-    private int speed = 20;
-    private boolean trail = true; //false pour le mode activer/désactiver
+    private final int speed = 20;
+    private final boolean trail = true; //false pour le mode activer/désactiver
     private boolean gameOver = false;
     private VueMoto adversaire;
     private int nbMorts;
@@ -32,8 +33,8 @@ public class VueMoto {
     private Dir movingAt;
     private Dir newDir;
     private Dir oldDir;
-    private MediaPlayer deathSound;
-    private Score score;
+    private final MediaPlayer deathSound;
+    private final Score score;
     private int scoreManche;
     private VueSprite sprite;
     private boolean connecter;
@@ -169,11 +170,10 @@ public class VueMoto {
         sprite.getSkinMotoView().setRotate(180);
         sprite.getSkinMotoView().setScaleY(1);
         scoreManche = 0;
-        if(motoName == "J1"){
+        if (motoName == "J1") {
             sprite.getSkinMotoView().setRotate(90);
             newDir = Dir.UP;
-        }
-        else{
+        } else {
             sprite.getSkinMotoView().setRotate(-90);
             newDir = Dir.DOWN;
         }
@@ -183,9 +183,9 @@ public class VueMoto {
 
     // gère les déplacements de la moto
     public void move(VueJeu jeu) {
-        if(!stop) {
+        if (!stop) {
             boolean adversaireMort = adversaire.collisionTrail(jeu, adversaire.newDir, adversaire.motoX, adversaire.motoY) || adversaire.collision(jeu, adversaire.newDir, adversaire.motoX, adversaire.motoY);
-            boolean joueurMort = collisionTrail(jeu, newDir, motoX, motoY) ||  collision(jeu, newDir, motoX, motoY);
+            boolean joueurMort = collisionTrail(jeu, newDir, motoX, motoY) || collision(jeu, newDir, motoX, motoY);
             if (!joueurMort && !jeu.isGameOver()) {
                 oldDir = movingAt;
                 movingAt = newDir;
@@ -204,7 +204,7 @@ public class VueMoto {
                 jeu.setGameOver(true);
                 adversaire.gameOver = true;
                 gameOver = true;
-            } else if(!jeu.isGameOver()){
+            } else if (!jeu.isGameOver()) {
                 playDeath();
                 adversaire.scoreManche *= 2;
                 adversaire.score.incrementScore(scoreManche);
@@ -343,8 +343,7 @@ public class VueMoto {
 
                     return true;
                 }
-            }
-            else if(x == adversaire.getMotoX() && y == adversaire.getMotoY()){
+            } else if (x == adversaire.getMotoX() && y == adversaire.getMotoY()) {
                 return true;
             }
         }
@@ -390,14 +389,13 @@ public class VueMoto {
         this.setNewDir(null);
     }
 
-    public void stopAllMoto(VueJeu jeu){
-        for (int i=0; i<  jeu.getMotoList().size(); i++)
-        {
+    public void stopAllMoto(VueJeu jeu) {
+        for (int i = 0; i < jeu.getMotoList().size(); i++) {
             jeu.getMotoList().get(i).stopMoto();
         }
     }
 
-    public void playDeath(){
+    public void playDeath() {
         deathSound.seek(deathSound.getStartTime());
         deathSound.play();
     }

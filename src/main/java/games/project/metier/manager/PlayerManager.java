@@ -1,19 +1,19 @@
 package games.project.metier.manager;
 
+import games.project.metier.entite.AuthPlayer;
 import games.project.stockage.Security;
 import games.project.stockage.sql.StockagePlayerDatabase;
-import games.project.metier.entite.AuthPlayer;
 
 import java.util.List;
 import java.util.Map;
 
 public class PlayerManager {
 
-    private static PlayerManager instance = null;
-    private final StockagePlayerDatabase stockage = new StockagePlayerDatabase();
-    private final Map<String, String> departments;
+    protected static PlayerManager instance = null;
+    protected StockagePlayerDatabase stockage = new StockagePlayerDatabase();
+    protected final Map<String, String> departments;
 
-    private PlayerManager() {
+    protected PlayerManager() {
         departments = stockage.getDepartments();
     }
 
@@ -22,21 +22,23 @@ public class PlayerManager {
         return instance;
     }
 
-    public void createPlayer(String login, String department, String password) {
+    public void createPlayer(String login, String department, String password, boolean isAdmin) {
         AuthPlayer p = new AuthPlayer(login);
         byte[] salt = Security.getSalt();
         p.setSalt(salt);
         p.setPassword(password);
         p.setDepartment(department);
+        p.setAdmin(isAdmin);
         stockage.create(p);
     }
 
-    public void updatePlayer(String login, String department, String password) {
+    public void updatePlayer(String login, String department, String password, boolean isAdmin) {
         AuthPlayer p = stockage.getByLogin(login);
         byte[] salt = Security.getSalt();
         p.setSalt(salt);
         p.setPassword(password);
         p.setDepartment(department);
+        p.setAdmin(isAdmin);
         stockage.update(p);
     }
 

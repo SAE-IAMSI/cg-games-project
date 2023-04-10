@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fitHeight="720.0" fitWidth="1279.0" layoutY="3.0" pickOnBounds="true">
+            <image>
+                <Image url="@../textures/fondMenu.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../textures/classic.png" />
+            </image>
+        </ImageView>
+        <Text fill="WHITE" layoutX="542.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LeaderBoard " textAlignment="CENTER" wrappingWidth="195.46875" />
+        <Button layoutX="610.0" layoutY="616.0" mnemonicParsing="false" onAction="#back" text="Retour" />
+        <AnchorPane layoutX="106.0" layoutY="123.0" prefHeight="474.0" prefWidth="1062.0" style="-fx-background-color: black;">
+            <children>
+                <Text fx:id="textScore" fill="WHITE" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="1069.0" />
+            </children>
+        </AnchorPane>
+    </children>
+</fx:root>

@@ -13,15 +13,14 @@ module games.project.launcher {
     exports games.project.koala_rock.Model;
     exports games.project.koala_rock.Sound;
 
-    exports games.project.pong.controller;
-    exports games.project.pong.view;
-    exports games.project.pong.model;
-    exports games.project.pong to javafx.graphics;
-    opens games.project.pong.view to javafx.fxml;
-    exports games.project.pong.metier;
+    exports games.project.prehispong.controller;
+    exports games.project.prehispong.view;
+    exports games.project.prehispong.model;
+    exports games.project.prehispong to javafx.graphics;
+    opens games.project.prehispong.view to javafx.fxml;
 
-    exports games.project.parametres;
-    opens games.project.parametres.controller to javafx.fxml;
+    exports games.project.modules.parametres;
+    opens games.project.modules.parametres.controller to javafx.fxml;
 
     exports games.project.casse_briques;
     exports games.project.casse_briques.controller;
@@ -41,6 +40,6 @@ module games.project.launcher {
     exports games.project.statistiques.views;
 
     exports games.project.space_invader;
-    
-    exports games.project.parametres.controller;
+    exports games.project.space_invader.sprite;
+    exports games.project.modules.parametres.controller;
 }

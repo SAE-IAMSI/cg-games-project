@@ -1,11 +1,12 @@
 package games.project.motron.controller;
 
-import games.project.motron.*;
-import games.project.motron.metier.entite.AuthPlayer;
-import games.project.motron.metier.entite.Player;
+import games.project.metier.entite.AuthPlayer;
+import games.project.metier.entite.Player;
+import games.project.metier.manager.PlayerManager;
+import games.project.motron.Motron;
 import games.project.motron.metier.entite.Stat;
-import games.project.motron.metier.manager.PlayerManager;
-import games.project.motron.metier.manager.ScoreManager;
+import games.project.motron.metier.manager.PlayerManagerMotron;
+import games.project.motron.metier.manager.ScoreManagerMotron;
 import games.project.motron.metier.manager.ScorePartieManager;
 import games.project.motron.stockage.Security;
 import games.project.motron.view.*;
@@ -37,19 +38,19 @@ import static javafx.scene.input.KeyCode.*;
 public class ControllerFXML implements Initializable {
 
     private VueArene vueArene;
-    private VueMatriceArene matriceArene = new VueMatriceArene();
+    private final VueMatriceArene matriceArene = new VueMatriceArene();
     //    private boolean menuOn = true;
-    private VueMoto j1;
-    private VueMoto j2;
-    private ArrayList<KeyCode> keyList = new ArrayList<>();
-    private MediaPlayer startSound;
-    private MediaPlayer mediaPlayerMenu;
-    private MediaPlayer mediaPlayerJeu;
-    private MediaPlayer notificationSound;
-    private MediaPlayer positiveNotificationSound;
-    private Player player1;
-    private Player player2;
-    private boolean relance = false;
+    private final VueMoto j1;
+    private final VueMoto j2;
+    private final ArrayList<KeyCode> keyList = new ArrayList<>();
+    private final MediaPlayer startSound;
+    private final MediaPlayer mediaPlayerMenu;
+    private final MediaPlayer mediaPlayerJeu;
+    private final MediaPlayer notificationSound;
+    private final MediaPlayer positiveNotificationSound;
+    private final Player player1;
+    private final Player player2;
+    private final boolean relance = false;
     private VueJeu jeu;
     private boolean newJeu = true;
     private int numSprite = 0;
@@ -133,7 +134,7 @@ public class ControllerFXML implements Initializable {
     private Label idRGPD;
 
     @FXML
-    protected void lanceJouer(){
+    protected void lanceJouer() {
         menuPane.setVisible(false);
         background.setVisible(false);
         carteBackground.setVisible(true);
@@ -142,7 +143,7 @@ public class ControllerFXML implements Initializable {
     }
 
     @FXML
-    protected void lanceClassement(){
+    protected void lanceClassement() {
         menuPane.setVisible(false);
         classementPane.setVisible(true);
         creerClassement();
@@ -157,10 +158,11 @@ public class ControllerFXML implements Initializable {
     }
 
     @FXML
-    protected void lanceParam(){
+    protected void lanceParam() {
         menuPane.setVisible(false);
         paramPane.setVisible(true);
     }
+
     @FXML
     Button bouttonStatsJ1;
     @FXML
@@ -180,18 +182,20 @@ public class ControllerFXML implements Initializable {
 
     //    Sélection de cartes (alias: choixCartePane)
     @FXML
-    protected void retourCarte(){
+    protected void retourCarte() {
         choixCartePane.setVisible(false);
         carteBackground.setVisible(false);
         background.setVisible(true);
         menuPane.setVisible(true);
     }
+
     private int xJ1;
     private int yJ1;
     private int xJ2;
     private int yJ2;
+
     @FXML
-    protected void selectCarte1(){
+    protected void selectCarte1() {
         choixCartePane.setDisable(true);
         transitionJeu(carteBackground, choixCartePane, 1, 0);
         startSound.seek(Duration.millis(0));
@@ -208,10 +212,10 @@ public class ControllerFXML implements Initializable {
                     jeuPane.setVisible(true);
                     mediaPlayerMenu.stop();
                     mediaPlayerJeu.play();
-                    xJ1 = 9*20;
-                    yJ1 = 16*20;
-                    xJ2 = 40*20;
-                    yJ2 = 16*20;
+                    xJ1 = 9 * 20;
+                    yJ1 = 16 * 20;
+                    xJ2 = 40 * 20;
+                    yJ2 = 16 * 20;
                     vueArene = new VueArene(matriceArene.getArene1());
                     jeu = creerJeu();
                     decompte();
@@ -225,7 +229,7 @@ public class ControllerFXML implements Initializable {
     }
 
     @FXML
-    protected void selectCarte2(){
+    protected void selectCarte2() {
         choixCartePane.setDisable(true);
         transitionJeu(carteBackground, choixCartePane, 1, 0);
         startSound.seek(Duration.millis(0));
@@ -242,10 +246,10 @@ public class ControllerFXML implements Initializable {
                     jeuPane.setVisible(true);
                     mediaPlayerMenu.stop();
                     mediaPlayerJeu.play();
-                    xJ1 = 15*20;
-                    yJ1 = 16*20;
-                    xJ2 = 34*20;
-                    yJ2 = 16*20;
+                    xJ1 = 15 * 20;
+                    yJ1 = 16 * 20;
+                    xJ2 = 34 * 20;
+                    yJ2 = 16 * 20;
                     vueArene = new VueArene(matriceArene.getArene2());
                     jeu = creerJeu();
                     decompte();
@@ -259,7 +263,7 @@ public class ControllerFXML implements Initializable {
     }
 
     @FXML
-    protected void selectCarte3(){
+    protected void selectCarte3() {
         choixCartePane.setDisable(true);
         transitionJeu(carteBackground, choixCartePane, 1, 0);
         startSound.seek(Duration.millis(0));
@@ -276,10 +280,10 @@ public class ControllerFXML implements Initializable {
                     jeuPane.setVisible(true);
                     mediaPlayerMenu.stop();
                     mediaPlayerJeu.play();
-                    xJ1 = 11*20;
-                    yJ1 = 16*20;
-                    xJ2 = 38*20;
-                    yJ2 = 16*20;
+                    xJ1 = 11 * 20;
+                    yJ1 = 16 * 20;
+                    xJ2 = 38 * 20;
+                    yJ2 = 16 * 20;
                     vueArene = new VueArene(matriceArene.getArene3());
                     jeu = creerJeu();
                     decompte();
@@ -293,7 +297,7 @@ public class ControllerFXML implements Initializable {
     }
 
     @FXML
-    protected void selectCarte4(){
+    protected void selectCarte4() {
         choixCartePane.setDisable(true);
         transitionJeu(carteBackground, choixCartePane, 1, 0);
         startSound.seek(Duration.millis(0));
@@ -310,10 +314,10 @@ public class ControllerFXML implements Initializable {
                     jeuPane.setVisible(true);
                     mediaPlayerMenu.stop();
                     mediaPlayerJeu.play();
-                    xJ1 = 5*20;
-                    yJ1 = 16*20;
-                    xJ2 = 44*20;
-                    yJ2 = 16*20;
+                    xJ1 = 5 * 20;
+                    yJ1 = 16 * 20;
+                    xJ2 = 44 * 20;
+                    yJ2 = 16 * 20;
                     vueArene = new VueArene(matriceArene.getArene4());
                     jeu = creerJeu();
                     decompte();
@@ -327,7 +331,7 @@ public class ControllerFXML implements Initializable {
     }
 
     @FXML
-    protected void selectCarte5(){
+    protected void selectCarte5() {
         choixCartePane.setDisable(true);
         transitionJeu(carteBackground, choixCartePane, 1, 0);
         startSound.seek(Duration.millis(0));
@@ -344,10 +348,10 @@ public class ControllerFXML implements Initializable {
                     jeuPane.setVisible(true);
                     mediaPlayerMenu.stop();
                     mediaPlayerJeu.play();
-                    xJ1 = 11*20;
-                    yJ1 = 16*20;
-                    xJ2 = 38*20;
-                    yJ2 = 16*20;
+                    xJ1 = 11 * 20;
+                    yJ1 = 16 * 20;
+                    xJ2 = 38 * 20;
+                    yJ2 = 16 * 20;
                     vueArene = new VueArene(matriceArene.getArene5());
                     jeu = creerJeu();
                     decompte();
@@ -360,7 +364,7 @@ public class ControllerFXML implements Initializable {
         t.start();
     }
 
-    public void transitionJeu(Node background, Node pane, int from, int to){
+    public void transitionJeu(Node background, Node pane, int from, int to) {
         FadeTransition fade = new FadeTransition(Duration.seconds(2), pane);
         FadeTransition fade2 = new FadeTransition(Duration.seconds(2), background);
         fade.setFromValue(from);
@@ -412,15 +416,15 @@ public class ControllerFXML implements Initializable {
     @FXML
     private Label decompteNumber;
 
-    public void decompte(){
+    public void decompte() {
         decomptePane.setVisible(true);
         String[] s = {"3", "2", "1", "Go!"};
         Thread t = new Thread(() -> {
             try {
                 for (int i = 0; i < 4; i++) {
-                    String text = "" + s[i];
+                    String text = s[i];
                     Platform.runLater(() -> decompteNumber.setText(text));
-                    if(i != 3) {
+                    if (i != 3) {
                         Thread.sleep(500);
                     }
                     Thread.sleep(500);
@@ -438,7 +442,7 @@ public class ControllerFXML implements Initializable {
 
     //    Pause
     @FXML
-    protected void retourPause(){
+    protected void retourPause() {
         pausePane.setVisible(false);
         jeu.setPauseOn(false);
     }
@@ -446,7 +450,7 @@ public class ControllerFXML implements Initializable {
 
     //    GameOver
     @FXML
-    protected void menuPrincipal(){
+    protected void menuPrincipal() {
         scoreJ1.setText("0");
         scoreJ2.setText("0");
         round.setText("ROUND 1");
@@ -479,7 +483,7 @@ public class ControllerFXML implements Initializable {
         decompte();
     }
 
-    public void relanceManche(){
+    public void relanceManche() {
         newJeu = true;
         decompte();
     }
@@ -551,41 +555,56 @@ public class ControllerFXML implements Initializable {
     private Label textTempD10;
 
     @FXML
-    protected void retourClassement(){
+    protected void retourClassement() {
         classementPane.setVisible(false);
         menuPane.setVisible(true);
     }
 
-    public void creerClassement(){
-        List<Player> meilleurs = PlayerManager.getInstance().getMeilleurs();
+    public void creerClassement() {
+        List<Player> meilleurs = PlayerManagerMotron.getInstance().getMeilleurs();
         ArrayList<Label> listGridJoueur = new ArrayList<>();
-        listGridJoueur.add(textTempL1);listGridJoueur.add(textTempL2);
-        listGridJoueur.add(textTempL3);listGridJoueur.add(textTempL4);
-        listGridJoueur.add(textTempL5);listGridJoueur.add(textTempL6);
-        listGridJoueur.add(textTempL7);listGridJoueur.add(textTempL8);
-        listGridJoueur.add(textTempL9);listGridJoueur.add(textTempL10);
+        listGridJoueur.add(textTempL1);
+        listGridJoueur.add(textTempL2);
+        listGridJoueur.add(textTempL3);
+        listGridJoueur.add(textTempL4);
+        listGridJoueur.add(textTempL5);
+        listGridJoueur.add(textTempL6);
+        listGridJoueur.add(textTempL7);
+        listGridJoueur.add(textTempL8);
+        listGridJoueur.add(textTempL9);
+        listGridJoueur.add(textTempL10);
         ArrayList<Label> listGridScore = new ArrayList<>();
-        listGridScore.add(textTempS1);listGridScore.add(textTempS2);
-        listGridScore.add(textTempS3);listGridScore.add(textTempS4);
-        listGridScore.add(textTempS5);listGridScore.add(textTempS6);
-        listGridScore.add(textTempS7);listGridScore.add(textTempS8);
-        listGridScore.add(textTempS9);listGridScore.add(textTempS10);
+        listGridScore.add(textTempS1);
+        listGridScore.add(textTempS2);
+        listGridScore.add(textTempS3);
+        listGridScore.add(textTempS4);
+        listGridScore.add(textTempS5);
+        listGridScore.add(textTempS6);
+        listGridScore.add(textTempS7);
+        listGridScore.add(textTempS8);
+        listGridScore.add(textTempS9);
+        listGridScore.add(textTempS10);
         ArrayList<Label> listGridDep = new ArrayList<>();
-        listGridDep.add(textTempD1);listGridDep.add(textTempD2);
-        listGridDep.add(textTempD3);listGridDep.add(textTempD4);
-        listGridDep.add(textTempD5);listGridDep.add(textTempD6);
-        listGridDep.add(textTempD7);listGridDep.add(textTempD8);
-        listGridDep.add(textTempD9);listGridDep.add(textTempD10);
-        for (int i = 0 ; i < meilleurs.size() ; i++){
-            modifierLabelGrid(listGridJoueur.get(i), listGridScore.get(i),listGridDep.get(i), i, meilleurs);
+        listGridDep.add(textTempD1);
+        listGridDep.add(textTempD2);
+        listGridDep.add(textTempD3);
+        listGridDep.add(textTempD4);
+        listGridDep.add(textTempD5);
+        listGridDep.add(textTempD6);
+        listGridDep.add(textTempD7);
+        listGridDep.add(textTempD8);
+        listGridDep.add(textTempD9);
+        listGridDep.add(textTempD10);
+        for (int i = 0; i < meilleurs.size(); i++) {
+            modifierLabelGrid(listGridJoueur.get(i), listGridScore.get(i), listGridDep.get(i), i, meilleurs);
         }
     }
 
-    public void modifierLabelGrid(Label labelj, Label labels, Label labeld, int i, List<Player> meilleurs){
+    public void modifierLabelGrid(Label labelj, Label labels, Label labeld, int i, List<Player> meilleurs) {
         String s = meilleurs.get(i).getName();
         labelj.setText(s);
         labels.setText(String.valueOf(meilleurs.get(i).getScore().getScore()));
-        labeld.setText(PlayerManager.getInstance().getDepartementByLogin(s));
+        labeld.setText(PlayerManagerMotron.getInstance().getDepartementByLogin(s));
     }
 
 
@@ -609,6 +628,7 @@ public class ControllerFXML implements Initializable {
             nomSkinJ2.setText(j2.getSprite().getNom());
         }
     }
+
     @FXML
     private Label conditionSkinJ1;
     @FXML
@@ -621,131 +641,132 @@ public class ControllerFXML implements Initializable {
     private Label nomSkinJ1;
     @FXML
     private Label nomSkinJ2;
+
     @FXML
-    protected void changeSkinGaucheJ1(){
+    protected void changeSkinGaucheJ1() {
         changeSkinGauche(j1);
     }
+
     @FXML
-    protected void changeSkinGaucheJ2(){
+    protected void changeSkinGaucheJ2() {
         changeSkinGauche(j2);
     }
+
     @FXML
-    protected void changeSkinDroiteJ1(){
+    protected void changeSkinDroiteJ1() {
         changeSkinDroite(j1);
     }
+
     @FXML
-    protected void changeSkinDroiteJ2(){
+    protected void changeSkinDroiteJ2() {
         changeSkinDroite(j2);
     }
-    protected void changeSkinGauche(VueMoto j){
+
+    protected void changeSkinGauche(VueMoto j) {
         ImageView imageMoto;
         Label conditionSkin;
         Label nomSkin;
-        if(j == j1){
+        if (j == j1) {
             imageMoto = imageMotoJ1;
             conditionSkin = conditionSkinJ1;
             nomSkin = nomSkinJ1;
-        }
-        else{
+        } else {
             imageMoto = imageMotoJ2;
             conditionSkin = conditionSkinJ2;
             nomSkin = nomSkinJ2;
         }
         LinkedHashMap<VueSprite, Color> sprites = VueSprite.genererSprites();
         HashMap<VueSprite, Integer> skinsBloques = new HashMap<>();
-        if(j.isConnecter()) {
+        if (j.isConnecter()) {
             skinsBloques = recompenseMoto(j, sprites);
         }
         ArrayList<VueSprite> listSprites = new ArrayList<>(sprites.keySet());
         VueSprite sprite;
-        if(numSprite == 0){
-            numSprite = listSprites.size()-1;
+        if (numSprite == 0) {
+            numSprite = listSprites.size() - 1;
             sprite = listSprites.get(numSprite);
-        }
-        else{
+        } else {
             numSprite--;
             sprite = listSprites.get(numSprite);
         }
         imageMoto.setImage(sprite.getSkinMotoView().getImage());
         imageMoto.setOpacity(sprite.getSkinMotoView().getOpacity());
-        if(imageMoto.getOpacity() != 1){
-            for(VueSprite s : skinsBloques.keySet()){
-                if(s.getNom().equals(sprite.getNom())){
-                    conditionSkin.setText("Jouer encore " + (skinsBloques.get(s) - PlayerManager.getInstance().getNbPartie(j.getNomJoueur())) + " fois");
+        if (imageMoto.getOpacity() != 1) {
+            for (VueSprite s : skinsBloques.keySet()) {
+                if (s.getNom().equals(sprite.getNom())) {
+                    conditionSkin.setText("Jouer encore " + (skinsBloques.get(s) - PlayerManagerMotron.getInstance().getNbPartie(j.getNomJoueur())) + " fois");
                     conditionSkin.setVisible(true);
                     nomSkin.setText(sprite.getNom());
                 }
             }
-        }
-        else{
+        } else {
             conditionSkin.setVisible(false);
             j.getSprite().setSkinMoto(sprite.getSkinMoto(), sprites.get(sprite));
             j.getSprite().setNom(sprite.getNom());
             nomSkin.setText(j.getSprite().getNom());
         }
     }
-    protected void changeSkinDroite(VueMoto j){
+
+    protected void changeSkinDroite(VueMoto j) {
         ImageView imageMoto;
         Label conditionSkin;
         Label nomSkin;
-        if(j == j1){
+        if (j == j1) {
             imageMoto = imageMotoJ1;
             conditionSkin = conditionSkinJ1;
             nomSkin = nomSkinJ1;
-        }
-        else{
+        } else {
             imageMoto = imageMotoJ2;
             conditionSkin = conditionSkinJ2;
             nomSkin = nomSkinJ2;
         }
         LinkedHashMap<VueSprite, Color> sprites = VueSprite.genererSprites();
         HashMap<VueSprite, Integer> skinsBloques = new HashMap<>();
-        if(j.isConnecter()) {
+        if (j.isConnecter()) {
             skinsBloques = recompenseMoto(j, sprites);
         }
         ArrayList<VueSprite> listSprites = new ArrayList<>(sprites.keySet());
         VueSprite sprite;
-        if(numSprite == listSprites.size()-1){
+        if (numSprite == listSprites.size() - 1) {
             numSprite = 0;
             sprite = listSprites.get(numSprite);
-        }
-        else{
+        } else {
             numSprite++;
             sprite = listSprites.get(numSprite);
         }
         imageMoto.setImage(sprite.getSkinMotoView().getImage());
         imageMoto.setOpacity(sprite.getSkinMotoView().getOpacity());
-        if(imageMoto.getOpacity() != 1){
-            for(VueSprite s : skinsBloques.keySet()){
-                if(s.getNom().equals(sprite.getNom())){
-                    conditionSkin.setText("Jouer encore " + (skinsBloques.get(s) - PlayerManager.getInstance().getNbPartie(j.getNomJoueur())) + " fois");
+        if (imageMoto.getOpacity() != 1) {
+            for (VueSprite s : skinsBloques.keySet()) {
+                if (s.getNom().equals(sprite.getNom())) {
+                    conditionSkin.setText("Jouer encore " + (skinsBloques.get(s) - PlayerManagerMotron.getInstance().getNbPartie(j.getNomJoueur())) + " fois");
                     conditionSkin.setVisible(true);
                     nomSkin.setText(sprite.getNom());
                 }
             }
-        }
-        else{
+        } else {
             conditionSkin.setVisible(false);
             j.getSprite().setSkinMoto(sprite.getSkinMoto(), sprites.get(sprite));
             j.getSprite().setNom(sprite.getNom());
             nomSkin.setText(j.getSprite().getNom());
         }
     }
-    public HashMap<VueSprite, Integer> recompenseMoto(VueMoto j, LinkedHashMap<VueSprite, Color> recompenses){
+
+    public HashMap<VueSprite, Integer> recompenseMoto(VueMoto j, LinkedHashMap<VueSprite, Color> recompenses) {
         HashMap<VueSprite, Integer> skinsBloques = new LinkedHashMap<>();
-        VueSprite sprite10 = new VueSprite(new Image(Objects.requireNonNull(Motron.class.getResourceAsStream("images/moto/MotoJet.png")), 125, 125, true, true), Color.rgb(236,86,0), "Moto-Jet");
+        VueSprite sprite10 = new VueSprite(new Image(Objects.requireNonNull(Motron.class.getResourceAsStream("images/moto/MotoJet.png")), 125, 125, true, true), Color.rgb(236, 86, 0), "Moto-Jet");
         recompenses.put(sprite10, sprite10.getTrailColor());
-        VueSprite sprite20 = new VueSprite(new Image(Objects.requireNonNull(Motron.class.getResourceAsStream("images/moto/MotoReacteur.png")), 125, 125, true, true), Color.rgb(22,255,237), "Moto à réacteur");
+        VueSprite sprite20 = new VueSprite(new Image(Objects.requireNonNull(Motron.class.getResourceAsStream("images/moto/MotoReacteur.png")), 125, 125, true, true), Color.rgb(22, 255, 237), "Moto à réacteur");
         recompenses.put(sprite20, sprite20.getTrailColor());
-        VueSprite sprite50 = new VueSprite(new Image(Objects.requireNonNull(Motron.class.getResourceAsStream("images/moto/SkinPremium1.png")), 125, 125, true, true), Color.rgb(34,205,0), "Voiture Premium");
+        VueSprite sprite50 = new VueSprite(new Image(Objects.requireNonNull(Motron.class.getResourceAsStream("images/moto/SkinPremium1.png")), 125, 125, true, true), Color.rgb(34, 205, 0), "Voiture Premium");
         recompenses.put(sprite50, sprite50.getTrailColor());
-        if(PlayerManager.getInstance().getNbPartie(j.getNomJoueur()) < 50){
+        if (PlayerManagerMotron.getInstance().getNbPartie(j.getNomJoueur()) < 50) {
             sprite50.getSkinMotoView().setOpacity(0.25);
             skinsBloques.put(sprite50, 50);
-            if(PlayerManager.getInstance().getNbPartie(j.getNomJoueur()) < 20){
+            if (PlayerManagerMotron.getInstance().getNbPartie(j.getNomJoueur()) < 20) {
                 sprite20.getSkinMotoView().setOpacity(0.25);
                 skinsBloques.put(sprite20, 20);
-                if(j.isConnecter() && PlayerManager.getInstance().getNbPartie(j.getNomJoueur()) < 10){
+                if (j.isConnecter() && PlayerManagerMotron.getInstance().getNbPartie(j.getNomJoueur()) < 10) {
                     sprite10.getSkinMotoView().setOpacity(0.25);
                     skinsBloques.put(sprite10, 10);
                 }
@@ -753,25 +774,30 @@ public class ControllerFXML implements Initializable {
         }
         return skinsBloques;
     }
+
     @FXML
     private ImageView imgMap;
+
     @FXML
-    protected void changeMapBlanc(){
+    protected void changeMapBlanc() {
         VueMur.setCouleurMurs(Color.ALICEBLUE);
         imgMap.setImage(new Image(Objects.requireNonNull(Motron.class.getResourceAsStream("cartesParCoul/aliceblue.png")), 200, 200, true, true));
     }
+
     @FXML
-    protected void changeMapBleu(){
+    protected void changeMapBleu() {
         VueMur.setCouleurMurs(Color.DARKBLUE);
         imgMap.setImage(new Image(Objects.requireNonNull(Motron.class.getResourceAsStream("cartesParCoul/bleu.png")), 200, 200, true, true));
     }
+
     @FXML
-    protected void changeMapJaune(){
+    protected void changeMapJaune() {
         VueMur.setCouleurMurs(Color.YELLOW);
         imgMap.setImage(new Image(Objects.requireNonNull(Motron.class.getResourceAsStream("cartesParCoul/jaune.png")), 200, 200, true, true));
     }
+
     @FXML
-    protected void changeMapOrange(){
+    protected void changeMapOrange() {
         VueMur.setCouleurMurs(Color.CHOCOLATE);
         imgMap.setImage(new Image(Objects.requireNonNull(Motron.class.getResourceAsStream("cartesParCoul/orange.png")), 200, 200, true, true));
     }
@@ -779,10 +805,11 @@ public class ControllerFXML implements Initializable {
 
     //    Paramètres (alias: param)
     @FXML
-    protected void retourParam(){
+    protected void retourParam() {
         paramPane.setVisible(false);
         menuPane.setVisible(true);
     }
+
     @FXML
     private Button boutonHautJ1;
     @FXML
@@ -801,19 +828,22 @@ public class ControllerFXML implements Initializable {
     private Label rightJ1Game;
 
     @FXML
-    protected void changeHautJ1(){
+    protected void changeHautJ1() {
         changeTouche(boutonHautJ1, 0, upJ1Game);
     }
+
     @FXML
-    protected void changeGaucheJ1(){
+    protected void changeGaucheJ1() {
         changeTouche(boutonGaucheJ1, 1, leftJ1Game);
     }
+
     @FXML
-    protected void changeBasJ1(){
+    protected void changeBasJ1() {
         changeTouche(boutonBasJ1, 2, downJ1Game);
     }
+
     @FXML
-    protected void changeDroiteJ1(){
+    protected void changeDroiteJ1() {
         changeTouche(boutonDroiteJ1, 3, rightJ1Game);
     }
 
@@ -835,33 +865,34 @@ public class ControllerFXML implements Initializable {
     private Label rightJ2Game;
 
     @FXML
-    protected void changeHautJ2(){
+    protected void changeHautJ2() {
         changeTouche(boutonHautJ2, 4, upJ2Game);
     }
+
     @FXML
-    protected void changeGaucheJ2(){
+    protected void changeGaucheJ2() {
         changeTouche(boutonGaucheJ2, 5, leftJ2Game);
     }
+
     @FXML
-    protected void changeBasJ2(){
+    protected void changeBasJ2() {
         changeTouche(boutonBasJ2, 6, downJ2Game);
     }
+
     @FXML
-    protected void changeDroiteJ2(){
+    protected void changeDroiteJ2() {
         changeTouche(boutonDroiteJ2, 7, rightJ2Game);
     }
 
-    public void changeTouche(Button bouton, int numTouche, Label toucheJeu){
+    public void changeTouche(Button bouton, int numTouche, Label toucheJeu) {
         EventHandler<KeyEvent> keyEvent = keyEvent1 -> {
             if (!keyList.contains(keyEvent1.getCode())) {
                 bouton.setText(keyEvent1.getCode().getName());
                 toucheJeu.setText(keyEvent1.getCode().getName());
                 keyList.set(numTouche, keyEvent1.getCode());
-                afficherNotification("success", "La touche "+ bouton.getId() + " est maintenant défini sur " + keyEvent1.getCode());
-            }
-            else
-            {
-                afficherNotification("warning", "La touche "+keyEvent1.getCode()+" a déjà été assignée");
+                afficherNotification("success", "La touche " + bouton.getId() + " est maintenant défini sur " + keyEvent1.getCode());
+            } else {
+                afficherNotification("warning", "La touche " + keyEvent1.getCode() + " a déjà été assignée");
             }
         };
         paramPane.addEventFilter(KeyEvent.KEY_PRESSED, keyEvent);
@@ -874,15 +905,17 @@ public class ControllerFXML implements Initializable {
     private Slider sliderMusique;
     @FXML
     private Slider sliderBruitage;
+
     @FXML
-    protected void changeVolumeMusique(){
+    protected void changeVolumeMusique() {
         sliderMusique.valueProperty().addListener((observableValue, number, t1) -> {
             mediaPlayerMenu.setVolume(sliderMusique.getValue() / 500);
             mediaPlayerJeu.setVolume(sliderMusique.getValue() / 500);
         });
     }
+
     @FXML
-    protected void changeVolumeBruitage(){
+    protected void changeVolumeBruitage() {
         sliderBruitage.valueProperty().addListener((observableValue, number, t1) -> {
             startSound.setVolume(sliderBruitage.getValue() / 500);
             j1.getDeathSound().setVolume(sliderBruitage.getValue() / 500);
@@ -911,31 +944,26 @@ public class ControllerFXML implements Initializable {
     private Label labelJ2Connecte;
 
 
-
-
     @FXML
-    protected void retourCompte(){
+    protected void retourCompte() {
         comptePane.setVisible(false);
         menuPane.setVisible(true);
     }
 
     @FXML
-    protected void connecterJ1()
-    {
+    protected void connecterJ1() {
         comptePane.setVisible(false);
         connexionJ1Pane.setVisible(true);
     }
 
     @FXML
-    protected void connecterJ2()
-    {
+    protected void connecterJ2() {
         comptePane.setVisible(false);
         connexionJ2Pane.setVisible(true);
     }
 
     @FXML
-    protected void creerCompte()
-    {
+    protected void creerCompte() {
         comptePane.setVisible(false);
         creationComptePane.setVisible(true);
     }
@@ -945,8 +973,8 @@ public class ControllerFXML implements Initializable {
 
     public boolean connexionJoueur(Player player, String login, String password) {
         boolean jConnecte = false;
-        AuthPlayer j = PlayerManager.getInstance().getPlayer(login);
-        if(j != null)
+        AuthPlayer j = PlayerManagerMotron.getInstance().getPlayer(login);
+        if (j != null)
             try {
                 if (Objects.equals(j.getLogin(), login) && Security.checkPassword(password, j.getSalt(), j.getHashedPassword())) {
                     player.setName(login);
@@ -967,30 +995,26 @@ public class ControllerFXML implements Initializable {
     @FXML
     private PasswordField passwordFieldConnexionJ1;
 
-    public void resetConnexionJ1Pane()
-    {
+    public void resetConnexionJ1Pane() {
         textFieldConnexionJ1.clear();
         passwordFieldConnexionJ1.clear();
     }
 
     @FXML
-    protected void EnterPressedJ1(KeyEvent event){
-        if(event.getCode() == ENTER){
+    protected void EnterPressedJ1(KeyEvent event) {
+        if (event.getCode() == ENTER) {
             connexionJ1();
         }
     }
 
     @FXML
-    protected void connexionJ1()
-    {
-        if (!j1.isConnecter())
-        {
+    protected void connexionJ1() {
+        if (!j1.isConnecter()) {
             if (connexionJoueur(player1, textFieldConnexionJ1.getText(), passwordFieldConnexionJ1.getText())) {
-                if(player2.getName().equals(textFieldConnexionJ1.getText())){
-                    afficherNotification("warning", "Le joueur 1: "+ player1.getName() + " est déjà connecté");
-                }
-                else {
-                    afficherNotification("success", "Le joueur 1: "+player1.getName()+" s'est connecté");
+                if (player2.getName().equals(textFieldConnexionJ1.getText())) {
+                    afficherNotification("warning", "Le joueur 1: " + player1.getName() + " est déjà connecté");
+                } else {
+                    afficherNotification("success", "Le joueur 1: " + player1.getName() + " s'est connecté");
                     labelJ1Connecte.setText(player1.getName());
                     labelJ1.setText(player1.getName());
                     bouttonConnecterJ1.setVisible(false);
@@ -1005,18 +1029,14 @@ public class ControllerFXML implements Initializable {
                 afficherNotification("warning", "Identifiant ou mot de passe incorrect");
 
             }
-        }
-        else
-        {
-            afficherNotification("warning", "Le joueur 1: "+ player1.getName() +" est deja connecte");
+        } else {
+            afficherNotification("warning", "Le joueur 1: " + player1.getName() + " est deja connecte");
         }
     }
 
     @FXML
-    protected void deconnexionJ1()
-    {
-        if(j1.isConnecter())
-        {
+    protected void deconnexionJ1() {
+        if (j1.isConnecter()) {
             player1.setName("J1");
             j1.setNomJoueur("Joueur 1");
             j1.setConnecter(false);
@@ -1029,17 +1049,14 @@ public class ControllerFXML implements Initializable {
             labelJ1Connecte.setText("Connexion J1...");
             labelJ1.setText("Joueur 1");
             afficherNotification("success", "Le joueur 1: " + player1.getName() + " a bien été déconnecté");
-        }
-        else
-        {
+        } else {
             afficherNotification("warning", "Le joueur n'est pas connecté");
         }
 
     }
 
     @FXML
-    protected void retourConnexionJ1()
-    {
+    protected void retourConnexionJ1() {
         connexionJ1Pane.setVisible(false);
         comptePane.setVisible(true);
         resetConnexionJ1Pane();
@@ -1052,29 +1069,26 @@ public class ControllerFXML implements Initializable {
     @FXML
     private PasswordField passwordFieldConnexionJ2;
 
-    public void resetConnexionJ2Pane()
-    {
+    public void resetConnexionJ2Pane() {
         textFieldConnexionJ2.clear();
         passwordFieldConnexionJ2.clear();
     }
 
     @FXML
-    protected void EnterPressedJ2(KeyEvent event){
-        if(event.getCode() == ENTER){
+    protected void EnterPressedJ2(KeyEvent event) {
+        if (event.getCode() == ENTER) {
             connexionJ2();
         }
     }
+
     @FXML
-    protected void connexionJ2()
-    {
-        if (!j2.isConnecter())
-        {
+    protected void connexionJ2() {
+        if (!j2.isConnecter()) {
             if (connexionJoueur(player2, textFieldConnexionJ2.getText(), passwordFieldConnexionJ2.getText())) {
-                if(player1.getName().equals(textFieldConnexionJ2.getText())){
-                    afficherNotification("warning", "Le joueur 2: "+ player2.getName() + " est déjà connecté");
-                }
-                else {
-                    afficherNotification("success", "Le joueur 2: "+player2.getName()+" s'est connecté");
+                if (player1.getName().equals(textFieldConnexionJ2.getText())) {
+                    afficherNotification("warning", "Le joueur 2: " + player2.getName() + " est déjà connecté");
+                } else {
+                    afficherNotification("success", "Le joueur 2: " + player2.getName() + " s'est connecté");
                     labelJ2Connecte.setText(player2.getName());
                     labelJ2.setText(player2.getName());
                     bouttonConnecterJ2.setVisible(false);
@@ -1088,18 +1102,14 @@ public class ControllerFXML implements Initializable {
             } else {
                 afficherNotification("warning", "Identifiant ou mot de passe incorrect");
             }
-        }
-        else
-        {
-            afficherNotification("warning", "Le joueur 2: "+ player2.getName() +" est deja connecte");
+        } else {
+            afficherNotification("warning", "Le joueur 2: " + player2.getName() + " est deja connecte");
         }
     }
 
     @FXML
-    protected void deconnexionJ2()
-    {
-        if(j2.isConnecter())
-        {
+    protected void deconnexionJ2() {
+        if (j2.isConnecter()) {
             player2.setName("J2");
             j2.setNomJoueur("Joueur 2");
             j2.setConnecter(false);
@@ -1112,17 +1122,14 @@ public class ControllerFXML implements Initializable {
             labelJ2Connecte.setText("Connexion J2...");
             labelJ2.setText("Joueur 2");
             afficherNotification("success", "le joueur 2: " + player2.getName() + " a bien été déconnecté");
-        }
-        else
-        {
+        } else {
             afficherNotification("warning", "Le joueur n'est pas connecté");
         }
 
     }
 
     @FXML
-    protected void retourConnexionJ2()
-    {
+    protected void retourConnexionJ2() {
         connexionJ2Pane.setVisible(false);
         comptePane.setVisible(true);
         resetConnexionJ2Pane();
@@ -1130,8 +1137,8 @@ public class ControllerFXML implements Initializable {
 
 //    Création de compte
 
-    private String[] departements = {
-            "01 - Ain", "02 - Aisne", "03 - Allier", "04 - Alpes-de-Haute-Provence", "05 - Hautes-Alpes", "06 - Alpes-Maritimes", "07 - Ardèche", "08 - Ardennes", "09 - Ariège", "10 - Aube", "11 - Aude", "12 - Aveyron", "13 - Bouches-du-Rhône", "14 - Calvados", "15 - Cantal", "16 - Charente", "17 - Charente-Maritime", "18 - Cher", "19 - Corrèze", "2A - Corse-du-Sud", "2B - Haute-Corse", "21 - Côte-d'Or", "22 - Côtes-d'Armor", "23 - Creuse", "24 - Dordogne", "25 - Doubs", "26 - Drôme", "27 - Eure", "28 - Eure-et-Loir", "29 - Finistère", "30 - Gard", "31 - Haute-Garonne", "32 - Gers", "33 - Gironde", "34 - Hérault", "35 - Ille-et-Vilaine", "36 - Indre", "37 - Indre-et-Loire", "38 - Isère", "39 - Jura", "40 - Landes", "41 - Loir-et-Cher", "42 - Loire", "43 - Haute-Loire", "44 - Loire-Atlantique", "45 - Loiret", "46 - Lot", "47 - Lot-et-Garonne", "48 - Lozère", "49 - Maine-et-Loire", "50 - Manche", "51 - Marne", "52 - Haute-Marne", "53 - Mayenne", "54 - Meurthe-et-Moselle", "55 - Meuse", "56 - Morbihan", "57 - Moselle", "58 - Nièvre", "59 - Nord", "60 - Oise", "61 - Orne", "62 - Pas-de-Calais", "63 - Puy-de-Dôme", "64 - Pyrénées-Atlantiques", "65 - Hautes-Pyrénées", "66 - Pyrénées-Orientales", "67 - Bas-Rhin", "68 - Haut-Rhin", "69 - Rhône", "70 - Haute-Saône", "71 - Saône-et-Loire", "72 - Sarthe", "73 - Savoie", "74 - Haute-Savoie", "75 - Paris", "76 - Seine-Maritime", "77 - Seine-et-Marne", "78 - Yvelines", "79 - Deux-Sèvres", "80 - Somme", "81 - Tarn", "82 - Tarn-et-Garonne", "83 - Var", "84 - Vaucluse", "85 - Vendée", "86 - Vienne", "87 - Haute-Vienne", "88 - Vosges", "89 - Yonne", "90 - Territoire de Belfort", "91 - Essonne","92 - Hauts-de-Seine", "93 - Seine-Saint-Denis", "94 - Val-de-Marne", "95 - Val-d'Oise","99 - Etranger", "971 - Guadeloupe", "972 - Martinique", "973 - Guyane", "974 - La Réunion", "975 - Mayotte"
+    private final String[] departements = {
+            "01 - Ain", "02 - Aisne", "03 - Allier", "04 - Alpes-de-Haute-Provence", "05 - Hautes-Alpes", "06 - Alpes-Maritimes", "07 - Ardèche", "08 - Ardennes", "09 - Ariège", "10 - Aube", "11 - Aude", "12 - Aveyron", "13 - Bouches-du-Rhône", "14 - Calvados", "15 - Cantal", "16 - Charente", "17 - Charente-Maritime", "18 - Cher", "19 - Corrèze", "2A - Corse-du-Sud", "2B - Haute-Corse", "21 - Côte-d'Or", "22 - Côtes-d'Armor", "23 - Creuse", "24 - Dordogne", "25 - Doubs", "26 - Drôme", "27 - Eure", "28 - Eure-et-Loir", "29 - Finistère", "30 - Gard", "31 - Haute-Garonne", "32 - Gers", "33 - Gironde", "34 - Hérault", "35 - Ille-et-Vilaine", "36 - Indre", "37 - Indre-et-Loire", "38 - Isère", "39 - Jura", "40 - Landes", "41 - Loir-et-Cher", "42 - Loire", "43 - Haute-Loire", "44 - Loire-Atlantique", "45 - Loiret", "46 - Lot", "47 - Lot-et-Garonne", "48 - Lozère", "49 - Maine-et-Loire", "50 - Manche", "51 - Marne", "52 - Haute-Marne", "53 - Mayenne", "54 - Meurthe-et-Moselle", "55 - Meuse", "56 - Morbihan", "57 - Moselle", "58 - Nièvre", "59 - Nord", "60 - Oise", "61 - Orne", "62 - Pas-de-Calais", "63 - Puy-de-Dôme", "64 - Pyrénées-Atlantiques", "65 - Hautes-Pyrénées", "66 - Pyrénées-Orientales", "67 - Bas-Rhin", "68 - Haut-Rhin", "69 - Rhône", "70 - Haute-Saône", "71 - Saône-et-Loire", "72 - Sarthe", "73 - Savoie", "74 - Haute-Savoie", "75 - Paris", "76 - Seine-Maritime", "77 - Seine-et-Marne", "78 - Yvelines", "79 - Deux-Sèvres", "80 - Somme", "81 - Tarn", "82 - Tarn-et-Garonne", "83 - Var", "84 - Vaucluse", "85 - Vendée", "86 - Vienne", "87 - Haute-Vienne", "88 - Vosges", "89 - Yonne", "90 - Territoire de Belfort", "91 - Essonne", "92 - Hauts-de-Seine", "93 - Seine-Saint-Denis", "94 - Val-de-Marne", "95 - Val-d'Oise", "99 - Etranger", "971 - Guadeloupe", "972 - Martinique", "973 - Guyane", "974 - La Réunion", "975 - Mayotte"
     };
 
     @FXML
@@ -1145,8 +1152,7 @@ public class ControllerFXML implements Initializable {
     @FXML
     private CheckBox checkboxRGPD;
 
-    public void resetCreationPane()
-    {
+    public void resetCreationPane() {
         loginCreerCompte.clear();
         mdpCreerCompte.clear();
         verifMdpCreerCompte.clear();
@@ -1155,26 +1161,22 @@ public class ControllerFXML implements Initializable {
     }
 
     @FXML
-    protected void retourNouveauCompte()
-    {
+    protected void retourNouveauCompte() {
         creationComptePane.setVisible(false);
         comptePane.setVisible(true);
         resetCreationPane();
     }
 
     @FXML
-    protected void creerCompteJoueur()
-    {
-        if (!loginCreerCompte.getText().equals(""))
-        {
-            if (!mdpCreerCompte.getText().equals(""))
-            {
+    protected void creerCompteJoueur() {
+        if (!loginCreerCompte.getText().equals("")) {
+            if (!mdpCreerCompte.getText().equals("")) {
                 if (mdpCreerCompte.getText().equals(verifMdpCreerCompte.getText())) {
                     if (mdpCreerCompte.getText().length() < 12) {
                         if (!comboBoxText.getSelectionModel().isEmpty()) {
                             if (PlayerManager.getInstance().getPlayer(loginCreerCompte.getText()) == null) {
                                 if (checkboxRGPD.isSelected()) {
-                                    PlayerManager.getInstance().createPlayer(loginCreerCompte.getText(), mdpCreerCompte.getText(), comboBoxText.getValue().substring(0, 3).strip());
+                                    PlayerManagerMotron.getInstance().createPlayer(loginCreerCompte.getText(), comboBoxText.getValue().substring(0, 3).strip(), mdpCreerCompte.getText(), false);
                                     afficherNotification("success", "Bienvenue dans nos rangs, " + loginCreerCompte.getText() + " !");
                                     creationComptePane.setVisible(false);
                                     comptePane.setVisible(true);
@@ -1184,34 +1186,25 @@ public class ControllerFXML implements Initializable {
                             } else {
                                 afficherNotification("warning", "Le compte " + loginCreerCompte.getText() + " existe deja");
                             }
-                        }
-                        else {
+                        } else {
                             afficherNotification("warning", "Veuillez choisir un département");
                         }
-                    }
-                    else {
+                    } else {
                         afficherNotification("warning", "Mot de passe trop long");
                     }
-                }
-                else
-                {
+                } else {
                     afficherNotification("warning", "Les mots de passes ne sont pas identiques");
                 }
-            }
-            else
-            {
+            } else {
                 afficherNotification("warning", "Le champ 'mot de passe' n'est pas rempli");
             }
-        }
-        else
-        {
+        } else {
             afficherNotification("warning", "Le champ 'login' n'est pas rempli");
         }
     }
 
     @FXML
-    protected void afficheRGPD()
-    {
+    protected void afficheRGPD() {
         idRGPD.setText("Conditions générales d’utilisation\n" +
                 "En vigueur au 16/01/2023\n" +
                 "Merci de bien vouloir lire les présentes conditions générales d’utilisation:\n\n" +
@@ -1239,8 +1232,7 @@ public class ControllerFXML implements Initializable {
     }
 
     @FXML
-    protected void retourRGPD()
-    {
+    protected void retourRGPD() {
         RGPDPane.setVisible(false);
     }
 
@@ -1253,21 +1245,22 @@ public class ControllerFXML implements Initializable {
     private Label nomJoueur1Stat;
 
     @FXML
-    protected void lanceStatsJ1(){
+    protected void lanceStatsJ1() {
         comptePane.setVisible(false);
         statsJ1Pane.setVisible(true);
         nomJoueur1Stat.setText(j1.getNomJoueur());
         Stat statJ1 = ScorePartieManager.getInstance().createStat(j1.getNomJoueur());
-        idTotalScoreJ1.setText("" + ScoreManager.getInstance().sommeScore(j1.getNomJoueur()));
-        highScoreStatJ1.setText("" + ScoreManager.getInstance().highScore(j1.getNomJoueur()));
-        idNbCasesJ1.setText("" + statJ1.getNbBlocs());
-        idKillJ1.setText("" + statJ1.getKill());
-        idMortJ1.setText("" + statJ1.getDeath());
-        idRatioJ1.setText("" + statJ1.getMoyenneKillParPartie());
-        idVictoireJ1.setText("" + statJ1.getNbVictoire());
-        idDefaiteJ1.setText("" + statJ1.getNbDefaite());
-        idEgaliteJ1.setText("" + statJ1.getNbEgalite());
+        idTotalScoreJ1.setText(String.valueOf(ScoreManagerMotron.getInstance().sommeScore(j1.getNomJoueur())));
+        highScoreStatJ1.setText(String.valueOf(ScoreManagerMotron.getInstance().highScore(j1.getNomJoueur())));
+        idNbCasesJ1.setText(String.valueOf(statJ1.getNbBlocs()));
+        idKillJ1.setText(String.valueOf(statJ1.getKill()));
+        idMortJ1.setText(String.valueOf(statJ1.getDeath()));
+        idRatioJ1.setText(String.valueOf(statJ1.getMoyenneKillParPartie()));
+        idVictoireJ1.setText(String.valueOf(statJ1.getNbVictoire()));
+        idDefaiteJ1.setText(String.valueOf(statJ1.getNbDefaite()));
+        idEgaliteJ1.setText(String.valueOf(statJ1.getNbEgalite()));
     }
+
     @FXML
     private Pane statsJ2Pane;
     @FXML
@@ -1276,30 +1269,30 @@ public class ControllerFXML implements Initializable {
     private Label nomJoueur2Stat;
 
     @FXML
-    protected void lanceStatsJ2(){
+    protected void lanceStatsJ2() {
         comptePane.setVisible(false);
         statsJ2Pane.setVisible(true);
         nomJoueur2Stat.setText(j2.getNomJoueur());
         Stat statJ2 = ScorePartieManager.getInstance().createStat(j2.getNomJoueur());
-        idTotalScoreJ2.setText("" + ScoreManager.getInstance().sommeScore(j2.getNomJoueur()));
-        highScoreStatJ2.setText("" + ScoreManager.getInstance().highScore(j2.getNomJoueur()));
-        idNbCasesJ2.setText("" + statJ2.getNbBlocs());
-        idKillJ2.setText("" + statJ2.getKill());
-        idMortJ2.setText("" + statJ2.getDeath());
-        idRatioJ2.setText("" + statJ2.getMoyenneKillParPartie());
-        idVictoireJ2.setText("" + statJ2.getNbVictoire());
-        idDefaiteJ2.setText("" + statJ2.getNbDefaite());
-        idEgaliteJ2.setText("" + statJ2.getNbEgalite());
+        idTotalScoreJ2.setText(String.valueOf(ScoreManagerMotron.getInstance().sommeScore(j2.getNomJoueur())));
+        highScoreStatJ2.setText(String.valueOf(ScoreManagerMotron.getInstance().highScore(j2.getNomJoueur())));
+        idNbCasesJ2.setText(String.valueOf(statJ2.getNbBlocs()));
+        idKillJ2.setText(String.valueOf(statJ2.getKill()));
+        idMortJ2.setText(String.valueOf(statJ2.getDeath()));
+        idRatioJ2.setText(String.valueOf(statJ2.getMoyenneKillParPartie()));
+        idVictoireJ2.setText(String.valueOf(statJ2.getNbVictoire()));
+        idDefaiteJ2.setText(String.valueOf(statJ2.getNbDefaite()));
+        idEgaliteJ2.setText(String.valueOf(statJ2.getNbEgalite()));
     }
 
     @FXML
-    protected void retourStats(){
+    protected void retourStats() {
         statsJ1Pane.setVisible(false);
         statsJ2Pane.setVisible(false);
         comptePane.setVisible(true);
     }
 
-    public void afficherButtonsStats(){
+    public void afficherButtonsStats() {
         bouttonStatsJ1.setVisible(j1.isConnecter());
         bouttonStatsJ2.setVisible(j2.isConnecter());
     }
@@ -1309,14 +1302,15 @@ public class ControllerFXML implements Initializable {
     //     Règles
     @FXML
     Pane reglesPane;
+
     @FXML
-    protected void lanceRegles(){
+    protected void lanceRegles() {
         menuPane.setVisible(false);
         reglesPane.setVisible(true);
     }
 
     @FXML
-    protected void retourRegles(){
+    protected void retourRegles() {
         reglesPane.setVisible(false);
         menuPane.setVisible(true);
     }
@@ -1328,7 +1322,7 @@ public class ControllerFXML implements Initializable {
         comboBoxText.getItems().addAll(departements);
     }
 
-    public ControllerFXML(){
+    public ControllerFXML() {
         player1 = new Player("J1");
         player2 = new Player("J2");
         j1 = new VueMoto("J1", new VueSprite(new Image(Objects.requireNonNull(Motron.class.getResourceAsStream("images/moto/TronLegacyBleu.png")), 60, 40, true, true), Color.LIGHTBLUE, "Motron Bleu"), player1.getName());
@@ -1370,30 +1364,26 @@ public class ControllerFXML implements Initializable {
         positiveNotificationSound.setVolume(0.1);
     }
 
-    public VueJeu creerJeu(){
+    public VueJeu creerJeu() {
         j1.setScore(0);
         j2.setScore(0);
-        return new VueJeu(j1, j2, vueArene,keyList);
+        return new VueJeu(j1, j2, vueArene, keyList);
     }
 
 
-    public void afficherNotification(String type, String message)
-    {
+    public void afficherNotification(String type, String message) {
         notificationLabel.getStyleClass().clear();
-        if (type.equals("success"))
-        {
+        if (type.equals("success")) {
             positiveNotificationSound.seek(Duration.millis(0));
             positiveNotificationSound.play();
             notificationLabel.getStyleClass().add("notificationSuccess");
         }
-        if (type.equals("warning"))
-        {
+        if (type.equals("warning")) {
             notificationSound.seek(Duration.millis(0));
             notificationSound.play();
             notificationLabel.getStyleClass().add("notificationWarning");
         }
-        if (type.equals("error"))
-        {
+        if (type.equals("error")) {
             notificationSound.seek(Duration.millis(0));
             notificationSound.play();
             notificationLabel.getStyleClass().add("notificationError");
@@ -1404,10 +1394,6 @@ public class ControllerFXML implements Initializable {
         pause.setOnFinished(e -> notificationLabel.setVisible(false));
         pause.play();
     }
-
-
-
-
 
 
 //    Getters and setters

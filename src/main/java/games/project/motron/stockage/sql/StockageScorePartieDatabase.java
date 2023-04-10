@@ -10,9 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StockageScorePartieDatabase implements Stockage<ScorePartie>{
+public class StockageScorePartieDatabase {
 
-    @Override
     public void create(ScorePartie element) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
@@ -24,13 +23,11 @@ public class StockageScorePartieDatabase implements Stockage<ScorePartie>{
             st.setInt(4, element.getNbBlocs());
             st.setString(5, element.getResultat());
             st.executeUpdate();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    @Override
     public void update(ScorePartie element) {
         SQLUtils utils = SQLUtils.getInstance();
         Connection connection = utils.getConnection();
@@ -42,36 +39,10 @@ public class StockageScorePartieDatabase implements Stockage<ScorePartie>{
             st.setString(4, element.getResultat());
             st.setInt(5, element.getCodeScore());
             st.executeUpdate();
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public ScorePartie getByLogin(String login) {
-        ScorePartie scorePartie = null;
-        SQLUtils utils = SQLUtils.getInstance();
-        Connection connection = utils.getConnection();
-        String req = "SELECT * FROM MOTRON m JOIN SCORES s ON m.codeScore=s.codeScore WHERE login = ?";
-        try (PreparedStatement st = connection.prepareStatement(req)) {
-            st.setString(1, login);
-            try (ResultSet result = st.executeQuery()) {
-                if (result.next()) {
-                    scorePartie = new ScorePartie(  result.getInt("codeScore"),
-                                                    result.getInt("kill"),
-                                                    result.getInt("death"),
-                                                    result.getInt("nbBlocs"),
-                                                    result.getString("resultat"));
-                }
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return scorePartie;
     }
-
-    @Override
     public List<ScorePartie> getAll() {
         List<ScorePartie> scorePartieList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
@@ -81,10 +52,10 @@ public class StockageScorePartieDatabase implements Stockage<ScorePartie>{
             try (ResultSet result = st.executeQuery()) {
                 if (result.next()) {
                     scorePartieList.add(new ScorePartie(result.getInt("codeScore"),
-                                                        result.getInt("kill"),
-                                                        result.getInt("death"),
-                                                        result.getInt("nbBlocs"),
-                                                        result.getString("resultat")));
+                            result.getInt("kill"),
+                            result.getInt("death"),
+                            result.getInt("nbBlocs"),
+                            result.getString("resultat")));
                 }
             }
         } catch (SQLException e) {

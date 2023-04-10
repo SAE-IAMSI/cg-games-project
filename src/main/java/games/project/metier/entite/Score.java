@@ -13,21 +13,21 @@ public class Score {
     private String login;
     private String gameCode;
 
-    private Score() {
+    public Score(String gameCode) {
         this.score = new SimpleIntegerProperty(0);
         this.horodatage = new Timestamp(System.currentTimeMillis());
-        this.gameCode = "CB";
+        this.gameCode = gameCode;
         this.login = "";
     }
 
-    public Score(int score) {
-        this();
+    public Score(int score, String gameCode) {
+        this(gameCode);
         this.score = new SimpleIntegerProperty(score);
         this.horodatage = new Timestamp(System.currentTimeMillis());
     }
 
-    public Score(int score, Timestamp time) {
-        this();
+    public Score(int score, Timestamp time, String gameCode) {
+        this(gameCode);
         this.score = new SimpleIntegerProperty(score);
         this.horodatage = time;
     }
@@ -74,5 +74,9 @@ public class Score {
 
     public void setGameCode(String gameCode) {
         this.gameCode = gameCode;
+    }
+
+    public void incrementScore(int score) {
+        setScore(this.getScore() + score);
     }
 }

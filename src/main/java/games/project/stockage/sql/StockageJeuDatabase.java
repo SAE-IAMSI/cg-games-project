@@ -1,13 +1,10 @@
 package games.project.stockage.sql;
 
-import games.project.metier.entite.AuthPlayer;
 import games.project.metier.entite.Jeu;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class StockageJeuDatabase {
 
@@ -105,6 +102,7 @@ public class StockageJeuDatabase {
         }
         return jeu;
     }
+
     public List<String> getPaths() {
         List<String> paths = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();
