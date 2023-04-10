@@ -7,6 +7,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Surcouche {
 
@@ -47,6 +49,23 @@ public class Surcouche {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println(recupFonction("downloadGraphe",null));
+        long startTime = System.currentTimeMillis();
+        ArrayList<String> listeJeux = Surcouche.splitTableau(Surcouche.recupFonction("getAllGame",null));
+        String jeuCourant = listeJeux.get(0);
+        ArrayList<String> args2 = new ArrayList<>();
+        Map<String,String> mapAvgScore = new HashMap<>();
+        Map<String,String> mapBestScore = new HashMap<>();
+
+        for(String game : listeJeux){
+            args2.clear();args2.add(game);
+            mapAvgScore.put(game,Surcouche.recupFonction("getScoreMoyen",args2));
+            mapBestScore.put(game,Surcouche.recupFonction("getBestScore",args2));
+            Surcouche.recupFonction("getGrapheScoreMoyen",args2);
+            args2.clear();
+        }
+
+        long endTime = System.currentTimeMillis();
+        System.out.println("finish");
+        System.out.println("temps d'execution : " + (endTime - startTime) + " ms");
     }
 }

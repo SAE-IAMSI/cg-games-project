@@ -6,6 +6,7 @@ import datetime
 import matplotlib.pyplot as plt
 import math
 import shutil
+import time
 
 dir = "src/main/java/games/project/modules/statistiques/client64Bit"
 dir2 = 'client64Bit'
@@ -301,8 +302,9 @@ def getPieActifsNonActifs()->None:
     """
     nbActifs = getJoueursActifs()
     nbTotal = getNbPlayers()
-    nbNonActifs = nbTotal - nbActifs
-    a = np.array([nbActifs, nbNonActifs])
-    plt.pie(a, labels=['Actifs', 'Non actifs'], autopct='%1.1f%%', shadow=True, startangle=90)
+    nbAdmin = getNbAdmin()
+    nbNonActifs = nbTotal - nbActifs - nbAdmin
+    a = np.array([nbActifs, nbNonActifs, nbAdmin])
+    plt.pie(a, labels=['Actifs', 'Non actifs', 'Administrateurs'], autopct='%1.1f%%', shadow=True, startangle=90)
     plt.axis('equal')
     plt.savefig(os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieActifsNonActifs.png'))
