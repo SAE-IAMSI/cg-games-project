@@ -1,8 +1,13 @@
 package games.project.galactica;
 
+import games.project.metier.manager.PlayerManager;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
+import java.util.Vector;
 
 public class CompteNonConnecteFrame extends JFrame {
 
@@ -105,7 +110,14 @@ public class CompteNonConnecteFrame extends JFrame {
         gbInscription.setConstraints(inscrireMdpConfirmation, gbcInscription);
         inscriptionPane.add(inscrireMdpConfirmation);
 
-        JComboBox<String> departement = new JComboBox<>();
+        Map<String, String> dept = PlayerManager.getInstance().getDepartments();
+        Vector<String> deptArray = new Vector<>();
+        deptArray.add("xx - Pas de département");
+        for (String key : dept.keySet()) {
+            deptArray.add(key + " - " + dept.get(key));
+        }
+
+        JComboBox<String> departement = new JComboBox<>(deptArray);
         departement.setFont(new Font("Arial", Font.BOLD, 20));
         gbcInscription.gridy = 4;
         gbInscription.setConstraints(departement, gbcInscription);
