@@ -90,7 +90,6 @@ public class TournamentDetailView extends AnchorPane {
         mainLeaderboard.getChildren().clear();
         Map<AuthPlayer, Integer> points = tournament.getMainLeaderboard();
         Comparator<AuthPlayer> comp = (o1, o2) -> points.get(o2) - points.get(o1);
-        System.out.println(points);
 
         List<AuthPlayer> sorted = new ArrayList<>(points.keySet());
         sorted.sort(comp);
