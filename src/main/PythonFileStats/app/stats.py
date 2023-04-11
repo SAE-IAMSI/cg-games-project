@@ -344,22 +344,20 @@ def getDptPlusJoueurs():
         if i>10:
             break
     return dico
-
 def getDPTPie():
     """
     Sauvegarde dans un fichier temporaire des camemberts représentant le nombre de joueurs par département\n
     """
     dico = getDptPlusJoueurs()
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(9, 6),subplot_kw=dict(aspect="equal"))
     ingredients = []
     data = []
     for k,v in dico.items():
         ingredients.append(k)
         data.append(v)
+
     wedges, texts = ax.pie(data,textprops=dict(color="w"))
-    ax.legend(wedges, ingredients,
-              title="Departements",
-              loc="center left",
-              bbox_to_anchor=(1, 0, 0.5, 1))
+    #plt.setp(autotexts, size=8, weight="bold")
+    ax.legend(wedges, ingredients,title="Departements",loc="center right",bbox_to_anchor=(0.9, 0, 0.5, 1))
     ax.set_title("Les départements avec le plus de joueurs")
     plt.savefig(os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieDptPlusJoueurs.png'))
