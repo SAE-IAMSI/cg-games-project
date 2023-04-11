@@ -332,7 +332,6 @@ def getDptPlusJoueurs():
     connexion = createConnexion(user, password, host, port, sid)
     liste10DPT = []
     with connexion.cursor() as cursor:
-        #sql = """select nomdepartement,d.numdepartement, count(login) from departements d JOIN JOUEURS j on j.numdepartement=d.numdepartement group by d.numdepartement,nomdepartement having count(login)>=2 order by count(login) DESC"""
         sql = """select nomdepartement,d.numdepartement, count(login) from departements d JOIN JOUEURS j on j.numdepartement=d.numdepartement group by d.numdepartement,nomdepartement order by count(login) DESC"""
         for r in cursor.execute(sql):
             liste10DPT.append((r[0],r[1]))

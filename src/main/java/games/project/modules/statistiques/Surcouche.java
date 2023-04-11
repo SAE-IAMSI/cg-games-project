@@ -65,11 +65,31 @@ public class Surcouche {
 
         //Creation des graphes des joueurs
         recupFonction("getPieActifsNonActifs",null);
+
+        //Creation des graphes des DPT
+        recupFonction("getDPTPie",null);
+    }
+
+    public static HashMap<String,String> splitDPT(String s){
+        String dpt[] = s.split(",");
+        HashMap<String,String> dptJoueurs = new HashMap<>();
+        for (String str : dpt){
+            if(str.charAt(0)=='{'){
+                str = str.substring(1);
+            } else if (str.charAt(str.length()-1)=='}'){
+                str = str.substring(0,str.length()-1);
+            }
+            str = str.replaceAll(" ","");
+            str = str.replaceAll("'","");
+            String[] tab = str.split(":");
+            dptJoueurs.put(tab[0],tab[1]);
+        }
+        return dptJoueurs;
     }
 
     public static void main(String[] args) throws IOException {
         long startTime = System.currentTimeMillis();
-        System.out.println(recupFonction("getDPTPie",null));
+        System.out.println(splitDPT(recupFonction("getDptPlusJoueurs",null)));
         long endTime = System.currentTimeMillis();
         System.out.println("temps d'execution : " + (endTime - startTime) + " ms");
     }
