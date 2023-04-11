@@ -9,7 +9,7 @@ public class LeftPanel extends JPanel {
 
     private int lives = 0;
 
-    private JLabel livesLabel, live1, live2, live3;
+    private JLabel livesLabel;
     private JLabel boutonGauche, boutonDroite, boutonEspace, textDeplacement, textTire;
 
     URL imgVie = GalacticaClassic.class.getResource("images/player2.png");
@@ -56,18 +56,6 @@ public class LeftPanel extends JPanel {
 
         ImageIcon imageVie = new ImageIcon(Objects.requireNonNull(imgVie));
         imageVie.setImage(imageVie.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
-
-        live1 = new JLabel(imageVie);
-        live1.setPreferredSize(new Dimension(40, 40));
-        add(live1);
-
-        live2 = new JLabel(imageVie);
-        live2.setPreferredSize(new Dimension(40, 40));
-        add(live2);
-
-        live3 = new JLabel(imageVie);
-        live3.setPreferredSize(new Dimension(40, 40));
-        add(live3);
     }
 
     /**
@@ -75,11 +63,8 @@ public class LeftPanel extends JPanel {
      */
     public void updateLives() {
         if (lives == 2) {
-            remove(live3);
             livesLabel.setText("Vie(s): 2");
         } else if (lives == 1) {
-            remove(live2);
-            remove(live3);
             livesLabel.setText("Vie(s): 1");
         }
     }
