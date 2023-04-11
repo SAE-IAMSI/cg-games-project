@@ -8,6 +8,8 @@ import math
 import shutil
 import time
 
+from typing import Dict
+
 dir = "src/main/java/games/project/modules/statistiques/client64Bit"
 dir2 = 'client64Bit'
 absolute = os.path.join(os.getcwd(), dir)
@@ -208,7 +210,7 @@ def getJoueursParDepartements(numDepartement: str) -> int:
     '''
     connexion = createConnexion(user, password, host, port, sid)
     with connexion.cursor() as cursor:
-        sql = f"""SELECT getPlayersByDepartement({numDepartement}) FROM DUAL"""
+        sql = f"""SELECT getPlayersByDepartement('{numDepartement}') FROM DUAL"""
         for r in cursor.execute(sql):
             return r[0]
 
@@ -308,3 +310,43 @@ def getPieActifsNonActifs()->None:
     plt.pie(a, labels=['Actifs', 'Non actifs', 'Administrateurs'], autopct='%1.1f%%', shadow=True, startangle=90)
     plt.axis('equal')
     plt.savefig(os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieActifsNonActifs.png'))
+
+def getAllDpt()->list:
+    """
+    Renvoie une liste contenant tous les départements\n
+    :return: tab : list
+    """
+    tab = []
+    connexion = createConnexion(user, password, host, port, sid)
+    with connexion.cursor() as cursor:
+        sql = """select * from departements"""
+        for r in cursor.execute(sql):
+            tab.append((r[0],r[1]))
+    return tab
+
+def getDptPlusJoueurs():
+    """
+    Renvoie une liste de tuple contenant les départements et le nombre de joueurs qui y habitent\n
+    :return:
+    """
+    connexion = createConnexion(user, password, host, port, sid)
+    liste10DPT = []
+    with connexion.cursor() as cursor:
+        sql = """select nomdepartement,d.numdepartement, count(login) from departements d LEFT JOIN JOUEURS j on j.numdepartement=d.numdepartement group by d.numdepartement,nomdepartement order by count(login) DESC"""
+        for r in cursor.execute(sql):
+            liste10DPT.append((r[0],r[1]))
+    dico = {}
+    i = 0
+    while i < 10:
+        dico[liste10DPT[i][0]] = getJoueursParDepartements(liste10DPT[i][1])
+        i+=1
+    return dico
+
+def getDPTPie():
+    """
+    Sauvegarde dans un fichier temporaire des camemberts représentant le nombre de joueurs par département\n
+    """
+    dico = getDptPlusJoueurs()
+    plt.pie(dico.values(), labels=dico.keys(), autopct='%1.1f%%', shadow=True, startangle=90)
+    plt.axis('equal')
+    plt.savefig(os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieDptPlusJoueurs.png'))
