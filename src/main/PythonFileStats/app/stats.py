@@ -332,7 +332,8 @@ def getDptPlusJoueurs():
     connexion = createConnexion(user, password, host, port, sid)
     liste10DPT = []
     with connexion.cursor() as cursor:
-        sql = """select nomdepartement,d.numdepartement, count(login) from departements d JOIN JOUEURS j on j.numdepartement=d.numdepartement group by d.numdepartement,nomdepartement having count(login)>=2 order by count(login) DESC"""
+        #sql = """select nomdepartement,d.numdepartement, count(login) from departements d JOIN JOUEURS j on j.numdepartement=d.numdepartement group by d.numdepartement,nomdepartement having count(login)>=2 order by count(login) DESC"""
+        sql = """select nomdepartement,d.numdepartement, count(login) from departements d JOIN JOUEURS j on j.numdepartement=d.numdepartement group by d.numdepartement,nomdepartement order by count(login) DESC"""
         for r in cursor.execute(sql):
             liste10DPT.append((r[0],r[1]))
     dico = {}
@@ -349,6 +350,16 @@ def getDPTPie():
     Sauvegarde dans un fichier temporaire des camemberts représentant le nombre de joueurs par département\n
     """
     dico = getDptPlusJoueurs()
-    plt.pie(dico.values(), labels=dico.keys(), autopct='%1.1f%%', startangle=90)
-    plt.axis('equal')
+    fig, ax = plt.subplots()
+    ingredients = []
+    data = []
+    for k,v in dico.items():
+        ingredients.append(k)
+        data.append(v)
+    wedges, texts = ax.pie(data,textprops=dict(color="w"))
+    ax.legend(wedges, ingredients,
+              title="Departements",
+              loc="center left",
+              bbox_to_anchor=(1, 0, 0.5, 1))
+    ax.set_title("Les départements avec le plus de joueurs")
     plt.savefig(os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieDptPlusJoueurs.png'))
