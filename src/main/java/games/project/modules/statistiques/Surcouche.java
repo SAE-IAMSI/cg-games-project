@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Surcouche {
 
@@ -70,9 +67,9 @@ public class Surcouche {
         recupFonction("getDPTPie",null);
     }
 
-    public static HashMap<String,String> splitDPT(String s){
+    public static LinkedHashMap<String, String> splitDPT(String s){
         String dpt[] = s.split(",");
-        HashMap<String,String> dptJoueurs = new HashMap<>();
+        LinkedHashMap<String,String> dptJoueurs = new LinkedHashMap<>();
         for (String str : dpt){
             if(str.charAt(0)=='{'){
                 str = str.substring(1);

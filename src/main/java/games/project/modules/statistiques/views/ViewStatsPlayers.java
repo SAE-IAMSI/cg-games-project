@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class ViewStatsPlayers {
 
@@ -74,14 +75,15 @@ public class ViewStatsPlayers {
         Label topDepScrollLabel = new Label("Classement des départements par nombre de joueurs");
         topDepScrollLabel.getStyleClass().add("texte");
         topDepScrollLabel.setLayoutX(800);
-        topDepScrollLabel.setLayoutY(121);
+        topDepScrollLabel.setLayoutY(170);
 
         Pane topDepScroll = new Pane();
         topDepScroll.setPrefSize(400, 400);
         topDepScroll.setLayoutX(800);
-        topDepScroll.setLayoutY(151);
+        topDepScroll.setLayoutY(200);
 
-        HashMap<String, String> map = Surcouche.splitDPT(Surcouche.recupFonction("getDptPlusJoueurs",null));
+        LinkedHashMap<String, String> map = Surcouche.splitDPT(Surcouche.recupFonction("getDptPlusJoueurs",null));
+
         ArrayList<Label> nomDep = new ArrayList<>();
         ArrayList<Label> nbInscrits = new ArrayList<>();
         for (String key : map.keySet()) {
