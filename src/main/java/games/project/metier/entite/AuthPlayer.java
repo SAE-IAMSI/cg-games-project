@@ -4,6 +4,7 @@ import games.project.stockage.Security;
 
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 
 public class AuthPlayer extends Player {
     private String department;
@@ -74,5 +75,18 @@ public class AuthPlayer extends Player {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AuthPlayer that = (AuthPlayer) o;
+        return getLogin().equals(((AuthPlayer) o).getLogin());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getLogin());
     }
 }
