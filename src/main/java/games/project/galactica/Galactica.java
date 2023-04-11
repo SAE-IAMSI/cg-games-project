@@ -3,7 +3,7 @@ package games.project.galactica;
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class Galactica extends JFrame {
+public class Galactica extends JFrame {
 
     LeftPanel leftPanel;
     RightPanel rightPanel;
@@ -61,6 +61,7 @@ public abstract class Galactica extends JFrame {
     /**
      * Définit le nombre de vies dans l'interface
      */
-    public abstract void setLives();
+    public void setLives() {
+    }
 
 }
