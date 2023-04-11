@@ -332,14 +332,16 @@ def getDptPlusJoueurs():
     connexion = createConnexion(user, password, host, port, sid)
     liste10DPT = []
     with connexion.cursor() as cursor:
-        sql = """select nomdepartement,d.numdepartement, count(login) from departements d LEFT JOIN JOUEURS j on j.numdepartement=d.numdepartement group by d.numdepartement,nomdepartement order by count(login) DESC"""
+        sql = """select nomdepartement,d.numdepartement, count(login) from departements d JOIN JOUEURS j on j.numdepartement=d.numdepartement group by d.numdepartement,nomdepartement having count(login)>=2 order by count(login) DESC"""
         for r in cursor.execute(sql):
             liste10DPT.append((r[0],r[1]))
     dico = {}
     i = 0
-    while i < 10:
+    while i < len(liste10DPT):
         dico[liste10DPT[i][0]] = getJoueursParDepartements(liste10DPT[i][1])
         i+=1
+        if i>10:
+            break
     return dico
 
 def getDPTPie():
@@ -347,6 +349,6 @@ def getDPTPie():
     Sauvegarde dans un fichier temporaire des camemberts représentant le nombre de joueurs par département\n
     """
     dico = getDptPlusJoueurs()
-    plt.pie(dico.values(), labels=dico.keys(), autopct='%1.1f%%', shadow=True, startangle=90)
+    plt.pie(dico.values(), labels=dico.keys(), autopct='%1.1f%%', startangle=90)
     plt.axis('equal')
     plt.savefig(os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieDptPlusJoueurs.png'))
