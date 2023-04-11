@@ -48,24 +48,29 @@ public class Surcouche {
         return date[2] + "/" + date[1] + "/" + date[0];
     }
 
-    public static void main(String[] args) throws IOException {
-        long startTime = System.currentTimeMillis();
+    public static void creationDesGraphes() throws IOException{
+        //Creation des graphes des jeux
         ArrayList<String> listeJeux = Surcouche.splitTableau(Surcouche.recupFonction("getAllGame",null));
         String jeuCourant = listeJeux.get(0);
-        ArrayList<String> args2 = new ArrayList<>();
-        Map<String,String> mapAvgScore = new HashMap<>();
-        Map<String,String> mapBestScore = new HashMap<>();
-
+        ArrayList<String> args = new ArrayList<>();
         for(String game : listeJeux){
-            args2.clear();args2.add(game);
-            mapAvgScore.put(game,Surcouche.recupFonction("getScoreMoyen",args2));
-            mapBestScore.put(game,Surcouche.recupFonction("getBestScore",args2));
-            Surcouche.recupFonction("getGrapheScoreMoyen",args2);
-            args2.clear();
+            long startTime = System.currentTimeMillis();
+            System.out.println("Jeu : " + game);
+            args.clear();args.add(game);
+            Surcouche.recupFonction("getGrapheScoreMoyen",args);
+            long endTime = System.currentTimeMillis();
+            System.out.println("temps d'execution : " + (endTime - startTime) + " ms");
+            args.clear();
         }
 
+        //Creation des graphes des joueurs
+        recupFonction("getPieActifsNonActifs",null);
+    }
+
+    public static void main(String[] args) throws IOException {
+        long startTime = System.currentTimeMillis();
+        System.out.println(recupFonction("getDPTPie",null));
         long endTime = System.currentTimeMillis();
-        System.out.println("finish");
         System.out.println("temps d'execution : " + (endTime - startTime) + " ms");
     }
 }
