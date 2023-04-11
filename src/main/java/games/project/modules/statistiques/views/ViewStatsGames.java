@@ -101,21 +101,6 @@ public class ViewStatsGames {
             }
         });
 
-        Button btnDL = new Button("Télécharger les graphiques du jeu sélectionné");
-        btnDL.getStyleClass().add("button");
-        btnDL.setContentDisplay(ContentDisplay.CENTER);
-        btnDL.setLayoutX(300);
-        btnDL.setLayoutY(616);
-
-        btnDL.setOnAction(actionEvent -> {
-            try {
-                System.out.println("Téléchargement du graphe");
-                Surcouche.recupFonction("downloadGraphe",null);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
         graphe = new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/graphe"+jeuCourant+".png").normalize().toAbsolutePath().toString());
         graphe.setLayoutX(500);
         graphe.setLayoutY(200);
@@ -142,7 +127,7 @@ public class ViewStatsGames {
             pane.getChildren().addAll(bestScore, avgScore);
         });
 
-        pane.getChildren().addAll(titre, select, scoreB, scoreM ,comboSelect, bestScore ,btnRetour, avgScore, btnDL, graphe);
+        pane.getChildren().addAll(titre, select, scoreB, scoreM ,comboSelect, bestScore ,btnRetour, avgScore, graphe);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);

@@ -147,8 +147,23 @@ public class ViewMain extends Stage {
             //doit appeler le launcher
         });
 
+        Button btnDL = new Button("Télécharger tout les graphiques");
+        btnDL.getStyleClass().add("button");
+        btnDL.setContentDisplay(ContentDisplay.CENTER);
+        btnDL.setLayoutX(300);
+        btnDL.setLayoutY(616);
 
-        pane.getChildren().addAll(titre, btnTournois, btnJoueurs, btnJeux, btnGlobales, btnRetour);
+        btnDL.setOnAction(actionEvent -> {
+            try {
+                System.out.println("Téléchargement du graphe");
+                Surcouche.recupFonction("downloadGraphe",null);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+
+        pane.getChildren().addAll(titre, btnTournois, btnJoueurs, btnJeux, btnGlobales, btnRetour, btnDL);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);
