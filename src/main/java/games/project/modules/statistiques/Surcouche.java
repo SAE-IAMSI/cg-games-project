@@ -89,9 +89,7 @@ public class Surcouche {
 
     public static void main(String[] args) throws IOException {
         long startTime = System.currentTimeMillis();
-        ArrayList<String> a = new ArrayList<>();
-        a.add("KR");
-        System.out.println(recupFonction("getGrapheScoreMoyen",a));
+        System.out.println(recupFonction("getPieActifsNonActifs",null));
         long endTime = System.currentTimeMillis();
         System.out.println("temps d'execution : " + (endTime - startTime) + " ms");
     }

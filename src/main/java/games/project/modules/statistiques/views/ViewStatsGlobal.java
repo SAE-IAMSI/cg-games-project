@@ -41,10 +41,10 @@ public class ViewStatsGlobal {
 
         Surcouche.recupFonction("getPieActifsNonActifs",null);
         ImageView graphe = new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/pieActifsNonActifs.png").normalize().toAbsolutePath().toString());
-        graphe.setLayoutX(500);
+        graphe.setLayoutX(600);
         graphe.setLayoutY(200);
         graphe.setFitHeight(400);
-        graphe.setFitWidth(700);
+        graphe.setFitWidth(600);
 
         Button btnRetour = new Button("Retour");
         btnRetour.getStyleClass().add("button");

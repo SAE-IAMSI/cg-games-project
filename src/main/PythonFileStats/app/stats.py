@@ -307,8 +307,9 @@ def getPieActifsNonActifs()->None:
     nbAdmin = getNbAdmin()
     nbNonActifs = nbTotal - nbActifs - nbAdmin
     a = np.array([nbActifs, nbNonActifs, nbAdmin])
-    plt.pie(a, labels=['Actifs', 'Non actifs', 'Administrateurs'], autopct='%1.1f%%', shadow=True, startangle=90)
+    plt.pie(a, labels=['Actifs', 'Non actifs', 'Administrateurs'], autopct='%1.1f%%', startangle=90)
     plt.axis('equal')
+    plt.title('Répartition des joueurs actifs, non actifs et administrateurs')
     plt.savefig(os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieActifsNonActifs.png'))
 
 def getAllDpt()->list:
