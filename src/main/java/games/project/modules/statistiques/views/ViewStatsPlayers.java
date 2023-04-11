@@ -2,18 +2,22 @@ package games.project.modules.statistiques.views;
 
 import games.project.modules.statistiques.Surcouche;
 import games.project.parametres.Parametres;
+import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ViewStatsPlayers {
 
@@ -72,21 +76,36 @@ public class ViewStatsPlayers {
         topDepScrollLabel.setLayoutX(800);
         topDepScrollLabel.setLayoutY(121);
 
-        ScrollPane topDepScroll = new ScrollPane();
-        topDepScroll.setLayoutX(775);
+        Pane topDepScroll = new Pane();
+        topDepScroll.setPrefSize(400, 400);
+        topDepScroll.setLayoutX(800);
         topDepScroll.setLayoutY(151);
-        topDepScroll.setMinHeight(435);
-        topDepScroll.setMinWidth(400);
-        GridPane content = new GridPane();
-        //mettre les départements avec les nbInscrits
-/*
-        topDepScroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        GridPane.setHalignment(nbInscrit, HPos.RIGHT);
-        content.add(nomDep, 0, 0);
-        content.add(nbInscrits, 1, 0);
-        content.getChildren().addAll();
-*/
-        topDepScroll.setContent(content);
+
+        HashMap<String, String> map = Surcouche.splitDPT(Surcouche.recupFonction("getDptPlusJoueurs",null));
+        ArrayList<Label> nomDep = new ArrayList<>();
+        ArrayList<Label> nbInscrits = new ArrayList<>();
+        for (String key : map.keySet()) {
+            nomDep.add(new Label(key));
+            nbInscrits.add(new Label(map.get(key)));
+        }
+
+        //mettre les departements dans la pane topDepScroll
+        for(int j=0; j<nomDep.size(); j++){
+            nomDep.get(j).getStyleClass().add("texte");
+            nomDep.get(j).setLayoutX(0);
+            nomDep.get(j).setLayoutY(30*j);
+            topDepScroll.getChildren().add(nomDep.get(j));
+        }
+
+        for(int j=0; j<nbInscrits.size(); j++){
+            nbInscrits.get(j).getStyleClass().add("texte");
+            nbInscrits.get(j).setLayoutX(300);
+            nbInscrits.get(j).setLayoutY(30*j);
+            topDepScroll.getChildren().add(nbInscrits.get(j));
+        }
+
+        System.out.println(topDepScroll.getChildren());
+        pane.getChildren().add(topDepScroll);
 
         Button btnGraph = new Button("Graphiques");
         btnGraph.getStyleClass().add("button");
@@ -113,7 +132,7 @@ public class ViewStatsPlayers {
             v.affichageGraphiques(stage);
         });
 
-        pane.getChildren().addAll(titre, total, nbTotal, dernierInscrit, pseudo, topDep, dep, topDepScrollLabel, topDepScroll, btnGraph, btnRetour);
+        pane.getChildren().addAll(titre, total, nbTotal, dernierInscrit, pseudo, topDep, dep, topDepScrollLabel, btnGraph, btnRetour);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);
