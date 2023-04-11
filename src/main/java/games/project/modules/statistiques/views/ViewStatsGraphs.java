@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.FileSystems;
 
 public class ViewStatsGraphs {
     public void affichageGraphiques(Stage stage){
@@ -23,6 +24,13 @@ public class ViewStatsGraphs {
         titre.setId("CGGamesTitle");
         titre.setLayoutX(500);
         titre.setLayoutY(50);
+
+        ImageView imageDPT = new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/pieDptPlusJoueurs.png").normalize().toAbsolutePath().toString());
+        imageDPT.setLayoutX(350);
+        imageDPT.setLayoutY(150);
+        imageDPT.setFitHeight(533);
+        imageDPT.setFitWidth(800);
+        pane.getChildren().add(imageDPT);
 
 
 

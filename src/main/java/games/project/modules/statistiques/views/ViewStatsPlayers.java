@@ -105,8 +105,6 @@ public class ViewStatsPlayers {
             nbInscrits.get(j).setLayoutY(30*j);
             topDepScroll.getChildren().add(nbInscrits.get(j));
         }
-
-        System.out.println(topDepScroll.getChildren());
         pane.getChildren().add(topDepScroll);
 
         Button btnGraph = new Button("Graphiques");
