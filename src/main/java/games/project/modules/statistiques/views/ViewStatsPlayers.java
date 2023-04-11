@@ -101,7 +101,11 @@ public class ViewStatsPlayers {
 
         btnRetour.setOnAction(actionEvent -> {
             ViewMain v = new ViewMain();
-            v.afficherMenu(stage);
+            try {
+                v.afficherMenu(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         btnGraph.setOnAction(actionEvent -> {

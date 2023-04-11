@@ -83,7 +83,11 @@ public class ViewStatsTournament {
 
         btnRetour.setOnAction(actionEvent -> {
             ViewMain v = new ViewMain();
-            v.afficherMenu(stage);
+            try {
+                v.afficherMenu(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         pane.getChildren().addAll(titre, tournoisCrees, nbTournois, moyenTournoi, avgTournoi, btnRetour, moyenTournoiAttente, avgTournoiAttente, dateDernierTournoi, dateDernierTournoiCree);

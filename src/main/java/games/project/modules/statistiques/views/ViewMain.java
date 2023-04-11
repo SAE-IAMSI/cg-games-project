@@ -1,5 +1,6 @@
 package games.project.modules.statistiques.views;
 
+import games.project.modules.statistiques.Surcouche;
 import games.project.parametres.Parametres;
 import javafx.animation.PauseTransition;
 import javafx.scene.Cursor;
@@ -18,7 +19,9 @@ import static java.lang.Thread.sleep;
 
 public class ViewMain extends Stage {
 
-    public void afficherMenu(Stage stage) {
+    public void afficherMenu(Stage stage) throws IOException {
+
+
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(Parametres.class.getResource("css/parametresStyle.css")));
@@ -30,7 +33,7 @@ public class ViewMain extends Stage {
         titre.setLayoutX(350);
         titre.setLayoutY(50);
 
-        Label chargement = new Label("Chargement en cours... (cela peut prendre quelques secondes)");
+        Label chargement = new Label("Chargement en cours... (cela peut prendre plusieurs minutes)");
         chargement.getStyleClass().add("texte");
         chargement.setLayoutX(400);
         chargement.setLayoutY(340);
@@ -150,6 +153,7 @@ public class ViewMain extends Stage {
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);
         stage.show();
+        Surcouche.creationDesGraphes();
     }
 
 }

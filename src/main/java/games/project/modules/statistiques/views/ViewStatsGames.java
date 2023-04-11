@@ -36,7 +36,6 @@ public class ViewStatsGames {
             args.clear();args.add(game);
             mapAvgScore.put(game,Surcouche.recupFonction("getScoreMoyen",args));
             mapBestScore.put(game,Surcouche.recupFonction("getBestScore",args));
-            Surcouche.recupFonction("getGrapheScoreMoyen",args);
             args.clear();
         }
 
@@ -95,7 +94,11 @@ public class ViewStatsGames {
 
         btnRetour.setOnAction(actionEvent -> {
             ViewMain v = new ViewMain();
-            v.afficherMenu(stage);
+            try {
+                v.afficherMenu(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         Button btnDL = new Button("Télécharger les graphiques du jeu sélectionné");
