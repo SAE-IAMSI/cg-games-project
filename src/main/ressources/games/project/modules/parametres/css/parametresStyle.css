@@ -110,3 +110,9 @@
     -fx-min-width: 200px;
     -fx-min-height: 40px;
 }
+
+.texte{
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+}

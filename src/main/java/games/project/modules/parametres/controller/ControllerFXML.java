@@ -63,6 +63,7 @@ public class ControllerFXML {
             final int fin = i + 1;
             Button b = new Button(jeuPath.get(i));
             b.setOnAction(actionEvent -> {
+                File file = new File(jeuPath.get(fin).split("\\.")[3]);
                 try {
                     Application m = (Application) Class.forName(jeuPath.get(fin)).newInstance();
                     lanceInfoJeu(m);
