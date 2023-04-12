@@ -1,11 +1,12 @@
 package games.project.motron.controller;
 
+import games.project.metier.entite.AuthPlayer;
+import games.project.metier.entite.Player;
+import games.project.metier.manager.PlayerManager;
 import games.project.motron.Motron;
-import games.project.motron.metier.entite.AuthPlayer;
-import games.project.motron.metier.entite.Player;
 import games.project.motron.metier.entite.Stat;
-import games.project.motron.metier.manager.PlayerManager;
-import games.project.motron.metier.manager.ScoreManager;
+import games.project.motron.metier.manager.PlayerManagerMotron;
+import games.project.motron.metier.manager.ScoreManagerMotron;
 import games.project.motron.metier.manager.ScorePartieManager;
 import games.project.motron.stockage.Security;
 import games.project.motron.view.*;
@@ -560,7 +561,7 @@ public class ControllerFXML implements Initializable {
     }
 
     public void creerClassement() {
-        List<Player> meilleurs = PlayerManager.getInstance().getMeilleurs();
+        List<Player> meilleurs = PlayerManagerMotron.getInstance().getMeilleurs();
         ArrayList<Label> listGridJoueur = new ArrayList<>();
         listGridJoueur.add(textTempL1);
         listGridJoueur.add(textTempL2);
@@ -603,7 +604,7 @@ public class ControllerFXML implements Initializable {
         String s = meilleurs.get(i).getName();
         labelj.setText(s);
         labels.setText(String.valueOf(meilleurs.get(i).getScore().getScore()));
-        labeld.setText(PlayerManager.getInstance().getDepartementByLogin(s));
+        labeld.setText(PlayerManagerMotron.getInstance().getDepartementByLogin(s));
     }
 
 
@@ -693,7 +694,7 @@ public class ControllerFXML implements Initializable {
         if (imageMoto.getOpacity() != 1) {
             for (VueSprite s : skinsBloques.keySet()) {
                 if (s.getNom().equals(sprite.getNom())) {
-                    conditionSkin.setText("Jouer encore " + (skinsBloques.get(s) - PlayerManager.getInstance().getNbPartie(j.getNomJoueur())) + " fois");
+                    conditionSkin.setText("Jouer encore " + (skinsBloques.get(s) - PlayerManagerMotron.getInstance().getNbPartie(j.getNomJoueur())) + " fois");
                     conditionSkin.setVisible(true);
                     nomSkin.setText(sprite.getNom());
                 }
@@ -738,7 +739,7 @@ public class ControllerFXML implements Initializable {
         if (imageMoto.getOpacity() != 1) {
             for (VueSprite s : skinsBloques.keySet()) {
                 if (s.getNom().equals(sprite.getNom())) {
-                    conditionSkin.setText("Jouer encore " + (skinsBloques.get(s) - PlayerManager.getInstance().getNbPartie(j.getNomJoueur())) + " fois");
+                    conditionSkin.setText("Jouer encore " + (skinsBloques.get(s) - PlayerManagerMotron.getInstance().getNbPartie(j.getNomJoueur())) + " fois");
                     conditionSkin.setVisible(true);
                     nomSkin.setText(sprite.getNom());
                 }
@@ -759,13 +760,13 @@ public class ControllerFXML implements Initializable {
         recompenses.put(sprite20, sprite20.getTrailColor());
         VueSprite sprite50 = new VueSprite(new Image(Objects.requireNonNull(Motron.class.getResourceAsStream("images/moto/SkinPremium1.png")), 125, 125, true, true), Color.rgb(34, 205, 0), "Voiture Premium");
         recompenses.put(sprite50, sprite50.getTrailColor());
-        if (PlayerManager.getInstance().getNbPartie(j.getNomJoueur()) < 50) {
+        if (PlayerManagerMotron.getInstance().getNbPartie(j.getNomJoueur()) < 50) {
             sprite50.getSkinMotoView().setOpacity(0.25);
             skinsBloques.put(sprite50, 50);
-            if (PlayerManager.getInstance().getNbPartie(j.getNomJoueur()) < 20) {
+            if (PlayerManagerMotron.getInstance().getNbPartie(j.getNomJoueur()) < 20) {
                 sprite20.getSkinMotoView().setOpacity(0.25);
                 skinsBloques.put(sprite20, 20);
-                if (j.isConnecter() && PlayerManager.getInstance().getNbPartie(j.getNomJoueur()) < 10) {
+                if (j.isConnecter() && PlayerManagerMotron.getInstance().getNbPartie(j.getNomJoueur()) < 10) {
                     sprite10.getSkinMotoView().setOpacity(0.25);
                     skinsBloques.put(sprite10, 10);
                 }
@@ -972,7 +973,7 @@ public class ControllerFXML implements Initializable {
 
     public boolean connexionJoueur(Player player, String login, String password) {
         boolean jConnecte = false;
-        AuthPlayer j = PlayerManager.getInstance().getPlayer(login);
+        AuthPlayer j = PlayerManagerMotron.getInstance().getPlayer(login);
         if (j != null)
             try {
                 if (Objects.equals(j.getLogin(), login) && Security.checkPassword(password, j.getSalt(), j.getHashedPassword())) {
@@ -1175,7 +1176,7 @@ public class ControllerFXML implements Initializable {
                         if (!comboBoxText.getSelectionModel().isEmpty()) {
                             if (PlayerManager.getInstance().getPlayer(loginCreerCompte.getText()) == null) {
                                 if (checkboxRGPD.isSelected()) {
-                                    PlayerManager.getInstance().createPlayer(loginCreerCompte.getText(), mdpCreerCompte.getText(), comboBoxText.getValue().substring(0, 3).strip());
+                                    PlayerManagerMotron.getInstance().createPlayer(loginCreerCompte.getText(), comboBoxText.getValue().substring(0, 3).strip(), mdpCreerCompte.getText(), false);
                                     afficherNotification("success", "Bienvenue dans nos rangs, " + loginCreerCompte.getText() + " !");
                                     creationComptePane.setVisible(false);
                                     comptePane.setVisible(true);
@@ -1249,8 +1250,8 @@ public class ControllerFXML implements Initializable {
         statsJ1Pane.setVisible(true);
         nomJoueur1Stat.setText(j1.getNomJoueur());
         Stat statJ1 = ScorePartieManager.getInstance().createStat(j1.getNomJoueur());
-        idTotalScoreJ1.setText(String.valueOf(ScoreManager.getInstance().sommeScore(j1.getNomJoueur())));
-        highScoreStatJ1.setText(String.valueOf(ScoreManager.getInstance().highScore(j1.getNomJoueur())));
+        idTotalScoreJ1.setText(String.valueOf(ScoreManagerMotron.getInstance().sommeScore(j1.getNomJoueur())));
+        highScoreStatJ1.setText(String.valueOf(ScoreManagerMotron.getInstance().highScore(j1.getNomJoueur())));
         idNbCasesJ1.setText(String.valueOf(statJ1.getNbBlocs()));
         idKillJ1.setText(String.valueOf(statJ1.getKill()));
         idMortJ1.setText(String.valueOf(statJ1.getDeath()));
@@ -1273,8 +1274,8 @@ public class ControllerFXML implements Initializable {
         statsJ2Pane.setVisible(true);
         nomJoueur2Stat.setText(j2.getNomJoueur());
         Stat statJ2 = ScorePartieManager.getInstance().createStat(j2.getNomJoueur());
-        idTotalScoreJ2.setText(String.valueOf(ScoreManager.getInstance().sommeScore(j2.getNomJoueur())));
-        highScoreStatJ2.setText(String.valueOf(ScoreManager.getInstance().highScore(j2.getNomJoueur())));
+        idTotalScoreJ2.setText(String.valueOf(ScoreManagerMotron.getInstance().sommeScore(j2.getNomJoueur())));
+        highScoreStatJ2.setText(String.valueOf(ScoreManagerMotron.getInstance().highScore(j2.getNomJoueur())));
         idNbCasesJ2.setText(String.valueOf(statJ2.getNbBlocs()));
         idKillJ2.setText(String.valueOf(statJ2.getKill()));
         idMortJ2.setText(String.valueOf(statJ2.getDeath()));
