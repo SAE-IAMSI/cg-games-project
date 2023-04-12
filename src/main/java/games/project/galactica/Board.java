@@ -4,6 +4,7 @@ import games.project.galactica.sprite.Alien;
 import games.project.galactica.sprite.Player;
 import games.project.galactica.sprite.Shot;
 import games.project.metier.manager.ScoreManager;
+import games.project.metier.entite.Score;
 import games.project.stockage.Session;
 
 import javax.swing.*;
@@ -427,6 +428,5 @@ public class Board extends JPanel {
         } else {
             sm.createScore(rightPanel.getScore(), "", "GALAC");
         }
-
     }
 }

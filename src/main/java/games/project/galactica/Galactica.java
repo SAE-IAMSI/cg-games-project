@@ -50,7 +50,7 @@ public class Galactica extends JFrame {
         getContentPane().add(board, BorderLayout.CENTER);
         getContentPane().add(rightPanel, BorderLayout.EAST);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Space Invaders");
+        setTitle("Galactica");
         setSize(1280, 720);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
