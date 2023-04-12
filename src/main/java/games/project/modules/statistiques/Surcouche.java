@@ -89,9 +89,7 @@ public class Surcouche {
 
     public static void main(String[] args) throws IOException {
         long startTime = System.currentTimeMillis();
-        ArrayList<String> listeJeux = new ArrayList<>();
-        listeJeux.add("CB");
-        System.out.println(recupFonction("getBestScore", listeJeux));
+        creationDesGraphes();
         long endTime = System.currentTimeMillis();
         System.out.println("temps d'execution : " + (endTime - startTime) + " ms");
     }

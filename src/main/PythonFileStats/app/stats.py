@@ -109,7 +109,7 @@ def getTabScoreMoyenParSemaine(jeu: str, idGraph):
     :return: scores: list et semaines:list
     """
     itDate = date(2022, 11, 12)  # la date qui sera itérée par delta
-    d = datetime.date.today()
+    d = date.today()
     delta = timedelta(weeks=1)  # delta = une semaine
     nextDate = itDate + delta  # nexDate = date courante + une semaine
 
