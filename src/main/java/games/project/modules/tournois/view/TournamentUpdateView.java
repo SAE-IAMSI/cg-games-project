@@ -1,28 +1,27 @@
 package games.project.modules.tournois.view;
 
 import games.project.metier.entite.AuthPlayer;
-import games.project.metier.entite.Jeu;
-import games.project.metier.manager.JeuManager;
 import games.project.metier.manager.PlayerManager;
 import games.project.modules.tournois.controller.TournamentController;
 import games.project.modules.tournois.metier.entite.Tournament;
 import games.project.modules.tournois.metier.manager.TournamentManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 public class TournamentUpdateView extends AnchorPane {
 
-    private TournamentController controller;
+    private final TournamentController controller;
     private Tournament tournament;
 
     @FXML

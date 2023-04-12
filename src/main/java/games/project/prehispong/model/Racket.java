@@ -12,13 +12,19 @@ public class Racket extends Rectangle implements Element {
         setPos(posX, posY);
         this.setHeight(heigh);
         this.setWidth(width);
-        if (sensImage == 0) {
-            Image img = new Image(MainPong.class.getResource("textures/raquetteDroit.png").toString());
-            this.setFill(new ImagePattern(img));
-        } else if (sensImage == 1) {
-            Image img = new Image(MainPong.class.getResource("textures/raquetteGauche.png").toString());
-            this.setFill(new ImagePattern(img));
+
+        try {
+            if (sensImage == 0) {
+                Image img = new Image(MainPong.class.getResource("textures/raquetteDroit.png").toString());
+                this.setFill(new ImagePattern(img));
+            } else if (sensImage == 1) {
+                Image img = new Image(MainPong.class.getResource("textures/raquetteGauche.png").toString());
+                this.setFill(new ImagePattern(img));
+            }
+        } catch (RuntimeException r) {
+            System.out.println("texture non chargé");
         }
+
 
     }
 

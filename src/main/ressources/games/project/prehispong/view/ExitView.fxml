@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="300.0" maxWidth="300.0" minHeight="157.0" minWidth="300.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: black; -fx-background-radius: 50;" stylesheets="@../css/cssPong.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="164.0" layoutY="199.0" mnemonicParsing="false" onAction="#clickCancel" prefHeight="60.0" prefWidth="110.0" styleClass="btnRed" text="Non" />
+      <Text fill="WHITE" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="LabelConnexionField" text="Voulez-vous quitter le jeu ?" textAlignment="CENTER" wrappingWidth="300.0" />
+      <Button layoutX="37.0" layoutY="199.0" mnemonicParsing="false" onAction="#clickOk" prefHeight="52.0" prefWidth="110.0" styleClass="buttonEcran" text="Oui" />
+   </children>
+</fx:root>

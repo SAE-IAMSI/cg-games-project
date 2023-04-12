@@ -9,11 +9,11 @@ import java.util.Map;
 
 public class PlayerManager {
 
-    private static PlayerManager instance = null;
-    private final StockagePlayerDatabase stockage = new StockagePlayerDatabase();
-    private final Map<String, String> departments;
+    protected static PlayerManager instance = null;
+    protected StockagePlayerDatabase stockage = new StockagePlayerDatabase();
+    protected final Map<String, String> departments;
 
-    private PlayerManager() {
+    protected PlayerManager() {
         departments = stockage.getDepartments();
     }
 
