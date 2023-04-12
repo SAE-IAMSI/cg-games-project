@@ -2,6 +2,7 @@ package games.project.prehispong.view;
 
 import games.project.prehispong.MainPong;
 import games.project.prehispong.controller.GameController;
+import games.project.prehispong.sound.GameSound;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
@@ -21,7 +22,10 @@ public class StartMenuView extends GenericView {
 
     @FXML
     private void exit() {
-
+        GenericView exit = new ExitView(gameController);
+        exit.setLayoutX(gameController.getPrefWidth()*0.5-exit.getPrefWidth()*0.5);
+        exit.setLayoutY(gameController.getPrefHeight()*0.5-exit.getPrefHeight()*0.5);
+        gameController.displayScreen(exit);
     }
 
     @FXML
@@ -47,5 +51,20 @@ public class StartMenuView extends GenericView {
                 e.printStackTrace();
             }
         }
+    }
+
+    @FXML
+    private void changeSound(){
+        GameSound.getInstance().changeSound();
+    }
+
+    @FXML
+    private void tcp(){
+        GameSound.getInstance().playTcp();
+    }
+
+    @FXML
+    private void stopSound(){
+        GameSound.getInstance().stop();
     }
 }
