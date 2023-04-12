@@ -1,6 +1,8 @@
 package games.project.modules.parametres.controller;
 
 import games.project.metier.manager.JeuManager;
+import games.project.modules.statistiques.StatsLauncher;
+import games.project.modules.tournois.TournamentApplication;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -15,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,10 +63,8 @@ public class ControllerFXML {
             final int fin = i + 1;
             Button b = new Button(jeuPath.get(i));
             b.setOnAction(actionEvent -> {
-                File file = new File(jeuPath.get(fin).split("\\.")[3]);
                 try {
                     Application m = (Application) Class.forName(jeuPath.get(fin)).newInstance();
-//                    m.start(new Stage());
                     lanceInfoJeu(m);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -171,11 +172,19 @@ public class ControllerFXML {
 
     @FXML
     public void lanceTournois(){
-
+        Platform.runLater(() -> {
+            try {
+                new TournamentApplication().start(new Stage());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     @FXML
     public void lanceStatistiques(){
-
+        Platform.runLater(() -> {
+            new StatsLauncher().start(new Stage());
+        });
     }
 }

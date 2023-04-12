@@ -1,6 +1,6 @@
-package games.project.statistiques.views;
+package games.project.modules.statistiques.views;
 
-import games.project.statistiques.StatsLauncher;
+import games.project.modules.statistiques.StatsLauncher;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -9,30 +9,43 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class ViewStatsGlobal {
+public class ViewStatsTournament {
 
-    public void affichageStatsGlobales(Stage stage) {
+    public void affichageStatsTournoi(Stage stage) {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(StatsLauncher.class.getResource("css/styleStats.css")));
         pane.getStyleClass().add("fond");
 
-        Label titre = new Label("Statistiques Globales");
+        Label titre = new Label("Statistiques Tournois");
         titre.getStyleClass().add("titre");
         titre.setLayoutX(600);
         titre.setLayoutY(100);
 
-        Label joueursActifs = new Label("Nombre de joueurs actifs : ");
-        joueursActifs.getStyleClass().add("texte");
-        joueursActifs.setLayoutX(122);
-        joueursActifs.setLayoutY(191);
+        Label tournoisCrees = new Label("Nombres de tournois crées  : ");
+        tournoisCrees.getStyleClass().add("texte");
+        tournoisCrees.setLayoutX(122);
+        tournoisCrees.setLayoutY(191);
 
-        //stocker le nombre de joueurs actifs
+        //mettre le nombre de tournois crées
         String s = "";
-        Label nbJoueursActifs = new Label(s);
-        nbJoueursActifs.setLayoutX(284);
-        nbJoueursActifs.setLayoutY(191);
+        Label nbTournois = new Label(s);
+        nbTournois.getStyleClass().add("texte");
+        nbTournois.setLayoutX(296);
+        nbTournois.setLayoutY(191);
+
+        Label moyenTournoi = new Label("Nombre de participants moyen par tournoi : ");
+        moyenTournoi.getStyleClass().add("texte");
+        moyenTournoi.setLayoutX(122);
+        moyenTournoi.setLayoutY(343);
+
+        //mettre le nombre de participants moyen par tournois
+        String s1 = "";
+        Label avgTournoi = new Label(s1);
+        avgTournoi.getStyleClass().add("texte");
+        avgTournoi.setLayoutX(378);
+        avgTournoi.setLayoutY(343);
 
         ImageView imageRetour = new ImageView(String.valueOf(StatsLauncher.class.getResource("textures/button.png")));
         imageRetour.getStyleClass().add("btnRetour");
@@ -51,11 +64,12 @@ public class ViewStatsGlobal {
             v.afficherMenu(stage);
         });
 
-        pane.getChildren().addAll(titre, joueursActifs, nbJoueursActifs, btnRetour);
+        pane.getChildren().addAll(titre, tournoisCrees, nbTournois, moyenTournoi, avgTournoi, btnRetour);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);
         stage.show();
 
     }
+
 }

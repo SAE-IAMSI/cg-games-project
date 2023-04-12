@@ -1,6 +1,6 @@
-package games.project.statistiques.controller;
+package games.project.modules.statistiques.controller;
 
-import games.project.statistiques.StatsLauncher;
+import games.project.modules.statistiques.StatsLauncher;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;

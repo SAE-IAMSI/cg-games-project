@@ -1,4 +1,4 @@
-package games.project.statistiques;
+package games.project.modules.statistiques;
 
 import java.io.BufferedReader;
 import java.io.IOException;
