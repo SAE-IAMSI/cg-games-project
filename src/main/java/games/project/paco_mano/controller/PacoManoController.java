@@ -167,21 +167,29 @@ public class PacoManoController {
     protected void backToMenuFromSettings() {
         settingPane.setVisible(false);
         menuPane.setVisible(true);
+        titleBackground.setVisible(true);
+        baseBackground.setVisible(false);
     }
     @FXML
     protected void backToMenuFromPlayerPane() {
         playerPane.setVisible(false);
         menuPane.setVisible(true);
+        titleBackground.setVisible(true);
+        baseBackground.setVisible(false);
     }
     @FXML
     protected void backToMenuFromHighScore() {
         highscorePane.setVisible(false);
         menuPane.setVisible(true);
+        titleBackground.setVisible(true);
+        baseBackground.setVisible(false);
     }
     @FXML
     protected void backToMenuFromGame() {
         gamePane.setVisible(false);
         menuPane.setVisible(true);
+        titleBackground.setVisible(true);
+        baseBackground.setVisible(false);
     }
 
     /** Menu to */
@@ -189,21 +197,30 @@ public class PacoManoController {
     protected void menuToSettings() {
         settingPane.setVisible(true);
         menuPane.setVisible(false);
+        titleBackground.setVisible(false);
+        baseBackground.setVisible(true);
+
     }
     @FXML
     protected void menuToPlayerPane() {
         playerPane.setVisible(true);
         menuPane.setVisible(false);
+        titleBackground.setVisible(false);
+        baseBackground.setVisible(true);
     }
     @FXML
     protected void menuToHighScore() {
         highscorePane.setVisible(true);
         menuPane.setVisible(false);
+        titleBackground.setVisible(false);
+        baseBackground.setVisible(true);
     }
     @FXML
     protected void menuToGame() {
         gamePane.setVisible(true);
         menuPane.setVisible(false);
+        titleBackground.setVisible(false);
+        baseBackground.setVisible(true);
     }
 
     @FXML
