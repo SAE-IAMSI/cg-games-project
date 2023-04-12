@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.nio.file.FileSystems;
 
 public class ViewStatsTournament {
 
@@ -75,6 +76,12 @@ public class ViewStatsTournament {
         dateDernierTournoiCree.setLayoutX(430);
         dateDernierTournoiCree.setLayoutY(450);
 
+        ImageView graphe = new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/grapheTournoi.png").normalize().toAbsolutePath().toString());
+        graphe.setLayoutX(600);
+        graphe.setLayoutY(150);
+        graphe.setFitHeight(480);
+        graphe.setFitWidth(640);
+
         Button btnRetour = new Button("Retour");
         btnRetour.getStyleClass().add("button");
         btnRetour.setContentDisplay(ContentDisplay.CENTER);
@@ -90,7 +97,7 @@ public class ViewStatsTournament {
             }
         });
 
-        pane.getChildren().addAll(titre, tournoisCrees, nbTournois, moyenTournoi, avgTournoi, btnRetour, moyenTournoiAttente, avgTournoiAttente, dateDernierTournoi, dateDernierTournoiCree);
+        pane.getChildren().addAll(titre, tournoisCrees, nbTournois, moyenTournoi, avgTournoi, btnRetour, moyenTournoiAttente, avgTournoiAttente, dateDernierTournoi, dateDernierTournoiCree, graphe);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);

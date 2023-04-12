@@ -361,3 +361,29 @@ def getDPTPie():
     ax.legend(wedges, ingredients,title="Departements",loc="center right",bbox_to_anchor=(0.9, 0, 0.5, 1))
     ax.set_title("Les départements avec le plus de joueurs")
     plt.savefig(os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieDptPlusJoueurs.png'))
+
+def grapheTournoi():
+    """
+    Sauvegarde dans un fichier temporaire un graphe représentant le nombre de tournois par mois\n
+    """
+    connexion = createConnexion(user, password, host, port, sid)
+    with connexion.cursor() as cursor:
+        sql = """select count(codetournoi) from tournois where datefin < sysdate"""
+        for r in cursor.execute(sql):
+            tournoiFini = r[0]
+    with connexion.cursor() as cursor:
+        sql = """select count(*) from tournois where datefin > sysdate and datedebut > sysdate"""
+        for r in cursor.execute(sql):
+            tournoiEnCours = r[0]
+    with connexion.cursor() as cursor:
+        sql = """select count(*) from tournois where datedebut > sysdate"""
+        for r in cursor.execute(sql):
+            tournoiEnAttente = r[0]
+
+    labels = 'Tournois en cours', 'Tournois en attente', 'Tournois terminés'
+    sizes = [tournoiEnCours, tournoiEnAttente, tournoiFini]
+    fig1, ax1 = plt.subplots()
+    ax1.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
+    ax1.axis('equal')
+    plt.title('Répartition des tournois')
+    plt.savefig(os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/grapheTournoi.png'))

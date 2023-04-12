@@ -86,7 +86,7 @@ public class Surcouche {
 
     public static void main(String[] args) throws IOException {
         long startTime = System.currentTimeMillis();
-        System.out.println(recupFonction("getPieActifsNonActifs",null));
+        System.out.println(recupFonction("grapheTournoi",null));
         long endTime = System.currentTimeMillis();
         System.out.println("temps d'execution : " + (endTime - startTime) + " ms");
     }
