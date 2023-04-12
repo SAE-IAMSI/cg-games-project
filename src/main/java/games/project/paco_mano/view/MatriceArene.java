@@ -1,4 +1,5 @@
 package games.project.paco_mano.view;
+
 public class MatriceArene {
 
     private final int __ = 0;

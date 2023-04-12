@@ -6,18 +6,18 @@ import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 
 public class Jeu extends Pane {
-    private ArrayList<Ghost> ghostArrayList;
-    private PacMan pacMan;
-    private Arene arene;
+    private final ArrayList<Ghost> ghostArrayList;
+    private final PacMan pacMan;
+    private final Arene arene;
 
     public Arene getArene() {
         return arene;
     }
 
-    public Jeu(PacMan pacMan, ArrayList<Ghost> ghostArrayList, Arene arene){
-        this.arene=arene;
-        this.pacMan=pacMan;
-        this.ghostArrayList=ghostArrayList;
+    public Jeu(PacMan pacMan, ArrayList<Ghost> ghostArrayList, Arene arene) {
+        this.arene = arene;
+        this.pacMan = pacMan;
+        this.ghostArrayList = ghostArrayList;
         /*Mur mur = new Mur();
         mur.dessinerCarte(2);
 
@@ -42,7 +42,7 @@ public class Jeu extends Pane {
         }
     }
 
-    public void setTouches(Scene scene){
+    public void setTouches(Scene scene) {
         scene.setOnKeyPressed(event ->
         {
             switch (event.getCode()) {

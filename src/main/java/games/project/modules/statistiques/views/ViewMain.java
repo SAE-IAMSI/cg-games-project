@@ -1,9 +1,7 @@
 package games.project.modules.statistiques.views;
 
-import games.project.modules.statistiques.Surcouche;
 import games.project.modules.parametres.Parametres;
-import javafx.animation.PauseTransition;
-import javafx.scene.Cursor;
+import games.project.modules.statistiques.Surcouche;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -11,11 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.IOException;
-
-import static java.lang.Thread.sleep;
 
 public class ViewMain extends Stage {
 
@@ -161,7 +156,7 @@ public class ViewMain extends Stage {
         btnDL.setOnAction(actionEvent -> {
             try {
                 System.out.println("Téléchargement du graphe");
-                Surcouche.recupFonction("downloadGraphe",null);
+                Surcouche.recupFonction("downloadGraphe", null);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

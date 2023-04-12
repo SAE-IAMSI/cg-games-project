@@ -2,9 +2,12 @@ package games.project.motron.stockage.sql;
 
 import games.project.stockage.sql.StockageScoreDatabase;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class StockageScoreDatabaseMotron extends StockageScoreDatabase{
+public class StockageScoreDatabaseMotron extends StockageScoreDatabase {
 
     public int getSommeScore(String login) {
         int score = 0;

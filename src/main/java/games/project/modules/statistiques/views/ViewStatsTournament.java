@@ -1,7 +1,7 @@
 package games.project.modules.statistiques.views;
 
-import games.project.modules.statistiques.Surcouche;
 import games.project.modules.parametres.Parametres;
+import games.project.modules.statistiques.Surcouche;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -34,7 +34,7 @@ public class ViewStatsTournament {
         tournoisCrees.setLayoutY(191);
 
         //mettre le nombre de tournois crées
-        String s = Surcouche.recupFonction("getNbTournois",null);
+        String s = Surcouche.recupFonction("getNbTournois", null);
         Label nbTournois = new Label(s);
         nbTournois.getStyleClass().add("texte");
         nbTournois.setLayoutX(320);
@@ -46,7 +46,7 @@ public class ViewStatsTournament {
         moyenTournoi.setLayoutY(250);
 
         //mettre le nombre de participants moyen par tournois
-        String s1 = Surcouche.recupFonction("getAvgParticipants",null);
+        String s1 = Surcouche.recupFonction("getAvgParticipants", null);
         Label avgTournoi = new Label(s1);
         avgTournoi.getStyleClass().add("texte");
         avgTournoi.setLayoutX(430);
@@ -58,7 +58,7 @@ public class ViewStatsTournament {
         moyenTournoiAttente.setLayoutY(393);
 
         //mettre le nombre de participants moyen par tournois
-        String s2 = Surcouche.recupFonction("getAvgAttendees",null);
+        String s2 = Surcouche.recupFonction("getAvgAttendees", null);
         Label avgTournoiAttente = new Label(s2);
         avgTournoiAttente.getStyleClass().add("texte");
         avgTournoiAttente.setLayoutX(430);
@@ -70,7 +70,7 @@ public class ViewStatsTournament {
         dateDernierTournoi.setLayoutY(450);
 
         //mettre la date du dernier tournoi crée
-        String s3 = Surcouche.dateLisible(Surcouche.recupFonction("getMaxDateDebutTournois",null));
+        String s3 = Surcouche.dateLisible(Surcouche.recupFonction("getMaxDateDebutTournois", null));
         Label dateDernierTournoiCree = new Label(s3);
         dateDernierTournoiCree.getStyleClass().add("texte");
         dateDernierTournoiCree.setLayoutX(430);

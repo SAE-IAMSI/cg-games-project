@@ -29,6 +29,7 @@ public class Alien extends Sprite {
 
     /**
      * Déplace l'alien
+     *
      * @param direction
      */
     public void act(int direction) {
@@ -48,6 +49,7 @@ public class Alien extends Sprite {
 
         /**
          * Constructeur de la classe Bomb
+         *
          * @param x
          * @param y
          */
@@ -57,6 +59,7 @@ public class Alien extends Sprite {
 
         /**
          * Initialise la bombe
+         *
          * @param x
          * @param y
          */
@@ -74,6 +77,7 @@ public class Alien extends Sprite {
 
         /**
          * Définit si la bombe est détruite
+         *
          * @param destroyed
          */
         public void setDestroyed(boolean destroyed) {

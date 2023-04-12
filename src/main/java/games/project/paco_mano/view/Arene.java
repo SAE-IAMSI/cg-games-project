@@ -15,7 +15,7 @@ public class Arene {
     private final int murSize = 20;
     private Mur murs = new Mur();
     private ArrayList<Line> lineList = new ArrayList<>();
-    private int[][]matArene;
+    private int[][] matArene;
     private final ArrayList<Circle> pelletList = new ArrayList<Circle>();
     private final ArrayList<Circle> bonusList = new ArrayList<Circle>();
 
@@ -56,7 +56,6 @@ public class Arene {
     }
 
 
-
     public int getMurSize() {
         return murSize;
     }
@@ -76,57 +75,52 @@ public class Arene {
     public ArrayList<Rectangle> getWallList() {
         return wallList;
     }
-    public Arene(){
+
+    public Arene() {
         drawLines();
         murs.dessinerBordures(this);
     }
-    public Arene(int nb){
+
+    public Arene(int nb) {
         drawLines();
         murs.dessinerBordures(this);
         murs.dessinerCarte(nb);
     }
 
-    public Arene(int[][]matArene){
+    public Arene(int[][] matArene) {
         murs.dessinerArene(this, matArene);
         drawLines();
     }
     // -----------------------------------------------------------------
 
-    public void drawLines()
-    {
+    public void drawLines() {
         //crée les lignes verticales
         int a = 0;
-        for (int x = 0; x < mapWidth - murSize*2 ; x += 20 /*(mapWidth-murSize*2) / 12*/) //en commentaire: c'est si on peut un certain nombre de ligne précisément, le calcul permet de diviser l'arène en x morceaux
+        for (int x = 0; x < mapWidth - murSize * 2; x += 20 /*(mapWidth-murSize*2) / 12*/) //en commentaire: c'est si on peut un certain nombre de ligne précisément, le calcul permet de diviser l'arène en x morceaux
         {
             int y = 0;
             Line line = new Line(x + murSize, y + murSize, x + murSize, mapHeight - murSize);
-            if (a%3 == 0)
-            {
+            if (a % 3 == 0) {
 
                 line.setStrokeWidth(0.7);
-            }
-            else
-            {
+            } else {
                 line.setStrokeWidth(0.5);
             }
             line.setStroke(Color.DIMGREY);
             line.setOpacity(0.5);
             lineList.add(line);
-            a ++;
+            a++;
         }
 
         //crée les lignes horizontales
         a = 0;
-        for (int y = 0; y < mapHeight - murSize*2; y+= 20 /*(mapHeight - murSize*2) / 12*/) //en commentaire: c'est si on peut un certain nombre de ligne précisément, le calcul permet de diviser l'arène en x morceaux
+        for (int y = 0; y < mapHeight - murSize * 2; y += 20 /*(mapHeight - murSize*2) / 12*/) //en commentaire: c'est si on peut un certain nombre de ligne précisément, le calcul permet de diviser l'arène en x morceaux
         {
             int x = 0;
             Line line = new Line(x + murSize, y + murSize, mapWidth - murSize, y + murSize);
-            if (a%3 == 0)
-            {
+            if (a % 3 == 0) {
                 line.setStrokeWidth(0.7);
-            }
-            else
-            {
+            } else {
                 line.setStrokeWidth(0.5);
             }
             line.setStroke(Color.DIMGREY);
@@ -139,8 +133,8 @@ public class Arene {
     public void drawPellets(Pane pane) {
         int x, y, num = 0;
 
-        for (x = 30; x < mapWidth-25; x += murSize) {
-            for (y = 30; y < mapHeight-25; y += murSize) {
+        for (x = 30; x < mapWidth - 25; x += murSize) {
+            for (y = 30; y < mapHeight - 25; y += murSize) {
                 if (!isAWall(x - (murSize / 2), y - (murSize / 2)) && !isABonusFood(x, y)) {
                     Circle pellet = new Circle();
                     pellet.setRadius(1.5);
@@ -203,7 +197,6 @@ public class Arene {
 
         return false;
     }
-
 
 
 }

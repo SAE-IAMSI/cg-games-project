@@ -4,13 +4,13 @@ package games.project.paco_mano.view;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class PacMan  {
+public class PacMan {
 
     enum Dir {
         UP, DOWN, LEFT, RIGHT
     }
 
-    private Circle circle;
+    private final Circle circle;
     private int pacmanX;
 
     private int pacmanY;
@@ -46,17 +46,17 @@ public class PacMan  {
         this.newDir = newDir;
     }
 
-    public PacMan(){
+    public PacMan() {
         circle = new Circle();
         circle.setRadius(7);
         circle.setFill(Color.YELLOW);
     }
 
-    public void makePacMan(Jeu jeu){
+    public void makePacMan(Jeu jeu) {
         jeu.getChildren().add(circle);
     }
 
-    public void move(Jeu jeu){
+    public void move(Jeu jeu) {
         // only when pacman cannot continue in its current direction, its direction is updated
         if (!collision(jeu, newDir, pacmanX, pacmanY)) {
             if (movingAt != newDir)        // when pacman makes a turn, record the coordinates of the position he turned at
@@ -69,16 +69,16 @@ public class PacMan  {
         }
 
         if (movingAt == Dir.UP) {
-            if (!collision(jeu,movingAt, pacmanX, pacmanY))
+            if (!collision(jeu, movingAt, pacmanX, pacmanY))
                 circle.setCenterY(pacmanY - speed);
         } else if (movingAt == Dir.DOWN) {
-            if (!collision(jeu,movingAt, pacmanX, pacmanY))
+            if (!collision(jeu, movingAt, pacmanX, pacmanY))
                 circle.setCenterY(pacmanY + speed);
         } else if (movingAt == Dir.LEFT) {
-            if (!collision(jeu,movingAt, pacmanX, pacmanY))
+            if (!collision(jeu, movingAt, pacmanX, pacmanY))
                 circle.setCenterX(pacmanX - speed);
         } else if (movingAt == Dir.RIGHT) {
-            if (!collision(jeu,movingAt, pacmanX, pacmanY))
+            if (!collision(jeu, movingAt, pacmanX, pacmanY))
                 circle.setCenterX(pacmanX + speed);
         }
     }

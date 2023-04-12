@@ -9,7 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Vector;
 
 public class CompteNonConnecteFrame extends JFrame {
 
@@ -34,7 +36,7 @@ public class CompteNonConnecteFrame extends JFrame {
         add(retour);
 
         JPanel connexionPane = new JPanel();
-        connexionPane.setBounds(100,150,400,500);
+        connexionPane.setBounds(100, 150, 400, 500);
         connexionPane.setBackground(Color.BLACK);
         GridBagLayout gbConnexion = new GridBagLayout();
         GridBagConstraints gbcConnexion = new GridBagConstraints();
@@ -74,7 +76,7 @@ public class CompteNonConnecteFrame extends JFrame {
         connexionPane.add(connexion);
 
         JPanel inscriptionPane = new JPanel();
-        inscriptionPane.setBounds(800,150,400,500);
+        inscriptionPane.setBounds(800, 150, 400, 500);
         inscriptionPane.setBackground(Color.BLACK);
         GridBagLayout gbInscription = new GridBagLayout();
         GridBagConstraints gbcInscription = new GridBagConstraints();
@@ -177,7 +179,7 @@ public class CompteNonConnecteFrame extends JFrame {
             for (char str : inscrireMdpConfirmation.getPassword()) {
                 mdpConfirm.append(str);
             }
-            if (mdp.toString().equals(mdpConfirm.toString()) && !inscrirePseudo.getText().equals("") && !mdp.toString().equals("") && !mdpConfirm.toString().equals("")) {
+            if (mdp.toString().contentEquals(mdpConfirm) && !inscrirePseudo.getText().equals("") && !mdp.toString().equals("") && !mdpConfirm.toString().equals("")) {
                 String mdpRegister = mdp.toString();
                 String deptRegister;
                 if (Objects.requireNonNull(departement.getSelectedItem()).equals("xx - Pas de département")) {

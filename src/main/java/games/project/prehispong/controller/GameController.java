@@ -106,8 +106,7 @@ public class GameController extends GenericView {
             racketPlayer1.hitboxRacket(ball);
             if (!(difficulty == 3)) {
                 checkEndConditionPVIA(difficulty);
-            }
-            else{
+            } else {
                 checkEndConditionSurvival();
             }
         }));
@@ -125,8 +124,8 @@ public class GameController extends GenericView {
         this.chronometer = new Chronometer();
         chronometer.initChrono();
         chronoText.textProperty().bind(new SimpleStringProperty("Chronometre : ").concat(chronometer.getIntegerProperty().asString()));
-        player1 = new Player("Joueur 1",new Score("PONG"));
-        player2 = new Player("Joueur 2",new Score("PONG"));
+        player1 = new Player("Joueur 1", new Score("PONG"));
+        player2 = new Player("Joueur 2", new Score("PONG"));
         p1.setText(player1.getName());
         p2.setText(player2.getName());
 
@@ -170,7 +169,7 @@ public class GameController extends GenericView {
 
     public void registerScore() {
         if (Session.getInstance().isConnected()) {
-            ScoreManager.getInstance().createScore(player1.getScore().getScore(),player1.getName(),player1.getScore().getGameCode());
+            ScoreManager.getInstance().createScore(player1.getScore().getScore(), player1.getName(), player1.getScore().getGameCode());
         }
     }
 
@@ -186,31 +185,31 @@ public class GameController extends GenericView {
         }
     }
 
-    private void checkEndConditionPVIA(int difficulty){
+    private void checkEndConditionPVIA(int difficulty) {
         if (player1.getScore().scoreProperty().getValue().equals(5)) {
             resetScore();
             endLoop();
-            switch (difficulty){
-                case 0 -> player1.setScore(1000-chronometer.getTime()*10);
-                case 1 -> player1.setScore(5000-chronometer.getTime()*10);
-                case 2 -> player1.setScore(10000-chronometer.getTime()*10);
+            switch (difficulty) {
+                case 0 -> player1.setScore(1000 - chronometer.getTime() * 10);
+                case 1 -> player1.setScore(5000 - chronometer.getTime() * 10);
+                case 2 -> player1.setScore(10000 - chronometer.getTime() * 10);
             }
             registerScore();
-            displayScreen(new EndGameView(player1.getName(),player1.getScore().getScore(), this));
+            displayScreen(new EndGameView(player1.getName(), player1.getScore().getScore(), this));
         } else if (player2.getScore().scoreProperty().getValue().equals(5)) {
             resetScore();
             endLoop();
-            displayScreen(new EndGameView(player2.getName(),0, this));
+            displayScreen(new EndGameView(player2.getName(), 0, this));
         }
     }
 
     private void checkEndConditionSurvival() {
-        if (player1.getScore().scoreProperty().getValue() >= 1 || player2.getScore().scoreProperty().getValue()>=1) {
+        if (player1.getScore().scoreProperty().getValue() >= 1 || player2.getScore().scoreProperty().getValue() >= 1) {
             resetScore();
             endLoop();
-            player1.getScore().setScore(chronometer.getTime()*100);
+            player1.getScore().setScore(chronometer.getTime() * 100);
             registerScore();
-            displayScreen(new EndGameView(player1.getName(),player1.getScore().getScore(), this));
+            displayScreen(new EndGameView(player1.getName(), player1.getScore().getScore(), this));
         }
     }
 
@@ -223,7 +222,9 @@ public class GameController extends GenericView {
     }
 
 
-    /** Ecoute les inputs clavier pour lancer la boucle de jeu **/
+    /**
+     * Ecoute les inputs clavier pour lancer la boucle de jeu
+     **/
     public void listener() {
         this.getScene().setOnKeyPressed((KeyEvent event) -> {
             if (event.getCode().equals(KeyCode.SPACE) && gameState) {
@@ -233,11 +234,13 @@ public class GameController extends GenericView {
         });
     }
 
-    /** Ecoute les inputs souris pour déplacer la racket pour le mode PVIA  **/
+    /**
+     * Ecoute les inputs souris pour déplacer la racket pour le mode PVIA
+     **/
     public void listenerMouse() {
         this.getScene().setOnMouseMoved((MouseEvent event) -> {
-            if (event.getSceneY()-racketPlayer1.getHeight()*0.5 > topBar.getLayoutY() + topBar.getHeight() && event.getSceneY()-racketPlayer1.getHeight()*0.5 < bottomBar.getLayoutY()- (bottomBar.getHeight() + racketPlayer1.getHeight()*0.25) ) {
-                this.racketPlayer1.setLayoutY(event.getSceneY()-racketPlayer1.getHeight()*0.5);
+            if (event.getSceneY() - racketPlayer1.getHeight() * 0.5 > topBar.getLayoutY() + topBar.getHeight() && event.getSceneY() - racketPlayer1.getHeight() * 0.5 < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight() * 0.25)) {
+                this.racketPlayer1.setLayoutY(event.getSceneY() - racketPlayer1.getHeight() * 0.5);
             }
             event.consume();
         });
@@ -247,7 +250,9 @@ public class GameController extends GenericView {
     }
 
 
-    /** Ecoute les inputs clavier pour les déplacements en PVP racket **/
+    /**
+     * Ecoute les inputs clavier pour les déplacements en PVP racket
+     **/
     public void listenerKeyboard() {
         final List<KeyCode> acceptedCodes = Arrays.asList(KeyCode.Z, KeyCode.S, KeyCode.UP, KeyCode.DOWN);
         final Set<KeyCode> codes = new HashSet<>();
@@ -310,7 +315,7 @@ public class GameController extends GenericView {
      **/
     public void racketAI(Racket racket, Ball ball, int mods) {
 
-        double mvt = ball.getLayoutY()-racket.getHeight() / 2;
+        double mvt = ball.getLayoutY() - racket.getHeight() / 2;
         int r1 = new Random().nextInt(0, 500);
 
         switch (mods) {
@@ -380,7 +385,7 @@ public class GameController extends GenericView {
     public void playLoop() {
         timeline.play();
         information.setVisible(false);
-        if(gamemode.equals("IA")){
+        if (gamemode.equals("IA")) {
             chronometer.launch();
         }
     }

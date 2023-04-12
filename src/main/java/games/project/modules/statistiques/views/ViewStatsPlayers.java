@@ -1,30 +1,24 @@
 package games.project.modules.statistiques.views;
 
-import games.project.modules.statistiques.Surcouche;
 import games.project.modules.parametres.Parametres;
-import javafx.geometry.HPos;
+import games.project.modules.statistiques.Surcouche;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class ViewStatsPlayers {
 
     public void affichageJoueurs(Stage stage) throws IOException {
 
-        ArrayList<String> listeDPT = Surcouche.splitTableau(Surcouche.recupFonction("getTop10Departement",null));
+        ArrayList<String> listeDPT = Surcouche.splitTableau(Surcouche.recupFonction("getTop10Departement", null));
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
@@ -43,7 +37,7 @@ public class ViewStatsPlayers {
         total.setLayoutY(191);
 
         //mettre le total d'inscrits
-        String s = Surcouche.recupFonction("getNbPlayers",null);
+        String s = Surcouche.recupFonction("getNbPlayers", null);
         Label nbTotal = new Label(s);
         nbTotal.getStyleClass().add("texte");
         nbTotal.setLayoutX(400);
@@ -55,7 +49,7 @@ public class ViewStatsPlayers {
         dernierInscrit.setLayoutY(343);
 
         //mettre le pseudo du dernier inscrit
-        String s1 = Surcouche.recupFonction("getNbAdmin",null);
+        String s1 = Surcouche.recupFonction("getNbAdmin", null);
         Label pseudo = new Label(s1);
         pseudo.getStyleClass().add("texte");
         pseudo.setLayoutX(400);
@@ -82,7 +76,7 @@ public class ViewStatsPlayers {
         topDepScroll.setLayoutX(800);
         topDepScroll.setLayoutY(200);
 
-        LinkedHashMap<String, String> map = Surcouche.splitDPT(Surcouche.recupFonction("getDptPlusJoueurs",null));
+        LinkedHashMap<String, String> map = Surcouche.splitDPT(Surcouche.recupFonction("getDptPlusJoueurs", null));
 
         ArrayList<Label> nomDep = new ArrayList<>();
         ArrayList<Label> nbInscrits = new ArrayList<>();
@@ -92,17 +86,17 @@ public class ViewStatsPlayers {
         }
 
         //mettre les departements dans la pane topDepScroll
-        for(int j=0; j<nomDep.size(); j++){
+        for (int j = 0; j < nomDep.size(); j++) {
             nomDep.get(j).getStyleClass().add("texte");
             nomDep.get(j).setLayoutX(0);
-            nomDep.get(j).setLayoutY(30*j);
+            nomDep.get(j).setLayoutY(30 * j);
             topDepScroll.getChildren().add(nomDep.get(j));
         }
 
-        for(int j=0; j<nbInscrits.size(); j++){
+        for (int j = 0; j < nbInscrits.size(); j++) {
             nbInscrits.get(j).getStyleClass().add("texte");
             nbInscrits.get(j).setLayoutX(300);
-            nbInscrits.get(j).setLayoutY(30*j);
+            nbInscrits.get(j).setLayoutY(30 * j);
             topDepScroll.getChildren().add(nbInscrits.get(j));
         }
         pane.getChildren().add(topDepScroll);

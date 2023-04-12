@@ -1,7 +1,7 @@
 package games.project.motron.metier.manager;
 
-import games.project.metier.manager.PlayerManager;
 import games.project.metier.entite.Player;
+import games.project.metier.manager.PlayerManager;
 import games.project.motron.stockage.sql.StockagePlayerDatabaseMotron;
 
 import java.util.List;

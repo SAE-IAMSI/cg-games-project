@@ -5,7 +5,7 @@ import games.project.motron.stockage.sql.StockageScoreDatabaseMotron;
 
 public class ScoreManagerMotron extends ScoreManager {
 
-    private ScoreManagerMotron(){
+    private ScoreManagerMotron() {
         super();
         stockage = new StockageScoreDatabaseMotron();
     }
@@ -16,14 +16,14 @@ public class ScoreManagerMotron extends ScoreManager {
     }
 
     public int sommeScore(String login) {
-        return ((StockageScoreDatabaseMotron)stockage).getSommeScore(login);
+        return ((StockageScoreDatabaseMotron) stockage).getSommeScore(login);
     }
 
     public int highScore(String login) {
-        return ((StockageScoreDatabaseMotron)stockage).highScore(login);
+        return ((StockageScoreDatabaseMotron) stockage).highScore(login);
     }
 
     public int getMaxId() {
-        return ((StockageScoreDatabaseMotron)stockage).getMaxId();
+        return ((StockageScoreDatabaseMotron) stockage).getMaxId();
     }
 }

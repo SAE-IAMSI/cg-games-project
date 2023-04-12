@@ -23,12 +23,11 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.function.Predicate;
 
 public class TournamentDetailView extends AnchorPane {
 
-    private Tournament tournament;
-    private TournamentController controller;
+    private final Tournament tournament;
+    private final TournamentController controller;
 
     @FXML
     private Label tournamentName;
@@ -166,7 +165,8 @@ public class TournamentDetailView extends AnchorPane {
         controller.getChildren().remove(this);
     }
 
-    @FXML void updateTournamentMenu() {
+    @FXML
+    void updateTournamentMenu() {
         controller.getChildren().remove(this);
         controller.getChildren().add(new TournamentUpdateView(tournament, controller));
     }

@@ -1,14 +1,10 @@
+import datetime
+import matplotlib.pyplot as plt
 import numpy as np
 import oracledb
 import os
-from datetime import *
-import datetime
-import matplotlib.pyplot as plt
-import math
 import shutil
-import time
-
-from typing import Dict
+from datetime import *
 
 dir = "src/main/java/games/project/modules/statistiques/client64Bit"
 dir2 = 'client64Bit'
@@ -58,7 +54,7 @@ def getTop10Departement() -> list:
     return tab
 
 
-def getAllGame()->list:
+def getAllGame() -> list:
     '''
     Renvoie la liste de tous les jeux\n
     :return: tab: un tableau de string
@@ -72,6 +68,7 @@ def getAllGame()->list:
         for r in result:
             tab.append(r[0])
     return tab
+
 
 def getJoueursActifs() -> int:
     '''
@@ -166,7 +163,8 @@ def getScoreMoyen(jeu: str) -> float:
     date = str(today.strftime("%d/%m/%Y"))[0:5] + "/" + str(today.strftime("%d/%m/%Y"))[8:10]
     return getScoreMoyenEntreDates(jeu, '01/01/22', date)
 
-def getNbAdmin()->int:
+
+def getNbAdmin() -> int:
     """
     Renvoie le nombre d'administrateur du PGI\n
     :return: r[0] : int
@@ -176,6 +174,7 @@ def getNbAdmin()->int:
         sql = """select getNbAdmin from dual"""
         for r in cursor.execute(sql):
             return r[0]
+
 
 def getTempsMoyenKR(dateAvant: str, dateApres: str) -> float:
     '''
@@ -190,7 +189,8 @@ def getTempsMoyenKR(dateAvant: str, dateApres: str) -> float:
         for r in cursor.execute(sql):
             return r[0]
 
-def getBestScore(jeu:str)->float:
+
+def getBestScore(jeu: str) -> float:
     """
     Renvoie le meilleur score sur le jeu donné\n
     :param jeu: code du jeu
@@ -201,6 +201,7 @@ def getBestScore(jeu:str)->float:
         sql = f"""SELECT getBestScore('{jeu}') FROM dual"""
         for r in cursor.execute(sql):
             return r[0]
+
 
 def getJoueursParDepartements(numDepartement: str) -> int:
     '''
@@ -237,13 +238,14 @@ def downloadGraphe() -> None:
     pathToSaveImg = os.path.join(os.environ['USERPROFILE'], 'Downloads')
     chemin = os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp')
     listDir = os.listdir(chemin)
-    pathNewDir = "imagesGraphiques_"+datetime.datetime.now().strftime("%d_%m_%Y_%H%M%S")
-    os.mkdir(os.path.join(pathToSaveImg,pathNewDir))
-    pathSave = os.path.join(pathToSaveImg,pathNewDir)
+    pathNewDir = "imagesGraphiques_" + datetime.datetime.now().strftime("%d_%m_%Y_%H%M%S")
+    os.mkdir(os.path.join(pathToSaveImg, pathNewDir))
+    pathSave = os.path.join(pathToSaveImg, pathNewDir)
     for dir in listDir:
-        shutil.copy(os.path.join(chemin,dir), pathSave)
+        shutil.copy(os.path.join(chemin, dir), pathSave)
 
-def getAvgAttendees()->float:
+
+def getAvgAttendees() -> float:
     """
     Renvoie le nombre moyen de joueurs maximum dans les tournois\n
     :return: r[0] : float
@@ -254,7 +256,8 @@ def getAvgAttendees()->float:
         for r in cursor.execute(sql):
             return r[0]
 
-def getAvgParticipants()->float:
+
+def getAvgParticipants() -> float:
     """
     Renvoie le nombre moyen de joueurs inscrits dans les tournois\n
     :return: r[0] : float
@@ -265,7 +268,8 @@ def getAvgParticipants()->float:
         for r in cursor.execute(sql):
             return r[0]
 
-def getNbTournois()->int:   
+
+def getNbTournois() -> int:
     """
     Renvoie le nombre de tournois\n
     :return: r[0] : int
@@ -275,6 +279,7 @@ def getNbTournois()->int:
         sql = """select getNbTournament from dual"""
         for r in cursor.execute(sql):
             return r[0]
+
 
 def getMaxDateFinTournois():
     """
@@ -287,6 +292,7 @@ def getMaxDateFinTournois():
         for r in cursor.execute(sql):
             return r[0]
 
+
 def getMaxDateDebutTournois():
     """
     Renvoie la date du dernier tournoi créé\n
@@ -298,7 +304,8 @@ def getMaxDateDebutTournois():
         for r in cursor.execute(sql):
             return r[0]
 
-def getPieActifsNonActifs()->None:
+
+def getPieActifsNonActifs() -> None:
     """
     Sauvegarde dans un fichier temporaire un camembert représentant le nombre de joueurs actifs et non actifs\n
     """
@@ -310,9 +317,11 @@ def getPieActifsNonActifs()->None:
     plt.pie(a, labels=['Actifs', 'Non actifs', 'Administrateurs'], autopct='%1.1f%%', startangle=90)
     plt.axis('equal')
     plt.title('Répartition des joueurs actifs, non actifs et administrateurs')
-    plt.savefig(os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieActifsNonActifs.png'))
+    plt.savefig(
+        os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieActifsNonActifs.png'))
 
-def getAllDpt()->list:
+
+def getAllDpt() -> list:
     """
     Renvoie une liste contenant tous les départements\n
     :return: tab : list
@@ -322,8 +331,9 @@ def getAllDpt()->list:
     with connexion.cursor() as cursor:
         sql = """select * from departements"""
         for r in cursor.execute(sql):
-            tab.append((r[0],r[1]))
+            tab.append((r[0], r[1]))
     return tab
+
 
 def getDptPlusJoueurs():
     """
@@ -335,32 +345,36 @@ def getDptPlusJoueurs():
     with connexion.cursor() as cursor:
         sql = """select nomdepartement,d.numdepartement, count(login) from departements d JOIN JOUEURS j on j.numdepartement=d.numdepartement group by d.numdepartement,nomdepartement order by count(login) DESC"""
         for r in cursor.execute(sql):
-            liste10DPT.append((r[0],r[1]))
+            liste10DPT.append((r[0], r[1]))
     dico = {}
     i = 0
     while i < len(liste10DPT):
         dico[liste10DPT[i][0]] = getJoueursParDepartements(liste10DPT[i][1])
-        i+=1
-        if i>10:
+        i += 1
+        if i > 10:
             break
     return dico
+
+
 def getDPTPie():
     """
     Sauvegarde dans un fichier temporaire des camemberts représentant le nombre de joueurs par département\n
     """
     dico = getDptPlusJoueurs()
-    fig, ax = plt.subplots(figsize=(9, 6),subplot_kw=dict(aspect="equal"))
+    fig, ax = plt.subplots(figsize=(9, 6), subplot_kw=dict(aspect="equal"))
     ingredients = []
     data = []
-    for k,v in dico.items():
+    for k, v in dico.items():
         ingredients.append(k)
         data.append(v)
 
-    wedges, texts = ax.pie(data,textprops=dict(color="w"))
-    #plt.setp(autotexts, size=8, weight="bold")
-    ax.legend(wedges, ingredients,title="Departements",loc="center right",bbox_to_anchor=(0.9, 0, 0.5, 1))
+    wedges, texts = ax.pie(data, textprops=dict(color="w"))
+    # plt.setp(autotexts, size=8, weight="bold")
+    ax.legend(wedges, ingredients, title="Departements", loc="center right", bbox_to_anchor=(0.9, 0, 0.5, 1))
     ax.set_title("Les départements avec le plus de joueurs")
-    plt.savefig(os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieDptPlusJoueurs.png'))
+    plt.savefig(
+        os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieDptPlusJoueurs.png'))
+
 
 def grapheTournoi():
     """
@@ -386,4 +400,5 @@ def grapheTournoi():
     ax1.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
     ax1.axis('equal')
     plt.title('Répartition des tournois')
-    plt.savefig(os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/grapheTournoi.png'))
+    plt.savefig(
+        os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/grapheTournoi.png'))
