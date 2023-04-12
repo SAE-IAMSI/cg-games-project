@@ -132,3 +132,9 @@
     -fx-border-radius: 0px;
     -fx-effect: null;
 }
+
+#labelErreur{
+    -fx-text-fill: linear-gradient(#56a3f3, #9f00cb);
+    -fx-background-color: #1b1b1b;
+    -fx-border-color: #473bf0;
+}

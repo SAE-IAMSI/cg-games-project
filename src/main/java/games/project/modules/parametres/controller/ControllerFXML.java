@@ -98,9 +98,13 @@ public class ControllerFXML implements Initializable {
     @FXML
     private Label idRGPD;
     @FXML
-    private Label notificationLabel = new Label();
+    private Label labelTournois;
+    @FXML
+    private Label labelStatistiques;
     @FXML
     private Pane RGPDPane;
+    @FXML
+    private Label labelErreur;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -110,12 +114,10 @@ public class ControllerFXML implements Initializable {
     @FXML
     public void setGames() {
         List<String> jeuPath = new ArrayList<>(JeuManager.getInstance().getPaths());
-        System.out.println(jeuPath);
         for (int i = 0; i < jeuPath.size(); i = i + 2) {
             final int fin = i + 1;
             Button b = new Button(jeuPath.get(i));
             b.setOnAction(actionEvent -> {
-                File file = new File(jeuPath.get(fin).split("\\.")[3]);
                 try {
                     Application m = (Application) Class.forName(jeuPath.get(fin)).newInstance();
                     lanceInfoJeu(m);
@@ -222,18 +224,45 @@ public class ControllerFXML implements Initializable {
 
     @FXML
     public void lanceTournois(){
-        Platform.runLater(() -> {
-            try {
-                new TournamentApplication().start(new Stage());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
+        if(Session.getInstance().isConnected()) {
+            Platform.runLater(() -> {
+                try {
+                    new TournamentApplication().start(new Stage());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+        else{
+            labelErreur.setText("Le joueur doit être connecté");
+            labelErreur.setVisible(true);
+            PauseTransition pause = new PauseTransition(Duration.millis(2000));
+            pause.setOnFinished(e -> labelErreur.setVisible(false));
+            pause.play();
+        }
     }
 
     @FXML
     public void lanceStatistiques(){
-        Platform.runLater(() -> new StatsLauncher().start(new Stage()));
+        if(Session.getInstance().isConnected()) {
+            if (PlayerManager.getInstance().getPlayer(Session.getInstance().getLogin()).isAdmin()) {
+                Platform.runLater(() -> new StatsLauncher().start(new Stage()));
+            }
+            else{
+                labelErreur.setText("Le joueur doit être admin");
+                labelErreur.setVisible(true);
+                PauseTransition pause = new PauseTransition(Duration.millis(2000));
+                pause.setOnFinished(e -> labelErreur.setVisible(false));
+                pause.play();
+            }
+        }
+        else{
+            labelErreur.setText("Le joueur doit être connecté");
+            labelErreur.setVisible(true);
+            PauseTransition pause = new PauseTransition(Duration.millis(2000));
+            pause.setOnFinished(e -> labelErreur.setVisible(false));
+            pause.play();
+        }
 
     }
 
@@ -266,9 +295,7 @@ public class ControllerFXML implements Initializable {
                     player.setName(login);
                     jConnecte = true;
                 }
-            } catch (NoSuchAlgorithmException e) {
-                throw new RuntimeException(e);
-            } catch (InvalidKeyException e) {
+            } catch (NoSuchAlgorithmException | InvalidKeyException e) {
                 throw new RuntimeException(e);
             }
         return jConnecte;
@@ -425,7 +452,6 @@ public class ControllerFXML implements Initializable {
     }
 
     public void playNotification(String type) {
-        notificationLabel.getStyleClass().clear();
         if (type.equals("success")) {
             positiveNotificationSound.seek(Duration.millis(0));
             positiveNotificationSound.play();
@@ -444,7 +470,7 @@ public class ControllerFXML implements Initializable {
 
     public ControllerFXML() {
         session = Session.getInstance();
-        player = new Player("J");
+        player = new Player("");
 
         Media notifMedia = new Media(String.valueOf(Motron.class.getResource("music/notif.mp3")));
         notificationSound = new MediaPlayer(notifMedia);
@@ -454,5 +480,17 @@ public class ControllerFXML implements Initializable {
         Media pNotifMedia = new Media(String.valueOf(Motron.class.getResource("music/positiveNotif.wav")));
         positiveNotificationSound = new MediaPlayer(pNotifMedia);
         positiveNotificationSound.setVolume(0.1);
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Label getLabelTournois() {
+        return labelTournois;
+    }
+
+    public Label getLabelStatistiques() {
+        return labelStatistiques;
     }
 }
