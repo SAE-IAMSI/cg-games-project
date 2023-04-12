@@ -3,8 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import oracledb
 import os
+
 import shutil
 from datetime import *
+import math
 
 dir = "src/main/java/games/project/modules/statistiques/client64Bit"
 dir2 = 'client64Bit'
@@ -320,7 +322,6 @@ def getPieActifsNonActifs() -> None:
     plt.savefig(
         os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieActifsNonActifs.png'))
 
-
 def getAllDpt() -> list:
     """
     Renvoie une liste contenant tous les départements\n
@@ -351,7 +352,7 @@ def getDptPlusJoueurs():
     while i < len(liste10DPT):
         dico[liste10DPT[i][0]] = getJoueursParDepartements(liste10DPT[i][1])
         i += 1
-        if i > 10:
+        if i >= 10:
             break
     return dico
 

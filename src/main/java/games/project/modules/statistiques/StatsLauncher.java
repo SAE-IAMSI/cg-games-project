@@ -10,6 +10,7 @@ public class StatsLauncher extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        Surcouche.creationDesGraphes();
         ViewMain viewMain = new ViewMain();
         viewMain.afficherMenu(stage);
     }

@@ -1,7 +1,9 @@
 package games.project.modules.statistiques.views;
 
+
 import games.project.modules.parametres.Parametres;
 import games.project.modules.statistiques.Surcouche;
+import games.project.modules.statistiques.StatsLauncher;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -9,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 
 import java.io.IOException;
 
@@ -63,7 +66,7 @@ public class ViewMain extends Stage {
         btnGlobales.setLayoutY(403);
 
         Button btnRetour = new Button("Retour");
-        btnRetour.getStyleClass().add("button");
+        btnRetour.getStyleClass().add("btnRetour");
         btnRetour.setContentDisplay(ContentDisplay.CENTER);
         btnRetour.setLayoutX(64);
         btnRetour.setLayoutY(616);
@@ -168,7 +171,6 @@ public class ViewMain extends Stage {
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);
         stage.show();
-        //Surcouche.creationDesGraphes();
     }
 
 }

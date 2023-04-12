@@ -53,14 +53,9 @@ public class Surcouche {
         ArrayList<String> listeJeux = Surcouche.splitTableau(Surcouche.recupFonction("getAllGame", null));
         String jeuCourant = listeJeux.get(0);
         ArrayList<String> args = new ArrayList<>();
-        for (String game : listeJeux) {
-            long startTime = System.currentTimeMillis();
-            System.out.println("Jeu : " + game);
-            args.clear();
-            args.add(game);
-            Surcouche.recupFonction("getGrapheScoreMoyen", args);
-            long endTime = System.currentTimeMillis();
-            System.out.println("temps d'execution : " + (endTime - startTime) + " ms");
+        for(String game : listeJeux){
+            args.clear();args.add(game);
+            Surcouche.recupFonction("getGrapheScoreMoyen",args);
             args.clear();
         }
 
@@ -69,6 +64,9 @@ public class Surcouche {
 
         //Creation des graphes des DPT
         recupFonction("getDPTPie", null);
+
+        //Creation des graphes des tournois
+        recupFonction("grapheTournoi",null);
     }
 
     public static LinkedHashMap<String, String> splitDPT(String s) {
@@ -90,7 +88,7 @@ public class Surcouche {
 
     public static void main(String[] args) throws IOException {
         long startTime = System.currentTimeMillis();
-        System.out.println(recupFonction("grapheTournoi", null));
+        creationDesGraphes();
         long endTime = System.currentTimeMillis();
         System.out.println("temps d'execution : " + (endTime - startTime) + " ms");
     }
