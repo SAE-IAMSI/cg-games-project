@@ -84,7 +84,7 @@ public class PacoMano extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(PacoManoLauncher.class.getResource("pacomano.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(PacoMano.class.getResource("pacomano.fxml"));
         try {
             scene = new Scene(fxmlLoader.load());
         } catch (IOException e) {
