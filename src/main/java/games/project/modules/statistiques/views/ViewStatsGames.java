@@ -40,6 +40,9 @@ public class ViewStatsGames {
             args.clear();
         }
 
+        System.out.println(mapAvgScore);
+        System.out.println(mapBestScore);
+
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(Parametres.class.getResource("css/parametresStyle.css")));

@@ -11,7 +11,7 @@ import math
 dir = "src/main/java/games/project/modules/statistiques/client64Bit"
 dir2 = 'client64Bit'
 dir3 = 'src/main/java/games/project/modules/parametres/controller/client64Bit'
-absolute = os.path.join(os.getcwd(), dir3)
+absolute = os.path.join(os.getcwd(), dir)
 user = "etusae1"
 password = "3tuS43"
 host = "162.38.222.149"
@@ -162,9 +162,11 @@ def getScoreMoyen(jeu: str) -> float:
     :param jeu: code du jeu sur lequel on veut la moyenne
     :return: getScoreMoyenEntreDates(jeu,'01/01/22',date) : float
     '''
-    today = datetime.date.today()
-    date = str(today.strftime("%d/%m/%Y"))[0:5] + "/" + str(today.strftime("%d/%m/%Y"))[8:10]
-    return getScoreMoyenEntreDates(jeu, '01/01/22', date)
+    connexion = createConnexion(user, password, host, port, sid)
+    with connexion.cursor() as cursor:
+        sql = f"""select round(avg(score)) from scores where codejeu='{jeu}' and score is not null"""
+        for r in cursor.execute(sql):
+            return r[0]
 
 
 def getNbAdmin() -> int:

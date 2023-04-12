@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 
 public class Surcouche {
@@ -88,7 +89,9 @@ public class Surcouche {
 
     public static void main(String[] args) throws IOException {
         long startTime = System.currentTimeMillis();
-        creationDesGraphes();
+        ArrayList<String> listeJeux = new ArrayList<>();
+        listeJeux.add("CB");
+        System.out.println(recupFonction("getBestScore", listeJeux));
         long endTime = System.currentTimeMillis();
         System.out.println("temps d'execution : " + (endTime - startTime) + " ms");
     }
