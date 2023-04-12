@@ -39,13 +39,10 @@ module games.project.launcher {
     exports games.project.statistiques;
     exports games.project.statistiques.views;
 
-    exports games.project.space_invader;
-    exports games.project.space_invader.sprite;
+    exports games.project.galactica;
+    exports games.project.galactica.sprite;
     exports games.project.modules.parametres.controller;
 
-exports games.project.galactica;
-    exports games.project.galactica.sprite;
-    exports games.project.parametres.controller;
     exports games.project.prehispong.sound;
 
     exports games.project.modules.tournois;
