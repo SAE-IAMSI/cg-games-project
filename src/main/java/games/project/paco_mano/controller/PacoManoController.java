@@ -1,8 +1,15 @@
 package games.project.paco_mano.controller;
 
+import games.project.metier.entite.Player;
+import games.project.metier.manager.PlayerManager;
+import games.project.metier.entite.AuthPlayer;
+import games.project.stockage.Session;
+import games.project.stockage.Security;
+
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,6 +48,14 @@ public class PacoManoController {
     @FXML
     private Pane settingPane;
 
+// Player
+
+    private Player player;
+    @FXML
+    private TextField loginFieldConnexion;
+
+    @FXML
+    private PasswordField passwordFieldConnexion;
 
 
 //    Menu
@@ -217,4 +232,52 @@ public class PacoManoController {
         return pacomanoPane;
     }
 
+
+    @FXML
+    public boolean connexionJoueur(Player player, String login, String password) {
+        boolean jConnecte = false;
+        AuthPlayer j = PlayerManager.getInstance().getPlayer(login);
+        if (j != null)
+            try {
+                if (Objects.equals(j.getLogin(), login) && Security.checkPassword(password, j.getSalt(), j.getHashedPassword())) {
+                    player.setName(login);
+                    jConnecte = true;
+                }
+            } catch (NoSuchAlgorithmException | InvalidKeyException e) {
+                throw new RuntimeException(e);
+            }
+        return jConnecte;
+    }
+
+
+    @FXML
+    protected void connection() {
+        if (!Session.getInstance().isConnected()) {
+            player = new Player(loginFieldConnexion.getText());
+            if (connexionJoueur(player, loginFieldConnexion.getText(), passwordFieldConnexion.getText())) {
+                 {
+                    //afficherNotification("success", "Le joueur 1: " + player1.getName() + " s'est connecté");
+                    Session.getInstance().connect(loginFieldConnexion.getText());
+                    System.out.println("ça marche !");
+                }
+            } else {
+                //afficherNotification("warning", "Identifiant ou mot de passe incorrect");
+                System.out.println("ça marche pas!");
+            }
+        }
+        else{
+            System.out.println("déjà co" );
+        }
+    }
+
+    @FXML
+    protected void deconnection(){
+        if(Session.getInstance().isConnected()){
+            Session.getInstance().disconnect();
+            System.out.println("déco");
+        }
+        else {
+            System.out.println("pas co");
+        }
+    }
 }

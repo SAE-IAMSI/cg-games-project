@@ -115,7 +115,7 @@
                                           <Font size="52.0" />
                                        </font>
                                     </Label>
-                                    <TextField>
+                                    <TextField fx:id="loginFieldConnexion">
                                        <font>
                                           <Font size="28.0" />
                                        </font>
@@ -129,7 +129,7 @@
                                           <Font size="52.0" />
                                        </font>
                                     </Label>
-                                    <PasswordField>
+                                    <PasswordField fx:id="passwordFieldConnexion">
                                        <font>
                                           <Font size="28.0" />
                                        </font>
@@ -138,7 +138,12 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Connexion">
+                        <Button fx:id="buttonFieldConnexion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#connection" prefHeight="50.0" prefWidth="300.0" text="Connexion">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="buttonFieldDeconnexion" mnemonicParsing="false" onAction="#deconnection" prefHeight="50.0" prefWidth="300.0" text="Déconnexion">
                            <font>
                               <Font size="19.0" />
                            </font>
