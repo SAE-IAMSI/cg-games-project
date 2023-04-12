@@ -1,4 +1,4 @@
-package games.project.paco_mano.view;
+package games.project.paco_mano.view.old;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
