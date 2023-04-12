@@ -1,6 +1,8 @@
 package games.project.prehispong.controller;
 
 import games.project.metier.entite.Player;
+import games.project.metier.entite.Score;
+import games.project.metier.manager.ScoreManager;
 import games.project.prehispong.model.Ball;
 import games.project.prehispong.model.Chronometer;
 import games.project.prehispong.model.Racket;
@@ -32,7 +34,7 @@ public class GameController extends GenericView {
     @FXML
     public Rectangle topBar;
     @FXML
-    public Text gameTitle;
+    public Text chronoText;
     @FXML
     public Text p1;
     @FXML
@@ -54,14 +56,15 @@ public class GameController extends GenericView {
     private Timeline timeline;
     private Player player1;
     private Player player2;
+    private Chronometer chronometer;
     /**
      * True quand le joueur a le focus sur l'écran de jeu, False sinon
      **/
     private boolean gameState = false;
     private int difficulty = 0; // 0, 1, 2 ou 3
-    private String gamemode = ""; //Ancienne instance de jeu
+    private String gamemode = ""; // Ancien mode de jeu
 
-    public GameController(GameController controller) { /** **/
+    public GameController(GameController controller) {
         super("Game.fxml", controller);
         initGame();
         limitR.setVisible(false);
@@ -70,6 +73,7 @@ public class GameController extends GenericView {
 
 
     public void run() {
+        chronometer.reset();
         resetScore();
         setGamemode("PVP");
         this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
@@ -79,7 +83,7 @@ public class GameController extends GenericView {
             ball.moveBall();
             racketPlayer1.hitboxRacket(ball);
             racketPlayer2.hitboxRacket(ball);
-            checkEndCondition();
+            checkEndConditionPVP();
 
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -87,15 +91,10 @@ public class GameController extends GenericView {
     }
 
     public void run(int difficulty) {
+        chronometer.reset();
         resetScore();
         setDifficulty(difficulty);
         setGamemode("IA");
-
-        if (difficulty == 3) { //INIT Timer mode survie
-            Chronometer chronometer = new Chronometer();
-            chronometer.initChrono();
-            chronometer.launch();
-        }
 
         this.timeline = new Timeline(new KeyFrame(Duration.millis(1000 / 60), actionEvent -> {
             ball.hitboxWall(topBar);
@@ -106,9 +105,10 @@ public class GameController extends GenericView {
             racketPlayer2.hitboxRacket(ball);
             racketPlayer1.hitboxRacket(ball);
             if (!(difficulty == 3)) {
-                checkEndCondition();
-            } else {
-
+                checkEndConditionPVIA(difficulty);
+            }
+            else{
+                checkEndConditionSurvival();
             }
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -120,18 +120,18 @@ public class GameController extends GenericView {
      **/
     private void initGame() {
         this.ball = new Ball(640, 360, 20, -10, 8);
-        this.racketPlayer1 = new Racket(66, 308, 50, 105, 0);
-        this.racketPlayer2 = new Racket(1190, 308, 50, 105, 1);
-
-        // player1 = new Player("p1",0);
-        // player2 = new Player("p2",0);
-        player1.getScore().setGameCode("PONG");
-        player2.getScore().setGameCode("PONG");
+        this.racketPlayer1 = new Racket(100, 308, 50, 105, 0);
+        this.racketPlayer2 = new Racket(1164, 308, 50, 105, 1);
+        this.chronometer = new Chronometer();
+        chronometer.initChrono();
+        chronoText.textProperty().bind(new SimpleStringProperty("Chronometre : ").concat(chronometer.getIntegerProperty().asString()));
+        player1 = new Player("Joueur 1",new Score("PONG"));
+        player2 = new Player("Joueur 2",new Score("PONG"));
         p1.setText(player1.getName());
         p2.setText(player2.getName());
 
-        scoreP1.textProperty().bind(new SimpleStringProperty("Score :").concat(player1.getScore().scoreProperty()));
-        scoreP2.textProperty().bind(new SimpleStringProperty("Score :").concat(player2.getScore().scoreProperty()));
+        scoreP1.textProperty().bind(new SimpleStringProperty("Score : ").concat(player1.getScore().scoreProperty()));
+        scoreP2.textProperty().bind(new SimpleStringProperty("Score : ").concat(player2.getScore().scoreProperty()));
 
         this.getChildren().add(ball);
         this.getChildren().add(racketPlayer2);
@@ -143,8 +143,8 @@ public class GameController extends GenericView {
      **/
     public void resetPos() {
         this.ball.setPos(640, 360);
-        this.racketPlayer2.setPos(1190, 308);
-        this.racketPlayer1.setPos(66, 308);
+        this.racketPlayer2.setPos(1164, 308);
+        this.racketPlayer1.setPos(100, 308);
     }
 
     private void resetScore() {
@@ -170,11 +170,11 @@ public class GameController extends GenericView {
 
     public void registerScore() {
         if (Session.getInstance().isConnected()) {
-            // ScoreManager.getInstance().createScore(player1.getScore().getScore(),Session.getInstance().getLogin());
+            ScoreManager.getInstance().createScore(player1.getScore().getScore(),player1.getName(),player1.getScore().getGameCode());
         }
     }
 
-    private void checkEndCondition() {
+    private void checkEndConditionPVP() {
         if (player1.getScore().scoreProperty().getValue().equals(5)) {
             resetScore();
             endLoop();
@@ -186,10 +186,31 @@ public class GameController extends GenericView {
         }
     }
 
-    private void checkEndConditionSurvival() {
-        if (player1.getScore().scoreProperty().getValue() >= 1) {
+    private void checkEndConditionPVIA(int difficulty){
+        if (player1.getScore().scoreProperty().getValue().equals(5)) {
             resetScore();
             endLoop();
+            switch (difficulty){
+                case 0 -> player1.setScore(1000-chronometer.getTime()*10);
+                case 1 -> player1.setScore(5000-chronometer.getTime()*10);
+                case 2 -> player1.setScore(10000-chronometer.getTime()*10);
+            }
+            registerScore();
+            displayScreen(new EndGameView(player1.getName(),player1.getScore().getScore(), this));
+        } else if (player2.getScore().scoreProperty().getValue().equals(5)) {
+            resetScore();
+            endLoop();
+            displayScreen(new EndGameView(player2.getName(),0, this));
+        }
+    }
+
+    private void checkEndConditionSurvival() {
+        if (player1.getScore().scoreProperty().getValue() >= 1 || player2.getScore().scoreProperty().getValue()>=1) {
+            resetScore();
+            endLoop();
+            player1.getScore().setScore(chronometer.getTime()*100);
+            registerScore();
+            displayScreen(new EndGameView(player1.getName(),player1.getScore().getScore(), this));
         }
     }
 
@@ -201,6 +222,8 @@ public class GameController extends GenericView {
         this.getChildren().remove(genericView);
     }
 
+
+    /** Ecoute les inputs clavier pour lancer la boucle de jeu **/
     public void listener() {
         this.getScene().setOnKeyPressed((KeyEvent event) -> {
             if (event.getCode().equals(KeyCode.SPACE) && gameState) {
@@ -210,10 +233,11 @@ public class GameController extends GenericView {
         });
     }
 
+    /** Ecoute les inputs souris pour déplacer la racket pour le mode PVIA  **/
     public void listenerMouse() {
         this.getScene().setOnMouseMoved((MouseEvent event) -> {
-            if (event.getSceneY() > topBar.getLayoutY() + topBar.getHeight() && event.getSceneY() < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight() * 0.5)) {
-                this.racketPlayer1.setLayoutY(event.getSceneY());
+            if (event.getSceneY()-racketPlayer1.getHeight()*0.5 > topBar.getLayoutY() + topBar.getHeight() && event.getSceneY()-racketPlayer1.getHeight()*0.5 < bottomBar.getLayoutY()- (bottomBar.getHeight() + racketPlayer1.getHeight()*0.25) ) {
+                this.racketPlayer1.setLayoutY(event.getSceneY()-racketPlayer1.getHeight()*0.5);
             }
             event.consume();
         });
@@ -222,18 +246,19 @@ public class GameController extends GenericView {
         });
     }
 
+
+    /** Ecoute les inputs clavier pour les déplacements en PVP racket **/
     public void listenerKeyboard() {
         final List<KeyCode> acceptedCodes = Arrays.asList(KeyCode.Z, KeyCode.S, KeyCode.UP, KeyCode.DOWN);
         final Set<KeyCode> codes = new HashSet<>();
         final int DELAY = 10; // Délai en millisecondes
-
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(DELAY), new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent event) {
                 boolean mvtConditionZ = racketPlayer1.getLayoutY() > topBar.getLayoutY() + topBar.getHeight();
-                boolean mvtConditionS = racketPlayer1.getLayoutY() < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight() * 0.5);
+                boolean mvtConditionS = racketPlayer1.getLayoutY() < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer1.getHeight() * 0.25);
                 boolean mvtConditionUP = racketPlayer2.getLayoutY() > topBar.getLayoutY() + topBar.getHeight();
-                boolean mvtConditionDOWN = racketPlayer2.getLayoutY() < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer2.getHeight() * 0.5);
+                boolean mvtConditionDOWN = racketPlayer2.getLayoutY() < bottomBar.getLayoutY() - (bottomBar.getHeight() + racketPlayer2.getHeight() * 0.25);
 
                 if (codes.contains(KeyCode.UP)) {
                     if (mvtConditionUP) {
@@ -270,6 +295,7 @@ public class GameController extends GenericView {
                 codes.add(event.getCode());
                 timeline.play();
             }
+
             if (event.getCode().equals(KeyCode.SPACE) && gameState) {
                 playLoop();
             }
@@ -280,20 +306,20 @@ public class GameController extends GenericView {
 
 
     /**
-     * Défini le comportement de la raquette en mode IA
+     * Défini le comportement de la raquette en mode IA et en fonction de la difficulté choisi
      **/
     public void racketAI(Racket racket, Ball ball, int mods) {
 
-        double mvt = ball.getLayoutY() - racket.getHeight() / 2;
+        double mvt = ball.getLayoutY()-racket.getHeight() / 2;
         int r1 = new Random().nextInt(0, 500);
 
         switch (mods) {
             case 0: { //easy
-                if (r1 > 100) {
+                if (r1 > 50) {
                     if (racket.getLayoutY() <= mvt) {
-                        racket.setLayoutY(racket.getLayoutY() + 4);
+                        racket.setLayoutY(racket.getLayoutY() + 7);
                     } else {
-                        racket.setLayoutY(racket.getLayoutY() - 4);
+                        racket.setLayoutY(racket.getLayoutY() - 7);
                     }
                 } else {
                     if (racket.getLayoutY() <= mvt) {
@@ -306,11 +332,11 @@ public class GameController extends GenericView {
                 break;
             }
             case 1: { //normal
-                if (r1 > 100) {
+                if (r1 > 25) {
                     if (racket.getLayoutY() <= mvt) {
-                        racket.setLayoutY(racket.getLayoutY() + 6);
+                        racket.setLayoutY(racket.getLayoutY() + 9);
                     } else {
-                        racket.setLayoutY(racket.getLayoutY() - 6);
+                        racket.setLayoutY(racket.getLayoutY() - 9);
                     }
                 } else {
                     if (racket.getLayoutY() <= mvt) {
@@ -322,11 +348,11 @@ public class GameController extends GenericView {
                 break;
             }
             case 2: {//hard
-                if (r1 > 100) {
+                if (r1 > 10) {
                     if (racket.getLayoutY() <= mvt) {
-                        racket.setLayoutY(racket.getLayoutY() + 8);
+                        racket.setLayoutY(racket.getLayoutY() + 10);
                     } else {
-                        racket.setLayoutY(racket.getLayoutY() - 8);
+                        racket.setLayoutY(racket.getLayoutY() - 10);
                     }
                 } else {
                     if (racket.getLayoutY() <= mvt) {
@@ -344,16 +370,6 @@ public class GameController extends GenericView {
                 }
                 break;
             }
-
-        }
-
-
-        if (this.topBar.getLayoutY() < mvt - racket.getHeight() * 0.5 && this.bottomBar.getLayoutY() > mvt + (racket.getHeight() * 0.5 + this.bottomBar.getHeight())) {
-            if (racket.getLayoutY() + racket.getWidth() * 0.5 < mvt) { // 8 -
-                racket.setLayoutY(racket.getLayoutY() + 8);
-            } else {
-                racket.setLayoutY(racket.getLayoutY() - 8);
-            }
         }
     }
 
@@ -364,6 +380,9 @@ public class GameController extends GenericView {
     public void playLoop() {
         timeline.play();
         information.setVisible(false);
+        if(gamemode.equals("IA")){
+            chronometer.launch();
+        }
     }
 
     /**
@@ -374,6 +393,7 @@ public class GameController extends GenericView {
         resetPos();
         ball.resetMoveSpeed();
         information.setVisible(true);
+        chronometer.stop();
     }
 
     public Rectangle getTopBar() {
