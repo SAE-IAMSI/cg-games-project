@@ -3,6 +3,7 @@ package games.project.modules.parametres.controller;
 import games.project.metier.entite.AuthPlayer;
 import games.project.metier.entite.Player;
 import games.project.metier.manager.JeuManager;
+
 import games.project.modules.statistiques.StatsLauncher;
 import games.project.modules.tournois.TournamentApplication;
 import games.project.metier.manager.PlayerManager;
@@ -17,6 +18,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -130,7 +132,7 @@ public class ControllerFXML implements Initializable {
     }
 
     @FXML
-    public void lanceCompte(){
+    public void lanceCompte() {
         resetPane();
         imageFond.setOpacity(0.5);
         paneCompte.setVisible(true);
@@ -142,7 +144,7 @@ public class ControllerFXML implements Initializable {
     }
 
     @FXML
-    public void lanceConnexion(){
+    public void lanceConnexion() {
         resetPane();
         imageFond.setOpacity(0.5);
         paneConnexion.setVisible(true);
@@ -151,7 +153,7 @@ public class ControllerFXML implements Initializable {
     }
 
     @FXML
-    public void lanceCreationCompte(){
+    public void lanceCreationCompte() {
         resetPane();
         imageFond.setOpacity(0.5);
         paneCreationCompte.setVisible(true);
@@ -160,7 +162,7 @@ public class ControllerFXML implements Initializable {
     }
 
     @FXML
-    public void resetPane(){
+    public void resetPane() {
         paneCompte.setVisible(false);
         paneConnexion.setVisible(false);
         paneCreationCompte.setVisible(false);
@@ -188,6 +190,7 @@ public class ControllerFXML implements Initializable {
             changerImageJeu(wallpaper.get(indexImage));
 
         });
+
         flecheDroite.setOnMouseClicked(mouseEvent -> {
             indexImage ++;
             if (indexImage > 2) {

@@ -8,17 +8,18 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GameSound {
-    private Media adventure;
-    private Media mainSong;
-    private Media win;
-    private Media camel;
-    private Media tcp;
-    private ArrayList<Media> playlist;
+    private final Media adventure;
+    private final Media mainSong;
+    private final Media win;
+    private final Media camel;
+    private final Media tcp;
+    private final ArrayList<Media> playlist;
 
     private MediaPlayer mediaPlayer;
 
     private static GameSound instance;
-    private GameSound(){
+
+    private GameSound() {
         adventure = new Media(MainPong.class.getResource("musique/adventure.mp3").toString());
         camel = new Media(MainPong.class.getResource("musique/camel.mp3").toString());
         win = new Media(MainPong.class.getResource("musique/win.mp3").toString());
@@ -32,35 +33,33 @@ public class GameSound {
     }
 
     public static GameSound getInstance() {
-        if(instance==null) {
+        if (instance == null) {
             instance = new GameSound();
         }
         return instance;
     }
 
-    public void changeSound(){
-        int a = new Random().nextInt(0,playlist.size());
-        if(this.mediaPlayer !=null){
-            if(mediaPlayer.getMedia()==playlist.get(a)){
+    public void changeSound() {
+        int a = new Random().nextInt(0, playlist.size());
+        if (this.mediaPlayer != null) {
+            if (mediaPlayer.getMedia() == playlist.get(a)) {
                 this.mediaPlayer.stop();
                 changeSound();
-            }
-            else{
+            } else {
                 this.mediaPlayer.stop();
                 this.mediaPlayer = new MediaPlayer(this.playlist.get(a));
                 this.mediaPlayer.setVolume(0.1);
                 this.mediaPlayer.setAutoPlay(true);
             }
-        }
-        else{
+        } else {
             this.mediaPlayer = new MediaPlayer(this.playlist.get(a));
             this.mediaPlayer.setVolume(0.1);
             this.mediaPlayer.setAutoPlay(true);
         }
     }
 
-    public void playWin(){
-        if(mediaPlayer!=null){
+    public void playWin() {
+        if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
         mediaPlayer = new MediaPlayer(win);
@@ -68,8 +67,8 @@ public class GameSound {
         this.mediaPlayer.setAutoPlay(true);
     }
 
-    public void playTcp(){
-        if(mediaPlayer!=null){
+    public void playTcp() {
+        if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
         mediaPlayer = new MediaPlayer(tcp);
@@ -77,7 +76,7 @@ public class GameSound {
         this.mediaPlayer.setAutoPlay(true);
     }
 
-    public void stop(){
+    public void stop() {
         mediaPlayer.stop();
     }
 }

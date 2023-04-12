@@ -43,6 +43,7 @@ public class StockageScorePartieDatabase {
             e.printStackTrace();
         }
     }
+
     public List<ScorePartie> getAll() {
         List<ScorePartie> scorePartieList = new ArrayList<>();
         SQLUtils utils = SQLUtils.getInstance();

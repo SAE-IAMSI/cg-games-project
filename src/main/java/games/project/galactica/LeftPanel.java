@@ -125,6 +125,7 @@ public class LeftPanel extends JPanel {
         textDeplacement.setPreferredSize(new Dimension(100, 100));
         textTire.setPreferredSize(new Dimension(100, 100));
     }
+
     public JLabel getLivesLabel() {
         return livesLabel;
     }

@@ -29,9 +29,10 @@ public class Chronometer {
         time.set(time.getValue() + 1);
     }
 
-    public void reset(){
+    public void reset() {
         time.set(0);
     }
+
     public void launch() {
         timeline.play();
     }

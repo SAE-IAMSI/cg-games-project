@@ -1,5 +1,6 @@
 package games.project.motron;
 
+import games.project.modules.parametres.Parametres;
 import games.project.motron.controller.ControllerFXML;
 import games.project.motron.metier.manager.ScoreManagerMotron;
 import games.project.motron.metier.manager.ScorePartieManager;

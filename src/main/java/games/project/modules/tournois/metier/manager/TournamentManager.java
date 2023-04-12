@@ -14,7 +14,8 @@ public class TournamentManager {
     private static TournamentManager instance = null;
     private final StockageTournamentDatabase stockage = new StockageTournamentDatabase();
 
-    private TournamentManager() {}
+    private TournamentManager() {
+    }
 
     public static TournamentManager getInstance() {
         if (instance == null) instance = new TournamentManager();
@@ -51,6 +52,7 @@ public class TournamentManager {
 
     /**
      * Returns all tournaments which endDate is after the date in parameter.
+     *
      * @param date
      */
     public List<Tournament> getByDate(Timestamp date) {
@@ -59,6 +61,7 @@ public class TournamentManager {
 
     /**
      * Returns all tournaments where the player login is registered in.
+     *
      * @param login
      */
     public List<Tournament> getByLoginAndDate(String login, Timestamp date) {

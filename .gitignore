@@ -234,4 +234,5 @@ $RECYCLE.BIN/
 *.lnk
 /.idea/*
 /src/main/java/games/project/modules/statistiques/client64Bit/
+/src/main/PythonFileStats/app/client64Bit/
 /src/main/PythonFileStats/test/client64Bit/
