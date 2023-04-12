@@ -13,7 +13,7 @@ public class Racket extends Rectangle implements Element {
         this.setHeight(heigh);
         this.setWidth(width);
 
-        try{
+        try {
             if (sensImage == 0) {
                 Image img = new Image(MainPong.class.getResource("textures/raquetteDroit.png").toString());
                 this.setFill(new ImagePattern(img));
@@ -21,7 +21,7 @@ public class Racket extends Rectangle implements Element {
                 Image img = new Image(MainPong.class.getResource("textures/raquetteGauche.png").toString());
                 this.setFill(new ImagePattern(img));
             }
-        }catch (RuntimeException r){
+        } catch (RuntimeException r) {
             System.out.println("texture non chargé");
         }
 

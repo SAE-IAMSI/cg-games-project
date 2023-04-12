@@ -19,7 +19,7 @@ import java.util.List;
 
 public class TournamentCreationView extends AnchorPane {
 
-    private TournamentController controller;
+    private final TournamentController controller;
 
     @FXML
     private TextField tournamentName;
@@ -36,7 +36,7 @@ public class TournamentCreationView extends AnchorPane {
     @FXML
     private Label errorMessage;
 
-    private List<CheckBox> gamesCheckbox;
+    private final List<CheckBox> gamesCheckbox;
 
     public TournamentCreationView(TournamentController controller) {
         try {

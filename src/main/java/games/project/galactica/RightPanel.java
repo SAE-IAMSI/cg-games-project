@@ -39,6 +39,7 @@ public class RightPanel extends JPanel {
 
     /**
      * Définit le score
+     *
      * @param score
      */
     public void setScore(int score) {
@@ -47,6 +48,7 @@ public class RightPanel extends JPanel {
 
     /**
      * Retourne le score
+     *
      * @return
      */
     public int getScore() {

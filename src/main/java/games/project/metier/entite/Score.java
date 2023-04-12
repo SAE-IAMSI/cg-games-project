@@ -77,6 +77,10 @@ public class Score {
         this.gameCode = gameCode;
     }
 
+    public void incrementScore(int score) {
+        setScore(this.getScore() + score);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

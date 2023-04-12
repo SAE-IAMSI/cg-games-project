@@ -19,8 +19,8 @@ module games.project.launcher {
     exports games.project.prehispong to javafx.graphics;
     opens games.project.prehispong.view to javafx.fxml;
 
-    exports games.project.parametres;
-    opens games.project.parametres.controller to javafx.fxml;
+    exports games.project.modules.parametres;
+    opens games.project.modules.parametres.controller to javafx.fxml;
 
     exports games.project.casse_briques;
     exports games.project.casse_briques.controller;
@@ -36,12 +36,15 @@ module games.project.launcher {
     exports games.project;
     opens games.project.motron.controller to javafx.fxml;
 
-    exports games.project.statistiques;
-    exports games.project.statistiques.views;
+    exports games.project.modules.statistiques;
+    exports games.project.modules.statistiques.views;
 
     exports games.project.galactica;
     exports games.project.galactica.sprite;
-    exports games.project.parametres.controller;
+    exports games.project.modules.parametres.controller;
+
+    exports games.project.paco_mano.view;
+
     exports games.project.prehispong.sound;
 
     exports games.project.modules.tournois;

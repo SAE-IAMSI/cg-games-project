@@ -147,9 +147,7 @@ public class Preferences {
                     return true;
                 }
             } else {
-                if (preferences.getStylePiece().equals("brique") || preferences.getStylePiece().equals("default")) {
-                    return true;
-                }
+                return preferences.getStylePiece().equals("brique") || preferences.getStylePiece().equals("default");
             }
         }
         return false;

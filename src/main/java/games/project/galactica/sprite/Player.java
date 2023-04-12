@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class Player extends Sprite {
     private int width;
-    private Board board;
+    private final Board board;
 
     /**
      * Constructeur de la classe Player
@@ -52,6 +52,7 @@ public class Player extends Sprite {
 
     /**
      * Quand une touche est pressée déplacement du joueur
+     *
      * @param e
      */
     public void keyPressed(KeyEvent e) {
@@ -66,6 +67,7 @@ public class Player extends Sprite {
 
     /**
      * Quand une touche est relâchée
+     *
      * @param e
      */
     public void keyReleased(KeyEvent e) {

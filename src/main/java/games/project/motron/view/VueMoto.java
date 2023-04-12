@@ -1,7 +1,7 @@
 package games.project.motron.view;
 
+import games.project.metier.entite.Score;
 import games.project.motron.Motron;
-import games.project.motron.metier.entite.Score;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;

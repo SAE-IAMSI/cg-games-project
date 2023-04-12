@@ -1,0 +1,112 @@
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../fonts/Orbitron/Orbitron.ttf');
+}
+@font-face {
+    font-family: 'Orbitron';
+    src: url('../fonts/Orbitron/Orbitron-Bold.ttf');
+}
+
+
+.button {
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+    -fx-background-color: #1b1b1b;
+    -fx-border-color: #473bf0;
+    -fx-border-width: 3px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, #9f00cb, 3, 1, 4, 4);
+    -fx-min-width: 200px;
+    -fx-min-height: 60px;
+}
+
+.button:hover {
+    -fx-text-fill: #473bf0;
+    -fx-background-color: #000000;
+    -fx-border-color: #ffffff;
+    -fx-cursor: hand;
+    -fx-border-width: 3px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, #690083, 3, 1, 3, 3);
+}
+
+.menuBar{
+    -fx-background-color: #241e2c;
+    -fx-border-width: 0px 0px 3px 0px;
+    -fx-border-color: #56a3f3;
+}
+
+#CGGamesTitle{
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-font-size: 50px;
+}
+
+.label{
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.labelBarMenu{
+    -fx-font-size: 30px;
+}
+
+.labelBarMenu:hover{
+    -fx-text-fill: linear-gradient(#56a3f3, #9f00cb);
+    -fx-cursor:hand;
+}
+
+.buttonPane{
+    -fx-background: #241e2c;
+    -fx-background-color: #241e2c;
+    -fx-border-width: 0px 3px 0px 0px;
+    -fx-border-color:  #56a3f3;
+}
+
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: linear-gradient(#56a3f3, #9f00cb);
+    -fx-background-radius: 5em;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.text-field{
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-text-fill: #9f00cb;
+    -fx-font-size: 15px;
+    -fx-background-color: #b7b7b7;
+    -fx-border-color: #241e2c;
+    -fx-border-width: 3px;
+    -fx-font-weight: bold;
+    -fx-min-width: 200px;
+    -fx-min-height: 40px;
+}
+
+.combo-box{
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-text-fill: #9f00cb;
+    -fx-font-size: 15px;
+    -fx-background-color: #b7b7b7;
+    -fx-border-color: #241e2c;
+    -fx-border-width: 3px;
+    -fx-font-weight: bold;
+    -fx-min-width: 200px;
+    -fx-min-height: 40px;
+}

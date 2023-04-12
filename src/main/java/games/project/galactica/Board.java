@@ -9,7 +9,10 @@ import games.project.stockage.Session;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +49,8 @@ public class Board extends JPanel {
      * constructeur de la classe Board
      *
      * @param rightPanel panel de droite
-     * @param leftPanel panel de gauche
-     * @param game instance de SpaceInvaders
+     * @param leftPanel  panel de gauche
+     * @param game       instance de SpaceInvaders
      */
     public Board(RightPanel rightPanel, LeftPanel leftPanel, Galactica game) {
         initBoard();
@@ -230,8 +233,8 @@ public class Board extends JPanel {
                 shot = null;
                 deaths = 0;
                 removeKeyListener(this.getKeyListeners()[0]);
-                nbTours ++;
-                if (nbTours%2 == 0) {
+                nbTours++;
+                if (nbTours % 2 == 0) {
                     tirAlien++;
                     tirPlayer += 4;
                     moveAlien++;
@@ -414,6 +417,7 @@ public class Board extends JPanel {
             }
         }
     }
+
     public List<Alien> getAliens() {
         return aliens;
     }

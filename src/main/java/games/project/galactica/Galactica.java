@@ -11,6 +11,7 @@ public class Galactica extends JFrame {
 
     /**
      * Méthode main
+     *
      * @param args
      */
     public static void main(String[] args) {
