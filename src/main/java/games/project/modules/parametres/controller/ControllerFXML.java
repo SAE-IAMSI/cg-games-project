@@ -180,16 +180,13 @@ public class ControllerFXML implements Initializable {
         imageJeu.setOpacity(1);
         flecheDroite.setOpacity(1);
         flecheGauche.setOpacity(1);
-        flecheGauche.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                indexImage --;
-                if (indexImage < 0) {
-                    indexImage = 2;
-                }
-                changerImageJeu(wallpaper.get(indexImage));
-
+        flecheGauche.setOnMouseClicked(mouseEvent -> {
+            indexImage--;
+            if (indexImage < 0) {
+                indexImage = 2;
             }
+            changerImageJeu(wallpaper.get(indexImage));
+
         });
         flecheDroite.setOnMouseClicked(mouseEvent -> {
             indexImage ++;
@@ -492,5 +489,9 @@ public class ControllerFXML implements Initializable {
 
     public Label getLabelStatistiques() {
         return labelStatistiques;
+    }
+
+    public Label getLabelErreur(){
+        return labelErreur;
     }
 }
