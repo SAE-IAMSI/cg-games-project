@@ -1,7 +1,7 @@
 package games.project.modules.statistiques.views;
 
 import games.project.modules.statistiques.Surcouche;
-import games.project.parametres.Parametres;
+import games.project.modules.parametres.Parametres;
 import javafx.animation.PauseTransition;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
@@ -144,7 +144,12 @@ public class ViewMain extends Stage {
 
 
         btnRetour.setOnAction(actionEvent -> {
-            //doit appeler le launcher
+            Parametres p = new Parametres();
+            try {
+                p.start(stage);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         Button btnDL = new Button("Télécharger tout les graphiques");

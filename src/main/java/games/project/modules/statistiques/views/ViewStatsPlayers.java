@@ -1,7 +1,7 @@
 package games.project.modules.statistiques.views;
 
 import games.project.modules.statistiques.Surcouche;
-import games.project.parametres.Parametres;
+import games.project.modules.parametres.Parametres;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

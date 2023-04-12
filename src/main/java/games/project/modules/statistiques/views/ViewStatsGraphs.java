@@ -1,6 +1,6 @@
 package games.project.modules.statistiques.views;
 
-import games.project.parametres.Parametres;
+import games.project.modules.parametres.Parametres;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
