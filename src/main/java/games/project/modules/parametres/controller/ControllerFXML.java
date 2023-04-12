@@ -17,6 +17,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -33,16 +34,18 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.net.URL;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 import static javafx.scene.input.KeyCode.ENTER;
 
-public class ControllerFXML {
+public class ControllerFXML implements Initializable {
 
     private final Session session;
     private final Player player;
@@ -60,6 +63,10 @@ public class ControllerFXML {
     private Pane paneCreationCompte;
     @FXML
     private Button buttonRetour;
+    @FXML
+    private Button buttonSeConnecter;
+    @FXML
+    private Button buttonDeconnexion;
     @FXML
     private ImageView imageFond;
     @FXML
@@ -91,9 +98,14 @@ public class ControllerFXML {
     @FXML
     private Label idRGPD;
     @FXML
-    private Label notificationLabel;
+    private Label notificationLabel = new Label();
     @FXML
     private Pane RGPDPane;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        comboBoxText.getItems().addAll(departements);
+    }
 
     @FXML
     public void setGames() {
@@ -177,15 +189,12 @@ public class ControllerFXML {
 
             }
         });
-        flecheDroite.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                indexImage ++;
-                if (indexImage > 2) {
-                    indexImage = 0;
-                }
-                changerImageJeu(wallpaper.get(indexImage));
+        flecheDroite.setOnMouseClicked(mouseEvent -> {
+            indexImage ++;
+            if (indexImage > 2) {
+                indexImage = 0;
             }
+            changerImageJeu(wallpaper.get(indexImage));
         });
         hboxPlay.setOpacity(1);
         panePlay.setOpacity(0.5);
@@ -224,23 +233,9 @@ public class ControllerFXML {
 
     @FXML
     public void lanceStatistiques(){
-        Platform.runLater(() -> {
-            new StatsLauncher().start(new Stage());
-        });
+        Platform.runLater(() -> new StatsLauncher().start(new Stage()));
 
     }
-
-    @FXML
-    private Label labelConnecte;
-
-    @FXML
-    private Button bouttonConnecter;
-
-    @FXML
-    private Button bouttonDeconnexion;
-
-    @FXML
-    private Label label;
 
 
     @FXML
@@ -302,21 +297,20 @@ public class ControllerFXML {
     protected void connexion() {
         if (!session.isConnected()) {
             if (connexionJoueur(player, textFieldConnexion.getText(), passwordFieldConnexion.getText())) {
-                    afficherNotification("success", "Le joueur : " + player.getName() + " s'est connecté");
-                    labelConnecte.setText(player.getName());
-                    label.setText(player.getName());
-                    bouttonConnecter.setVisible(false);
-                    bouttonDeconnexion.setVisible(true);
-                    connexionPane.setVisible(false);
-                    comptePane.setVisible(true);
+                    playNotification("success");
+                    buttonSeConnecter.setVisible(false);
+                    buttonDeconnexion.setText("Déconnecter : " + player.getName());
+                    paneConnexion.setVisible(false);
+                    paneCompte.setVisible(true);
+                    buttonDeconnexion.setVisible(true);
                     session.connect(player.getName());
                     resetConnexionPane();
             } else {
-                afficherNotification("warning", "Identifiant ou mot de passe incorrect");
+                playNotification("warning");
 
             }
         } else {
-            afficherNotification("warning", "Le joueur 1: " + player.getName() + " est deja connecte");
+            playNotification("warning");
         }
     }
 
@@ -325,22 +319,13 @@ public class ControllerFXML {
         if (session.isConnected()) {
             player.setName("");
             session.disconnect();
-            bouttonDeconnexion.setVisible(false);
-            bouttonConnecter.setVisible(true);
-            labelConnecte.setText("Connexion ...");
-            label.setText("Joueur");
-            afficherNotification("success", "Le joueur : " + player.getName() + " a bien été déconnecté");
+            buttonDeconnexion.setVisible(false);
+            buttonSeConnecter.setVisible(true);
+            playNotification("success");
         } else {
-            afficherNotification("warning", "Le joueur n'est pas connecté");
+            playNotification("warning");
         }
 
-    }
-
-    @FXML
-    protected void retourConnexion() {
-        connexionPane.setVisible(false);
-        comptePane.setVisible(true);
-        resetConnexionPane();
     }
 
 
@@ -370,13 +355,6 @@ public class ControllerFXML {
     }
 
     @FXML
-    protected void retourNouveauCompte() {
-        creationComptePane.setVisible(false);
-        comptePane.setVisible(true);
-        resetCreationPane();
-    }
-
-    @FXML
     protected void creerCompteJoueur() {
         if (!loginCreerCompte.getText().equals("")) {
             if (!mdpCreerCompte.getText().equals("")) {
@@ -385,31 +363,37 @@ public class ControllerFXML {
                         if (!comboBoxText.getSelectionModel().isEmpty()) {
                             if (PlayerManager.getInstance().getPlayer(loginCreerCompte.getText()) == null) {
                                 if (checkboxRGPD.isSelected()) {
-                                    PlayerManagerMotron.getInstance().createPlayer(loginCreerCompte.getText(), comboBoxText.getValue().substring(0, 3).strip(), mdpCreerCompte.getText(), false);
-                                    afficherNotification("success", "Bienvenue dans nos rangs, " + loginCreerCompte.getText() + " !");
-                                    creationComptePane.setVisible(false);
-                                    comptePane.setVisible(true);
+                                    PlayerManager.getInstance().createPlayer(loginCreerCompte.getText(), comboBoxText.getValue().substring(0, 3).strip(), mdpCreerCompte.getText(), false);
+                                    playNotification("success");
+                                    paneCreationCompte.setVisible(false);
+                                    paneCompte.setVisible(true);
+                                    resetCreationPane();
                                 } else {
-                                    afficherNotification("warning", "Vous devez lire et accepter la charte de confidentialité avant de continuer");
+                                    playNotification("warning");
                                 }
                             } else {
-                                afficherNotification("warning", "Le compte " + loginCreerCompte.getText() + " existe deja");
+                                playNotification("warning");
                             }
                         } else {
-                            afficherNotification("warning", "Veuillez choisir un département");
+                            playNotification("warning");
                         }
                     } else {
-                        afficherNotification("warning", "Mot de passe trop long");
+                        playNotification("warning");
                     }
                 } else {
-                    afficherNotification("warning", "Les mots de passes ne sont pas identiques");
+                    playNotification("warning");
                 }
             } else {
-                afficherNotification("warning", "Le champ 'mot de passe' n'est pas rempli");
+                playNotification("warning");
             }
         } else {
-            afficherNotification("warning", "Le champ 'login' n'est pas rempli");
+            playNotification("warning");
         }
+    }
+
+    @FXML
+    protected void retourRGPD() {
+        RGPDPane.setVisible(false);
     }
 
     @FXML
@@ -440,27 +424,21 @@ public class ControllerFXML {
         RGPDPane.setVisible(true);
     }
 
-    public void afficherNotification(String type, String message) {
+    public void playNotification(String type) {
         notificationLabel.getStyleClass().clear();
         if (type.equals("success")) {
             positiveNotificationSound.seek(Duration.millis(0));
             positiveNotificationSound.play();
-            notificationLabel.getStyleClass().add("notificationSuccess");
         }
         if (type.equals("warning")) {
             notificationSound.seek(Duration.millis(0));
             notificationSound.play();
-            notificationLabel.getStyleClass().add("notificationWarning");
         }
         if (type.equals("error")) {
             notificationSound.seek(Duration.millis(0));
             notificationSound.play();
-            notificationLabel.getStyleClass().add("notificationError");
         }
-        notificationLabel.setText(message);
-        notificationLabel.setVisible(true);
         PauseTransition pause = new PauseTransition(Duration.millis(2000));
-        pause.setOnFinished(e -> notificationLabel.setVisible(false));
         pause.play();
     }
 
