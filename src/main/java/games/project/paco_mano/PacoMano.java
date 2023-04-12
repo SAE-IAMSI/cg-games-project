@@ -75,6 +75,10 @@ public class PacoMano extends Application {
     private Dir red_movingAt, pink_movingAt, orange_movingAt, cyan_movingAt;
     private Dir movingAt, newDir;
 
+    private boolean isGaming = false;
+
+    private int i = 0;
+
     private PacoManoController pacoManoController;
 
     @Override
@@ -90,56 +94,18 @@ public class PacoMano extends Application {
 
         primaryStage.setTitle("PACOMANO");
 
-            if (pacoManoController.getGamePane().isVisible())
-            {
-                pane = new Pane();
-                pane.setStyle("-fx-background-color : black");
-
-                initialize();
-
-                scoreLabel = new Label();
-                scoreLabel.setPrefWidth(130);
-
-                highLabel = new Label("High Score : " + highScore);
-                highLabel.setPrefWidth(150);
-
-                HBox h_box = new HBox(250);
-                h_box.setPadding(new Insets(0, 5, 0, 5));
-                h_box.getChildren().addAll(scoreLabel, highLabel);
-
-                VBox vbox = new VBox(h_box, pane);
-
-                pacoManoController.getPacomanoPane().getChildren().add(vbox);
-
-//                scene = new Scene(vbox, mapWidth, mapHeight + 20);
-                scene.setOnKeyPressed(event ->
-                {
-                    switch (event.getCode()) {
-                        case UP:
-                            newDir = Dir.UP;
-                            break;
-
-                        case DOWN:
-                            newDir = Dir.DOWN;
-                            break;
-
-                        case LEFT:
-                            newDir = Dir.LEFT;
-                            break;
-
-                        case RIGHT:
-                            newDir = Dir.RIGHT;
-                            break;
-                    }
-                });
-
-                play();
-            }
+        play();
 
         primaryStage.setScene(scene);
         primaryStage.show();
 
     }
+
+//    public void launchPacoMano()
+//    {
+//
+//        play();
+//    }
 
     // pacman and the ghosts are born in this method. The walls are created here, too
     private void initialize() {
@@ -183,6 +149,59 @@ public class PacoMano extends Application {
 
         pacman_keyFrame = new KeyFrame(Duration.millis(110), e ->
         {
+            if(pacoManoController.getGamePane().isVisible() && i==0)
+            {
+                isGaming = true;
+                i++;
+            }
+
+            if (isGaming)
+            {
+                pane = new Pane();
+                pane.setStyle("-fx-background-color : black");
+
+                initialize();
+
+                scoreLabel = new Label();
+                scoreLabel.setPrefWidth(130);
+
+                highLabel = new Label("High Score : " + highScore);
+                highLabel.setPrefWidth(150);
+
+                HBox h_box = new HBox(250);
+                h_box.setPadding(new Insets(0, 5, 0, 5));
+                h_box.getChildren().addAll(scoreLabel, highLabel);
+
+                VBox vbox = new VBox(h_box, pane);
+
+                pacoManoController.getPacomanoPane().getChildren().add(vbox);
+
+//                scene = new Scene(vbox, mapWidth, mapHeight + 20);
+                scene.setOnKeyPressed(event ->
+                {
+                    switch (event.getCode()) {
+                        case UP:
+                            newDir = Dir.UP;
+                            break;
+
+                        case DOWN:
+                            newDir = Dir.DOWN;
+                            break;
+
+                        case LEFT:
+                            newDir = Dir.LEFT;
+                            break;
+
+                        case RIGHT:
+                            newDir = Dir.RIGHT;
+                            break;
+                    }
+                });
+                isGaming = false;
+            }
+
+            if (pacoManoController.getGamePane().isVisible())
+            {
                 blinkBonus();
 
                 if (bonusEaten)
@@ -226,20 +245,28 @@ public class PacoMano extends Application {
                 moveCyan();
 
                 // check if all the pellets & bonus food have been eaten and then end the game
-                if (pelletList.isEmpty() && bonusList.isEmpty()) endGame();
+                if (pelletList.isEmpty() && bonusList.isEmpty()) {
+                    if (i == 1)
+                    {
+                        if (Session.getInstance().isConnected()) {
+                            scoreManager.createScore(score, Session.getInstance().getLogin(), "PM");
+                        } else {
+                            scoreManager.createScore(score, "", "PM");
+                        }
+                        i++;
+                    }
+                    endGame();}
 
                 scoreLabel.setText("Score : " + score);
                 scoreManager = ScoreManager.getInstance();
-                if (Session.getInstance().isConnected()) {
-                    scoreManager.createScore(score, Session.getInstance().getLogin(), "PM");
-                } else {
-                    scoreManager.createScore(score, "", "PM");
-                }
+
 
                 // update pacman's coordinates
                 pacmanX = pacman.getCenterX();
                 pacmanY = pacman.getCenterY();
 //            }
+
+            }
 
         });
 

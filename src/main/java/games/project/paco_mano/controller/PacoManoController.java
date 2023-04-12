@@ -3,6 +3,7 @@ package games.project.paco_mano.controller;
 import games.project.metier.entite.Player;
 import games.project.metier.manager.PlayerManager;
 import games.project.metier.entite.AuthPlayer;
+import games.project.paco_mano.PacoMano;
 import games.project.stockage.Session;
 import games.project.stockage.Security;
 
@@ -222,8 +223,10 @@ public class PacoManoController {
     }
     @FXML
     protected void menuToGame() {
+
         gamePane.setVisible(true);
         menuPane.setVisible(false);
+
         titleBackground.setVisible(false);
         baseBackground.setVisible(true);
     }

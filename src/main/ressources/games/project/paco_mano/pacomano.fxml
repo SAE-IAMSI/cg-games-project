@@ -18,17 +18,17 @@
 
 <AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="games.project.paco_mano.controller.PacoManoController">
    <children>
-      <ImageView fx:id="titleBackground" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="titleBackground" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/wallpaper/titleWallpaper.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="baseBackground" fitHeight="720.0" fitWidth="1280.0" opacity="0.3" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="baseBackground" fitHeight="720.0" fitWidth="1280.0" opacity="0.3" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@img/wallpaper/baseWallpaper.png" />
          </image>
       </ImageView>
-      <Pane fx:id="menuPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+      <Pane fx:id="menuPane" prefHeight="720.0" prefWidth="1280.0">
          <children>
             <GridPane prefHeight="720.0" prefWidth="1280.0">
               <columnConstraints>
@@ -46,7 +46,6 @@
                      <children>
                         <Button fx:id="playButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#menuToGame" prefHeight="50.0" prefWidth="200.0" text="Jouer" />
                         <Button fx:id="playerButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#menuToPlayerPane" prefHeight="50.0" prefWidth="200.0" text="Profil" />
-                        <Button fx:id="highScore" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#menuToHighScore" prefHeight="50.0" prefWidth="200.0" text="Classement" />
                         <Button fx:id="settingButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#menuToSettings" prefHeight="50.0" prefWidth="200.0" text="Paramètres" />
                         <Button fx:id="quitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Quitter" />
                      </children>
@@ -58,7 +57,7 @@
             </GridPane>
          </children>
       </Pane>
-      <Pane fx:id="gamePane" prefHeight="720.0" prefWidth="1280.0">
+      <Pane fx:id="gamePane" prefHeight="720.0" prefWidth="1280.0" visible="false">
          <children>
             <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0">
               <columnConstraints>
@@ -154,7 +153,7 @@
             </GridPane>
          </children>
       </Pane>
-      <Pane fx:id="highscorePane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+      <Pane fx:id="highscorePane" disable="true" prefHeight="720.0" prefWidth="1280.0" visible="false">
          <children>
             <GridPane prefHeight="720.0" prefWidth="1280.0">
                <columnConstraints>
