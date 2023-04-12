@@ -42,6 +42,8 @@ module games.project.launcher {
     exports games.project.galactica;
     exports games.project.galactica.sprite;
     exports games.project.parametres.controller;
+    exports games.project.paco_mano.view;
+    
     exports games.project.prehispong.sound;
 
     exports games.project.modules.tournois;

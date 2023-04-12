@@ -1,5 +1,6 @@
 package games.project.paco_mano;
 
+import games.project.paco_mano.view.Ghost;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
