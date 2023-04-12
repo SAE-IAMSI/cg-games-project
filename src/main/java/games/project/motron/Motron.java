@@ -11,9 +11,11 @@ import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -29,6 +31,7 @@ public class Motron extends Application {
     private VueMoto j1;
     private VueMoto j2;
     private int numManche = 1;
+    private static Stage gameStage;
 
     public static void main(String[] args) {
         Application.launch(Parametres.class, args);
@@ -43,12 +46,17 @@ public class Motron extends Application {
         primaryStage.setTitle("MOTRON");
         primaryStage.setScene(scenemenu);
         primaryStage.show();
+        gameStage = primaryStage;
         controllerFXML.getMediaPlayerMenu().play();
         if(Session.getInstance().isConnected()){
             controllerFXML.getJ1().setNomJoueur(Session.getInstance().getLogin());
             controllerFXML.getJ1().setConnecter(true);
         }
-
+        primaryStage.setOnCloseRequest(we -> {
+            controllerFXML.getMediaPlayerJeu().stop();
+            controllerFXML.getMediaPlayerMenu().stop();
+            closeGame();
+        });
         keyFrame = new KeyFrame(Duration.millis(keyFrameMillis), e -> {
             if (controllerFXML.getComptePane().isVisible()) {
                 controllerFXML.afficherButtonsStats();
@@ -148,6 +156,7 @@ public class Motron extends Application {
                             controllerFXML.getRound().setText("ROUND " + numManche);
                             controllerFXML.relanceManche();
                         } else {
+                            closeGame();
                             if (j1.getNbMorts() < 3) {
                                 j1.getScore().incrementScore(10000);
                             }
@@ -200,5 +209,9 @@ public class Motron extends Application {
         timeline = new Timeline(keyFrame);
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+    }
+
+    public static void closeGame(){
+        gameStage.close();
     }
 }

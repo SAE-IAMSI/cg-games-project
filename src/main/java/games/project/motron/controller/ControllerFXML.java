@@ -177,7 +177,9 @@ public class ControllerFXML implements Initializable {
 
     @FXML
     protected void lanceQuitter() {
-        Platform.exit();
+        mediaPlayerMenu.stop();
+        Motron.closeGame();
+        //Platform.exit();
     }
 //    ------------------------------------------------------------------------------------------------------------------
 
@@ -1402,6 +1404,7 @@ public class ControllerFXML implements Initializable {
     public MediaPlayer getMediaPlayerMenu() {
         return mediaPlayerMenu;
     }
+    public MediaPlayer getMediaPlayerJeu(){return mediaPlayerJeu;}
 
     public Pane getMenuPane() {
         return menuPane;
@@ -1516,6 +1519,8 @@ public class ControllerFXML implements Initializable {
     }
 
     public VueMoto getJ1(){ return j1; }
+
+
     //    ------------------------------------------------------------------------------------------------------------------
 
 }
