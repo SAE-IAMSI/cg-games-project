@@ -5,15 +5,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class Surcouche {
 
     public static String recupFonction(String nomFunc, ArrayList<String> args) throws IOException {
         String absolutePath = FileSystems.getDefault().getPath("src/main/PythonFileStats/app/execute.py").normalize().toAbsolutePath().toString();
         ArrayList<String> commandeListe = new ArrayList<>();
-        commandeListe.add("python");commandeListe.add(absolutePath);commandeListe.add(nomFunc);
-        if(args != null){
+        commandeListe.add("python");
+        commandeListe.add(absolutePath);
+        commandeListe.add(nomFunc);
+        if (args != null) {
             commandeListe.addAll(args);
         }
         String[] cmd = commandeListe.toArray(String[]::new);
@@ -27,27 +30,27 @@ public class Surcouche {
         return "Erreur de lecture";
     }
 
-    public static ArrayList<String> splitTableau(String s){
+    public static ArrayList<String> splitTableau(String s) {
         ArrayList<String> res = new ArrayList<>();
         s = s.substring(1, s.length() - 1);
         String[] tab = s.split(",");
-        for (String str : tab){
-            str = str.replaceAll(" ","");
-            str = str.replaceAll("'","");
+        for (String str : tab) {
+            str = str.replaceAll(" ", "");
+            str = str.replaceAll("'", "");
             res.add(str);
         }
         return res;
     }
 
-    public static String dateLisible(String s){
+    public static String dateLisible(String s) {
         String[] tab = s.split(" ");
         String[] date = tab[0].split("-");
         return date[2] + "/" + date[1] + "/" + date[0];
     }
 
-    public static void creationDesGraphes() throws IOException{
+    public static void creationDesGraphes() throws IOException {
         //Creation des graphes des jeux
-        ArrayList<String> listeJeux = Surcouche.splitTableau(Surcouche.recupFonction("getAllGame",null));
+        ArrayList<String> listeJeux = Surcouche.splitTableau(Surcouche.recupFonction("getAllGame", null));
         String jeuCourant = listeJeux.get(0);
         ArrayList<String> args = new ArrayList<>();
         for(String game : listeJeux){
@@ -57,20 +60,20 @@ public class Surcouche {
         }
 
         //Creation des graphes des joueurs
-        recupFonction("getPieActifsNonActifs",null);
+        recupFonction("getPieActifsNonActifs", null);
 
         //Creation des graphes des DPT
-        recupFonction("getDPTPie",null);
+        recupFonction("getDPTPie", null);
 
         //Creation des graphes des tournois
         recupFonction("grapheTournoi",null);
     }
 
-    public static LinkedHashMap<String, String> splitDPT(String s){
-        String dpt[] = s.split(",");
-        LinkedHashMap<String,String> dptJoueurs = new LinkedHashMap<>();
-        for (String str : dpt){
-            if(str.charAt(0)=='{'){
+    public static LinkedHashMap<String, String> splitDPT(String s) {
+        String[] dpt = s.split(",");
+        LinkedHashMap<String, String> dptJoueurs = new LinkedHashMap<>();
+        for (String str : dpt) {
+            if (str.charAt(0) == '{') {
                 str = str.substring(1);
             } else if (str.charAt(str.length() - 1) == '}') {
                 str = str.substring(0, str.length() - 1);

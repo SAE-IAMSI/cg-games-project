@@ -3,15 +3,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import oracledb
 import os
+
 import shutil
 from datetime import *
-import datetime
-import matplotlib.pyplot as plt
 import math
-import shutil
-import time
-
-from typing import Dict
 
 dir = "src/main/java/games/project/modules/statistiques/client64Bit"
 dir2 = 'client64Bit'
@@ -61,7 +56,7 @@ def getTop10Departement() -> list:
     return tab
 
 
-def getAllGame()->list:
+def getAllGame() -> list:
     '''
     Renvoie la liste de tous les jeux\n
     :return: tab: un tableau de string
@@ -326,7 +321,6 @@ def getPieActifsNonActifs() -> None:
     plt.title('Répartition des joueurs actifs, non actifs et administrateurs')
     plt.savefig(
         os.path.join(os.getcwd(), r'src/main/java/games/project/modules/statistiques/imgTemp/pieActifsNonActifs.png'))
-
 
 def getAllDpt() -> list:
     """

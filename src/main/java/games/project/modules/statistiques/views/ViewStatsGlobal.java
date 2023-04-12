@@ -1,7 +1,7 @@
 package games.project.modules.statistiques.views;
 
-import games.project.modules.statistiques.Surcouche;
 import games.project.modules.parametres.Parametres;
+import games.project.modules.statistiques.Surcouche;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -34,12 +34,12 @@ public class ViewStatsGlobal {
         joueursActifs.setLayoutY(191);
 
         //stocker le nombre de joueurs actifs
-        String s = Surcouche.recupFonction("getJoueursActifs",null);
+        String s = Surcouche.recupFonction("getJoueursActifs", null);
         Label nbJoueursActifs = new Label(s);
         nbJoueursActifs.setLayoutX(400);
         nbJoueursActifs.setLayoutY(191);
 
-        Surcouche.recupFonction("getPieActifsNonActifs",null);
+        Surcouche.recupFonction("getPieActifsNonActifs", null);
         ImageView graphe = new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/pieActifsNonActifs.png").normalize().toAbsolutePath().toString());
         graphe.setLayoutX(600);
         graphe.setLayoutY(200);
@@ -61,7 +61,7 @@ public class ViewStatsGlobal {
             }
         });
 
-        pane.getChildren().addAll(titre, joueursActifs, nbJoueursActifs, btnRetour,graphe);
+        pane.getChildren().addAll(titre, joueursActifs, nbJoueursActifs, btnRetour, graphe);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);

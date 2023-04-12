@@ -1,7 +1,7 @@
 package games.project.modules.statistiques.views;
 
-import games.project.modules.statistiques.Surcouche;
 import games.project.modules.parametres.Parametres;
+import games.project.modules.statistiques.Surcouche;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -19,23 +19,24 @@ import java.util.Map;
 
 public class ViewStatsGames {
 
-    private static int compteur =0;
+    private static final int compteur = 0;
     private Label avgScore;
     Label bestScore;
     ImageView graphe;
 
     public void affichageStatsJeu(Stage stage) throws IOException {
 
-        ArrayList<String> listeJeux = Surcouche.splitTableau(Surcouche.recupFonction("getAllGame",null));
+        ArrayList<String> listeJeux = Surcouche.splitTableau(Surcouche.recupFonction("getAllGame", null));
         String jeuCourant = listeJeux.get(0);
         ArrayList<String> args = new ArrayList<>();
-        Map<String,String> mapAvgScore = new HashMap<>();
-        Map<String,String> mapBestScore = new HashMap<>();
+        Map<String, String> mapAvgScore = new HashMap<>();
+        Map<String, String> mapBestScore = new HashMap<>();
 
-        for(String game : listeJeux){
-            args.clear();args.add(game);
-            mapAvgScore.put(game,Surcouche.recupFonction("getScoreMoyen",args));
-            mapBestScore.put(game,Surcouche.recupFonction("getBestScore",args));
+        for (String game : listeJeux) {
+            args.clear();
+            args.add(game);
+            mapAvgScore.put(game, Surcouche.recupFonction("getScoreMoyen", args));
+            mapBestScore.put(game, Surcouche.recupFonction("getBestScore", args));
             args.clear();
         }
 
@@ -67,7 +68,8 @@ public class ViewStatsGames {
         scoreM.setLayoutY(343);
 
         //résuperer le score moyen suivant un jeu
-        args.clear();args.add(jeuCourant);
+        args.clear();
+        args.add(jeuCourant);
         String s = mapAvgScore.get(jeuCourant);
         avgScore = new Label(s);
         avgScore.getStyleClass().add("texte");
@@ -101,7 +103,7 @@ public class ViewStatsGames {
             }
         });
 
-        graphe = new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/graphe"+jeuCourant+".png").normalize().toAbsolutePath().toString());
+        graphe = new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/graphe" + jeuCourant + ".png").normalize().toAbsolutePath().toString());
         graphe.setLayoutX(500);
         graphe.setLayoutY(200);
         graphe.setFitHeight(400);
@@ -109,7 +111,9 @@ public class ViewStatsGames {
 
         comboSelect.setOnAction(actionEvent -> {
             String jeu = comboSelect.getValue();
-            args.clear();args.add(jeu);pane.getChildren().removeAll(bestScore, avgScore);
+            args.clear();
+            args.add(jeu);
+            pane.getChildren().removeAll(bestScore, avgScore);
             String s2 = mapAvgScore.get(jeu);
             String s3 = mapBestScore.get(jeu);
             avgScore = new Label(s2);
@@ -117,7 +121,7 @@ public class ViewStatsGames {
             avgScore.setLayoutX(245);
             avgScore.setLayoutY(343);
 
-            graphe.setImage(new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/graphe"+jeu+".png").normalize().toAbsolutePath().toString()).getImage());
+            graphe.setImage(new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/graphe" + jeu + ".png").normalize().toAbsolutePath().toString()).getImage());
 
             bestScore = new Label(s3);
             bestScore.getStyleClass().add("texte");
@@ -127,7 +131,7 @@ public class ViewStatsGames {
             pane.getChildren().addAll(bestScore, avgScore);
         });
 
-        pane.getChildren().addAll(titre, select, scoreB, scoreM ,comboSelect, bestScore ,btnRetour, avgScore, graphe);
+        pane.getChildren().addAll(titre, select, scoreB, scoreM, comboSelect, bestScore, btnRetour, avgScore, graphe);
         stage.setScene(scene);
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);

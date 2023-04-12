@@ -15,6 +15,7 @@ public class Shot extends Sprite {
 
     /**
      * Constructeur de la classe Shot
+     *
      * @param x
      * @param y
      */
@@ -24,6 +25,7 @@ public class Shot extends Sprite {
 
     /**
      * Initialise le tir
+     *
      * @param x
      * @param y
      */

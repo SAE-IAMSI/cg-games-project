@@ -23,8 +23,8 @@ public class StartMenuView extends GenericView {
     @FXML
     private void exit() {
         GenericView exit = new ExitView(gameController);
-        exit.setLayoutX(gameController.getPrefWidth()*0.5-exit.getPrefWidth()*0.5);
-        exit.setLayoutY(gameController.getPrefHeight()*0.5-exit.getPrefHeight()*0.5);
+        exit.setLayoutX(gameController.getPrefWidth() * 0.5 - exit.getPrefWidth() * 0.5);
+        exit.setLayoutY(gameController.getPrefHeight() * 0.5 - exit.getPrefHeight() * 0.5);
         gameController.displayScreen(exit);
     }
 
@@ -54,17 +54,17 @@ public class StartMenuView extends GenericView {
     }
 
     @FXML
-    private void changeSound(){
+    private void changeSound() {
         GameSound.getInstance().changeSound();
     }
 
     @FXML
-    private void tcp(){
+    private void tcp() {
         GameSound.getInstance().playTcp();
     }
 
     @FXML
-    private void stopSound(){
+    private void stopSound() {
         GameSound.getInstance().stop();
     }
 }

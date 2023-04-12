@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" stylesheets="@css/parametresStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="games.project.parametres.controller.ControllerFXML">
+   <children>
+      <ImageView fitHeight="737.0" fitWidth="1280.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Background.png" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1280.0" styleClass="menuBar">
+         <children>
+            <Label id="CGGamesTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="327.0" text="CG Games" />
+            <HBox alignment="CENTER" prefHeight="97.0" prefWidth="987.0" spacing="100.0">
+               <children>
+                  <Label fx:id="labelTournois" styleClass="labelBarMenu" text="Tournois" />
+                  <Label fx:id="labelStatistiques" prefHeight="40.0" prefWidth="210.0" styleClass="labelBarMenu" text="Statistiques" />
+                  <Label fx:id="labelConnexion" styleClass="labelBarMenu" text="Connexion" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding></HBox>
+      <ScrollPane hbarPolicy="NEVER" layoutX="-1.0" layoutY="97.0" prefHeight="628.0" prefWidth="230.0" styleClass="buttonPane">
+         <content>
+            <VBox fx:id="vboxJeux" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="620.0" prefWidth="220.0" spacing="50.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

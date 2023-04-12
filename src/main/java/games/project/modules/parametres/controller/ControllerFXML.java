@@ -1,14 +1,11 @@
 package games.project.modules.parametres.controller;
 
 import games.project.metier.manager.JeuManager;
-import games.project.modules.parametres.Parametres;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -78,7 +75,7 @@ public class ControllerFXML {
     }
 
     @FXML
-    public void lanceCompte(){
+    public void lanceCompte() {
         resetPane();
         imageFond.setOpacity(0.5);
         paneCompte.setVisible(true);
@@ -90,7 +87,7 @@ public class ControllerFXML {
     }
 
     @FXML
-    public void lanceConnexion(){
+    public void lanceConnexion() {
         resetPane();
         imageFond.setOpacity(0.5);
         paneConnexion.setVisible(true);
@@ -99,7 +96,7 @@ public class ControllerFXML {
     }
 
     @FXML
-    public void lanceCreationCompte(){
+    public void lanceCreationCompte() {
         resetPane();
         imageFond.setOpacity(0.5);
         paneCreationCompte.setVisible(true);
@@ -108,7 +105,7 @@ public class ControllerFXML {
     }
 
     @FXML
-    public void resetPane(){
+    public void resetPane() {
         paneCompte.setVisible(false);
         paneConnexion.setVisible(false);
         paneCreationCompte.setVisible(false);
@@ -131,7 +128,7 @@ public class ControllerFXML {
         flecheGauche.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                indexImage --;
+                indexImage--;
                 if (indexImage < 0) {
                     indexImage = 2;
                 }
@@ -142,7 +139,7 @@ public class ControllerFXML {
         flecheDroite.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                indexImage ++;
+                indexImage++;
                 if (indexImage > 2) {
                     indexImage = 0;
                 }
@@ -174,12 +171,12 @@ public class ControllerFXML {
     }
 
     @FXML
-    public void lanceTournois(){
+    public void lanceTournois() {
 
     }
 
     @FXML
-    public void lanceStatistiques(){
+    public void lanceStatistiques() {
 
     }
 }

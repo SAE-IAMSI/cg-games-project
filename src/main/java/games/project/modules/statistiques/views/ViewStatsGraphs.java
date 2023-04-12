@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 
 public class ViewStatsGraphs {
-    public void affichageGraphiques(Stage stage){
+    public void affichageGraphiques(Stage stage) {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(Parametres.class.getResource("css/parametresStyle.css")));
@@ -31,7 +31,6 @@ public class ViewStatsGraphs {
         imageDPT.setFitHeight(533);
         imageDPT.setFitWidth(800);
         pane.getChildren().add(imageDPT);
-
 
 
         Button btnRetour = new Button("Retour");
