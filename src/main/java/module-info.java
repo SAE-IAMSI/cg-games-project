@@ -50,4 +50,5 @@ module games.project.launcher {
     exports games.project.modules.tournois.controller;
     opens games.project.modules.tournois.controller to javafx.fxml;
     opens games.project.modules.tournois.view to javafx.fxml;
+    exports games.project.paco_mano.controller;
 }
