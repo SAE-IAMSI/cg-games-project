@@ -73,7 +73,7 @@ public class ViewStatsGames {
         String s = mapAvgScore.get(jeuCourant);
         avgScore = new Label(s);
         avgScore.getStyleClass().add("texte");
-        avgScore.setLayoutX(225);
+        avgScore.setLayoutX(245);
         avgScore.setLayoutY(343);
 
         Label scoreB = new Label("Meilleur score : ");
@@ -85,7 +85,7 @@ public class ViewStatsGames {
         String s1 = mapBestScore.get(jeuCourant);
         bestScore = new Label(s1);
         bestScore.getStyleClass().add("texte");
-        bestScore.setLayoutX(225);
+        bestScore.setLayoutX(245);
         bestScore.setLayoutY(476);
 
         Button btnRetour = new Button("Retour");
@@ -118,14 +118,14 @@ public class ViewStatsGames {
             String s3 = mapBestScore.get(jeu);
             avgScore = new Label(s2);
             avgScore.getStyleClass().add("texte");
-            avgScore.setLayoutX(225);
+            avgScore.setLayoutX(245);
             avgScore.setLayoutY(343);
 
             graphe.setImage(new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/graphe" + jeu + ".png").normalize().toAbsolutePath().toString()).getImage());
 
             bestScore = new Label(s3);
             bestScore.getStyleClass().add("texte");
-            bestScore.setLayoutX(225);
+            bestScore.setLayoutX(245);
             bestScore.setLayoutY(476);
 
             pane.getChildren().addAll(bestScore, avgScore);
