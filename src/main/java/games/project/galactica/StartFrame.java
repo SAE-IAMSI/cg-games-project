@@ -28,16 +28,22 @@ public class StartFrame extends JFrame {
         add(title);
 
         Button classic = new Button("Classic");
-        classic.setSize(200, 100);
+        classic.setSize(200, 70);
         classic.setLocation(540, 430);
         classic.setFont(new Font("Arial", Font.BOLD, 30));
         add(classic);
 
         Button infini = new Button("Infini");
-        infini.setSize(200, 100);
-        infini.setLocation(540, 540);
+        infini.setSize(200, 70);
+        infini.setLocation(540, 510);
         infini.setFont(new Font("Arial", Font.BOLD, 30));
         add(infini);
+
+        Button classement = new Button("Classement");
+        classement.setSize(200, 70);
+        classement.setLocation(540, 590);
+        classement.setFont(new Font("Arial", Font.BOLD, 30));
+        add(classement);
 
         JLabel credit = new JLabel("By: @janbodnar");
         credit.setSize(200, 30);
@@ -47,7 +53,7 @@ public class StartFrame extends JFrame {
         credit.setForeground(Color.WHITE);
         add(credit);
 
-        setTitle("Space Invaders");
+        setTitle("Galactica");
         setSize(1280, 720);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
@@ -92,6 +98,11 @@ public class StartFrame extends JFrame {
                 compte.setLabel("Compte");
                 compte.setSize(150, 60);
             }
+        });
+
+        classement.addActionListener(e -> {
+            ClassementFrame classementFrame = new ClassementFrame();
+            classementFrame.setVisible(true);
         });
 
         close.addActionListener(e -> dispose());

@@ -45,14 +45,14 @@ public class GameOverFrame extends JFrame {
         add(mainMenu);
 
         JLabel credit = new JLabel("By: @janbodnar");
-        credit.setSize(200, 100);
+        credit.setSize(200, 30);
         credit.setLocation(20, 600);
         credit.setFont(new Font("Arial", Font.BOLD, 20));
         credit.setOpaque(false);
         credit.setForeground(Color.WHITE);
         add(credit);
 
-        setTitle("Space Invaders");
+        setTitle("Galactica");
         setSize(1280, 720);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
