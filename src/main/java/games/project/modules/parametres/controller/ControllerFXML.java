@@ -246,7 +246,13 @@ public class ControllerFXML implements Initializable {
     public void lanceStatistiques(){
         if(Session.getInstance().isConnected()) {
             if (PlayerManager.getInstance().getPlayer(Session.getInstance().getLogin()).isAdmin()) {
-                Platform.runLater(() -> new StatsLauncher().start(new Stage()));
+                Platform.runLater(() -> {
+                    try {
+                        new StatsLauncher().start(new Stage());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
             }
             else{
                 labelErreur.setText("Le joueur doit être admin");
