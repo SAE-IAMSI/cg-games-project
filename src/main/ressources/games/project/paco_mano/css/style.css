@@ -1,0 +1,13 @@
+*
+{
+    -fx-text-fill: white;
+}
+
+.gridStyle
+{
+    -fx-border-color: white;
+}
+
+.gridStyle Line{
+    -fx-stroke: white;
+}
