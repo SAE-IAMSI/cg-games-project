@@ -94,7 +94,7 @@ public class StockageJeuDatabase {
                     jeu = new Jeu(codeJeu, libelle, path);
                     jeu.setCode(codeJeu);
                     jeu.setLibelle(libelle);
-                    jeu.setLibelle(path);
+                    jeu.setPath(path);
                 }
             }
         } catch (SQLException e) {

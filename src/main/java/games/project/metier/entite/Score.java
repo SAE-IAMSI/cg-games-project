@@ -4,6 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 
 public class Score {
 
@@ -78,5 +79,18 @@ public class Score {
 
     public void incrementScore(int score) {
         setScore(this.getScore() + score);
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Score score1 = (Score) o;
+        return id == score1.id && Objects.equals(score, score1.score) && Objects.equals(horodatage, score1.horodatage) && Objects.equals(login, score1.login) && Objects.equals(gameCode, score1.gameCode);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, score, horodatage, login, gameCode);
     }
 }
