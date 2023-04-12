@@ -110,3 +110,31 @@
     -fx-min-width: 200px;
     -fx-min-height: 40px;
 }
+
+.texte{
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+}
+
+.link
+{
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-border-color: rgba(0, 0, 0, 0);
+    -fx-border-radius: 0px;
+    -fx-effect: null;
+}
+
+.link:hover
+{
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-border-color: rgba(0, 0, 0, 0);
+    -fx-border-radius: 0px;
+    -fx-effect: null;
+}
+
+#labelErreur{
+    -fx-text-fill: linear-gradient(#56a3f3, #9f00cb);
+    -fx-background-color: #1b1b1b;
+    -fx-border-color: #473bf0;
+}

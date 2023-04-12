@@ -2,6 +2,7 @@ package games.project.modules.statistiques.views;
 
 import games.project.modules.parametres.Parametres;
 import games.project.modules.statistiques.Surcouche;
+import games.project.modules.statistiques.StatsLauncher;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -50,6 +51,19 @@ public class ViewStatsGames {
         titre.setId("CGGamesTitle");
         titre.setLayoutX(350);
         titre.setLayoutY(50);
+=======
+public class ViewStatsGames {
+
+    public void affichageStatsJeu(Stage stage) {
+        Pane pane = new Pane();
+        Scene scene = new Scene(pane, 1280, 720);
+        scene.getStylesheets().add(String.valueOf(StatsLauncher.class.getResource("css/styleStats.css")));
+        pane.getStyleClass().add("fond");
+
+        Label titre = new Label("Statistiques Par Jeu");
+        titre.getStyleClass().add("titre");
+        titre.setLayoutX(600);
+        titre.setLayoutY(100);
 
         Label select = new Label("Sélection d'un jeu : ");
         select.getStyleClass().add("texte");
@@ -73,7 +87,7 @@ public class ViewStatsGames {
         String s = mapAvgScore.get(jeuCourant);
         avgScore = new Label(s);
         avgScore.getStyleClass().add("texte");
-        avgScore.setLayoutX(225);
+        avgScore.setLayoutX(245);
         avgScore.setLayoutY(343);
 
         Label scoreB = new Label("Meilleur score : ");
@@ -85,7 +99,7 @@ public class ViewStatsGames {
         String s1 = mapBestScore.get(jeuCourant);
         bestScore = new Label(s1);
         bestScore.getStyleClass().add("texte");
-        bestScore.setLayoutX(225);
+        bestScore.setLayoutX(245);
         bestScore.setLayoutY(476);
 
         Button btnRetour = new Button("Retour");
@@ -118,14 +132,14 @@ public class ViewStatsGames {
             String s3 = mapBestScore.get(jeu);
             avgScore = new Label(s2);
             avgScore.getStyleClass().add("texte");
-            avgScore.setLayoutX(225);
+            avgScore.setLayoutX(245);
             avgScore.setLayoutY(343);
 
             graphe.setImage(new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/graphe" + jeu + ".png").normalize().toAbsolutePath().toString()).getImage());
 
             bestScore = new Label(s3);
             bestScore.getStyleClass().add("texte");
-            bestScore.setLayoutX(225);
+            bestScore.setLayoutX(245);
             bestScore.setLayoutY(476);
 
             pane.getChildren().addAll(bestScore, avgScore);
