@@ -42,6 +42,7 @@ public class PacoManoController {
     private Pane settingPane;
 
 
+
 //    Menu
 
     @FXML
@@ -62,6 +63,10 @@ public class PacoManoController {
     private Button returnPlayer;
 
 //    ------------------------------------------------------------------------------------------------------------------
+
+    // JEU
+    @FXML
+    private Pane pacomanoPane;
 
     //    Classement
 
@@ -207,4 +212,9 @@ public class PacoManoController {
         titleBackground.setVisible(false);
         baseBackground.setVisible(true);
     }
+
+    public Pane getPacomanoPane() {
+        return pacomanoPane;
+    }
+
 }

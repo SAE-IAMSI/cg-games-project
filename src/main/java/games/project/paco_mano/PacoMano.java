@@ -1,5 +1,6 @@
 package games.project.paco_mano;
 
+import games.project.paco_mano.view.Arene;
 import games.project.paco_mano.view.Ghost;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -37,31 +38,34 @@ public class PacoMano extends Application {
         UP, DOWN, LEFT, RIGHT
     }
 
-    private final int mapWidth = 600;
-    private final int mapHeight = 400;
+
     private final int size = 8;                // refers to the radius of the circle
     private final int speed = 10;                // both, pacman and the ghosts move with the same speed
     private final int ghostSize = size * 2;        // the width & height of the ghosts are equal to pacman's diameter
-    private final int wallSize = 20;
     private boolean bonusEaten;
     private double pacmanX = 280;
     private double pacmanY = 30;
     private double pacmanTurnedAt_x, pacmanTurnedAt_y;        // holds the coordinates of the point where pacman made a turn
-    private int numOfWalls;            // keeps track of the number of walls created
     private int score, highScore;
 
     private Stage window;
     private Scene scene;
-    private Pane pane;
     private Circle pacman;
     private Ghost redGhost, pinkGhost, orangeGhost, cyanGhost;
     private KeyFrame pacman_keyFrame;
     private Timeline timeline;
     private Label scoreLabel, highLabel;
+    private Pane pane;
+    private Arene arene;
+    private ArrayList<Rectangle> wallList;
+    private ArrayList<Circle> pelletList;
+    private ArrayList<Circle> bonusList;
 
-    private final ArrayList<Rectangle> wallList = new ArrayList<Rectangle>();
-    private final ArrayList<Circle> pelletList = new ArrayList<Circle>();
-    private final ArrayList<Circle> bonusList = new ArrayList<Circle>();
+    private int wallSize;
+
+    private final int mapWidth = 600;
+    private final int mapHeight = 400;
+
     private Dir red_movingAt, pink_movingAt, orange_movingAt, cyan_movingAt;
     private Dir movingAt, newDir;
 
@@ -119,9 +123,15 @@ public class PacoMano extends Application {
 
     // pacman and the ghosts are born in this method. The walls are created here, too
     private void initialize() {
-        drawWalls();
-        drawBonusFood();
-        drawPellets();
+        arene = new Arene(pane, mapWidth, mapHeight);
+        wallList = arene.getWallList();
+        pelletList = arene.getPelletList();
+        bonusList = arene.getBonusList();
+        wallSize = arene.getWallSize();
+
+        arene.drawWalls();
+        arene.drawBonusFood();
+        arene.drawPellets();
 
         pacman = new Circle();                    // create pacman
         pacman.setRadius(size);
@@ -784,479 +794,4 @@ public class PacoMano extends Application {
     }
 
 
-    // method to create pellets, store them in an ArrayList and put them on the pane
-    private void drawPellets() {
-        int x, y, num = 0;
-
-        for (x = 30; x < mapWidth; x += wallSize) {
-            for (y = 30; y < mapHeight; y += wallSize) {
-                if (!isAWall(x - (wallSize / 2), y - (wallSize / 2)) && !isABonusFood(x, y) && (x < 50 || x > 190 || y < 90 || y > 200)) {
-                    Circle pellet = new Circle();
-                    pellet.setRadius(1.5);
-                    pellet.setCenterX(x);
-                    pellet.setCenterY(y);
-                    pellet.setFill(Color.WHITE);
-                    pane.getChildren().add(pellet);
-                    pelletList.add(pellet);
-                    num++;
-                }
-            }
-        }
-    }
-
-    // method to put bonus food in the game. The cooridinates are held in an ArrayList
-    private void drawBonusFood() {
-        int x, y;
-
-        for (y = 30; y < mapHeight; y += (mapHeight - (wallSize * 3))) {
-            for (x = 30; x < mapWidth; x += (mapWidth - (wallSize * 3))) {
-                Circle c = new Circle();
-                c.setRadius(4);
-                c.setCenterX(x);
-                c.setCenterY(y);
-                c.setFill(Color.WHITE);
-                pane.getChildren().add(c);
-                bonusList.add(c);
-            }
-        }
-
-        y = 250;
-        for (x = 410; x < 510; x += 80) {
-            Circle circ = new Circle();
-            circ.setRadius(4);
-            circ.setCenterX(x);
-            circ.setCenterY(y);
-            circ.setFill(Color.WHITE);
-            pane.getChildren().add(circ);
-            bonusList.add(circ);
-        }
-
-        Circle cr = new Circle();
-        cr.setRadius(4);
-        cr.setCenterX(90);
-        cr.setCenterY(310);
-        cr.setFill(Color.WHITE);
-        pane.getChildren().add(cr);
-        bonusList.add(cr);
-    }
-
-    // method to check if coordinates of a certain point is the same as the coordinates of a wall
-    private Boolean isAWall(double x, double y) {
-        for (int n = 0; n < wallList.size(); n++)
-            if (wallList.get(n).getX() == x && wallList.get(n).getY() == y) return true;
-
-        return false;
-    }
-
-    private Boolean isABonusFood(double x, double y) {
-        for (int n = 0; n < bonusList.size(); n++)
-            if (bonusList.get(n).getCenterX() == x && bonusList.get(n).getCenterY() == y) return true;
-
-        return false;
-    }
-
-    // method to make the walls
-    private void drawWalls() {
-        int x, y;
-        numOfWalls = 0;
-
-        x = 0;
-        y = 0;
-        while (x < mapWidth)        // walls on the top
-        {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-
-            x += wallSize;
-            numOfWalls++;
-        }
-
-        x = 0;
-        y = wallSize;
-        while (y < mapHeight)        // walls on the left edge
-        {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-
-            y += wallSize;
-            numOfWalls++;
-        }
-
-        x = mapWidth - wallSize;
-        y = wallSize;
-        while (y < mapHeight)        // walls on the right edge
-        {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-
-            y += wallSize;
-            numOfWalls++;
-        }
-
-        x = 0;
-        y = mapHeight - wallSize;
-        while (x < mapWidth)        // walls on the bottom
-        {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-
-            x += wallSize;
-            numOfWalls++;
-        }
-
-        y = 40;
-        for (x = 40; x < 320; x += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 40;
-        for (y = 80; y < 180; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 80;
-        for (x = 60; x < 200; x += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 180;
-        for (y = 100; y < 180; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 180;
-        for (x = 40; x < 200; x += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 220;
-        for (x = 20; x < 200; x += (wallSize * 2)) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 40;
-        for (y = 260; y < 360; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 340;
-        for (x = 60; x < 140; x += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 340;
-        for (x = 400; x < 600; x += wallSize) {
-            if (x != 500) {
-                Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-                wall.setStroke(Color.CORNFLOWERBLUE);
-                wall.setStrokeWidth(2.0);
-                wallList.add(wall);
-                pane.getChildren().add(wall);
-                numOfWalls++;
-            }
-        }
-
-        y = 300;
-        for (x = 340; x < mapWidth; x += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 260;
-        for (x = 80; x < 140; x += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 120;
-        for (y = 280; y < 320; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 340;
-        for (x = 200; x < 280; x += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-
-        x = 340;
-        for (y = 20; y < 160; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 380;
-        for (y = 40; y < 180; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 420;
-        for (y = 20; y < 160; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 460;
-        for (y = 40; y < 180; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 500;
-        for (y = 20; y < 160; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 540;
-        for (y = 40; y < 180; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 180;
-        for (x = 340; x < 560; x += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 80;
-        for (x = 220; x < 320; x += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 260;
-        for (y = 100; y < 220; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 220;
-        for (y = 120; y < 200; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 220;
-        for (x = 220; x < 320; x += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 300;
-        for (y = 120; y < 200; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 300;
-        for (y = 260; y < 360; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 340;
-        for (x = 320; x < 380; x += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 160;
-        for (y = 320; y < mapHeight; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 300;
-        for (x = 160; x < 240; x += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 260;
-        for (x = 160; x < 260; x += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        x = 260;
-        for (y = 260; y < 360; y += wallSize) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 220;
-        for (x = 340; x < mapWidth; x += (wallSize * 2)) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 240;
-        for (x = 360; x < mapWidth - wallSize; x += (wallSize * 4)) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-
-        y = 260;
-        for (x = 340; x < mapWidth; x += (wallSize * 2)) {
-            Rectangle wall = new Rectangle(x, y, wallSize, wallSize);        // pass in x, y, width and height
-            wall.setStroke(Color.CORNFLOWERBLUE);
-            wall.setStrokeWidth(2.0);
-            wallList.add(wall);
-            pane.getChildren().add(wall);
-            numOfWalls++;
-        }
-    }
 }
