@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ViewStatsGames {
-
     private static final int compteur = 0;
     private Label avgScore;
     Label bestScore;
@@ -41,20 +40,6 @@ public class ViewStatsGames {
             args.clear();
         }
 
-        Pane pane = new Pane();
-        Scene scene = new Scene(pane, 1280, 720);
-        scene.getStylesheets().add(String.valueOf(Parametres.class.getResource("css/parametresStyle.css")));
-        ImageView i = new ImageView(String.valueOf(Parametres.class.getResource("images/Background.png")));
-        pane.getChildren().add(i);
-
-        Label titre = new Label("Statistiques Par Jeu");
-        titre.setId("CGGamesTitle");
-        titre.setLayoutX(350);
-        titre.setLayoutY(50);
-=======
-public class ViewStatsGames {
-
-    public void affichageStatsJeu(Stage stage) {
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
         scene.getStylesheets().add(String.valueOf(StatsLauncher.class.getResource("css/styleStats.css")));

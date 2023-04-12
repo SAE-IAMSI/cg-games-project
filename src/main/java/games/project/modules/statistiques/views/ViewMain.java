@@ -65,14 +65,8 @@ public class ViewMain extends Stage {
         btnGlobales.setLayoutX(750);
         btnGlobales.setLayoutY(403);
 
-        ImageView imageRetour = new ImageView(String.valueOf(StatsLauncher.class.getResource("textures/button.png")));
-        imageRetour.getStyleClass().add("btnRetour");
-        imageRetour.setFitHeight(33);
-        imageRetour.setFitWidth(100);
-
         Button btnRetour = new Button("Retour");
         btnRetour.getStyleClass().add("btnRetour");
-        btnRetour.setGraphic(imageRetour);
         btnRetour.setContentDisplay(ContentDisplay.CENTER);
         btnRetour.setLayoutX(64);
         btnRetour.setLayoutY(616);
