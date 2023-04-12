@@ -8,46 +8,46 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="720" maxWidth="1280" minHeight="720" minWidth="1280" prefHeight="720" prefWidth="1280.0" style="-fx-background-color: black;" stylesheets="@../css/cssPong.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="605.0" fitWidth="1304.0" layoutX="-4.0" layoutY="53.0" pickOnBounds="true">
+      <ImageView fitHeight="605.0" fitWidth="1367.0" layoutX="-67.0" layoutY="53.0" pickOnBounds="true">
          <image>
             <Image url="@../textures/fondJeu.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="topBar" arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="-4.0" layoutY="22.0" stroke="BLACK" strokeType="INSIDE" width="1288.0" />
-      <Rectangle fx:id="bottomBar" arcHeight="5.0" arcWidth="5.0" height="56.0" layoutX="-8.0" layoutY="651.0" stroke="#ffffff00" strokeType="INSIDE" width="1288.0" />
-      <Text fx:id="gameTitle" fill="WHITE" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pong" textAlignment="CENTER" wrappingWidth="1280.0000000000002">
-         <font>
-            <Font name="Sans Serif Collection" size="34.0" />
-         </font>
-      </Text>
-      <Text fx:id="p1" fill="WHITE" layoutX="84.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 1" wrappingWidth="102.13671875">
+      <Rectangle fx:id="topBar" arcHeight="5.0" arcWidth="5.0" height="119.0" layoutX="-4.0" layoutY="-41.0" stroke="WHITE" strokeType="INSIDE" width="1288.0" />
+      <Rectangle fx:id="bottomBar" arcHeight="5.0" arcWidth="5.0" height="81.0" layoutX="-8.0" layoutY="651.0" stroke="WHITE" strokeType="INSIDE" width="1315.0" />
+      <Text fx:id="p1" fill="WHITE" layoutX="84.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Chrono" text="Player 1" wrappingWidth="102.13671875">
          <font>
             <Font name="Sans Serif Collection" size="20.0" />
          </font>
       </Text>
-      <Text fx:id="p2" fill="WHITE" layoutX="1122.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player 2">
+      <Text fx:id="p2" fill="WHITE" layoutX="1122.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Chrono" text="Player 2">
          <font>
             <Font name="Sans Serif Collection" size="20.0" />
          </font>
       </Text>
-      <Text fx:id="scoreP1" fill="WHITE" layoutX="78.0" layoutY="680.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score : " textAlignment="CENTER">
+      <Text fx:id="scoreP1" fill="WHITE" layoutX="71.0" layoutY="689.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Score_Vie" text="Score : " textAlignment="CENTER">
          <font>
             <Font name="Sans Serif Collection" size="20.0" />
          </font>
       </Text>
-      <Text fx:id="scoreP2" fill="WHITE" layoutX="1157.0" layoutY="680.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score :" textAlignment="CENTER">
+      <Text fx:id="scoreP2" fill="WHITE" layoutX="1109.0" layoutY="689.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Score_Vie" text="Score :" textAlignment="CENTER">
          <font>
             <Font name="Sans Serif Collection" size="20.0" />
          </font>
       </Text>
-      <Button disable="false" focusTraversable="false" layoutX="614.0" layoutY="660.0" mnemonicParsing="false" onAction="#clickMenu" text="Menu" />
+      <Button disable="false" focusTraversable="false" layoutX="598.0" layoutY="657.0" mnemonicParsing="false" onAction="#clickMenu" prefHeight="16.0" prefWidth="75.0" styleClass="btnGrey" text="Menu" />
       <Rectangle fx:id="limitL" arcHeight="5.0" arcWidth="5.0" fill="RED" height="729.0" layoutX="-21.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
       <Rectangle fx:id="limitR" arcHeight="5.0" arcWidth="5.0" fill="#f80f07" height="729.0" layoutX="1231.0" layoutY="-7.0" stroke="BLACK" strokeType="INSIDE" width="70.0" />
-      <Text fx:id="information" fill="#867c7c" layoutX="45.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Espace pour commencer !" textAlignment="CENTER" wrappingWidth="1181.13671875">
+      <Text fx:id="information" fill="#867c7c" layoutX="45.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ScoreGagne" text="Espace pour commencer !" textAlignment="CENTER" wrappingWidth="1181.13671875">
          <font>
             <Font name="Arial Black" size="29.0" />
+         </font>
+      </Text>
+      <Text fx:id="chronoText" fill="WHITE" layoutX="531.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Chrono" text="Chronometre : " wrappingWidth="478.13671875">
+         <font>
+            <Font name="Sans Serif Collection" size="20.0" />
          </font>
       </Text>
    </children>

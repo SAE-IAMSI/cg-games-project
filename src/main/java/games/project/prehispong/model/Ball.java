@@ -20,8 +20,12 @@ public class Ball extends Circle implements Element {
         setPos(posX, posY);
         this.setRadius(radius);
 
-        Image img = new Image(MainPong.class.getResource("textures/balle.png").toString());
-        this.setFill(new ImagePattern(img));
+        try{
+            Image img = new Image(MainPong.class.getResource("textures/balle.png").toString());
+            this.setFill(new ImagePattern(img));
+        }catch (RuntimeException n){
+            System.out.println("texture non chargé");
+        }
         defaultSpX = spdX;
         defaultSpY = spdY;
         speedX = spdX;
