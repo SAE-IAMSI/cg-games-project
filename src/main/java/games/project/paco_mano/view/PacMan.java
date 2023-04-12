@@ -22,11 +22,15 @@ public class PacMan  {
     private Dir newDir;
     private Dir oldDir;
 
+    private int score;
+
+    private int highscore;
+
     private double pacmanTurnedAt_x;
 
     private double pacmanTurnedAt_y;
 
-    private final int speed = 10;
+    private final int speed = 20;
 
     private final int size = 8;
 
@@ -44,6 +48,30 @@ public class PacMan  {
 
     public void setNewDir(Dir newDir) {
         this.newDir = newDir;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getHighscore() {
+        return highscore;
+    }
+
+    public void setHighscore(int highscore) {
+        this.highscore = highscore;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public Circle getCircle() {
+        return circle;
     }
 
     public PacMan(){
@@ -106,7 +134,6 @@ public class PacMan  {
                 }
             } else if (direction == Dir.RIGHT && checkX > x) {
                 if (x + size >= checkX && (y == checkY || (y < checkY + jeu.getArene().getMurs().getMurSize() && y > checkY))) {
-
                     return true;
                 }
 

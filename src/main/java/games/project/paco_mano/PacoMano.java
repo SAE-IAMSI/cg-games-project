@@ -1,5 +1,8 @@
 package games.project.paco_mano;
 
+import games.project.metier.entite.Player;
+import games.project.metier.manager.PlayerManager;
+import games.project.metier.manager.ScoreManager;
 import games.project.paco_mano.view.Ghost;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -22,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import games.project.stockage.Session;
 
 
 // javac --module-path "%PATH_TO_FX%" --add-modules javafx.controls Game.java
@@ -36,6 +40,11 @@ public class PacoMano extends Application {
     enum Dir {
         UP, DOWN, LEFT, RIGHT
     }
+
+    Player player;
+    ScoreManager scoreManager;
+    PlayerManager playerManager;
+
 
     private final int mapWidth = 600;
     private final int mapHeight = 400;
@@ -198,6 +207,12 @@ public class PacoMano extends Application {
             if (pelletList.isEmpty() && bonusList.isEmpty()) endGame();
 
             scoreLabel.setText("Score : " + score);
+            scoreManager = ScoreManager.getInstance();
+            if (Session.getInstance().isConnected()) {
+                scoreManager.createScore(score, Session.getInstance().getLogin(), "PM");
+            } else {
+                scoreManager.createScore(score, "", "PM");
+            }
 
             // update pacman's coordinates
             pacmanX = pacman.getCenterX();
