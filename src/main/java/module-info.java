@@ -32,6 +32,8 @@ module games.project.launcher {
     exports games.project.factory_fall;
 
     exports games.project.paco_mano;
+    exports games.project.paco_mano.view;
+    opens games.project.paco_mano.view to javafx.fxml;
 
     exports games.project;
     opens games.project.motron.controller to javafx.fxml;
@@ -43,7 +45,6 @@ module games.project.launcher {
     exports games.project.galactica.sprite;
     exports games.project.modules.parametres.controller;
 
-    exports games.project.paco_mano.view;
 
     exports games.project.prehispong.sound;
 

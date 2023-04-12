@@ -1,0 +1,18 @@
+*
+{
+    -fx-text-fill: white;
+}
+
+.gridStyle
+{
+    -fx-border-color: white;
+}
+
+.gridStyle Line{
+    -fx-stroke: white;
+}
+
+.password-field, .text-field, .button
+{
+    -fx-text-fill: black;
+}
