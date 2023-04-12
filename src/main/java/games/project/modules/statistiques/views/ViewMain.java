@@ -1,7 +1,9 @@
 package games.project.modules.statistiques.views;
 
+
 import games.project.modules.parametres.Parametres;
 import games.project.modules.statistiques.Surcouche;
+import games.project.modules.statistiques.StatsLauncher;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
@@ -9,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 
 import java.io.IOException;
 
@@ -62,8 +65,14 @@ public class ViewMain extends Stage {
         btnGlobales.setLayoutX(750);
         btnGlobales.setLayoutY(403);
 
+        ImageView imageRetour = new ImageView(String.valueOf(StatsLauncher.class.getResource("textures/button.png")));
+        imageRetour.getStyleClass().add("btnRetour");
+        imageRetour.setFitHeight(33);
+        imageRetour.setFitWidth(100);
+
         Button btnRetour = new Button("Retour");
-        btnRetour.getStyleClass().add("button");
+        btnRetour.getStyleClass().add("btnRetour");
+        btnRetour.setGraphic(imageRetour);
         btnRetour.setContentDisplay(ContentDisplay.CENTER);
         btnRetour.setLayoutX(64);
         btnRetour.setLayoutY(616);

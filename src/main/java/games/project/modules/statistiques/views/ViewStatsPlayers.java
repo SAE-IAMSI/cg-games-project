@@ -2,6 +2,7 @@ package games.project.modules.statistiques.views;
 
 import games.project.modules.parametres.Parametres;
 import games.project.modules.statistiques.Surcouche;
+import games.project.modules.statistiques.StatsLauncher;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;

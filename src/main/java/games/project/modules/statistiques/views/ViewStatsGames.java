@@ -2,6 +2,7 @@ package games.project.modules.statistiques.views;
 
 import games.project.modules.parametres.Parametres;
 import games.project.modules.statistiques.Surcouche;
+import games.project.modules.statistiques.StatsLauncher;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -50,6 +51,19 @@ public class ViewStatsGames {
         titre.setId("CGGamesTitle");
         titre.setLayoutX(350);
         titre.setLayoutY(50);
+=======
+public class ViewStatsGames {
+
+    public void affichageStatsJeu(Stage stage) {
+        Pane pane = new Pane();
+        Scene scene = new Scene(pane, 1280, 720);
+        scene.getStylesheets().add(String.valueOf(StatsLauncher.class.getResource("css/styleStats.css")));
+        pane.getStyleClass().add("fond");
+
+        Label titre = new Label("Statistiques Par Jeu");
+        titre.getStyleClass().add("titre");
+        titre.setLayoutX(600);
+        titre.setLayoutY(100);
 
         Label select = new Label("Sélection d'un jeu : ");
         select.getStyleClass().add("texte");
