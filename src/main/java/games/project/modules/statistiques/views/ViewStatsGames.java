@@ -42,8 +42,9 @@ public class ViewStatsGames {
 
         Pane pane = new Pane();
         Scene scene = new Scene(pane, 1280, 720);
-        scene.getStylesheets().add(String.valueOf(StatsLauncher.class.getResource("css/styleStats.css")));
-        pane.getStyleClass().add("fond");
+        scene.getStylesheets().add(String.valueOf(Parametres.class.getResource("css/parametresStyle.css")));
+        ImageView i = new ImageView(String.valueOf(Parametres.class.getResource("images/Background.png")));
+        pane.getChildren().add(i);
 
         Label titre = new Label("Statistiques Par Jeu");
         titre.getStyleClass().add("titre");

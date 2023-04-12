@@ -10,7 +10,8 @@ import math
 
 dir = "src/main/java/games/project/modules/statistiques/client64Bit"
 dir2 = 'client64Bit'
-absolute = os.path.join(os.getcwd(), dir)
+dir3 = 'src/main/java/games/project/modules/parametres/controller/client64Bit'
+absolute = os.path.join(os.getcwd(), dir3)
 user = "etusae1"
 password = "3tuS43"
 host = "162.38.222.149"
