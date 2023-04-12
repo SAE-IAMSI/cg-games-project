@@ -1,11 +1,11 @@
 package games.project.motron;
 
 import games.project.motron.controller.ControllerFXML;
-import games.project.motron.metier.manager.ScoreManager;
+import games.project.motron.metier.manager.ScoreManagerMotron;
 import games.project.motron.metier.manager.ScorePartieManager;
 import games.project.motron.view.VueJeu;
 import games.project.motron.view.VueMoto;
-import games.project.parametres.Parametres;
+import games.project.modules.parametres.Parametres;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
@@ -171,14 +171,14 @@ public class Motron extends Application {
                             }
                             numManche = 1;
                             if (j1.isConnecter()) {
-                                ScoreManager.getInstance().createScore(j1.getScore().getScore(), j1.getNomJoueur());
-                                int codeScore = ScoreManager.getInstance().getMaxId();
+                                ScoreManagerMotron.getInstance().createScore(j1.getScore().getScore(), j1.getNomJoueur(), "TRON");
+                                int codeScore = ScoreManagerMotron.getInstance().getMaxId();
                                 ScorePartieManager.getInstance().createScorePartie(codeScore, j2.getNbMorts(), j1.getNbMorts(), j1.getNbBlocParcouru(), rj1);
                                 j1.setNbBlocParcouru(0);
                             }
                             if (j2.isConnecter()) {
-                                ScoreManager.getInstance().createScore(j2.getScore().getScore(), j2.getNomJoueur());
-                                int codeScore = ScoreManager.getInstance().getMaxId();
+                                ScoreManagerMotron.getInstance().createScore(j2.getScore().getScore(), j2.getNomJoueur(), "TRON");
+                                int codeScore = ScoreManagerMotron.getInstance().getMaxId();
                                 ScorePartieManager.getInstance().createScorePartie(codeScore, j1.getNbMorts(), j2.getNbMorts(), j2.getNbBlocParcouru(), rj2);
                                 j2.setNbBlocParcouru(0);
                             }

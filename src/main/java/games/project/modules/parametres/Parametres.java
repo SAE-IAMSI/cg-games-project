@@ -1,6 +1,6 @@
-package games.project.parametres;
+package games.project.modules.parametres;
 
-import games.project.parametres.controller.ControllerFXML;
+import games.project.modules.parametres.controller.ControllerFXML;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
