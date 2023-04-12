@@ -1,10 +1,14 @@
 package games.project.paco_mano;
 
+import games.project.metier.manager.ScoreManager;
+import games.project.paco_mano.controller.PacoManoController;
 import games.project.paco_mano.view.Arene;
 import games.project.paco_mano.view.Ghost;
+import games.project.stockage.Session;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -19,6 +23,7 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
@@ -38,6 +43,7 @@ public class PacoMano extends Application {
         UP, DOWN, LEFT, RIGHT
     }
 
+    ScoreManager scoreManager;
 
     private final int size = 8;                // refers to the radius of the circle
     private final int speed = 10;                // both, pacman and the ghosts move with the same speed
@@ -69,56 +75,70 @@ public class PacoMano extends Application {
     private Dir red_movingAt, pink_movingAt, orange_movingAt, cyan_movingAt;
     private Dir movingAt, newDir;
 
+    private PacoManoController pacoManoController;
+
     @Override
     public void start(Stage primaryStage) {
-        window = primaryStage;
-        window.setTitle("P A C M A N");
-        window.setResizable(false);
 
-        pane = new Pane();
-        pane.setStyle("-fx-background-color : black");
+        FXMLLoader fxmlLoader = new FXMLLoader(PacoManoLauncher.class.getResource("pacomano.fxml"));
+        try {
+            scene = new Scene(fxmlLoader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        pacoManoController = fxmlLoader.getController();
 
-        initialize();
+        primaryStage.setTitle("PACOMANO");
 
-        scoreLabel = new Label();
-        scoreLabel.setPrefWidth(130);
+            if (pacoManoController.getGamePane().isVisible())
+            {
+                pane = new Pane();
+                pane.setStyle("-fx-background-color : black");
 
-        highLabel = new Label("High Score : " + highScore);
-        highLabel.setPrefWidth(150);
+                initialize();
 
-        HBox h_box = new HBox(250);
-        h_box.setPadding(new Insets(0, 5, 0, 5));
-        h_box.getChildren().addAll(scoreLabel, highLabel);
+                scoreLabel = new Label();
+                scoreLabel.setPrefWidth(130);
 
-        VBox vbox = new VBox(h_box, pane);
+                highLabel = new Label("High Score : " + highScore);
+                highLabel.setPrefWidth(150);
 
-        scene = new Scene(vbox, mapWidth, mapHeight + 20);
-        scene.getStylesheets().add("styles.css");
-        scene.setOnKeyPressed(event ->
-        {
-            switch (event.getCode()) {
-                case UP:
-                    newDir = Dir.UP;
-                    break;
+                HBox h_box = new HBox(250);
+                h_box.setPadding(new Insets(0, 5, 0, 5));
+                h_box.getChildren().addAll(scoreLabel, highLabel);
 
-                case DOWN:
-                    newDir = Dir.DOWN;
-                    break;
+                VBox vbox = new VBox(h_box, pane);
 
-                case LEFT:
-                    newDir = Dir.LEFT;
-                    break;
+                pacoManoController.getPacomanoPane().getChildren().add(vbox);
 
-                case RIGHT:
-                    newDir = Dir.RIGHT;
-                    break;
+//                scene = new Scene(vbox, mapWidth, mapHeight + 20);
+                scene.setOnKeyPressed(event ->
+                {
+                    switch (event.getCode()) {
+                        case UP:
+                            newDir = Dir.UP;
+                            break;
+
+                        case DOWN:
+                            newDir = Dir.DOWN;
+                            break;
+
+                        case LEFT:
+                            newDir = Dir.LEFT;
+                            break;
+
+                        case RIGHT:
+                            newDir = Dir.RIGHT;
+                            break;
+                    }
+                });
+
+                play();
             }
-        });
 
-        play();
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
-        window.setScene(scene);
-        window.show();
     }
 
     // pacman and the ghosts are born in this method. The walls are created here, too
@@ -160,58 +180,67 @@ public class PacoMano extends Application {
     }
 
     private void play() {
+
         pacman_keyFrame = new KeyFrame(Duration.millis(110), e ->
         {
-            blinkBonus();
+                blinkBonus();
 
-            if (bonusEaten)
-                ateGhost();
-            else            // check whether any of the ghosts have caught pacman
-                if (redGhost.caughtPacman(pacman, speed) || pinkGhost.caughtPacman(pacman, speed) || orangeGhost.caughtPacman(pacman, speed) || cyanGhost.caughtPacman(pacman, speed))
-                    endGame();
+                if (bonusEaten)
+                    ateGhost();
+                else            // check whether any of the ghosts have caught pacman
+                    if (redGhost.caughtPacman(pacman, speed) || pinkGhost.caughtPacman(pacman, speed) || orangeGhost.caughtPacman(pacman, speed) || cyanGhost.caughtPacman(pacman, speed))
+                        endGame();
 
-            // only when pacman cannot continue in its current direction, its direction is updated
-            if (!checkForWalls(newDir, pacmanX, pacmanY)) {
-                if (movingAt != newDir)        // when pacman makes a turn, record the coordinates of the position he turned at
-                {
-                    pacmanTurnedAt_x = pacman.getCenterX();
-                    pacmanTurnedAt_y = pacman.getCenterY();
+                // only when pacman cannot continue in its current direction, its direction is updated
+                if (!checkForWalls(newDir, pacmanX, pacmanY)) {
+                    if (movingAt != newDir)        // when pacman makes a turn, record the coordinates of the position he turned at
+                    {
+                        pacmanTurnedAt_x = pacman.getCenterX();
+                        pacmanTurnedAt_y = pacman.getCenterY();
+                    }
+
+                    movingAt = newDir;
                 }
 
-                movingAt = newDir;
-            }
+                if (movingAt == Dir.UP) {
+                    if (!checkForWalls(movingAt, pacmanX, pacmanY))
+                        pacman.setCenterY(pacmanY - speed);
+                } else if (movingAt == Dir.DOWN) {
+                    if (!checkForWalls(movingAt, pacmanX, pacmanY))
+                        pacman.setCenterY(pacmanY + speed);
+                } else if (movingAt == Dir.LEFT) {
+                    if (!checkForWalls(movingAt, pacmanX, pacmanY))
+                        pacman.setCenterX(pacmanX - speed);
+                } else if (movingAt == Dir.RIGHT) {
+                    if (!checkForWalls(movingAt, pacmanX, pacmanY))
+                        pacman.setCenterX(pacmanX + speed);
+                }
 
-            if (movingAt == Dir.UP) {
-                if (!checkForWalls(movingAt, pacmanX, pacmanY))
-                    pacman.setCenterY(pacmanY - speed);
-            } else if (movingAt == Dir.DOWN) {
-                if (!checkForWalls(movingAt, pacmanX, pacmanY))
-                    pacman.setCenterY(pacmanY + speed);
-            } else if (movingAt == Dir.LEFT) {
-                if (!checkForWalls(movingAt, pacmanX, pacmanY))
-                    pacman.setCenterX(pacmanX - speed);
-            } else if (movingAt == Dir.RIGHT) {
-                if (!checkForWalls(movingAt, pacmanX, pacmanY))
-                    pacman.setCenterX(pacmanX + speed);
-            }
+                ateFood(pacmanX, pacmanY);
+                ateBonus(pacmanX, pacmanY);
 
-            ateFood(pacmanX, pacmanY);
-            ateBonus(pacmanX, pacmanY);
+                // move the ghosts
+                moveRed();
+                movePink();
+                moveOrange();
+                moveCyan();
 
-            // move the ghosts
-            moveRed();
-            movePink();
-            moveOrange();
-            moveCyan();
+                // check if all the pellets & bonus food have been eaten and then end the game
+                if (pelletList.isEmpty() && bonusList.isEmpty()) endGame();
 
-            // check if all the pellets & bonus food have been eaten and then end the game
-            if (pelletList.isEmpty() && bonusList.isEmpty()) endGame();
+                scoreLabel.setText("Score : " + score);
+                scoreManager = ScoreManager.getInstance();
+                if (Session.getInstance().isConnected()) {
+                    scoreManager.createScore(score, Session.getInstance().getLogin(), "PM");
+                } else {
+                    scoreManager.createScore(score, "", "PM");
+                }
 
-            scoreLabel.setText("Score : " + score);
+                // update pacman's coordinates
+                pacmanX = pacman.getCenterX();
+                pacmanY = pacman.getCenterY();
+//            }
 
-            // update pacman's coordinates
-            pacmanX = pacman.getCenterX();
-            pacmanY = pacman.getCenterY();
         });
 
         timeline = new Timeline(pacman_keyFrame);

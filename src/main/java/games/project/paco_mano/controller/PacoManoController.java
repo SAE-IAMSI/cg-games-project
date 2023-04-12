@@ -228,9 +228,7 @@ public class PacoManoController {
         baseBackground.setVisible(true);
     }
 
-    public Pane getPacomanoPane() {
-        return pacomanoPane;
-    }
+
 
 
     @FXML
@@ -279,5 +277,13 @@ public class PacoManoController {
         else {
             System.out.println("pas co");
         }
+    }
+
+    public Pane getPacomanoPane() {
+        return pacomanoPane;
+    }
+
+    public Pane getGamePane() {
+        return gamePane;
     }
 }
