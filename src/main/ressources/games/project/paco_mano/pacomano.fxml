@@ -20,12 +20,12 @@
    <children>
       <ImageView fx:id="titleBackground" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@img/assets/titleWallpaper.png" />
+            <Image url="@img/wallpaper/titleWallpaper.png" />
          </image>
       </ImageView>
       <ImageView fx:id="baseBackground" fitHeight="720.0" fitWidth="1280.0" opacity="0.3" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@img/assets/baseWallpaper.png" />
+            <Image url="@img/wallpaper/baseWallpaper.png" />
          </image>
       </ImageView>
       <Pane fx:id="menuPane" prefHeight="720.0" prefWidth="1280.0">

@@ -34,6 +34,7 @@ module games.project.launcher {
     exports games.project.paco_mano;
     exports games.project.paco_mano.view;
     opens games.project.paco_mano.view to javafx.fxml;
+    opens games.project.paco_mano.controller to javafx.fxml;
 
     exports games.project;
     opens games.project.motron.controller to javafx.fxml;
