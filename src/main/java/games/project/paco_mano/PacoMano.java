@@ -207,8 +207,19 @@ public class PacoMano extends Application {
                 if (bonusEaten)
                     ateGhost();
                 else            // check whether any of the ghosts have caught pacman
-                    if (redGhost.caughtPacman(pacman, speed) || pinkGhost.caughtPacman(pacman, speed) || orangeGhost.caughtPacman(pacman, speed) || cyanGhost.caughtPacman(pacman, speed))
+                    if (redGhost.caughtPacman(pacman, speed) || pinkGhost.caughtPacman(pacman, speed) || orangeGhost.caughtPacman(pacman, speed) || cyanGhost.caughtPacman(pacman, speed)){
+                        if (i == 1)
+                        {
+                            if (Session.getInstance().isConnected()) {
+                                scoreManager.createScore(score, Session.getInstance().getLogin(), "PM");
+                            } else {
+                                scoreManager.createScore(score, "", "PM");
+                            }
+                            i++;
+                        }
                         endGame();
+                    }
+
 
                 // only when pacman cannot continue in its current direction, its direction is updated
                 if (!checkForWalls(newDir, pacmanX, pacmanY)) {
