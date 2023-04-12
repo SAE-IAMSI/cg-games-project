@@ -28,7 +28,7 @@
             <Image url="@img/wallpaper/baseWallpaper.png" />
          </image>
       </ImageView>
-      <Pane fx:id="menuPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+      <Pane fx:id="menuPane" prefHeight="720.0" prefWidth="1280.0">
          <children>
             <GridPane prefHeight="720.0" prefWidth="1280.0">
               <columnConstraints>
@@ -44,10 +44,10 @@
                <children>
                   <VBox alignment="CENTER" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Button fx:id="playButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Jouer" />
-                        <Button fx:id="playerButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Profil" />
-                        <Button fx:id="highScore" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Classement" />
-                        <Button fx:id="settingButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Paramètres" />
+                        <Button fx:id="playButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#menuToGame" prefHeight="50.0" prefWidth="200.0" text="Jouer" />
+                        <Button fx:id="playerButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#menuToPlayerPane" prefHeight="50.0" prefWidth="200.0" text="Profil" />
+                        <Button fx:id="highScore" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#menuToHighScore" prefHeight="50.0" prefWidth="200.0" text="Classement" />
+                        <Button fx:id="settingButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#menuToSettings" prefHeight="50.0" prefWidth="200.0" text="Paramètres" />
                         <Button fx:id="quitButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" text="Quitter" />
                      </children>
                      <GridPane.margin>
@@ -73,7 +73,7 @@
             </GridPane>
          </children>
       </Pane>
-      <Pane fx:id="playerPane" prefHeight="720.0" prefWidth="1280.0">
+      <Pane fx:id="playerPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
          <children>
             <GridPane prefHeight="720.0" prefWidth="1280.0">
                <columnConstraints>
@@ -87,6 +87,14 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
+                  <Button fx:id="returnPlayer" mnemonicParsing="false" onAction="#backToMenuFromPlayerPane" prefHeight="50.0" prefWidth="200.0" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" right="30.0" />
+                     </GridPane.margin>
+                  </Button>
                   <VBox alignment="TOP_CENTER" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label text="Connexion">
@@ -133,14 +141,6 @@
                         </Button>
                      </children>
                   </VBox>
-                  <Button fx:id="returnPlayer" mnemonicParsing="false" onAction="#retourClassement" prefHeight="50.0" prefWidth="200.0" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets bottom="20.0" right="30.0" />
-                     </GridPane.margin>
-                  </Button>
                </children>
             </GridPane>
          </children>
@@ -226,7 +226,7 @@
                         <Label fx:id="textTempD10" styleClass="tab-label" text="N/A" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
-                  <Button fx:id="returnHighscore" mnemonicParsing="false" onAction="#retourClassement" prefHeight="50.0" prefWidth="200.0" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                  <Button fx:id="returnHighscore" mnemonicParsing="false" onAction="#backToMenuFromHighScore" prefHeight="50.0" prefWidth="200.0" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -310,7 +310,7 @@
                         </VBox>
                      </children>
                   </VBox>
-                  <Button fx:id="returnSetting" mnemonicParsing="false" onAction="#retourClassement" prefHeight="50.0" prefWidth="200.0" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
+                  <Button fx:id="returnSetting" mnemonicParsing="false" onAction="#backToMenuFromSettings" prefHeight="50.0" prefWidth="200.0" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
                      <font>
                         <Font size="18.0" />
                      </font>
