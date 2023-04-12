@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -71,19 +73,66 @@
             </GridPane>
          </children>
       </Pane>
-      <Pane fx:id="playerPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
+      <Pane fx:id="playerPane" prefHeight="720.0" prefWidth="1280.0">
          <children>
             <GridPane prefHeight="720.0" prefWidth="1280.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="500.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="500.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
+                  <VBox alignment="TOP_CENTER" spacing="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Label text="Connexion">
+                           <font>
+                              <Font size="80.0" />
+                           </font>
+                        </Label>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="320.0" text="Identifiant" textFill="WHITE">
+                                       <font>
+                                          <Font size="52.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField>
+                                       <font>
+                                          <Font size="28.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="320.0" text="Mot de passe" textFill="WHITE">
+                                       <font>
+                                          <Font size="52.0" />
+                                       </font>
+                                    </Label>
+                                    <PasswordField>
+                                       <font>
+                                          <Font size="28.0" />
+                                       </font>
+                                    </PasswordField>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Connexion">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
                   <Button fx:id="returnPlayer" mnemonicParsing="false" onAction="#retourClassement" prefHeight="50.0" prefWidth="200.0" text="Retour" textFill="WHITE" GridPane.columnSpan="2147483647" GridPane.halignment="RIGHT" GridPane.rowSpan="2147483647" GridPane.valignment="BOTTOM">
                      <font>
                         <Font size="18.0" />
@@ -194,7 +243,7 @@
             </GridPane>
          </children>
       </Pane>
-      <Pane fx:id="settingPane" prefHeight="720.0" prefWidth="1280.0">
+      <Pane fx:id="settingPane" prefHeight="720.0" prefWidth="1280.0" visible="false">
          <children>
             <GridPane prefHeight="720.0" prefWidth="1280.0">
                <columnConstraints>
@@ -217,7 +266,7 @@
                         </Label>
                         <VBox spacing="10.0">
                            <children>
-                              <HBox prefWidth="200.0">
+                              <HBox prefWidth="200.0" spacing="5.0">
                                  <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="500.0" text="HAUT">
                                        <opaqueInsets>
@@ -227,7 +276,7 @@
                                     <Button fx:id="upButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="500.0" text="Z" />
                                  </children>
                               </HBox>
-                              <HBox prefWidth="200.0">
+                              <HBox prefWidth="200.0" spacing="5.0">
                                  <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="500.0" text="GAUCHE">
                                        <opaqueInsets>
@@ -237,7 +286,7 @@
                                     <Button fx:id="leftButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="500.0" text="S" />
                                  </children>
                               </HBox>
-                              <HBox prefWidth="200.0">
+                              <HBox prefWidth="200.0" spacing="5.0">
                                  <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="500.0" text="BAS">
                                        <opaqueInsets>
@@ -247,7 +296,7 @@
                                     <Button fx:id="downButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="500.0" text="Q" />
                                  </children>
                               </HBox>
-                              <HBox prefWidth="200.0">
+                              <HBox prefWidth="200.0" spacing="5.0">
                                  <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="500.0" text="DROITE">
                                        <opaqueInsets>
