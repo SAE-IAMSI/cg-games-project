@@ -10,6 +10,7 @@ import games.project.motron.metier.manager.ScoreManagerMotron;
 import games.project.motron.metier.manager.ScorePartieManager;
 import games.project.motron.stockage.Security;
 import games.project.motron.view.*;
+import games.project.stockage.Session;
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
@@ -980,9 +981,7 @@ public class ControllerFXML implements Initializable {
                     player.setName(login);
                     jConnecte = true;
                 }
-            } catch (NoSuchAlgorithmException e) {
-                throw new RuntimeException(e);
-            } catch (InvalidKeyException e) {
+            } catch (NoSuchAlgorithmException | InvalidKeyException e) {
                 throw new RuntimeException(e);
             }
         return jConnecte;
@@ -1023,6 +1022,7 @@ public class ControllerFXML implements Initializable {
                     comptePane.setVisible(true);
                     j1.setNomJoueur(player1.getName());
                     j1.setConnecter(true);
+                    Session.getInstance().connect(player1.getName());
                     resetConnexionJ1Pane();
                 }
             } else {
@@ -1040,6 +1040,7 @@ public class ControllerFXML implements Initializable {
             player1.setName("J1");
             j1.setNomJoueur("Joueur 1");
             j1.setConnecter(false);
+            Session.getInstance().disconnect();
             VueSprite spriteJ1 = new VueSprite(new Image(Objects.requireNonNull(Motron.class.getResourceAsStream("images/moto/TronLegacyBleu.png")), 60, 40, true, true), Color.LIGHTBLUE, "Motron Bleu");
             numSprite = 0;
             j1.setSprite(spriteJ1);
@@ -1514,6 +1515,7 @@ public class ControllerFXML implements Initializable {
         return gifBoomJ2;
     }
 
+    public VueMoto getJ1(){ return j1; }
     //    ------------------------------------------------------------------------------------------------------------------
 
 }

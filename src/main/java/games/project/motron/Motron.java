@@ -6,6 +6,7 @@ import games.project.motron.metier.manager.ScorePartieManager;
 import games.project.motron.view.VueJeu;
 import games.project.motron.view.VueMoto;
 import games.project.modules.parametres.Parametres;
+import games.project.stockage.Session;
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
@@ -43,6 +44,10 @@ public class Motron extends Application {
         primaryStage.setScene(scenemenu);
         primaryStage.show();
         controllerFXML.getMediaPlayerMenu().play();
+        if(Session.getInstance().isConnected()){
+            controllerFXML.getJ1().setNomJoueur(Session.getInstance().getLogin());
+            controllerFXML.getJ1().setConnecter(true);
+        }
 
         keyFrame = new KeyFrame(Duration.millis(keyFrameMillis), e -> {
             if (controllerFXML.getComptePane().isVisible()) {
