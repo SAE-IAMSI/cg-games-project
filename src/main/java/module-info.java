@@ -43,4 +43,9 @@ module games.project.launcher {
     exports games.project.space_invader.sprite;
     exports games.project.parametres.controller;
     exports games.project.prehispong.sound;
+
+    exports games.project.modules.tournois;
+    exports games.project.modules.tournois.controller;
+    opens games.project.modules.tournois.controller to javafx.fxml;
+    opens games.project.modules.tournois.view to javafx.fxml;
 }
