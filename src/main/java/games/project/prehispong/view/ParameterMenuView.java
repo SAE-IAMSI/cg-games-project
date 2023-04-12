@@ -81,14 +81,13 @@ public class ParameterMenuView extends GenericView {
         gameController.p1.setText(gameController.getPlayer1().getName());
     }
 
-    private void checkForEditProfile(){
-        if(Session.getInstance().isConnected()){
+    private void checkForEditProfile() {
+        if (Session.getInstance().isConnected()) {
             editId.setText(Session.getInstance().getLogin());
             editNewP.setDisable(false);
             editOldP.setDisable(false);
             editConfirm.setDisable(false);
-        }
-        else{
+        } else {
             editId.setText("");
             editNewP.setDisable(true);
             editOldP.setDisable(true);
@@ -166,7 +165,7 @@ public class ParameterMenuView extends GenericView {
 
         if (!idRegister.getText().equals("") && !passwordRegister.getText().equals("") && !confirmRegister.getText().equals("") && !dep.equals("")) {
             if (passwordRegister.getText().equals(confirmRegister.getText())) {
-                  PlayerManager.getInstance().createPlayer(idRegister.getText(), dep, passwordRegister.getText(),false);
+                PlayerManager.getInstance().createPlayer(idRegister.getText(), dep, passwordRegister.getText(), false);
                 infoRegister.setText("Joueur '" + idRegister.getText() + "' enregister !");
                 passwordRegister.setText("");
                 confirmRegister.setText("");
@@ -192,35 +191,32 @@ public class ParameterMenuView extends GenericView {
     }
 
     @FXML
-    private void editProfile(){
+    private void editProfile() {
         infoLogin.setText("");
         infoRegister.setText("");
-        if(!editOldP.getText().equals("")&&!editNewP.getText().equals("")&&!editConfirm.getText().equals("")){
-            if(editNewP.getText().equals(editConfirm.getText())){
+        if (!editOldP.getText().equals("") && !editNewP.getText().equals("") && !editConfirm.getText().equals("")) {
+            if (editNewP.getText().equals(editConfirm.getText())) {
                 AuthPlayer p = manager.getPlayer(Session.getInstance().getLogin());
                 try {
-                    if(p != null && Security.checkPassword(editOldP.getText(), p.getSalt(), p.getHashedPassword())){
-                        manager.updatePlayer(Session.getInstance().getLogin(), p.getDepartment(),editNewP.getText(),false);
+                    if (p != null && Security.checkPassword(editOldP.getText(), p.getSalt(), p.getHashedPassword())) {
+                        manager.updatePlayer(Session.getInstance().getLogin(), p.getDepartment(), editNewP.getText(), false);
                         editText.setText("Modification effectue !");
-                    }
-                    else{
+                    } else {
                         editText.setText("Mot de passe invalide");
                     }
                 } catch (NoSuchAlgorithmException | InvalidKeyException e) {
                     throw new RuntimeException(e);
                 }
-            }
-            else {
+            } else {
                 editText.setText("Les mots de passe ne sont pas similaire");
             }
-        }
-        else{
+        } else {
             editText.setText("Tous les champs ne sont pas remplis");
         }
         clearEditText();
     }
 
-    private void clearEditText(){
+    private void clearEditText() {
         editNewP.setText("");
         editOldP.setText("");
         editConfirm.setText("");

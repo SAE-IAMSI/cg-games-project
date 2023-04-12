@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: black;" stylesheets="@css/parametresStyle.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="games.project.modules.parametres.controller.ControllerFXML">
+   <children>
+      <ImageView id="imageFond" fx:id="imageFond" fitHeight="737.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Background.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="paneMenu" prefHeight="720.0" prefWidth="1280.0">
+         <children>
+            <Pane fx:id="infoJeu" layoutX="226.0" layoutY="98.0" prefHeight="623.0" prefWidth="1058.0">
+               <children>
+                  <HBox fx:id="visuelJeu" alignment="CENTER" prefHeight="476.0" prefWidth="1058.0">
+                     <children>
+                        <ImageView fx:id="flecheGauche" fitHeight="150.0" fitWidth="200.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/flecheGauche.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imageJeu" fitHeight="360.0" fitWidth="640.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="flecheDroite" fitHeight="150.0" fitWidth="200.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/flecheDroite.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <Pane layoutY="476.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="147.0" prefWidth="1058.0">
+                     <children>
+                        <Pane fx:id="panePlay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="147.0" prefWidth="1058.0" style="-fx-background-color: black;" />
+                        <HBox fx:id="hboxPlay" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.0" prefHeight="147.0" prefWidth="1058.0">
+                           <children>
+                              <Button fx:id="buttonPlay" mnemonicParsing="false" text="Jouer">
+                                 <HBox.margin>
+                                    <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="buttonPlayRetour" mnemonicParsing="false" text="Retour">
+                                 <HBox.margin>
+                                    <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1280.0" styleClass="menuBar">
+               <children>
+                  <Label id="CGGamesTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="327.0" text="CG Games" />
+                  <HBox alignment="CENTER" prefHeight="97.0" prefWidth="987.0" spacing="100.0">
+                     <children>
+                        <Label fx:id="labelTournois" onMouseClicked="#lanceTournois" styleClass="labelBarMenu" text="Tournois">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelStatistiques" onMouseClicked="#lanceStatistiques" prefHeight="40.0" prefWidth="210.0" styleClass="labelBarMenu" text="Statistiques">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelCompte" onMouseClicked="#lanceCompte" styleClass="labelBarMenu" text="Compte">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <ScrollPane hbarPolicy="NEVER" layoutY="97.0" prefHeight="623.0" prefWidth="230.0" styleClass="buttonPane">
+               <content>
+                  <VBox fx:id="vboxJeux" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="615.0" prefWidth="220.0" spacing="50.0" />
+               </content>
+            </ScrollPane>
+            <Pane fx:id="paneConnexion" layoutX="229.0" layoutY="100.0" prefHeight="623.0" prefWidth="1051.0" visible="false">
+               <children>
+                  <HBox alignment="CENTER" layoutX="342.0" layoutY="312.0" prefHeight="49.0" prefWidth="367.0" spacing="20.0">
+                     <children>
+                        <Label text="Login :">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <TextField />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="208.0" layoutY="395.0" prefHeight="40.0" prefWidth="501.0" spacing="20.0">
+                     <children>
+                        <Label text="Mot de Passe :">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <PasswordField />
+                     </children>
+                  </HBox>
+                  <Label id="CGGamesTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="366.0" layoutY="82.0" prefHeight="66.0" prefWidth="319.0" text="Connexion" />
+                  <Button fx:id="buttonConnexion" layoutX="426.0" layoutY="465.0" mnemonicParsing="false" text="Connexion" />
+               </children>
+            </Pane>
+            <Pane fx:id="paneCompte" layoutX="229.0" layoutY="101.0" prefHeight="623.0" prefWidth="1051.0" visible="false">
+               <children>
+                  <Button fx:id="buttonSeConnecter" layoutX="383.0" layoutY="321.0" mnemonicParsing="false" onAction="#lanceConnexion" prefHeight="60.0" prefWidth="286.0" text="Se connecter" />
+                  <Button fx:id="buttonCreerCompte" layoutX="383.0" layoutY="481.0" mnemonicParsing="false" onAction="#lanceCreationCompte" prefHeight="60.0" prefWidth="286.0" text="Créer un compte" />
+                  <Label id="CGGamesTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="411.0" layoutY="99.0" prefHeight="66.0" prefWidth="230.0" text="Compte" />
+               </children>
+            </Pane>
+            <Pane id="paneMenu" fx:id="paneCreationCompte" layoutX="230.0" layoutY="100.0" prefHeight="623.0" prefWidth="1051.0" visible="false">
+               <children>
+                  <Label id="CGGamesTitle" alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="83.0" prefHeight="66.0" prefWidth="625.0" text="Création de compte" />
+                  <VBox alignment="CENTER" layoutX="65.0" layoutY="119.0" prefHeight="462.0" prefWidth="818.0" spacing="30.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="49.0" prefWidth="367.0" spacing="20.0">
+                           <children>
+                              <Label text="                      Login :">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <TextField />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="501.0" spacing="20.0">
+                           <children>
+                              <Label text="       Mot de Passe :">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="501.0" spacing="20.0">
+                           <children>
+                              <Label text="Confirmation mdp :">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="501.0" spacing="20.0">
+                           <children>
+                              <Label text="        Département :">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox prefHeight="40.0" prefWidth="240.0" />
+                           </children>
+                        </HBox>
+                        <Button fx:id="buttonConnexion1" mnemonicParsing="false" text="Connexion" />
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+            <Button fx:id="buttonRetour" layoutX="1069.0" layoutY="645.0" mnemonicParsing="false" text="Retour" visible="false" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -7,10 +7,10 @@ import java.util.List;
 
 public class ScoreManager {
 
-    private static ScoreManager instance = null;
-    private final StockageScoreDatabase stockage = new StockageScoreDatabase();
+    protected static ScoreManager instance = null;
+    protected StockageScoreDatabase stockage = new StockageScoreDatabase();
 
-    private ScoreManager() {
+    protected ScoreManager() {
     }
 
     public static ScoreManager getInstance() {

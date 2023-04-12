@@ -7,7 +7,10 @@ import games.project.metier.manager.PlayerManager;
 import games.project.modules.tournois.metier.manager.TournamentManager;
 
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Tournament {
     private int tournamentCode;
@@ -95,21 +98,23 @@ public class Tournament {
     /**
      * Renvoie une map représentant le classement du jeu passé en paramètre contenant une ligne de score
      * et le nombre de points associé à cette chaque ligne.
+     *
      * @param game Le jeu dont le classement sera renvoyé.
      * @return Une map représentant le classement d'un jeu du tournoi.
      */
     public Map<Score, Integer> getGameLeaderboard(Jeu game) {
-       Map<Score, Integer> leaderboard = new HashMap<>();
-       List<Score> scores = TournamentManager.getInstance().getLeaderboardByGame(game, tournamentCode);
-       for (int i = 0; i < scores.size(); i++) {
-           if (scores.get(i).getHorodatage() != null) leaderboard.put(scores.get(i), getPoints(i));
-       }
-       return leaderboard;
+        Map<Score, Integer> leaderboard = new HashMap<>();
+        List<Score> scores = TournamentManager.getInstance().getLeaderboardByGame(game, tournamentCode);
+        for (int i = 0; i < scores.size(); i++) {
+            if (scores.get(i).getHorodatage() != null) leaderboard.put(scores.get(i), getPoints(i));
+        }
+        return leaderboard;
     }
 
     /**
      * Renvoie le classement général d'un tournoi à partir des classements de chaque jeu du tournoi.
      * Pour chaque joueur dont la participation n'est pas valide (S'il n'a pas joué à tous les jeux) le classement indiquera 0 points.
+     *
      * @return Une map représentant le classement général du tournoi.
      */
     public Map<AuthPlayer, Integer> getMainLeaderboard() {
@@ -131,6 +136,7 @@ public class Tournament {
 
     /**
      * Renvoie le nombre de points que chaque joueur gagne selon sa position dans le classement.
+     *
      * @param position La position du joueur dans le classement, comprise entre 0 (1er) et maxParticipants - 1 (dernier)
      * @return Le nombre de points d'un joueur
      */
