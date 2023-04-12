@@ -11,3 +11,8 @@
 .gridStyle Line{
     -fx-stroke: white;
 }
+
+.password-field, .text-field, .button
+{
+    -fx-text-fill: black;
+}
