@@ -51,12 +51,8 @@ public class Surcouche {
         String jeuCourant = listeJeux.get(0);
         ArrayList<String> args = new ArrayList<>();
         for(String game : listeJeux){
-            long startTime = System.currentTimeMillis();
-            System.out.println("Jeu : " + game);
             args.clear();args.add(game);
             Surcouche.recupFonction("getGrapheScoreMoyen",args);
-            long endTime = System.currentTimeMillis();
-            System.out.println("temps d'execution : " + (endTime - startTime) + " ms");
             args.clear();
         }
 
@@ -65,6 +61,9 @@ public class Surcouche {
 
         //Creation des graphes des DPT
         recupFonction("getDPTPie",null);
+
+        //Creation des graphes des tournois
+        recupFonction("grapheTournoi",null);
     }
 
     public static LinkedHashMap<String, String> splitDPT(String s){
@@ -73,20 +72,20 @@ public class Surcouche {
         for (String str : dpt){
             if(str.charAt(0)=='{'){
                 str = str.substring(1);
-            } else if (str.charAt(str.length()-1)=='}'){
-                str = str.substring(0,str.length()-1);
+            } else if (str.charAt(str.length() - 1) == '}') {
+                str = str.substring(0, str.length() - 1);
             }
-            str = str.replaceAll(" ","");
-            str = str.replaceAll("'","");
+            str = str.replaceAll(" ", "");
+            str = str.replaceAll("'", "");
             String[] tab = str.split(":");
-            dptJoueurs.put(tab[0],tab[1]);
+            dptJoueurs.put(tab[0], tab[1]);
         }
         return dptJoueurs;
     }
 
     public static void main(String[] args) throws IOException {
         long startTime = System.currentTimeMillis();
-        System.out.println(recupFonction("grapheTournoi",null));
+        creationDesGraphes();
         long endTime = System.currentTimeMillis();
         System.out.println("temps d'execution : " + (endTime - startTime) + " ms");
     }

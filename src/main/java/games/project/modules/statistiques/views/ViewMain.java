@@ -173,7 +173,6 @@ public class ViewMain extends Stage {
         stage.setTitle("Module Statistiques");
         stage.setResizable(false);
         stage.show();
-        //Surcouche.creationDesGraphes();
     }
 
 }

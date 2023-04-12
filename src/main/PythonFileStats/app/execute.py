@@ -2,7 +2,7 @@ import oracledb
 import os
 import sys
 import stats as s
-
+import stats as s
 try:
     str = f"s.{sys.argv[1]}('"
     for a in sys.argv[2:]:

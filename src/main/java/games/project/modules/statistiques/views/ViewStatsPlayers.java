@@ -69,7 +69,7 @@ public class ViewStatsPlayers {
         //mettre le top département
         Label dep = new Label(listeDPT.get(0));
         dep.getStyleClass().add("texte");
-        dep.setLayoutX(400);
+        dep.setLayoutX(420);
         dep.setLayoutY(476);
 
         Label topDepScrollLabel = new Label("Classement des départements par nombre de joueurs");
@@ -93,8 +93,14 @@ public class ViewStatsPlayers {
 
         //mettre les departements dans la pane topDepScroll
         for(int j=0; j<nomDep.size(); j++){
+            Label l = new Label((j+1)+". ");
+            l.getStyleClass().add("texte");
+            l.setLayoutX(0);
+            l.setLayoutY(30*j);
+            topDepScroll.getChildren().add(l);
+
             nomDep.get(j).getStyleClass().add("texte");
-            nomDep.get(j).setLayoutX(0);
+            nomDep.get(j).setLayoutX(30);
             nomDep.get(j).setLayoutY(30*j);
             topDepScroll.getChildren().add(nomDep.get(j));
         }

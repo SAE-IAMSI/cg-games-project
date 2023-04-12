@@ -37,7 +37,7 @@ public class ViewStatsTournament {
         String s = Surcouche.recupFonction("getNbTournois",null);
         Label nbTournois = new Label(s);
         nbTournois.getStyleClass().add("texte");
-        nbTournois.setLayoutX(320);
+        nbTournois.setLayoutX(350);
         nbTournois.setLayoutY(191);
 
         Label moyenTournoi = new Label("Nombre de participants moyen par tournoi : ");
@@ -49,7 +49,7 @@ public class ViewStatsTournament {
         String s1 = Surcouche.recupFonction("getAvgParticipants",null);
         Label avgTournoi = new Label(s1);
         avgTournoi.getStyleClass().add("texte");
-        avgTournoi.setLayoutX(430);
+        avgTournoi.setLayoutX(460);
         avgTournoi.setLayoutY(250);
 
         Label moyenTournoiAttente = new Label("Nombre de participants maximum par tournoi : ");
@@ -61,7 +61,7 @@ public class ViewStatsTournament {
         String s2 = Surcouche.recupFonction("getAvgAttendees",null);
         Label avgTournoiAttente = new Label(s2);
         avgTournoiAttente.getStyleClass().add("texte");
-        avgTournoiAttente.setLayoutX(430);
+        avgTournoiAttente.setLayoutX(480);
         avgTournoiAttente.setLayoutY(393);
 
         Label dateDernierTournoi = new Label("La date la plus tard pour le début d'un tournoi: ");
@@ -73,11 +73,11 @@ public class ViewStatsTournament {
         String s3 = Surcouche.dateLisible(Surcouche.recupFonction("getMaxDateDebutTournois",null));
         Label dateDernierTournoiCree = new Label(s3);
         dateDernierTournoiCree.getStyleClass().add("texte");
-        dateDernierTournoiCree.setLayoutX(430);
+        dateDernierTournoiCree.setLayoutX(485);
         dateDernierTournoiCree.setLayoutY(450);
 
         ImageView graphe = new ImageView(FileSystems.getDefault().getPath("src/main/java/games/project/modules/statistiques/imgTemp/grapheTournoi.png").normalize().toAbsolutePath().toString());
-        graphe.setLayoutX(600);
+        graphe.setLayoutX(625);
         graphe.setLayoutY(150);
         graphe.setFitHeight(480);
         graphe.setFitWidth(640);
