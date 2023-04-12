@@ -245,7 +245,7 @@
             <Button fx:id="buttonRetour" layoutX="1069.0" layoutY="645.0" mnemonicParsing="false" text="Retour" visible="false" />
          </children>
       </Pane>
-      <Label fx:id="labelErreur" alignment="CENTER" contentDisplay="TOP" layoutX="692.0" layoutY="662.0" prefHeight="44.0" prefWidth="545.0" text="Le joueur doit être connecté" visible="false">
+      <Label fx:id="labelErreur" alignment="CENTER" contentDisplay="TOP" layoutX="692.0" layoutY="662.0" prefHeight="44.0" prefWidth="545.0" visible="false">
          <font>
             <Font size="33.0" />
          </font>
