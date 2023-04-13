@@ -157,7 +157,6 @@ public class Motron extends Application {
                             controllerFXML.getRound().setText("ROUND " + numManche);
                             controllerFXML.relanceManche();
                         } else {
-                            closeGame();
                             if (j1.getNbMorts() < 3) {
                                 j1.getScore().incrementScore(10000);
                             }
