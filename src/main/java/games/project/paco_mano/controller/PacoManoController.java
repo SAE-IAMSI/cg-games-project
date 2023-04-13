@@ -279,6 +279,7 @@ public class PacoManoController {
         playerSigneUp.setVisible(true);
         titleBackground.setVisible(false);
         baseBackground.setVisible(true);
+        comboBoxText.getItems().addAll(departements);
     }
     @FXML
     protected  void signUpToPlayer() {
@@ -320,15 +321,10 @@ public class PacoManoController {
                 {
                     //afficherNotification("success", "Le joueur 1: " + player1.getName() + " s'est connecté");
                     Session.getInstance().connect(loginFieldConnexion.getText());
-                    System.out.println("ça marche !");
                 }
             } else {
                 //afficherNotification("warning", "Identifiant ou mot de passe incorrect");
-                System.out.println("ça marche pas!");
             }
-        }
-        else{
-            System.out.println("déjà co" );
         }
     }
 
@@ -336,10 +332,6 @@ public class PacoManoController {
     protected void deconnection(){
         if(Session.getInstance().isConnected()){
             Session.getInstance().disconnect();
-            System.out.println("déco");
-        }
-        else {
-            System.out.println("pas co");
         }
     }
 
@@ -409,6 +401,9 @@ public class PacoManoController {
                                 PlayerManager.getInstance().createPlayer(loginFieldSigneUp.getText(), comboBoxText.getValue().substring(0, 3).strip(), passwordFieldPassword.getText(), false);
                                 playerPane.setVisible(true);
                                 playerSigneUp.setVisible(false);
+                                loginFieldSigneUp.setText("");
+                                passwordFieldPassword.setText("");
+                                passwordVerify.setText("");
                                 //}
                             }
                         }
