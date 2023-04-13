@@ -48,6 +48,8 @@ public class PacoManoController {
     private Pane highscorePane;
     @FXML
     private Pane settingPane;
+    @FXML
+    private Pane playerSigneUp;
 
 // Player
 
@@ -166,6 +168,14 @@ public class PacoManoController {
 
 //    ------------------------------------------------------------------------------------------------------------------
 
+// Player pane
+
+
+    @FXML
+    private Button buttonFieldInscrir;
+
+//    ------------------------------------------------------------------------------------------------------------------
+
 //   Pane change functions
 
     /** To menu */
@@ -223,18 +233,23 @@ public class PacoManoController {
     }
     @FXML
     protected void menuToGame() {
-
         gamePane.setVisible(true);
         menuPane.setVisible(false);
+        titleBackground.setVisible(false);
+        baseBackground.setVisible(true);
+    }
 
+    @FXML
+    protected  void playerToInscrir() {
+        playerPane.setVisible(false);
+        playerSigneUp.setVisible(true);
         titleBackground.setVisible(false);
         baseBackground.setVisible(true);
     }
 
 
 
-
-    @FXML
+        @FXML
     public boolean connexionJoueur(Player player, String login, String password) {
         boolean jConnecte = false;
         AuthPlayer j = PlayerManager.getInstance().getPlayer(login);
@@ -289,4 +304,5 @@ public class PacoManoController {
     public Pane getGamePane() {
         return gamePane;
     }
+
 }
