@@ -3,7 +3,6 @@ package games.project.paco_mano.controller;
 import games.project.metier.entite.Player;
 import games.project.metier.manager.PlayerManager;
 import games.project.metier.entite.AuthPlayer;
-import games.project.motron.metier.manager.PlayerManagerMotron;
 import games.project.paco_mano.PacoMano;
 import games.project.stockage.Session;
 import games.project.stockage.Security;
@@ -50,6 +49,8 @@ public class PacoManoController {
     @FXML
     private Pane settingPane;
     @FXML
+    private Pane gameoverPane;
+    @FXML
     private Pane playerSigneUp;
 
 // Player
@@ -86,6 +87,12 @@ public class PacoManoController {
     // JEU
     @FXML
     private Pane pacomanoPane;
+
+    @FXML
+    private Label scoreLabel;
+
+    @FXML
+    private Label highScoreLabel;
 
     //    Classement
 
@@ -173,6 +180,14 @@ public class PacoManoController {
     @FXML
     private Button rightButton;
 
+
+    // GAME OVER PANE
+
+    @FXML
+    private Button restartButton;
+    @FXML
+    private Button quitGameButton;
+
 //    ------------------------------------------------------------------------------------------------------------------
 
 // Player pane
@@ -238,6 +253,7 @@ public class PacoManoController {
     }
     @FXML
     protected void menuToGame() {
+
         gamePane.setVisible(true);
         menuPane.setVisible(false);
         titleBackground.setVisible(false);
@@ -259,6 +275,11 @@ public class PacoManoController {
         baseBackground.setVisible(true);
     }
 
+    @FXML
+    protected void quitGame()
+    {
+        PacoMano.closeGame();
+    }
 
 
     @FXML
@@ -283,7 +304,7 @@ public class PacoManoController {
         if (!Session.getInstance().isConnected()) {
             player = new Player(loginFieldConnexion.getText());
             if (connexionJoueur(player, loginFieldConnexion.getText(), passwordFieldConnexion.getText())) {
-                {
+                 {
                     //afficherNotification("success", "Le joueur 1: " + player1.getName() + " s'est connecté");
                     Session.getInstance().connect(loginFieldConnexion.getText());
                     System.out.println("ça marche !");
@@ -309,6 +330,21 @@ public class PacoManoController {
         }
     }
 
+
+    // fonctions game over pane
+
+    @FXML
+    protected void restartGame()
+    {
+        gameoverPane.setVisible(false);
+    }
+
+    @FXML
+    protected void exitGame()
+    {
+        PacoMano.closeGame();
+    }
+
     public Pane getPacomanoPane() {
         return pacomanoPane;
     }
@@ -317,4 +353,15 @@ public class PacoManoController {
         return gamePane;
     }
 
+    public Pane getGameoverPane() {
+        return gameoverPane;
+    }
+
+    public Label getScoreLabel() {
+        return scoreLabel;
+    }
+
+    public Label getHighScoreLabel() {
+        return highScoreLabel;
+    }
 }
