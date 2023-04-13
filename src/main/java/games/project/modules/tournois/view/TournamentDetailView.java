@@ -162,6 +162,7 @@ public class TournamentDetailView extends AnchorPane {
 
     @FXML
     public void quit() {
+        controller.refresh();
         controller.getChildren().remove(this);
     }
 

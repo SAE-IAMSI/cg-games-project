@@ -124,6 +124,11 @@ public class TournamentController extends AnchorPane {
             l.setOnMouseClicked(mouseEvent -> getChildren().add(new TournamentDetailView(t, this)));
             tournaments.getChildren().add(l);
         }
+        if (actualTournaments.isEmpty()) {
+            Label l = new Label("Vous n'êtes inscrit à aucun tournoi.\nVeuillez demander à un administrateur de vous inscrire.");
+            l.getStyleClass().add("noTournaments");
+            tournaments.getChildren().add(l);
+        }
     }
 
     public static void delay(long millis, Runnable continuation) {

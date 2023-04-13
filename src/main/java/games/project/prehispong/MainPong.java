@@ -13,6 +13,7 @@ import java.io.IOException;
 
 
 public class MainPong extends Application {
+    private static Stage stage;
     @Override
     public void start(Stage stage) throws IOException {
         Font.loadFont(String.valueOf(getClass().getResource("font/prehistoric.ttf")), 10);
@@ -20,10 +21,11 @@ public class MainPong extends Application {
         gameSound.changeSound();
         GameController gameController = new GameController(null);
         Scene scene = new Scene(gameController);
-        stage.setTitle("Pong");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+        this.stage = stage;
+        this.stage.setTitle("Pong");
+        this.stage.setScene(scene);
+        this.stage.setResizable(false);
+        this.stage.show();
         gameController.listener();
         gameController.displayScreen(new StartMenuView(gameController));
     }
@@ -32,9 +34,7 @@ public class MainPong extends Application {
         launch();
     }
 
-    @Override
-    public void stop() throws Exception {
-        SQLUtils.getInstance().closeConnection();
-        super.stop();
+    public static void close(){
+        stage.close();
     }
 }
