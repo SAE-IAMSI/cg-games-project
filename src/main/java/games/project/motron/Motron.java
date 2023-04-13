@@ -52,6 +52,9 @@ public class Motron extends Application {
         if(Session.getInstance().isConnected()){
             controllerFXML.getJ1().setNomJoueur(Session.getInstance().getLogin());
             controllerFXML.getJ1().setConnecter(true);
+            controllerFXML.getBouttonConnecterJ1().setVisible(false);
+            controllerFXML.getBouttonDeconnexionJ1().setVisible(true);
+            controllerFXML.getLabeConnexionlJ1().setText(Session.getInstance().getLogin());
         }
         primaryStage.setOnCloseRequest(we -> {
             controllerFXML.getMediaPlayerJeu().stop();
