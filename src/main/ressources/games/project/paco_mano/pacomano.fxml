@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -151,7 +152,7 @@
                               </Button>
                            </children>
                         </HBox>
-                        <Button fx:id="buttonFieldInscrir" mnemonicParsing="false" onAction="#playerToInscrir" prefHeight="29.0" prefWidth="300.0" style="-fx-border-insets: 15px; -fx-padding: 10px;" text="S'inscrir">
+                        <Button fx:id="buttonFieldInscrir" mnemonicParsing="false" onAction="#playerToInscrir" prefHeight="29.0" prefWidth="300.0" style="-fx-border-insets: 15px; -fx-padding: 10px;" text="S'inscrire">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -374,10 +375,10 @@
                                  <children>
                                     <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="320.0" text="Identifiant" textFill="WHITE">
                                        <font>
-                                          <Font size="52.0" />
+                                          <Font size="40.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="loginFieldConnexion1">
+                                    <TextField fx:id="loginFieldSigneUp">
                                        <font>
                                           <Font size="28.0" />
                                        </font>
@@ -388,10 +389,10 @@
                                  <children>
                                     <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="320.0" text="Mot de passe" textFill="WHITE">
                                        <font>
-                                          <Font size="52.0" />
+                                          <Font size="40.0" />
                                        </font>
                                     </Label>
-                                    <PasswordField fx:id="passwordFieldConnexion1">
+                                    <PasswordField fx:id="passwordFieldPassword">
                                        <font>
                                           <Font size="28.0" />
                                        </font>
@@ -402,19 +403,29 @@
                                  <children>
                                     <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="320.0" text="Confirmer mdp" textFill="WHITE">
                                        <font>
-                                          <Font size="52.0" />
+                                          <Font size="40.0" />
                                        </font>
                                     </Label>
-                                    <PasswordField fx:id="passwordFieldConnexion11">
+                                    <PasswordField fx:id="passwordVerify" prefHeight="63.0" prefWidth="346.0">
                                        <font>
                                           <Font size="28.0" />
                                        </font>
                                     </PasswordField>
                                  </children>
                               </HBox>
+                              <HBox alignment="CENTER" spacing="10.0">
+                                 <children>
+                                    <Label alignment="TOP_LEFT" prefHeight="50.0" prefWidth="250.0" styleClass="bouttonEffet" text="Département" textFill="WHITE">
+                                       <font>
+                                          <Font size="40.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="comboBoxText" prefHeight="50.0" prefWidth="300.0" styleClass="bouttonEffet" />
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
-                        <Button fx:id="buttonFieldInscrir1" mnemonicParsing="false" prefHeight="29.0" prefWidth="300.0" style="-fx-border-insets: 15px; -fx-padding: 10px;" text="S'inscrir">
+                        <Button fx:id="buttonFieldInscrir1" mnemonicParsing="false" prefHeight="29.0" prefWidth="300.0" style="-fx-border-insets: 15px; -fx-padding: 10px;" text="S'inscrire">
                            <font>
                               <Font size="19.0" />
                            </font>

@@ -3,6 +3,7 @@ package games.project.paco_mano.controller;
 import games.project.metier.entite.Player;
 import games.project.metier.manager.PlayerManager;
 import games.project.metier.entite.AuthPlayer;
+import games.project.motron.metier.manager.PlayerManagerMotron;
 import games.project.paco_mano.PacoMano;
 import games.project.stockage.Session;
 import games.project.stockage.Security;
@@ -149,6 +150,12 @@ public class PacoManoController {
     @FXML
     private Label textTempD10;
     @FXML
+    private PasswordField passwordVerify;
+    @FXML
+    private PasswordField passwordFieldPassword;
+    @FXML
+    private TextField loginFieldSigneUp;
+    @FXML
     private Button returnHighscore;
 
 //    ------------------------------------------------------------------------------------------------------------------
@@ -169,8 +176,6 @@ public class PacoManoController {
 //    ------------------------------------------------------------------------------------------------------------------
 
 // Player pane
-
-
     @FXML
     private Button buttonFieldInscrir;
 
