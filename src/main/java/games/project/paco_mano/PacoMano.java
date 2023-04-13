@@ -20,7 +20,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+import javafx.scene.image.ImageView;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -65,7 +65,7 @@ public class PacoMano extends Application {
     private Arene arene;
     private ArrayList<Rectangle> wallList;
     private ArrayList<Circle> pelletList;
-    private ArrayList<Circle> bonusList;
+    private ArrayList<ImageView> bonusList;
 
     private int wallSize;
 
@@ -706,7 +706,7 @@ public class PacoMano extends Application {
     // method to check if pacman ate a bonus food
     private Boolean ateBonus(double x, double y) {
         for (int n = 0; n < bonusList.size(); n++) {
-            if (bonusList.get(n).getCenterX() == x && bonusList.get(n).getCenterY() == y) {
+            if (bonusList.get(n).getX() == x-8 && bonusList.get(n).getY() == y-8) {
                 pane.getChildren().remove(bonusList.get(n));
                 bonusList.remove(n);
                 score += 20;                // increment the player's score by 20
@@ -812,12 +812,12 @@ public class PacoMano extends Application {
 
     private void blinkBonus() {
         for (int index = 0; index < bonusList.size(); index++) {
-            Circle food = bonusList.get(index);
+            ImageView food = bonusList.get(index);
 
-            if (food.getFill() == Color.WHITE)
-                food.setFill(Color.BLACK);
+            if (food.isVisible())
+                food.setVisible(false);
             else
-                food.setFill(Color.WHITE);
+                food.setVisible(true);
         }
     }
 

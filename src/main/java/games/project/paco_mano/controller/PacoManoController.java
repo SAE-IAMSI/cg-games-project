@@ -383,6 +383,7 @@ public class PacoManoController {
                 "Nous ne sommes pas responsables des dommages causés à votre appareil ou de toute perte de données résultant de l'utilisation de notre jeu. Vous utilisez le jeu à vos propres risques.\n\n" +
                 "Article 6 : Droit applicable et juridiction compétente\n" +
                 "La législation française s'applique au présent contrat et seuls les tribunaux français seront compétents pour résoudre un litige. Pour toute question relative à l’application des présentes CGU, vous pouvez joindre l’éditeur aux coordonnées inscrites à l’article 1.\n\n");
+        idRGPD.setStyle("-fx-text-fill: black");
         RGPDPane.setVisible(true);
     }
     @FXML
