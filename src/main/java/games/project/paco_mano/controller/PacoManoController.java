@@ -48,6 +48,8 @@ public class PacoManoController {
     private Pane highscorePane;
     @FXML
     private Pane settingPane;
+    @FXML
+    private Pane playerSigneUp;
 
 // Player
 
@@ -166,6 +168,14 @@ public class PacoManoController {
 
 //    ------------------------------------------------------------------------------------------------------------------
 
+// Player pane
+
+
+    @FXML
+    private Button buttonFieldInscrir;
+
+//    ------------------------------------------------------------------------------------------------------------------
+
 //   Pane change functions
 
     /** To menu */
@@ -223,14 +233,26 @@ public class PacoManoController {
     }
     @FXML
     protected void menuToGame() {
-
         gamePane.setVisible(true);
         menuPane.setVisible(false);
-
         titleBackground.setVisible(false);
         baseBackground.setVisible(true);
     }
 
+    @FXML
+    protected  void playerToInscrir() {
+        playerPane.setVisible(false);
+        playerSigneUp.setVisible(true);
+        titleBackground.setVisible(false);
+        baseBackground.setVisible(true);
+    }
+    @FXML
+    protected  void signUpToPlayer() {
+        playerPane.setVisible(true);
+        playerSigneUp.setVisible(false);
+        titleBackground.setVisible(false);
+        baseBackground.setVisible(true);
+    }
 
 
 
@@ -256,7 +278,7 @@ public class PacoManoController {
         if (!Session.getInstance().isConnected()) {
             player = new Player(loginFieldConnexion.getText());
             if (connexionJoueur(player, loginFieldConnexion.getText(), passwordFieldConnexion.getText())) {
-                 {
+                {
                     //afficherNotification("success", "Le joueur 1: " + player1.getName() + " s'est connecté");
                     Session.getInstance().connect(loginFieldConnexion.getText());
                     System.out.println("ça marche !");
@@ -289,4 +311,5 @@ public class PacoManoController {
     public Pane getGamePane() {
         return gamePane;
     }
+
 }
