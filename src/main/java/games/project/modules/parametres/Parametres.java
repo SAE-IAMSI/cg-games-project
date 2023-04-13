@@ -12,8 +12,6 @@ import javafx.util.Duration;
 import java.io.IOException;
 
 public class Parametres extends Application{
-    private KeyFrame keyFrame;
-    private final int keyFrameMillis = 90;
     private Scene sceneParametres;
 
     public static void main(String[] args) {
@@ -32,8 +30,5 @@ public class Parametres extends Application{
         stage.show();
 
         controllerFXML.setGames();
-        keyFrame = new KeyFrame(Duration.millis(keyFrameMillis), e -> {
-            controllerFXML.getLabelTournois().setVisible(true);
-        });
     }
 }
