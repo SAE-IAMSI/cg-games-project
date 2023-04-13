@@ -926,6 +926,7 @@ public class ControllerFXML implements Initializable {
         });
     }
 //    ------------------------------------------------------------------------------------------------------------------
+//    ------------------------------------------------------------------------------------------------------------------
 
     //    Compte
     @FXML
@@ -1519,6 +1520,17 @@ public class ControllerFXML implements Initializable {
     }
 
     public VueMoto getJ1(){ return j1; }
+    public Button getBouttonConnecterJ1(){
+        return bouttonConnecterJ1;
+    }
+
+    public Button getBouttonDeconnexionJ1(){
+        return bouttonDeconnexionJ1;
+    }
+
+    public Label getLabeConnexionlJ1(){
+        return labelJ1Connecte;
+    }
 
 
     //    ------------------------------------------------------------------------------------------------------------------

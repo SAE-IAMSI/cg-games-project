@@ -20,29 +20,32 @@ public class StartFrame extends JFrame {
         background.setSize(1280, 720);
 
         JLabel title = new JLabel("Galactica");
-        title.setSize(500, 100);
-        title.setLocation(525, 300);
+        title.setSize(500, 50);
+        title.setLocation(525, 50);
         title.setFont(new Font("Arial", Font.BOLD, 50));
         title.setOpaque(false);
         title.setForeground(Color.WHITE);
         add(title);
 
-        Button classic = new Button("Classic");
+        JButton classic = new JButton("Classic");
         classic.setSize(200, 70);
         classic.setLocation(540, 430);
         classic.setFont(new Font("Arial", Font.BOLD, 30));
+        classic.setBackground(Color.BLACK);
         add(classic);
 
-        Button infini = new Button("Infini");
+        JButton infini = new JButton("Infini");
         infini.setSize(200, 70);
         infini.setLocation(540, 510);
         infini.setFont(new Font("Arial", Font.BOLD, 30));
+        infini.setBackground(Color.BLACK);
         add(infini);
 
-        Button classement = new Button("Classement");
+        JButton classement = new JButton("Classement");
         classement.setSize(200, 70);
         classement.setLocation(540, 590);
         classement.setFont(new Font("Arial", Font.BOLD, 30));
+        classement.setBackground(Color.BLACK);
         add(classement);
 
         JLabel credit = new JLabel("By: @janbodnar");
@@ -61,16 +64,18 @@ public class StartFrame extends JFrame {
         getContentPane().setLayout(new BorderLayout());
         getContentPane().setBackground(Color.BLACK);
 
-        Button close = new Button("Quitter");
+        JButton close = new JButton("Quitter");
         close.setSize(150, 60);
         close.setLocation(1070, 600);
         close.setFont(new Font("Arial", Font.BOLD, 30));
+        close.setBackground(Color.BLACK);
         add(close);
 
-        Button compte = new Button("Compte");
+        JButton compte = new JButton("Compte");
+        compte.setBackground(Color.BLACK);
         compte.setSize(150, 60);
         if (Session.getInstance().isConnected()) {
-            compte.setLabel("Déconnexion");
+            compte.setText("Déconnexion");
             compte.setSize(220, 60);
         }
         compte.setLocation(20, 600);

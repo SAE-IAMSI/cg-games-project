@@ -8,11 +8,11 @@ import javafx.event.EventHandler;
 import javafx.stage.Stage;
 
 public class FactoryFall extends Application {
+    private Stage stage;
 
     private final EventHandler<ActionEvent> quitter = actionEvent -> {
         try {
             stop();
-            System.exit(0);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -25,13 +25,14 @@ public class FactoryFall extends Application {
     @Override
     public void start(Stage primaryStage) {
         VueMenuPrincipal vueMenuPrincipal = VueMenuPrincipal.getInstance();
+        stage = vueMenuPrincipal;
         vueMenuPrincipal.setButtonQuitterListener(quitter);
     }
 
     @Override
     public void stop() throws Exception {
         SQLUtils.getInstance().closeConnection();
-        super.stop();
+        stage.close();
     }
 
 }

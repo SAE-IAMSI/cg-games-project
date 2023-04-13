@@ -105,8 +105,6 @@ public class ControllerFXML implements Initializable {
     private Label labelStatistiques;
     @FXML
     private Pane RGPDPane;
-    @FXML
-    private Label labelErreur;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -223,53 +221,27 @@ public class ControllerFXML implements Initializable {
     }
 
     @FXML
-    public void lanceTournois(){
-        if(Session.getInstance().isConnected()) {
+    public void lanceTournois() {
+        Platform.runLater(() -> {
+            try {
+                new TournamentApplication().start(new Stage());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    @FXML
+    public void lanceStatistiques() {
+        if (PlayerManager.getInstance().getPlayer(Session.getInstance().getLogin()).isAdmin()) {
             Platform.runLater(() -> {
                 try {
-                    new TournamentApplication().start(new Stage());
+                    new StatsLauncher().start(new Stage());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             });
         }
-        else{
-            labelErreur.setText("Le joueur doit être connecté");
-            labelErreur.setVisible(true);
-            PauseTransition pause = new PauseTransition(Duration.millis(2000));
-            pause.setOnFinished(e -> labelErreur.setVisible(false));
-            pause.play();
-        }
-    }
-
-    @FXML
-    public void lanceStatistiques(){
-        if(Session.getInstance().isConnected()) {
-            if (PlayerManager.getInstance().getPlayer(Session.getInstance().getLogin()).isAdmin()) {
-                Platform.runLater(() -> {
-                    try {
-                        new StatsLauncher().start(new Stage());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
-            }
-            else{
-                labelErreur.setText("Le joueur doit être admin");
-                labelErreur.setVisible(true);
-                PauseTransition pause = new PauseTransition(Duration.millis(2000));
-                pause.setOnFinished(e -> labelErreur.setVisible(false));
-                pause.play();
-            }
-        }
-        else{
-            labelErreur.setText("Le joueur doit être connecté");
-            labelErreur.setVisible(true);
-            PauseTransition pause = new PauseTransition(Duration.millis(2000));
-            pause.setOnFinished(e -> labelErreur.setVisible(false));
-            pause.play();
-        }
-
     }
 
 
@@ -331,11 +303,8 @@ public class ControllerFXML implements Initializable {
         if (!session.isConnected()) {
             if (connexionJoueur(player, textFieldConnexion.getText(), passwordFieldConnexion.getText())) {
                     playNotification("success");
-                    buttonSeConnecter.setVisible(false);
-                    buttonDeconnexion.setText("Déconnecter : " + player.getName());
                     paneConnexion.setVisible(false);
                     paneCompte.setVisible(true);
-                    buttonDeconnexion.setVisible(true);
                     session.connect(player.getName());
                     resetConnexionPane();
             } else {
@@ -352,8 +321,6 @@ public class ControllerFXML implements Initializable {
         if (session.isConnected()) {
             player.setName("");
             session.disconnect();
-            buttonDeconnexion.setVisible(false);
-            buttonSeConnecter.setVisible(true);
             playNotification("success");
         } else {
             playNotification("warning");
@@ -500,7 +467,11 @@ public class ControllerFXML implements Initializable {
         return labelStatistiques;
     }
 
-    public Label getLabelErreur(){
-        return labelErreur;
+    public Button getButtonSeConnecter() {
+        return buttonSeConnecter;
+    }
+
+    public Button getButtonDeconnexion() {
+        return buttonDeconnexion;
     }
 }

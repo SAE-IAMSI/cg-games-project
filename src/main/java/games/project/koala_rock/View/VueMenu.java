@@ -2,6 +2,7 @@ package games.project.koala_rock.View;
 
 import games.project.koala_rock.Model.Fond;
 import games.project.koala_rock.RessourcesAccess;
+import games.project.koala_rock.Sound.Son;
 import games.project.stockage.Session;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -135,12 +136,10 @@ public class VueMenu {
             non.setLayoutY(325);
 
             oui.setOnAction(e -> {
-                Session.getInstance().disconnect();
-                System.exit(0);
+                stage.close();
+                Son.stopMusic();
             });
-            non.setOnAction(e -> {
-                pane.getChildren().removeAll(oui, non, rectangle, alerte);
-            });
+            non.setOnAction(e -> pane.getChildren().removeAll(oui, non, rectangle, alerte));
 
             pane.getChildren().addAll(rectangle, oui, non, alerte);
         });
@@ -178,9 +177,7 @@ public class VueMenu {
                 Session.getInstance().disconnect();
                 System.exit(0);
             });
-            non.setOnAction(e -> {
-                pane.getChildren().removeAll(oui, non, rectangle, alerte);
-            });
+            non.setOnAction(e -> pane.getChildren().removeAll(oui, non, rectangle, alerte));
             pane.getChildren().addAll(rectangle, oui, non, alerte);
         });
 

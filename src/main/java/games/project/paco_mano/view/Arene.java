@@ -1,11 +1,16 @@
 package games.project.paco_mano.view;
 
+import games.project.motron.Motron;
+import games.project.paco_mano.PacoMano;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Arene {
 
@@ -13,13 +18,15 @@ public class Arene {
     private int mapWidth;
     private int mapHeight;
 
+    private Image salami = new Image(Objects.requireNonNull(PacoMano.class.getResourceAsStream("images/assets/salami.png")), 15, 15, true, true);
+
     private final int wallSize = 20;
 
     private int numOfWalls;            // keeps track of the number of walls created
 
     private final ArrayList<Rectangle> wallList = new ArrayList<Rectangle>();
     private final ArrayList<Circle> pelletList = new ArrayList<Circle>();
-    private final ArrayList<Circle> bonusList = new ArrayList<Circle>();
+    private final ArrayList<ImageView> bonusList = new ArrayList<ImageView>();
 
 
     public Arene(Pane pane, int mapWidth, int mapHeight)
@@ -56,11 +63,10 @@ public class Arene {
 
         for (y = 30; y < mapHeight; y += (mapHeight - (wallSize * 3))) {
             for (x = 30; x < mapWidth; x += (mapWidth - (wallSize * 3))) {
-                Circle c = new Circle();
-                c.setRadius(4);
-                c.setCenterX(x);
-                c.setCenterY(y);
-                c.setFill(Color.WHITE);
+                ImageView c = new ImageView();
+                c.setImage(salami);
+                c.setX(x-8);
+                c.setY(y-8);
                 pane.getChildren().add(c);
                 bonusList.add(c);
             }
@@ -68,22 +74,20 @@ public class Arene {
 
         y = 250;
         for (x = 410; x < 510; x += 80) {
-            Circle circ = new Circle();
-            circ.setRadius(4);
-            circ.setCenterX(x);
-            circ.setCenterY(y);
-            circ.setFill(Color.WHITE);
-            pane.getChildren().add(circ);
-            bonusList.add(circ);
+            ImageView c1 = new ImageView();
+            c1.setImage(salami);
+            c1.setX(x-8);
+            c1.setY(y-8);
+            pane.getChildren().add(c1);
+            bonusList.add(c1);
         }
 
-        Circle cr = new Circle();
-        cr.setRadius(4);
-        cr.setCenterX(90);
-        cr.setCenterY(310);
-        cr.setFill(Color.WHITE);
-        pane.getChildren().add(cr);
-        bonusList.add(cr);
+        ImageView c2 = new ImageView();
+        c2.setImage(salami);
+        c2.setX(x-8);
+        c2.setY(y-8);
+        pane.getChildren().add(c2);
+        bonusList.add(c2);
     }
 
     // method to check if coordinates of a certain point is the same as the coordinates of a wall
@@ -96,7 +100,7 @@ public class Arene {
 
     private Boolean isABonusFood(double x, double y) {
         for (int n = 0; n < bonusList.size(); n++)
-            if (bonusList.get(n).getCenterX() == x && bonusList.get(n).getCenterY() == y) return true;
+            if (bonusList.get(n).getX() == x-8 && bonusList.get(n).getY() == y-8) return true;
 
         return false;
     }
@@ -514,7 +518,7 @@ public class Arene {
         return pelletList;
     }
 
-    public ArrayList<Circle> getBonusList() {
+    public ArrayList<ImageView> getBonusList() {
         return bonusList;
     }
 

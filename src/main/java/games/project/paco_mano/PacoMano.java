@@ -20,7 +20,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+import javafx.scene.image.ImageView;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -54,7 +54,7 @@ public class PacoMano extends Application {
     private double pacmanTurnedAt_x, pacmanTurnedAt_y;        // holds the coordinates of the point where pacman made a turn
     private int score, highScore;
 
-    private Stage window;
+    private static Stage gameStage;
     private Scene scene;
     private Circle pacman;
     private Ghost redGhost, pinkGhost, orangeGhost, cyanGhost;
@@ -65,7 +65,7 @@ public class PacoMano extends Application {
     private Arene arene;
     private ArrayList<Rectangle> wallList;
     private ArrayList<Circle> pelletList;
-    private ArrayList<Circle> bonusList;
+    private ArrayList<ImageView> bonusList;
 
     private int wallSize;
 
@@ -95,9 +95,13 @@ public class PacoMano extends Application {
         primaryStage.setTitle("PACOMANO");
 
         play();
+        scoreManager = ScoreManager.getInstance();
 
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        gameStage = primaryStage;
+
 
     }
 
@@ -109,6 +113,9 @@ public class PacoMano extends Application {
 
     // pacman and the ghosts are born in this method. The walls are created here, too
     private void initialize() {
+        score = 0;
+        pacoManoController.getHighScoreLabel().setText("HighScore : "+ scoreManager.getLeaderboardByGame("PM").get(0).getScore());
+
         arene = new Arene(pane, mapWidth, mapHeight);
         wallList = arene.getWallList();
         pelletList = arene.getPelletList();
@@ -118,6 +125,9 @@ public class PacoMano extends Application {
         arene.drawWalls();
         arene.drawBonusFood();
         arene.drawPellets();
+
+        pacmanX = 280;
+        pacmanY = 30;
 
         pacman = new Circle();                    // create pacman
         pacman.setRadius(size);
@@ -142,14 +152,20 @@ public class PacoMano extends Application {
         cyanGhost.setColor(Color.CYAN);
         setTimerForTransparency(cyanGhost, 40);
 
-        highScore = Integer.parseInt(getHighScore());
+//        highScore = Integer.parseInt(getHighScore());
     }
 
     private void play() {
 
         pacman_keyFrame = new KeyFrame(Duration.millis(110), e ->
         {
-            if(pacoManoController.getGamePane().isVisible() && i==0)
+
+            if (pacoManoController.getGameoverPane().isVisible() && i!= 0)
+            {
+                i = 0;
+            }
+
+            if(pacoManoController.getGamePane().isVisible() && !pacoManoController.getGameoverPane().isVisible() && i==0)
             {
                 isGaming = true;
                 i++;
@@ -162,19 +178,19 @@ public class PacoMano extends Application {
 
                 initialize();
 
-                scoreLabel = new Label();
-                scoreLabel.setPrefWidth(130);
+//                scoreLabel = new Label();
+//                scoreLabel.setPrefWidth(130);
+//
+//                highLabel = new Label("High Score : " + highScore);
+//                highLabel.setPrefWidth(150);
+//
+//                HBox h_box = new HBox(250);
+//                h_box.setPadding(new Insets(0, 5, 0, 5));
+//                h_box.getChildren().addAll(scoreLabel, highLabel);
 
-                highLabel = new Label("High Score : " + highScore);
-                highLabel.setPrefWidth(150);
+//                VBox vbox = new VBox(pane);
 
-                HBox h_box = new HBox(250);
-                h_box.setPadding(new Insets(0, 5, 0, 5));
-                h_box.getChildren().addAll(scoreLabel, highLabel);
-
-                VBox vbox = new VBox(h_box, pane);
-
-                pacoManoController.getPacomanoPane().getChildren().add(vbox);
+                pacoManoController.getPacomanoPane().getChildren().add(pane);
 
 //                scene = new Scene(vbox, mapWidth, mapHeight + 20);
                 scene.setOnKeyPressed(event ->
@@ -200,7 +216,7 @@ public class PacoMano extends Application {
                 isGaming = false;
             }
 
-            if (pacoManoController.getGamePane().isVisible())
+            if (pacoManoController.getGamePane().isVisible() && !pacoManoController.getGameoverPane().isVisible())
             {
                 blinkBonus();
 
@@ -268,8 +284,7 @@ public class PacoMano extends Application {
                     }
                     endGame();}
 
-                scoreLabel.setText("Score : " + score);
-                scoreManager = ScoreManager.getInstance();
+                pacoManoController.getScoreLabel().setText("Score : " + score);
 
 
                 // update pacman's coordinates
@@ -691,7 +706,7 @@ public class PacoMano extends Application {
     // method to check if pacman ate a bonus food
     private Boolean ateBonus(double x, double y) {
         for (int n = 0; n < bonusList.size(); n++) {
-            if (bonusList.get(n).getCenterX() == x && bonusList.get(n).getCenterY() == y) {
+            if (bonusList.get(n).getX() == x-8 && bonusList.get(n).getY() == y-8) {
                 pane.getChildren().remove(bonusList.get(n));
                 bonusList.remove(n);
                 score += 20;                // increment the player's score by 20
@@ -797,21 +812,26 @@ public class PacoMano extends Application {
 
     private void blinkBonus() {
         for (int index = 0; index < bonusList.size(); index++) {
-            Circle food = bonusList.get(index);
+            ImageView food = bonusList.get(index);
 
-            if (food.getFill() == Color.WHITE)
-                food.setFill(Color.BLACK);
+            if (food.isVisible())
+                food.setVisible(false);
             else
-                food.setFill(Color.WHITE);
+                food.setVisible(true);
         }
     }
 
     private void endGame() {
         sleep(3);
 
-        if (score > highScore) setHighScore(Integer.toString(score));
+//        if (score > highScore) setHighScore(Integer.toString(score));
 
-        Runtime.getRuntime().exit(0);            // terminate the program
+
+//        timeline.stop();
+//        Runtime.getRuntime().exit(0);
+        pacoManoController.getGameoverPane().setVisible(true);
+//        closeGame();
+//      terminate the program
     }
 
     private void sleep(double num)        // a method to put the system to sleep
@@ -823,42 +843,46 @@ public class PacoMano extends Application {
         }
     }
 
-    private String getHighScore() {
-        String s = "0";
-        String filePath = new File("").getAbsolutePath();
+//    private String getHighScore() {
+//        String s = "0";
+//        String filePath = new File("").getAbsolutePath();
+//
+//        try {
+//            File file = new File(filePath.concat("\\high_score.txt"));
+//
+//            if (file.exists()) {
+//                Scanner scan = new Scanner(file);
+//                s = scan.nextLine();
+//            } else {
+//                // create a the high_score.txt file and insert a 0
+//                setHighScore("0");
+//            }
+//        } catch (Exception e) {
+//            System.out.println("Failed to retrieve the high score");
+//        }
+//
+//        return s;
+//    }
 
-        try {
-            File file = new File(filePath.concat("\\high_score.txt"));
 
-            if (file.exists()) {
-                Scanner scan = new Scanner(file);
-                s = scan.nextLine();
-            } else {
-                // create a the high_score.txt file and insert a 0
-                setHighScore("0");
-            }
-        } catch (Exception e) {
-            System.out.println("Failed to retrieve the high score");
-        }
+//    private Boolean setHighScore(String newScore) {
+//        boolean highScoreUpdated = false;
+//        try {
+//            FileWriter writer = new FileWriter("high_score.txt");
+//            writer.write(newScore);
+//            writer.close();
+//
+//            highScoreUpdated = true;
+//        } catch (Exception e) {
+//            System.out.println("Failed to set the new high score");
+//        }
+//
+//        return highScoreUpdated;
+//    }
 
-        return s;
+    public static void closeGame()
+    {
+        gameStage.close();
     }
-
-
-    private Boolean setHighScore(String newScore) {
-        boolean highScoreUpdated = false;
-        try {
-            FileWriter writer = new FileWriter("high_score.txt");
-            writer.write(newScore);
-            writer.close();
-
-            highScoreUpdated = true;
-        } catch (Exception e) {
-            System.out.println("Failed to set the new high score");
-        }
-
-        return highScoreUpdated;
-    }
-
 
 }

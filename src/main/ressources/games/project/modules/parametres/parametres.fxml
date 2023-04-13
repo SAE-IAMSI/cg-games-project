@@ -108,38 +108,6 @@
                   </Pane>
                </children>
             </Pane>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1280.0" styleClass="menuBar">
-               <children>
-                  <Label id="CGGamesTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="327.0" text="CG Games" />
-                  <HBox alignment="CENTER" prefHeight="97.0" prefWidth="987.0" spacing="100.0">
-                     <children>
-                        <Label fx:id="labelTournois" onMouseClicked="#lanceTournois" styleClass="labelBarMenu" text="Tournois">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="labelStatistiques" onMouseClicked="#lanceStatistiques" prefHeight="40.0" prefWidth="210.0" styleClass="labelBarMenu" text="Statistiques">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="labelCompte" onMouseClicked="#lanceCompte" styleClass="labelBarMenu" text="Compte">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </HBox>
-            <ScrollPane hbarPolicy="NEVER" layoutY="97.0" prefHeight="623.0" prefWidth="230.0" styleClass="buttonPane">
-               <content>
-                  <VBox fx:id="vboxJeux" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="615.0" prefWidth="220.0" spacing="50.0" />
-               </content>
-            </ScrollPane>
             <Pane fx:id="paneConnexion" layoutX="229.0" layoutY="100.0" onKeyPressed="#EnterPressed" prefHeight="623.0" prefWidth="1051.0" visible="false">
                <children>
                   <HBox alignment="CENTER" layoutX="342.0" layoutY="312.0" prefHeight="49.0" prefWidth="367.0" spacing="20.0">
@@ -243,12 +211,48 @@
                </children>
             </Pane>
             <Button fx:id="buttonRetour" layoutX="1069.0" layoutY="645.0" mnemonicParsing="false" text="Retour" visible="false" />
+            <HBox alignment="CENTER" prefHeight="147.0" prefWidth="1280.0" styleClass="menuBar">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="184.0" prefWidth="509.0">
+                     <children>
+                        <ImageView fitHeight="138.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label id="CGGamesTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="66.0" prefWidth="327.0" text="Games" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="97.0" prefWidth="987.0" spacing="100.0">
+                     <children>
+                        <Label fx:id="labelTournois" onMouseClicked="#lanceTournois" styleClass="labelBarMenu" text="Tournois">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelStatistiques" onMouseClicked="#lanceStatistiques" prefHeight="40.0" prefWidth="210.0" styleClass="labelBarMenu" text="Statistiques">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelCompte" onMouseClicked="#lanceCompte" styleClass="labelBarMenu" text="Compte">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <ScrollPane hbarPolicy="NEVER" layoutY="144.0" prefHeight="576.0" prefWidth="230.0" styleClass="buttonPane">
+               <content>
+                  <VBox fx:id="vboxJeux" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="620.0" prefWidth="220.0" spacing="50.0" />
+               </content>
+            </ScrollPane>
          </children>
       </Pane>
-      <Label fx:id="labelErreur" alignment="CENTER" contentDisplay="TOP" layoutX="692.0" layoutY="662.0" prefHeight="44.0" prefWidth="545.0" visible="false">
-         <font>
-            <Font size="33.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

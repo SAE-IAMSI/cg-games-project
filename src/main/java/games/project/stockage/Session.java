@@ -1,5 +1,7 @@
 package games.project.stockage;
 
+import games.project.metier.manager.PlayerManager;
+import games.project.modules.parametres.Parametres;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -42,10 +44,13 @@ public class Session {
     public void connect(String login) {
         this.login = login;
         booleanState();
+        Parametres.changeConnexion(login, true);
+        Parametres.changeAdmin(PlayerManager.getInstance().getPlayer(login).isAdmin());
     }
 
     public void disconnect() {
         this.login = null;
         booleanState();
+        Parametres.changeConnexion(login, false);
     }
 }
