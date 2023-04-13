@@ -27,6 +27,10 @@ public class Son {
         }
     }
 
+    public static void stopMusic() {
+        mediaPlayer.stop();
+    }
+
     public static void jump() {
         try {
             jumpMusic = new Media(Objects.requireNonNull(String.valueOf(RessourcesAccess.class.getResource("son/jump.wav"))));
