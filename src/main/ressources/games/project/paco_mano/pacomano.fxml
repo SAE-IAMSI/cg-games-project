@@ -159,21 +159,21 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                            <children>
-                              <Button fx:id="buttonFieldConnexion1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#connection" prefHeight="70.0" prefWidth="300.0" style="-fx-padding: 10px; -fx-border-insets: 10px; -fx-background-insets: 10px;" text="Connexion">
+                              <Button fx:id="buttonFieldConnexion1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#connection" prefHeight="50.0" prefWidth="300.0" text="Connexion">
                                  <font>
                                     <Font size="19.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="buttonFieldDeconnexion1" alignment="CENTER" mnemonicParsing="false" onAction="#deconnection" prefHeight="70.0" prefWidth="300.0" style="-fx-background-insets: 10px; -fx-border-insets: 10px; -fx-padding: 10px;" text="Déconnexion">
+                              <Button fx:id="buttonFieldDeconnexion1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deconnection" prefHeight="50.0" prefWidth="300.0" text="Déconnexion">
                                  <font>
                                     <Font size="19.0" />
                                  </font>
                               </Button>
                            </children>
                         </HBox>
-                        <Button fx:id="buttonFieldInscrir" mnemonicParsing="false" onAction="#playerToInscrir" prefHeight="29.0" prefWidth="300.0" style="-fx-border-insets: 15px; -fx-padding: 10px;" text="S'inscrire">
+                        <Button fx:id="buttonFieldInscrir" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playerToInscrir" prefHeight="50.0" prefWidth="300.0" text="S'inscrire">
                            <font>
                               <Font size="19.0" />
                            </font>

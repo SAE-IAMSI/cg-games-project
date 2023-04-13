@@ -14,7 +14,19 @@
 
 .password-field, .text-field, .button
 {
-    -fx-text-fill: black;
+    -fx-text-fill: white;
+}
+
+.button
+{
+    -fx-background-color: rgba(0, 0, 0, 0.51);
+    -fx-border-color: #9a6e23;
+    -fx-border-radius: 10px;
+}
+
+.button:hover
+{
+    -fx-border-color: white;
 }
 
 .combo-box .list-view .list-cell{
