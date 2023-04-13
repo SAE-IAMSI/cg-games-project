@@ -16,3 +16,11 @@
 {
     -fx-text-fill: black;
 }
+
+.combo-box .list-view .list-cell{
+    -fx-text-fill: black;
+}
+
+.rgpd{
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+}
