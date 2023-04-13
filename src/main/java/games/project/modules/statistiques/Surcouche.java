@@ -89,7 +89,7 @@ public class Surcouche {
 
     public static void main(String[] args) throws IOException {
         long startTime = System.currentTimeMillis();
-        creationDesGraphes();
+        System.out.println(recupFonction("getNbPlayers", null));
         long endTime = System.currentTimeMillis();
         System.out.println("temps d'execution : " + (endTime - startTime) + " ms");
     }

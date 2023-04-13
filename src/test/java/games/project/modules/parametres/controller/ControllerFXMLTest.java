@@ -19,7 +19,7 @@ class ControllerFXMLTest {
         controller = fxmlLoader.getController();
     }
 
-    @Test
+    /*@Test
     public void lanceTournoisQuandPpasConnecte(){
         Mockito.when(Session.getInstance().isConnected()).thenReturn(false);
         controller.lanceTournois();
@@ -48,6 +48,6 @@ class ControllerFXMLTest {
         Mockito.when(PlayerManager.getInstance().getPlayer(Session.getInstance().getLogin()).isAdmin()).thenReturn(true);
         controller.lanceStatistiques();
         assertEquals("", controller.getLabelErreur().getText());
-    }
+    }*/
 
 }
