@@ -195,3 +195,20 @@
     -fx-padding: 5px;
     -fx-alignment: center;
 }
+
+.noTournaments {
+    -fx-font-family: 'Orbitron', sans-serif;
+    -fx-font-size: 20px;
+    -fx-text-fill: #ffffff;
+    -fx-max-height: 60px;
+    -fx-max-width: 879px;
+    -fx-pref-height: 60px;
+    -fx-pref-width: 879px;
+    -fx-min-height: 60px;
+    -fx-min-width: 879px;
+    -fx-alignment: center;
+    -fx-border-width: 2px;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 10px;
+    -fx-background-color: rgba(159, 0, 203, 0.2);
+}
