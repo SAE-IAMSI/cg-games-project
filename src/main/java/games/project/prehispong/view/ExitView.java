@@ -1,7 +1,9 @@
 package games.project.prehispong.view;
 
+import games.project.casse_briques.controller.SoundGestionController;
 import games.project.prehispong.MainPong;
 import games.project.prehispong.controller.GameController;
+import games.project.prehispong.sound.GameSound;
 import javafx.fxml.FXML;
 
 public class ExitView extends GenericView {
@@ -13,7 +15,9 @@ public class ExitView extends GenericView {
     @FXML
     private void clickOk() {
         try {
+            GameSound.getInstance().stop();
             MainPong.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
