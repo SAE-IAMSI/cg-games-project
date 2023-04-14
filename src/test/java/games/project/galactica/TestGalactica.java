@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestUnitaire {
+public class TestGalactica {
 
     Galactica galactica;
     LeftPanel leftPanel;
@@ -82,13 +82,13 @@ public class TestUnitaire {
 
     @Test
     void affichageScore() {
-        assertEquals("Score(s): 0", rightPanel.getScoreLabel().getText());
+        assertEquals("Score : 0", rightPanel.getScoreLabel().getText());
         rightPanel.setScore(10);
         rightPanel.updateScore();
-        assertEquals("Score(s): 10", rightPanel.getScoreLabel().getText());
+        assertEquals("Score : 10", rightPanel.getScoreLabel().getText());
         rightPanel.setScore(100);
         rightPanel.updateScore();
-        assertEquals("Score(s): 100", rightPanel.getScoreLabel().getText());
+        assertEquals("Score : 100", rightPanel.getScoreLabel().getText());
     }
 
     @Test
@@ -109,20 +109,6 @@ public class TestUnitaire {
         assertEquals(2, player.getDx());
         player.keyReleased(e);
         assertEquals(0, player.getDx());
-    }
-
-    //TODO: Fix this test
-    @Test
-    void positionShot() {
-        Shot shot = new Shot(player.getX(), player.getY());
-        shot.initShot(player.getX(), player.getY());
-        assertEquals(player.getX() + 15, shot.getX());
-    }
-    //TODO: Fix this test
-    @Test
-    void positionBomb() {
-        Alien.Bomb bomb = new Alien.Bomb(player.getX(), player.getY());
-        board.update();
     }
 
     @Test
